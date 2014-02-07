@@ -5,7 +5,7 @@ This directory contains
 	- resume.html : Contains Siddhartha Prasad's resume
 	- bio.html : Contains a short bio of Siddhartha Prasad
 
-All elements of the assignment have been implemented.
+All elements of the assignment (listed above) have been implemented.
 
 TIme spent: 2 hours
 
