@@ -56,20 +56,34 @@
 							
 						<!-- Work -->
 							<article id="work" class="panel">
-								<header>
-									<h2>Work</h2>
-								</header>
-								
-								
-								<!--
-								<p>
-									I was born and raised in New Delhi, India, and I work as a Software Engineer at Microsoft.
-									I recently graduated from Tufts University, where I studied Computer Science and Mathematics.
-									
+							<style>
+								a.navelem {
+									width: 25%;
+									height: 25%;
 
-								</p>-->
+									padding: 30px;
+									margin: 0;
+								}
 								
-								<h3> Tufts University</h3>
+								a.navelem:hover { 
+									background-color: grey;
+								}
+							
+							</style>
+								<header>
+									<h1 align="center">Work</h2>
+								</header>
+								<br>
+								<nav style="page-break-after: always" id="work_nav" align="center">
+									<a class= "navelem"href="#Tufts"><span><img src="http://pbs.twimg.com/profile_images/64521509/tufts316_normal.jpg" alt="Tufts University"></span></a>
+									<a class="navelem" href="#msft"><span><img src="http://www.microsoftvolumelicensing.com/images/storelogo.png" alt="Microsoft"></span></a>
+									<a class="navelem" href="#INRIA"><span><img src="http://people.rennes.inria.fr/Kevin.Jordao/media/img/logo_INRIA.png" alt="Inria"></span></a>
+									<a class="navelem" href="#IIT"><span><img src="https://lh3.googleusercontent.com/-JA86V17JQyE/AAAAAAAAAAI/AAAAAAAAGcY/f9mH8lIrc1k/s46-c-k-no/photo.jpg" alt="IIT Delhi"></span></a>
+									
+								</nav>
+
+								<br>
+								<h3  id="Tufts"> Tufts University</h3>
 								
 									<p>								
 									My Honors Thesis on a <a href='assets/documents/sidBison.pdf'> <strong>Stepwise Interactive Debugger for Bison</strong> </a>
@@ -79,14 +93,26 @@
 									My Senior Capstone explored <strong>distributed value and cloud based caching </strong> mechanisms for proxies. Sponsored by Prof. Fahad Dogar,
 									a technical report on the project can be found <a href='assets/documents/FlyingSquid.pdf'> here </a>. I also built a
 									<a href="https://github.com/sidprasad/NetworkInterpreter"> networked based interpreter system </a> for Scheme under Prof. Dogar's supervision.
+									<br>
+									I have been a TA for <a href="www.cs.tufts.edu/comp/105"> Comp 105: Programming Languages </a> for the past 2 years.
+									
 									</p>
-								<br>	
-								<h3> INRIA </h3>
+								<br>
+
+								<h3 id="msft"> Microsoft</h3>
+								
+									<p>	
+										In the summer of 2015, I interned with the XAML team at Microsoft in Redmond, WA. I added a cohesive API to the XAML language
+										and worked on platforms including Windows 10 and Xbox.
+									</p>
+								
+								<br>
+								<h3 id="INRIA"> INRIA </h3>
 									<p>In the summer of 2014, I worked at INRIA Saclay with the <a href='https://team.inria.fr/parsifal/'> Parsifal Team </a> and developed a <a href='https://github.com/sidprasad/RewriteVerificationSystem'>Rewrite Verification System</a>.
 									A technical report for this system can be found <a href='assets/documents/RewriteVerifier.pdf'>here</a>.</p>
 
 								
-								<h3>I.I.T. Delhi </h3>
+								<h3 id="IIT">I.I.T. Delhi </h3>
 								<p>
 									In the summer of 2013, I worked on image restoration problems dealt with in 
 									Bertalmio and Sapiro's paper <a href="http://www.tecn.upf.es/~mbertalmio/bertalmi.pdf">'Image Inpainting'</a> 
