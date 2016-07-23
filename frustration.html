@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+
+
+	<head>
+		<title>Work Authorization or Arsenal Striker?</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		
+		<script type="text/javascript">
+window.onload = function () {
+    setInterval(timeLeft, 1000);
+}
+
+function timeLeft () {
+
+var OPTApp = "29 April 2016, 10:45:00";
+var TransferOpen = "1 July 2016, 10:45:00"
+var oneDay = 24*60*60*1000;
+var optDate = new Date(OPTApp);
+var transferDate = new Date(TransferOpen);
+
+
+
+var secondDate = new Date();
+
+var diffDaysOPT = Math.abs((optDate.getTime() - secondDate.getTime())/(oneDay));
+
+var diffDaysArsenal = Math.abs((transferDate.getTime() - secondDate.getTime())/(oneDay));
+
+var percentDone;
+if( optDate <= new Date("29 July 2016, 10:45:00") ) {
+	OPTpercentDone = Math.abs(100 * (1 - (Math.abs((new Date("29 July 2016, 10:45:00").getTime() - secondDate.getTime())/(oneDay))/91)));
+
+
+}
+
+if( transferDate <= new Date("31 August 2016, 10:45:00") ) {
+	TransferpercentDone = Math.abs(100 * (1 - (Math.abs((new Date("31 August 2016, 10:45:00").getTime() - secondDate.getTime())/(oneDay))/61)));
+
+}
+
+
+
+
+
+s1 = "<h2> Have Arsenal Signed a Striker?</h2> <h1> No </h1> The transfer window has been open for " + diffDaysArsenal.toFixed(0) + " days. <br><br>"+ TransferpercentDone.toFixed(5) + "% of time has elapsed.";
+s2 = "<h2> Have I received OPT Work Authorization?</h2> <h1> No </h1> Practical Training work authorization has been pending for " + diffDaysOPT.toFixed(0) + " days.<br><br>" + OPTpercentDone.toFixed(5) + "% of time has elapsed."; 
+
+
+
+document.title = "Work Permit or Striker";
+document.getElementById("child_div_1").innerHTML= s1;
+document.getElementById("child_div_2").innerHTML= s2;
+}
+
+
+</script>
+
+	<style>
+	#parent_div {
+	
+
+	margin : 2px;
+	}
+	
+	#child_div_2{
+	margin : 2px;
+
+
+	}
+	
+	#child_div_1 {
+		float: left;
+		margin: 2px;
+
+	}
+	
+	</style>
+		
+	</head>
+	<body>
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+
+
+
+						</div>
+					</header>
+
+				
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+						
+
+						
+						<div id="parent_div" align=center>
+						<h1> Work Authorization or Arsenal Striker? </h2>
+												<div align=center>
+						<hr>
+						<style>
+							li{
+							display : inline
+							
+							}
+						</style>
+								
+							<h3><ul>
+								<li><a href="index.html">Home</a></li>
+								<li><a href="resume.pdf">Resume</a></li>
+								<li><a href="about.html">About</a></li>
+							</ul>
+							</h3>
+								<hr>
+						<div>
+
+						
+							<div id="child_div_1">
+							<h1>Loading...</h1>
+							</div>
+							<div id="child_div_2">
+							<h1>Loading...</h1>
+							</div>
+							<br> <br> <br> <br>
+							
+							</div>
+						</div>
+					</div>
+
+					
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
