@@ -53,14 +53,17 @@ if( transferDate <= new Date("31 August 2016, 10:45:00") ) {
 
 
 
+s3 = '<br> <progress  value="' + TransferpercentDone +'" max="100"> </progress> <br>';
+s4 = '<br> <progress  value="' + OPTpercentDone +'" max="100"> </progress> <br>';
 
-s1 = "<h2> Have Arsenal Signed a Striker?</h2> <h1> No </h1> The transfer window has been open for " + diffDaysArsenal.toFixed(0) + " days. <br><br>"+ TransferpercentDone.toFixed(5) + "% of time has elapsed.";
-s2 = "<h2> Have I received OPT Work Authorization?</h2> <h1> No </h1> Practical Training work authorization has been pending for " + diffDaysOPT.toFixed(0) + " days.<br><br>" + OPTpercentDone.toFixed(5) + "% of time has elapsed."; 
+s1 = "<h2> Have Arsenal Signed a Striker?</h2> <h1> No </h1> The transfer window has been open for " + diffDaysArsenal.toFixed(0) + " days.<br>" + s3 + TransferpercentDone.toFixed(5) + "% of time has elapsed.";
+s2 = "<h2> Have I received OPT Work Authorization?</h2> <h1> No </h1> Practical Training work authorization has been pending for " + diffDaysOPT.toFixed(0) + " days.<br>" + s4 + OPTpercentDone.toFixed(5) + "% of time has elapsed."; 
 
 
 
 document.title = "Work Permit or Striker";
 document.getElementById("child_div_1").innerHTML= s1;
+
 document.getElementById("child_div_2").innerHTML= s2;
 }
 
