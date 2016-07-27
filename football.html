@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html >
+	<head>
+		<title>Football Homepage</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		
+
+		
+		
+	</head>
+	<body onload="getRecent()">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+									<select align=left id="chooseteam" onchange="newTeam(this.value)">	
+									<option> Choose a team </option>
+									</select>
+							<nav>
+								
+									<a href="#teamName" class="icon style2 fa-arrow-up"><span class="label">Top</span></a> <br>
+
+								
+							</nav>
+
+						</div>
+					</header>
+
+
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1 align = center id="teamName">Loading</h1>
+							
+							
+							<div id="navbs" align=center>
+							
+							<button id="tablebutton" type="button" onclick="LTable()">League Table</button>
+							<button id="pastbutton" type="button" onclick="pastMonth()">Past Fixtures</button>
+							<button id="upcomingbutton" type="button" onclick="nextMonth()">Upcoming Fixtures</button>
+							<button id="transferbutton" type="button" onclick="timeLeft()">Transfer Window</button>
+							</div>
+							<hr>
+							
+							<div id="parent_div" align=center>
+							<div id="latestscore"> </div>
+							
+							<div id="transfer"> </div>
+							<div>
+							
+
+							<div id="_table"> </div>
+							<div id="upcoming"> </div>
+							<div id="past"> </div>
+
+						
+							</div>
+					</div>
+
+				<!-- Footer -->
+
+
+								&copy; Siddhartha Prasad. All rights reserved Design: <a href="http://html5up.net">HTML5 UP</a>
+
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/arsenal.js"></script>
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
