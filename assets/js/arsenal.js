@@ -387,7 +387,7 @@ function timeLeft () {
 		} else {
 			t.innerHTML="<h2> Transfer Window </h2> The window has closed. No more silly season!";
 		}
-		goToByScroll("transfer");
+		goToByScroll("transfercount");
 	}
 
 }
