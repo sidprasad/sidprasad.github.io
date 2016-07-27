@@ -11,6 +11,9 @@ var pastFixtures;
 var options = new Object;
 
 
+var arsenalTransfer = 'https://skysportsapi.herokuapp.com/sky/football/getteamnews/arsenal/v1.0/';
+
+
 
 function LTable()
 {
@@ -48,20 +51,10 @@ function pastMonth()
 		document.getElementById("past").style.display = "inline";
 		document.getElementById("pastbutton").style.backgroundColor = "#b3b3b3";
 		
-	/*$.ajax({
-	  headers: { 'X-Auth-Token': '564ab25c92d04e2aa984fc04e398bbb6' },
-	  url: arsenalPastMonthURL,
-	  dataType: 'json',
-	  type: 'GET',
-	}).done( function (response) {
-		console.log(response);*/
-		
 		document.getElementById("past").innerHTML = "<h2>Past Fixtures </h2>";
 		console.log(pastFixtures);
 		buildPastTable(pastFixtures.fixtures);
-		
-		
-	//});
+
 
 	}
 }
@@ -364,12 +357,30 @@ function timeLeft () {
 
 		}
 
+		/*
+		$.ajax({
+		  crossDomain : true,
+		  url: arsenalTransfer,
+		  dataType: 'json',
+		  type: 'GET',
+		}).done( function (response) {
+			
+			console.log("Transfer News:")
+			console.log(response);
 
+		});
+		 
+		 something something this should all be a heroku app */
+		
+		
+		
 
 
 		s3 = '<br> <progress  value="' + TransferpercentDone +'" max="100"> </progress> <br>';
-		s1 = "<h2> Transfer Window </h2> The transfer window has been open for " + diffDaysArsenal.toFixed(0) + " days." + s3 + TransferpercentDone.toFixed(2) + "% of the window is over. <br> <i> Transfer news coming soon </i> <hr>";
+		s1 = "<h2> Transfer Window </h2> The transfer window has been open for " + diffDaysArsenal.toFixed(0) + " days." + s3 + TransferpercentDone.toFixed(2) + "% of the window is over. <br><br> <i>Club specific transfer list coming soon </i>";
 
+		
+		t = document.getElementById("transfercount");
 		if(TransferpercentDone <= 100) {
 			t.innerHTML= s1;
 			
