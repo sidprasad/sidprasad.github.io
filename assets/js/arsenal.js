@@ -120,6 +120,8 @@ function getRecent()
 			
 			document.getElementById("teamName").innerHTML = "<h1>" + response.name + "</h1>";
 			tnme = response.name;
+			hashtag = response.shortName;
+			console.log(hashtag)
 			
 			
 	});
@@ -357,21 +359,7 @@ function timeLeft () {
 
 		}
 
-		/*
-		$.ajax({
-		  crossDomain : true,
-		  url: arsenalTransfer,
-		  dataType: 'json',
-		  type: 'GET',
-		}).done( function (response) {
-			
-			console.log("Transfer News:")
-			console.log(response);
 
-		});
-		 
-		 something something this should all be a heroku app */
-		
 		
 		
 
