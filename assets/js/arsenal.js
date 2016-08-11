@@ -45,7 +45,8 @@ function pastMonth()
 	if(document.getElementById("past").style.display == "inline") {
 		
 		document.getElementById("past").style.display = "none";
-		document.getElementById("pastbutton").style.backgroundColor = "inline";
+		document.getElementById("pastbutton").style.backgroundColor = "initial";
+
 	} else {
 	
 		document.getElementById("past").style.display = "inline";
