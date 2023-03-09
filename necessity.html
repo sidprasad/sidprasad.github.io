@@ -1,0 +1,170 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 1000px;
+                 height: 1000px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+            <div id="config"></div>
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": "p51ef87a3_bd29_11ed_aa38_5882a89bce73,p51f246c1_bd29_11ed_8007_5882a89bce73,p51f26dd1_bd29_11ed_8a17_5882a89bce73,p51f1f891_bd29_11ed_aaf3_5882a89bce73", "label": "p51ef87a3_bd29_11ed_aa38_5882a89bce73,p51f246c1_bd29_11ed_8007_5882a89bce73,p51f26dd1_bd29_11ed_8a17_5882a89bce73,p51f1f891_bd29_11ed_aaf3_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p52015d08_bd29_11ed_9c82_5882a89bce73,p52026e69_bd29_11ed_8dad_5882a89bce73,p51efd5b7_bd29_11ed_a448_5882a89bce73,p52044333_bd29_11ed_89a0_5882a89bce73,p5203ce01_bd29_11ed_8342_5882a89bce73,p5201ab1d_bd29_11ed_b203_5882a89bce73", "label": "p52015d08_bd29_11ed_9c82_5882a89bce73,p52026e69_bd29_11ed_8dad_5882a89bce73,p51efd5b7_bd29_11ed_a448_5882a89bce73,p52044333_bd29_11ed_89a0_5882a89bce73,p5203ce01_bd29_11ed_8342_5882a89bce73,p5201ab1d_bd29_11ed_b203_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51f023dd_bd29_11ed_aa46_5882a89bce73", "label": "p51f023dd_bd29_11ed_aa46_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51fa63fc_bd29_11ed_be98_5882a89bce73,p51f13559_bd29_11ed_8a56_5882a89bce73,p51f10e58_bd29_11ed_91b7_5882a89bce73", "label": "p51fa63fc_bd29_11ed_be98_5882a89bce73,p51f13559_bd29_11ed_8a56_5882a89bce73,p51f10e58_bd29_11ed_91b7_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51f1836e_bd29_11ed_b3fb_5882a89bce73", "label": "p51f1836e_bd29_11ed_b3fb_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51f21fab_bd29_11ed_ac7a_5882a89bce73", "label": "p51f21fab_bd29_11ed_ac7a_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p520135e5_bd29_11ed_8763_5882a89bce73,p51f246c2_bd29_11ed_9e20_5882a89bce73", "label": "p520135e5_bd29_11ed_8763_5882a89bce73,p51f246c2_bd29_11ed_9e20_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51f2bc26_bd29_11ed_a1ed_5882a89bce73", "label": "p51f2bc26_bd29_11ed_a1ed_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51f2e31e_bd29_11ed_b98c_5882a89bce73", "label": "p51f2e31e_bd29_11ed_b98c_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51f358a0_bd29_11ed_b01f_5882a89bce73", "label": "p51f358a0_bd29_11ed_b01f_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51f3e793_bd29_11ed_96ad_5882a89bce73", "label": "p51f3e793_bd29_11ed_96ad_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51f45d6b_bd29_11ed_a174_5882a89bce73", "label": "p51f45d6b_bd29_11ed_a174_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51f5bc70_bd29_11ed_aeca_5882a89bce73,p51f56e57_bd29_11ed_9af7_5882a89bce73,p51f52081_bd29_11ed_a23d_5882a89bce73,p51f5e38b_bd29_11ed_af35_5882a89bce73,p51f4ab04_bd29_11ed_9fbc_5882a89bce73", "label": "p51f5bc70_bd29_11ed_aeca_5882a89bce73,p51f56e57_bd29_11ed_9af7_5882a89bce73,p51f52081_bd29_11ed_a23d_5882a89bce73,p51f5e38b_bd29_11ed_af35_5882a89bce73,p51f4ab04_bd29_11ed_9fbc_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51f65827_bd29_11ed_8e53_5882a89bce73", "label": "p51f65827_bd29_11ed_8e53_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51f7292e_bd29_11ed_9913_5882a89bce73", "label": "p51f7292e_bd29_11ed_9913_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51f77795_bd29_11ed_96e3_5882a89bce73,p5202204c_bd29_11ed_9686_5882a89bce73,p52030ac5_bd29_11ed_a3ac_5882a89bce73,p52024764_bd29_11ed_a52a_5882a89bce73,p51f83ac3_bd29_11ed_b419_5882a89bce73,p5202204d_bd29_11ed_88e7_5882a89bce73,p52029581_bd29_11ed_90ab_5882a89bce73", "label": "p51f77795_bd29_11ed_96e3_5882a89bce73,p5202204c_bd29_11ed_9686_5882a89bce73,p52030ac5_bd29_11ed_a3ac_5882a89bce73,p52024764_bd29_11ed_a52a_5882a89bce73,p51f83ac3_bd29_11ed_b419_5882a89bce73,p5202204d_bd29_11ed_88e7_5882a89bce73,p52029581_bd29_11ed_90ab_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51f8b087_bd29_11ed_9150_5882a89bce73", "label": "p51f8b087_bd29_11ed_9150_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51f9047b_bd29_11ed_97fb_5882a89bce73,p51f9a0aa_bd29_11ed_b28f_5882a89bce73", "label": "p51f9047b_bd29_11ed_97fb_5882a89bce73,p51f9a0aa_bd29_11ed_b28f_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51f9529a_bd29_11ed_95bb_5882a89bce73", "label": "p51f9529a_bd29_11ed_95bb_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51fa15ea_bd29_11ed_830b_5882a89bce73", "label": "p51fa15ea_bd29_11ed_830b_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51fbaa9d_bd29_11ed_8337_5882a89bce73", "label": "p51fbaa9d_bd29_11ed_8337_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51fcbbf7_bd29_11ed_9c57_5882a89bce73,p51fddae3_bd29_11ed_868d_5882a89bce73,p51fd5a6f_bd29_11ed_b224_5882a89bce73,p51fd003e_bd29_11ed_a8f0_5882a89bce73", "label": "p51fcbbf7_bd29_11ed_9c57_5882a89bce73,p51fddae3_bd29_11ed_868d_5882a89bce73,p51fd5a6f_bd29_11ed_b224_5882a89bce73,p51fd003e_bd29_11ed_a8f0_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p51ff3a25_bd29_11ed_9b7b_5882a89bce73", "label": "p51ff3a25_bd29_11ed_9b7b_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p52015d08_bd29_11ed_9c82_5882a89bce73,p52044333_bd29_11ed_89a0_5882a89bce73,p51efd5b7_bd29_11ed_a448_5882a89bce73,p5203ce01_bd29_11ed_8342_5882a89bce73,p52026e69_bd29_11ed_8dad_5882a89bce73,p5201ab1d_bd29_11ed_b203_5882a89bce73", "label": "p52015d08_bd29_11ed_9c82_5882a89bce73,p52044333_bd29_11ed_89a0_5882a89bce73,p51efd5b7_bd29_11ed_a448_5882a89bce73,p5203ce01_bd29_11ed_8342_5882a89bce73,p52026e69_bd29_11ed_8dad_5882a89bce73,p5201ab1d_bd29_11ed_b203_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p52015d09_bd29_11ed_9175_5882a89bce73", "label": "p52015d09_bd29_11ed_9175_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p52018416_bd29_11ed_91b2_5882a89bce73", "label": "p52018416_bd29_11ed_91b2_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p5201ab1c_bd29_11ed_a6cd_5882a89bce73", "label": "p5201ab1c_bd29_11ed_a6cd_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p5201d231_bd29_11ed_a1e9_5882a89bce73", "label": "p5201d231_bd29_11ed_a1e9_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p5201f936_bd29_11ed_833a_5882a89bce73", "label": "p5201f936_bd29_11ed_833a_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p5202e41c_bd29_11ed_b181_5882a89bce73", "label": "p5202e41c_bd29_11ed_b181_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p52037fe6_bd29_11ed_aa78_5882a89bce73,p5207ecc9_bd29_11ed_92dd_5882a89bce73,p52077772_bd29_11ed_8042_5882a89bce73,p5207c5ab_bd29_11ed_8a72_5882a89bce73", "label": "p52037fe6_bd29_11ed_aa78_5882a89bce73,p5207ecc9_bd29_11ed_92dd_5882a89bce73,p52077772_bd29_11ed_8042_5882a89bce73,p5207c5ab_bd29_11ed_8a72_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p5204df67_bd29_11ed_8a11_5882a89bce73", "label": "p5204df67_bd29_11ed_8a11_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p5205548c_bd29_11ed_9024_5882a89bce73", "label": "p5205548c_bd29_11ed_9024_5882a89bce73", "shape": "dot"}, {"color": "#97c2fc", "id": "p52086206_bd29_11ed_912b_5882a89bce73", "label": "p52086206_bd29_11ed_912b_5882a89bce73", "shape": "dot"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "color": "blue", "from": "p5202e41c_bd29_11ed_b181_5882a89bce73", "to": "p51f5bc70_bd29_11ed_aeca_5882a89bce73,p51f56e57_bd29_11ed_9af7_5882a89bce73,p51f52081_bd29_11ed_a23d_5882a89bce73,p51f5e38b_bd29_11ed_af35_5882a89bce73,p51f4ab04_bd29_11ed_9fbc_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p5201ab1c_bd29_11ed_a6cd_5882a89bce73", "to": "p52015d09_bd29_11ed_9175_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f9529a_bd29_11ed_95bb_5882a89bce73", "to": "p5202e41c_bd29_11ed_b181_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f7292e_bd29_11ed_9913_5882a89bce73", "to": "p51f21fab_bd29_11ed_ac7a_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p52018416_bd29_11ed_91b2_5882a89bce73", "to": "p52015d09_bd29_11ed_9175_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f9529a_bd29_11ed_95bb_5882a89bce73", "to": "p51f2e31e_bd29_11ed_b98c_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f358a0_bd29_11ed_b01f_5882a89bce73", "to": "p51f3e793_bd29_11ed_96ad_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f7292e_bd29_11ed_9913_5882a89bce73", "to": "p51f77795_bd29_11ed_96e3_5882a89bce73,p5202204c_bd29_11ed_9686_5882a89bce73,p52030ac5_bd29_11ed_a3ac_5882a89bce73,p52024764_bd29_11ed_a52a_5882a89bce73,p51f83ac3_bd29_11ed_b419_5882a89bce73,p5202204d_bd29_11ed_88e7_5882a89bce73,p52029581_bd29_11ed_90ab_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f77795_bd29_11ed_96e3_5882a89bce73,p5202204c_bd29_11ed_9686_5882a89bce73,p52030ac5_bd29_11ed_a3ac_5882a89bce73,p52024764_bd29_11ed_a52a_5882a89bce73,p51f83ac3_bd29_11ed_b419_5882a89bce73,p5202204d_bd29_11ed_88e7_5882a89bce73,p52029581_bd29_11ed_90ab_5882a89bce73", "to": "p51f21fab_bd29_11ed_ac7a_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p5201f936_bd29_11ed_833a_5882a89bce73", "to": "p5201ab1c_bd29_11ed_a6cd_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f9047b_bd29_11ed_97fb_5882a89bce73,p51f9a0aa_bd29_11ed_b28f_5882a89bce73", "to": "p5204df67_bd29_11ed_8a11_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f2bc26_bd29_11ed_a1ed_5882a89bce73", "to": "p51ef87a3_bd29_11ed_aa38_5882a89bce73,p51f246c1_bd29_11ed_8007_5882a89bce73,p51f26dd1_bd29_11ed_8a17_5882a89bce73,p51f1f891_bd29_11ed_aaf3_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p52015d08_bd29_11ed_9c82_5882a89bce73,p52044333_bd29_11ed_89a0_5882a89bce73,p51efd5b7_bd29_11ed_a448_5882a89bce73,p5203ce01_bd29_11ed_8342_5882a89bce73,p52026e69_bd29_11ed_8dad_5882a89bce73,p5201ab1d_bd29_11ed_b203_5882a89bce73", "to": "p51fa63fc_bd29_11ed_be98_5882a89bce73,p51f13559_bd29_11ed_8a56_5882a89bce73,p51f10e58_bd29_11ed_91b7_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f7292e_bd29_11ed_9913_5882a89bce73", "to": "p51f5bc70_bd29_11ed_aeca_5882a89bce73,p51f56e57_bd29_11ed_9af7_5882a89bce73,p51f52081_bd29_11ed_a23d_5882a89bce73,p51f5e38b_bd29_11ed_af35_5882a89bce73,p51f4ab04_bd29_11ed_9fbc_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p52015d08_bd29_11ed_9c82_5882a89bce73,p52044333_bd29_11ed_89a0_5882a89bce73,p51efd5b7_bd29_11ed_a448_5882a89bce73,p5203ce01_bd29_11ed_8342_5882a89bce73,p52026e69_bd29_11ed_8dad_5882a89bce73,p5201ab1d_bd29_11ed_b203_5882a89bce73", "to": "p51f21fab_bd29_11ed_ac7a_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f9047b_bd29_11ed_97fb_5882a89bce73,p51f9a0aa_bd29_11ed_b28f_5882a89bce73", "to": "p51f21fab_bd29_11ed_ac7a_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f023dd_bd29_11ed_aa46_5882a89bce73", "to": "p51fcbbf7_bd29_11ed_9c57_5882a89bce73,p51fddae3_bd29_11ed_868d_5882a89bce73,p51fd5a6f_bd29_11ed_b224_5882a89bce73,p51fd003e_bd29_11ed_a8f0_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51fcbbf7_bd29_11ed_9c57_5882a89bce73,p51fddae3_bd29_11ed_868d_5882a89bce73,p51fd5a6f_bd29_11ed_b224_5882a89bce73,p51fd003e_bd29_11ed_a8f0_5882a89bce73", "to": "p5204df67_bd29_11ed_8a11_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p5202e41c_bd29_11ed_b181_5882a89bce73", "to": "p51f2e31e_bd29_11ed_b98c_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f358a0_bd29_11ed_b01f_5882a89bce73", "to": "p51f5bc70_bd29_11ed_aeca_5882a89bce73,p51f56e57_bd29_11ed_9af7_5882a89bce73,p51f52081_bd29_11ed_a23d_5882a89bce73,p51f5e38b_bd29_11ed_af35_5882a89bce73,p51f4ab04_bd29_11ed_9fbc_5882a89bce73"}, {"arrows": "to", "color": "red", "from": "p52015d08_bd29_11ed_9c82_5882a89bce73,p52044333_bd29_11ed_89a0_5882a89bce73,p51efd5b7_bd29_11ed_a448_5882a89bce73,p5203ce01_bd29_11ed_8342_5882a89bce73,p52026e69_bd29_11ed_8dad_5882a89bce73,p5201ab1d_bd29_11ed_b203_5882a89bce73", "to": "p52015d08_bd29_11ed_9c82_5882a89bce73,p52026e69_bd29_11ed_8dad_5882a89bce73,p51efd5b7_bd29_11ed_a448_5882a89bce73,p52044333_bd29_11ed_89a0_5882a89bce73,p5203ce01_bd29_11ed_8342_5882a89bce73,p5201ab1d_bd29_11ed_b203_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p52015d08_bd29_11ed_9c82_5882a89bce73,p52026e69_bd29_11ed_8dad_5882a89bce73,p51efd5b7_bd29_11ed_a448_5882a89bce73,p52044333_bd29_11ed_89a0_5882a89bce73,p5203ce01_bd29_11ed_8342_5882a89bce73,p5201ab1d_bd29_11ed_b203_5882a89bce73", "to": "p51f8b087_bd29_11ed_9150_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51ff3a25_bd29_11ed_9b7b_5882a89bce73", "to": "p51ef87a3_bd29_11ed_aa38_5882a89bce73,p51f246c1_bd29_11ed_8007_5882a89bce73,p51f26dd1_bd29_11ed_8a17_5882a89bce73,p51f1f891_bd29_11ed_aaf3_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f2e31e_bd29_11ed_b98c_5882a89bce73", "to": "p51f5bc70_bd29_11ed_aeca_5882a89bce73,p51f56e57_bd29_11ed_9af7_5882a89bce73,p51f52081_bd29_11ed_a23d_5882a89bce73,p51f5e38b_bd29_11ed_af35_5882a89bce73,p51f4ab04_bd29_11ed_9fbc_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p52015d08_bd29_11ed_9c82_5882a89bce73,p52044333_bd29_11ed_89a0_5882a89bce73,p51efd5b7_bd29_11ed_a448_5882a89bce73,p5203ce01_bd29_11ed_8342_5882a89bce73,p52026e69_bd29_11ed_8dad_5882a89bce73,p5201ab1d_bd29_11ed_b203_5882a89bce73", "to": "p51f77795_bd29_11ed_96e3_5882a89bce73,p5202204c_bd29_11ed_9686_5882a89bce73,p52030ac5_bd29_11ed_a3ac_5882a89bce73,p52024764_bd29_11ed_a52a_5882a89bce73,p51f83ac3_bd29_11ed_b419_5882a89bce73,p5202204d_bd29_11ed_88e7_5882a89bce73,p52029581_bd29_11ed_90ab_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f45d6b_bd29_11ed_a174_5882a89bce73", "to": "p51f5bc70_bd29_11ed_aeca_5882a89bce73,p51f56e57_bd29_11ed_9af7_5882a89bce73,p51f52081_bd29_11ed_a23d_5882a89bce73,p51f5e38b_bd29_11ed_af35_5882a89bce73,p51f4ab04_bd29_11ed_9fbc_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f8b087_bd29_11ed_9150_5882a89bce73", "to": "p51f21fab_bd29_11ed_ac7a_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f65827_bd29_11ed_8e53_5882a89bce73", "to": "p51ef87a3_bd29_11ed_aa38_5882a89bce73,p51f246c1_bd29_11ed_8007_5882a89bce73,p51f26dd1_bd29_11ed_8a17_5882a89bce73,p51f1f891_bd29_11ed_aaf3_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p5202e41c_bd29_11ed_b181_5882a89bce73", "to": "p520135e5_bd29_11ed_8763_5882a89bce73,p51f246c2_bd29_11ed_9e20_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p5201f936_bd29_11ed_833a_5882a89bce73", "to": "p5204df67_bd29_11ed_8a11_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p52037fe6_bd29_11ed_aa78_5882a89bce73,p5207ecc9_bd29_11ed_92dd_5882a89bce73,p52077772_bd29_11ed_8042_5882a89bce73,p5207c5ab_bd29_11ed_8a72_5882a89bce73", "to": "p5204df67_bd29_11ed_8a11_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f9529a_bd29_11ed_95bb_5882a89bce73", "to": "p520135e5_bd29_11ed_8763_5882a89bce73,p51f246c2_bd29_11ed_9e20_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p5201f936_bd29_11ed_833a_5882a89bce73", "to": "p51f5bc70_bd29_11ed_aeca_5882a89bce73,p51f56e57_bd29_11ed_9af7_5882a89bce73,p51f52081_bd29_11ed_a23d_5882a89bce73,p51f5e38b_bd29_11ed_af35_5882a89bce73,p51f4ab04_bd29_11ed_9fbc_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f8b087_bd29_11ed_9150_5882a89bce73", "to": "p51f77795_bd29_11ed_96e3_5882a89bce73,p5202204c_bd29_11ed_9686_5882a89bce73,p52030ac5_bd29_11ed_a3ac_5882a89bce73,p52024764_bd29_11ed_a52a_5882a89bce73,p51f83ac3_bd29_11ed_b419_5882a89bce73,p5202204d_bd29_11ed_88e7_5882a89bce73,p52029581_bd29_11ed_90ab_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f9047b_bd29_11ed_97fb_5882a89bce73,p51f9a0aa_bd29_11ed_b28f_5882a89bce73", "to": "p51f5bc70_bd29_11ed_aeca_5882a89bce73,p51f56e57_bd29_11ed_9af7_5882a89bce73,p51f52081_bd29_11ed_a23d_5882a89bce73,p51f5e38b_bd29_11ed_af35_5882a89bce73,p51f4ab04_bd29_11ed_9fbc_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f3e793_bd29_11ed_96ad_5882a89bce73", "to": "p51f5bc70_bd29_11ed_aeca_5882a89bce73,p51f56e57_bd29_11ed_9af7_5882a89bce73,p51f52081_bd29_11ed_a23d_5882a89bce73,p51f5e38b_bd29_11ed_af35_5882a89bce73,p51f4ab04_bd29_11ed_9fbc_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p5201f936_bd29_11ed_833a_5882a89bce73", "to": "p5201d231_bd29_11ed_a1e9_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p5201f936_bd29_11ed_833a_5882a89bce73", "to": "p52018416_bd29_11ed_91b2_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f7292e_bd29_11ed_9913_5882a89bce73", "to": "p5202e41c_bd29_11ed_b181_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f9047b_bd29_11ed_97fb_5882a89bce73,p51f9a0aa_bd29_11ed_b28f_5882a89bce73", "to": "p51f2e31e_bd29_11ed_b98c_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p5201ab1c_bd29_11ed_a6cd_5882a89bce73", "to": "p5204df67_bd29_11ed_8a11_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f7292e_bd29_11ed_9913_5882a89bce73", "to": "p51f2e31e_bd29_11ed_b98c_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p5201ab1c_bd29_11ed_a6cd_5882a89bce73", "to": "p51f5bc70_bd29_11ed_aeca_5882a89bce73,p51f56e57_bd29_11ed_9af7_5882a89bce73,p51f52081_bd29_11ed_a23d_5882a89bce73,p51f5e38b_bd29_11ed_af35_5882a89bce73,p51f4ab04_bd29_11ed_9fbc_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p52018416_bd29_11ed_91b2_5882a89bce73", "to": "p5204df67_bd29_11ed_8a11_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f9047b_bd29_11ed_97fb_5882a89bce73,p51f9a0aa_bd29_11ed_b28f_5882a89bce73", "to": "p51fa15ea_bd29_11ed_830b_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p520135e5_bd29_11ed_8763_5882a89bce73,p51f246c2_bd29_11ed_9e20_5882a89bce73", "to": "p51f21fab_bd29_11ed_ac7a_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f9529a_bd29_11ed_95bb_5882a89bce73", "to": "p51f77795_bd29_11ed_96e3_5882a89bce73,p5202204c_bd29_11ed_9686_5882a89bce73,p52030ac5_bd29_11ed_a3ac_5882a89bce73,p52024764_bd29_11ed_a52a_5882a89bce73,p51f83ac3_bd29_11ed_b419_5882a89bce73,p5202204d_bd29_11ed_88e7_5882a89bce73,p52029581_bd29_11ed_90ab_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p5201f936_bd29_11ed_833a_5882a89bce73", "to": "p52037fe6_bd29_11ed_aa78_5882a89bce73,p5207ecc9_bd29_11ed_92dd_5882a89bce73,p52077772_bd29_11ed_8042_5882a89bce73,p5207c5ab_bd29_11ed_8a72_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f7292e_bd29_11ed_9913_5882a89bce73", "to": "p520135e5_bd29_11ed_8763_5882a89bce73,p51f246c2_bd29_11ed_9e20_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p52015d09_bd29_11ed_9175_5882a89bce73", "to": "p5204df67_bd29_11ed_8a11_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f358a0_bd29_11ed_b01f_5882a89bce73", "to": "p51ef87a3_bd29_11ed_aa38_5882a89bce73,p51f246c1_bd29_11ed_8007_5882a89bce73,p51f26dd1_bd29_11ed_8a17_5882a89bce73,p51f1f891_bd29_11ed_aaf3_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f45d6b_bd29_11ed_a174_5882a89bce73", "to": "p51ef87a3_bd29_11ed_aa38_5882a89bce73,p51f246c1_bd29_11ed_8007_5882a89bce73,p51f26dd1_bd29_11ed_8a17_5882a89bce73,p51f1f891_bd29_11ed_aaf3_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p5201ab1c_bd29_11ed_a6cd_5882a89bce73", "to": "p5201d231_bd29_11ed_a1e9_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p5201ab1c_bd29_11ed_a6cd_5882a89bce73", "to": "p52018416_bd29_11ed_91b2_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f9047b_bd29_11ed_97fb_5882a89bce73,p51f9a0aa_bd29_11ed_b28f_5882a89bce73", "to": "p51fcbbf7_bd29_11ed_9c57_5882a89bce73,p51fddae3_bd29_11ed_868d_5882a89bce73,p51fd5a6f_bd29_11ed_b224_5882a89bce73,p51fd003e_bd29_11ed_a8f0_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p52015d08_bd29_11ed_9c82_5882a89bce73,p52026e69_bd29_11ed_8dad_5882a89bce73,p51efd5b7_bd29_11ed_a448_5882a89bce73,p52044333_bd29_11ed_89a0_5882a89bce73,p5203ce01_bd29_11ed_8342_5882a89bce73,p5201ab1d_bd29_11ed_b203_5882a89bce73", "to": "p51fa63fc_bd29_11ed_be98_5882a89bce73,p51f13559_bd29_11ed_8a56_5882a89bce73,p51f10e58_bd29_11ed_91b7_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p5201f936_bd29_11ed_833a_5882a89bce73", "to": "p51f2e31e_bd29_11ed_b98c_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f9529a_bd29_11ed_95bb_5882a89bce73", "to": "p51f5bc70_bd29_11ed_aeca_5882a89bce73,p51f56e57_bd29_11ed_9af7_5882a89bce73,p51f52081_bd29_11ed_a23d_5882a89bce73,p51f5e38b_bd29_11ed_af35_5882a89bce73,p51f4ab04_bd29_11ed_9fbc_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p52015d08_bd29_11ed_9c82_5882a89bce73,p52026e69_bd29_11ed_8dad_5882a89bce73,p51efd5b7_bd29_11ed_a448_5882a89bce73,p52044333_bd29_11ed_89a0_5882a89bce73,p5203ce01_bd29_11ed_8342_5882a89bce73,p5201ab1d_bd29_11ed_b203_5882a89bce73", "to": "p51f21fab_bd29_11ed_ac7a_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p5202e41c_bd29_11ed_b181_5882a89bce73", "to": "p51f21fab_bd29_11ed_ac7a_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f023dd_bd29_11ed_aa46_5882a89bce73", "to": "p5204df67_bd29_11ed_8a11_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f9529a_bd29_11ed_95bb_5882a89bce73", "to": "p51f21fab_bd29_11ed_ac7a_5882a89bce73"}, {"arrows": "to", "color": "red", "from": "p52015d08_bd29_11ed_9c82_5882a89bce73,p52026e69_bd29_11ed_8dad_5882a89bce73,p51efd5b7_bd29_11ed_a448_5882a89bce73,p52044333_bd29_11ed_89a0_5882a89bce73,p5203ce01_bd29_11ed_8342_5882a89bce73,p5201ab1d_bd29_11ed_b203_5882a89bce73", "to": "p52015d08_bd29_11ed_9c82_5882a89bce73,p52044333_bd29_11ed_89a0_5882a89bce73,p51efd5b7_bd29_11ed_a448_5882a89bce73,p5203ce01_bd29_11ed_8342_5882a89bce73,p52026e69_bd29_11ed_8dad_5882a89bce73,p5201ab1d_bd29_11ed_b203_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f3e793_bd29_11ed_96ad_5882a89bce73", "to": "p51ef87a3_bd29_11ed_aa38_5882a89bce73,p51f246c1_bd29_11ed_8007_5882a89bce73,p51f26dd1_bd29_11ed_8a17_5882a89bce73,p51f1f891_bd29_11ed_aaf3_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p5201f936_bd29_11ed_833a_5882a89bce73", "to": "p52015d09_bd29_11ed_9175_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p52015d08_bd29_11ed_9c82_5882a89bce73,p52044333_bd29_11ed_89a0_5882a89bce73,p51efd5b7_bd29_11ed_a448_5882a89bce73,p5203ce01_bd29_11ed_8342_5882a89bce73,p52026e69_bd29_11ed_8dad_5882a89bce73,p5201ab1d_bd29_11ed_b203_5882a89bce73", "to": "p51f8b087_bd29_11ed_9150_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p52015d08_bd29_11ed_9c82_5882a89bce73,p52026e69_bd29_11ed_8dad_5882a89bce73,p51efd5b7_bd29_11ed_a448_5882a89bce73,p52044333_bd29_11ed_89a0_5882a89bce73,p5203ce01_bd29_11ed_8342_5882a89bce73,p5201ab1d_bd29_11ed_b203_5882a89bce73", "to": "p51f77795_bd29_11ed_96e3_5882a89bce73,p5202204c_bd29_11ed_9686_5882a89bce73,p52030ac5_bd29_11ed_a3ac_5882a89bce73,p52024764_bd29_11ed_a52a_5882a89bce73,p51f83ac3_bd29_11ed_b419_5882a89bce73,p5202204d_bd29_11ed_88e7_5882a89bce73,p52029581_bd29_11ed_90ab_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p5202e41c_bd29_11ed_b181_5882a89bce73", "to": "p51f77795_bd29_11ed_96e3_5882a89bce73,p5202204c_bd29_11ed_9686_5882a89bce73,p52030ac5_bd29_11ed_a3ac_5882a89bce73,p52024764_bd29_11ed_a52a_5882a89bce73,p51f83ac3_bd29_11ed_b419_5882a89bce73,p5202204d_bd29_11ed_88e7_5882a89bce73,p52029581_bd29_11ed_90ab_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f023dd_bd29_11ed_aa46_5882a89bce73", "to": "p51f21fab_bd29_11ed_ac7a_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p52037fe6_bd29_11ed_aa78_5882a89bce73,p5207ecc9_bd29_11ed_92dd_5882a89bce73,p52077772_bd29_11ed_8042_5882a89bce73,p5207c5ab_bd29_11ed_8a72_5882a89bce73", "to": "p52015d09_bd29_11ed_9175_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f9047b_bd29_11ed_97fb_5882a89bce73,p51f9a0aa_bd29_11ed_b28f_5882a89bce73", "to": "p520135e5_bd29_11ed_8763_5882a89bce73,p51f246c2_bd29_11ed_9e20_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p5201d231_bd29_11ed_a1e9_5882a89bce73", "to": "p5204df67_bd29_11ed_8a11_5882a89bce73"}, {"arrows": "to", "color": "blue", "from": "p51f358a0_bd29_11ed_b01f_5882a89bce73", "to": "p51f45d6b_bd29_11ed_a174_5882a89bce73"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": true,
+        "filter": [
+            "physics"
+        ]
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
