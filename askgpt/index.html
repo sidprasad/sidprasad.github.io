@@ -30,7 +30,7 @@
 
         <div id="usageq" style="border:1px solid black;" class="container">
             <p>Can you guess the total dollar value of OpenAI credit used by students?</p>
-            <input type="number" id="answerInput">
+            <input type="number" id="answerInput" value=2500>
             <button onclick="usageAnswer()">Guess</button>
             <p id="result1"></p>
         </div>
@@ -75,7 +75,14 @@
                 // Check if the user's answer is correct
                 if (userAnswer >= 10) {
                     document.getElementById("result1").innerHTML = "Way too high! Combined student OpenAI use totaled only $1.16.";
-                } else {
+                } 
+                else if (userAnswer <= 0) {
+                    document.getElementById("result1").innerHTML = "Students did use AskGPT. However, combined student OpenAI use totaled only $1.16.";
+                }
+                else if (window.isNaN(userAnswer)) {
+                    document.getElementById("result1").innerHTML = "Your guess has to be a number.";
+                }
+                else {
                     document.getElementById("result1").innerHTML = "Good intuition! Combined student OpenAI use totaled only $1.16.";
                 }
             }
