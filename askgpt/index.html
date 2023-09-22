@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Generating Programs Trivially</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/fontawesome.min.css">
+
+  </head>
+  <body>
+
+    <div class="container">
+    <h1>Generating Programs Trivially: Student Use of Large Language Models</h1>
+
+    <p>The advent of large language models like GPT-3 has led to <a href="https://www.nytimes.com/2023/01/16/technology/chatgpt-artificial-intelligence-universities.html">growing concern from educators</a>
+        about how these models can be <a href="https://www.washingtonpost.com/technology/2023/08/13/ai-chatgpt-chatbots-college-cheating/">used and abused</a> by students in order to help with their homework. In computer science, much of this concern centers on how LLMs automatically generate programs in response to textual prompts. Some institutions have gone as far as <a href=https://www.theguardian.com/us-news/2023/jan/06/new-york-city-schools-ban-ai-chatbot-chatgpt>instituting wholesale bans</a> on the use of the tool. Despite all the alarm, however, little is known about whether and how students actually use these tools. </p>
+
+
+        <p>In order to better understand the issue, we gave students in an upper-level formal methods course access to GPT-3 via <a href="https://github.com/sidprasad/gpt-3-vscode">a Visual Studio Code extension</a>, and explicitly granted them permission to use the tool for course work. In order to mitigate any equity issues around access, we allocated $2500 in OpenAI credit for the course, enabling free access to the latest and greatest OpenAI models. </p>
+
+        <div id="usageq" style="border:1px solid black;" class="container">
+            <p>Can you guess the total dollar value of OpenAI credit used by students?</p>
+            <input type="number" id="answerInput" value=2500>
+            <button onclick="usageAnswer()">Guess</button>
+            <p id="result1"></p>
+        </div>
+
+        <p>We then analyzed the outcomes of this intervention, how and why students actually did and did not use the LLM.</p>
+
+        
+<div style="border:1px solid black;" class="container">
+    <style>
+        .option-label img {
+            width: 200px; /* Adjust the width of the images as needed */
+            height: 200px; /* Adjust the height of the images as needed */
+            vertical-align: middle;
+        }
+    
+    
+        [type=radio] + img {
+        cursor: pointer;
+        }
+    
+        [type=radio] { 
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+        }
+    
+        [type=radio]:checked + img {
+        outline: 1px solid #f00;
+        }
+    </style>
+    
+    <script>
+    
+        function usageAnswer() {
+            // Get the user's answer from the input field
+            var userAnswer = document.getElementById("answerInput").value;
+            
+            // Check if the user's answer is correct
+            if (userAnswer >= 10) {
+                document.getElementById("result1").innerHTML = "Way too high! Combined student OpenAI use totaled only $1.16.";
+            } 
+            else if (userAnswer <= 0) {
+                document.getElementById("result1").innerHTML = "Your guess has to be a positive number. Students did use AskGPT!";
+            }
+            else if (window.isNaN(userAnswer)) {
+                document.getElementById("result1").innerHTML = "Your guess has to be a number.";
+            }
+            else {
+                document.getElementById("result1").innerHTML = "Good intuition! Combined student OpenAI use totaled only $1.16.";
+            }
+        }
+    
+        function checkAnswer() {
+        var selectedAnswer = document.querySelector('input[name="answer"]:checked');
+        if (selectedAnswer) {
+            var userAnswer = selectedAnswer.value;
+            if (userAnswer === "C") {
+                document.getElementById("result2").innerHTML = "Good intuition! ";
+            } else {
+                document.getElementById("result2").innerHTML = "Surprisingly, student usage looked more like Graph C.";
+            }
+    
+            let c = document.getElementById("OptionC");
+            c.style.border = "5px solid green";
+    
+        } else {
+            document.getElementById("result").innerHTML = "Please make a guess!";
+        }
+    }
+    </script>
+    <p>Which of these graphs do you think best represents student use of GPT models over the semester?</p>
+    
+    <form id="quizForm" >
+        <table>
+            <tr>
+                <td>
+                <label class="option-label">
+                    <input type="radio" name="answer" value="A" id="OptionA">
+                    <img src="{{ site.webbase }}/img/askgpt-option_a_image.PNG" alt="Option A: A rough bell curve">
+                </label>
+                </td>
+                <td>
+                <label class="option-label">
+                    <input type="radio" name="answer" value="B" id="OptionB">
+                    <img src="{{ site.webbase }}/img/askgpt-option_b_image.PNG" alt="Option B: Monotonically increasing usage over time">
+                </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <label class="option-label">
+                    <input type="radio" name="answer" value="C">
+                    <img src="{{ site.webbase }}/img/askgpt-option_c_image.PNG" alt="Option C: An initial spike and then no use" id="OptionC">
+                </label>
+                </td>
+                <td>
+                    <label class="option-label">
+                        <input type="radio" name="answer" value="D" id="OptionD">
+                        <img src="{{ site.webbase }}/img/askgpt-option_d_image.PNG" alt="Option D: An initial spike and then steady use">
+                    </label>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <button type="button" onclick="checkAnswer()">Guess</button>
+    <p id="result2"></p>
+    </div>
+
+        <p> When surveyed, students overwhelmingly expressed concerns about using GPT to help with their homework.  Dominant themes included:
+            <ul>
+
+                <li> Fear that using LLMs would detract from learning. </li>
+                <li> Unfamiliarity with LLMs and issues with output correctness. </li>
+                <li> Fear of breaking course rules, despite being granted explicit permission to use GPT. </li>
+            </ul>
+
+            Much ink has been spilt on the effect of LLMs in education. While our experiment focuses only on a single course offering,
+            we believe it can help re-balance the public narrative about such tools.
+            Student use of LLMs may be influenced by two opposing forces. On one hand, 
+            competition for jobs may cause students to feel they must have "perfect"
+            transcripts, which can be aided by leaning on an LLM. On the other,
+            students may realize that getting an attractive job is hard, and
+            decide they need to learn more in order to pass interviews and
+            perform well to retain their positions.
+
+            </p>
+
+
+           <p>  You can learn more about the work from the <a href="paper.pdf">paper </a>. </p>
+        </div>
+
+    <!-- Including Bootstrap JS (with its jQuery dependency) so that dynamic components work -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
