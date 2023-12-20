@@ -1,6 +1,6 @@
 test expect {
   injective : {isDirectedTree implies (edges.~edges in iden)} is theorem
-  injective-insufficient : {(edges.~edges in iden) and !isDirectedTree} is sat
+  injective_insufficient : {(edges.~edges in iden) and !isDirectedTree} is sat
 
   root : {isDirectedTree implies (lone edges.Node - Node.edges) } is theorem
   loopless : {isDirectedTree implies (no (^edges & iden))} is theorem
