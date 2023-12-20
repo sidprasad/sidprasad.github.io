@@ -1,0 +1,9 @@
+#lang forge
+
+test expect {
+	injective : isDirectedTree implies (edges.~edges in iden)
+	root : isDirectedTree implies (lone edges.Node - Node.edges) 
+	loopless : isDirectedTree implies (no (^edges & iden))
+	connected : isDirectedTree implies (lone Node or Node in edges.Node + Node.edges) 
+}
+
