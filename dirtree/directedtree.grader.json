@@ -1,0 +1,7 @@
+{
+    "injective" : "A directed tree should be injective... or some such hint.",
+	"root" : "A directed tree should have a root... or some such hint.",
+	"loopless" : "A directed tree should be loopless... or some such hint.",
+	"connected" : "A directed tree should be connected... or some such hint.",
+    "twoNodeTree" : "A directed tree can have two nodes, one edge ... or some such hint."
+}

@@ -7,3 +7,9 @@ test expect {
 	connected : isDirectedTree implies (lone Node or Node in edges.Node + Node.edges) 
 }
 
+
+example twoNodeTree is isDirectedTree {
+
+	Node = `Node1 + `Node2
+	edges = `Node1->`Node2
+}
