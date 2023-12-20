@@ -1,14 +1,20 @@
-
 test expect {
-	injective : {isDirectedTree implies (edges.~edges in iden)} is theorem
-	root : {isDirectedTree implies (lone edges.Node - Node.edges) } is theorem
-	loopless : {isDirectedTree implies (no (^edges & iden))} is theorem
-	connected : {isDirectedTree implies (lone Node or Node in edges.Node + Node.edges) } is theorem
+  injective : {isDirectedTree implies (edges.~edges in iden)} is theorem
+  injective-insufficient : {(edges.~edges in iden) and !isDirectedTree} is sat
+
+  root : {isDirectedTree implies (lone edges.Node - Node.edges) } is theorem
+  loopless : {isDirectedTree implies (no (^edges & iden))} is theorem
+  connected : {isDirectedTree implies (lone Node or Node in edges.Node + Node.edges) } is theorem
 }
 
 
 example twoNodeTree is isDirectedTree for {
+  Node = `Node1 + `Node2
+  edges = `Node1->`Node2
+}
 
-	Node = `Node1 + `Node2
-	edges = `Node1->`Node2
+example notJustInjective is {not isDirectedTree} for {
+
+	Node =`Node1 + `Node2 + `Node3
+    edges = `Node1->`Node3 + `Node2->`Node2 + `Node3->`Node1
 }

@@ -3,5 +3,6 @@
 	"root" : "A directed tree should have a root... or some such hint.",
 	"loopless" : "A directed tree should be loopless... or some such hint.",
 	"connected" : "A directed tree should be connected... or some such hint.",
-    "twoNodeTree" : "A directed tree can have two nodes, one edge ... or some such hint."
+    "twoNodeTree" : "A directed tree can have two nodes, one edge ... or some such hint.",
+	"injective-insufficient" : "All injective graphs are not directed trees ... or some such hint."
 }
