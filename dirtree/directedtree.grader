@@ -1,4 +1,3 @@
-#lang forge
 
 test expect {
 	injective : isDirectedTree implies (edges.~edges in iden)
