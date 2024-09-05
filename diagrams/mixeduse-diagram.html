@@ -83,8 +83,6 @@
     </style>
 
     <script src="https://marvl.infotech.monash.edu/webcola/extern/graphlib-dot.min.js"></script>
-    <!-- Minified version -->
-    <!-- <script src="http://marvl.infotech.monash.edu/webcola/cola.min.js"></script> -->
     <!-- Full version -->
     <script src="https://marvl.infotech.monash.edu/webcola/cola.min.js"></script>
 
@@ -94,7 +92,6 @@
 
 <body>
     <div class="container">
-        
         <p> This is an interactive diagram. You can drag graph nodes around or zoom in and out.</p>
         <hr>
         <div class="container-fluid" id="svg-container" >
@@ -150,11 +147,13 @@
                         .handleDisconnected(true)
                         .size([width, height]);
 
-                    var nodes = [{"id":"Commercial0","color":"#76744E","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Commercial1","color":"#76744E","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Commercial2","color":"#76744E","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Commercial3","color":"#76744E","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Residential0","color":"#11E458","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Residential1","color":"#11E458","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Residential2","color":"#11E458","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Residential3","color":"#11E458","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Floor0","color":"#83ACCC","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Floor1","color":"#83ACCC","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Floor2","color":"#83ACCC","attributes":{},"width":70,"height":45,"x":400,"y":400}];
+                    var nodes = [{"id":"Commercial0","color":"#7C7AFA","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Commercial1","color":"#7C7AFA","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Commercial2","color":"#7C7AFA","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Commercial3","color":"#7C7AFA","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Residential0","color":"#E49204","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Residential1","color":"#E49204","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Residential2","color":"#E49204","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Residential3","color":"#E49204","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Floor0","color":"#1B4E5B","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Floor1","color":"#1B4E5B","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Floor2","color":"#1B4E5B","attributes":{},"width":70,"height":45,"x":400,"y":400}];
                     var edges = [{"source":8,"target":9,"relName":"upstairs","id":"Floor<:upstairs:Floor0->Floor1","label":"upstairs"},{"source":9,"target":10,"relName":"upstairs","id":"Floor<:upstairs:Floor1->Floor2","label":"upstairs"},{"source":8,"target":7,"relName":"blockA","id":"Floor<:blockA:Floor0->Residential3","label":"blockA"},{"source":9,"target":6,"relName":"blockA","id":"Floor<:blockA:Floor1->Residential2","label":"blockA"},{"source":10,"target":5,"relName":"blockA","id":"Floor<:blockA:Floor2->Residential1","label":"blockA"},{"source":8,"target":4,"relName":"blockB","id":"Floor<:blockB:Floor0->Residential0","label":"blockB"},{"source":9,"target":2,"relName":"blockB","id":"Floor<:blockB:Floor1->Commercial2","label":"blockB"},{"source":9,"target":3,"relName":"blockB","id":"Floor<:blockB:Floor1->Commercial3","label":"blockB"},{"source":10,"target":0,"relName":"blockB","id":"Floor<:blockB:Floor2->Commercial0","label":"blockB"},{"source":10,"target":1,"relName":"blockB","id":"Floor<:blockB:Floor2->Commercial1","label":"blockB"}];
                     var constraints = [{"axis":"y","left":9,"right":8,"gap":15},{"axis":"x","left":9,"right":8,"gap":0,"equality":true},{"axis":"y","left":10,"right":9,"gap":15},{"axis":"x","left":10,"right":9,"gap":0,"equality":true},{"axis":"x","left":8,"right":7,"gap":15},{"axis":"y","left":7,"right":8,"gap":0,"equality":true},{"axis":"x","left":9,"right":6,"gap":15},{"axis":"y","left":6,"right":9,"gap":0,"equality":true},{"axis":"x","left":10,"right":5,"gap":15},{"axis":"y","left":5,"right":10,"gap":0,"equality":true},{"axis":"x","left":4,"right":8,"gap":15},{"axis":"y","left":4,"right":8,"gap":0,"equality":true},{"axis":"x","left":2,"right":9,"gap":15},{"axis":"y","left":2,"right":9,"gap":0,"equality":true},{"axis":"x","left":3,"right":9,"gap":15},{"axis":"y","left":3,"right":9,"gap":0,"equality":true},{"axis":"x","left":0,"right":10,"gap":15},{"axis":"y","left":0,"right":10,"gap":0,"equality":true},{"axis":"x","left":1,"right":10,"gap":15},{"axis":"y","left":1,"right":10,"gap":0,"equality":true}];
                     var groups = [];
-
+                    function getNodeIndex(nodeId) {
+                            return nodes.findIndex(node => node.id === nodeId);
+                        }
 
                     const LINK_DISTANCE = Math.min(width, height) / Math.sqrt(nodes.length);
                     console.log("Link distance: " + LINK_DISTANCE);
@@ -182,9 +181,7 @@
                         colaLayout.prepareEdgeRouting(margin / 3);
                         console.log("Routing edges");
 
-                        function getNodeIndex(nodeId) {
-                            return nodes.findIndex(node => node.id === nodeId);
-                        }
+
 
                         // What I want to do is change the angle based on the number of edges between the same nodes
                         // Function to calculate curvature based on number of edges and index
@@ -213,9 +210,100 @@
                         link.attr("d", function (d, i) {
 
 
-                            // UGH THIS SORT OF WORKS BUT ONLY SOMETIMES CURVES IN THE WRONG DIRECTION
+                            // TODO: Will the edge hack break this?
+                            /*
+
+                                If so, we need to do something about it. Maybe dont route edges for the group edges in the same way.
+                                Or calculate route differently.
+                            */
 
                             var route = colaLayout.routeEdge(d);
+
+                            let n = d.id;
+                            if (n.startsWith("_g_")) {
+                                let source = d.source;
+                                let target = d.target;
+
+                                let sourceIndex = getNodeIndex(source.id);
+                                let targetIndex = getNodeIndex(target.id);
+
+                                // Depends on the source group and the target group.
+
+
+                                // This actually deals with subsumed groups, since only
+                                // the innermost group will include the element in its leaves.
+                                let targetGroup = groups.find(group => {
+                                    let leaves = group.leaves.map(leaf => leaf.id);
+                                    return leaves.includes(target.id);
+
+                                });
+
+                                let sourceGroup = groups.find(group => {
+                                    let leaves = group.leaves.map(leaf => leaf.id);
+                                    return leaves.includes(source.id);
+
+                                });
+
+                                const groupIsTarget = targetGroup && targetGroup.keyNode === sourceIndex;
+                                const groupIsSource = sourceGroup && sourceGroup.keyNode === targetIndex;
+
+                                if (groupIsSource && groupIsTarget) {
+                                    alert('Something is very wrong!');
+                                }
+
+
+                                // Only one of source group and target group can be a group.
+
+                                // Within source group, see if the target is the key
+
+                                function closestPointOnRect(bounds, point) {
+                                    // Destructure the rectangle bounds
+                                    const { x, y, X, Y } = bounds;
+
+                                    // Calculate the rectangle's edges
+                                    const left = x;
+                                    const right = X;
+                                    const top = y;
+                                    const bottom = Y;
+
+                                    // Clamp the point's coordinates to the rectangle's bounds
+                                    const closestX = Math.max(left, Math.min(point.x, right));
+                                    const closestY = Math.max(top, Math.min(point.y, bottom));
+
+                                    return { x: closestX, y: closestY };
+                                }
+
+
+
+
+                                if (groupIsTarget) {
+                                    let newTargetCoords = closestPointOnRect(targetGroup.bounds, route[0]);
+                                    let currentTarget = route[route.length - 1];
+                                    currentTarget.x = newTargetCoords.x;
+                                    currentTarget.y = newTargetCoords.y;
+
+
+                                }
+                                else if (groupIsSource) {
+                                    let newSourceCoords = closestPointOnRect(sourceGroup.bounds, route[route.length - 1]);
+                                    let currentSource = route[0];
+                                    currentSource.x = newSourceCoords.x;
+                                    currentSource.y = newSourceCoords.y;
+
+                                }
+                                else {
+                                    console.log("This is a group edge, but neither source nor target is a group.", d);
+                                }
+                                
+                                // Not ideal but we dont want odd curves.
+                                if (route.length > 2) {
+                                    route.splice(1, route.length - 2);
+                                }
+
+
+                            }
+
+
 
 
                             // If there are only two points in the route, get the midpoint of the route and add it to the route
@@ -247,8 +335,6 @@
 
 
                                 if (index > 0 && index < route.length - 1 && curvature !== 0) {
-                                    console.log(d.source.id + " to " + d.target.id);
-
 
                                     // Adjust the control points based on the direction
                                     // var offsetX = curvature * Math.cos(angle + Math.PI / 2);
@@ -285,6 +371,26 @@
                             })
                             .attr("text-anchor", "middle")
                             .raise();
+
+                            /**** This bit ensures we zoom to fit ***/
+                            
+
+                                const bbox = svg.node().getBBox();
+                                const padding = 10; // Padding in pixels
+
+                                const viewBox = [
+                                    bbox.x - padding,
+                                    bbox.y - padding,
+                                    bbox.width + 2 * padding,
+                                    bbox.height + 2 * padding
+                                ].join(' ');
+
+
+                                const topSvg = d3.select("#svg");
+                                topSvg.attr('viewBox', viewBox);
+                            /*************************************/
+
+
                     };
 
                     const linkGroups = svg.selectAll(".link-group")
@@ -389,12 +495,17 @@
                         })
                         .attr("fill-opacity", 0.3)
                         .call(colaLayout.drag);
-
+                    
+                    // TODO: Uncomment to reenable group labels
                     var groupLabel = svg.selectAll(".groupLabel")
                         .data(groups)
                         .enter().append("text")
                         .attr("class", "groupLabel")
-                        .text(function (d) { return d.name; })
+                        .text(function (d) { 
+                            // TODO: Added this
+                            return "";
+                            //return d.name; 
+                        })
                         .call(colaLayout.drag);
 
 
@@ -436,7 +547,26 @@
 
                         linkGroups.select("path.link")
                             .attr("d", function (d) {
-                                var route = cola.makeEdgeBetween(d.source.innerBounds, d.target.innerBounds, 5);
+                                
+                                let source = d.source;
+                                let target = d.target;
+
+                                let n = d.id;
+                                if (n.startsWith("_g_")) {
+                                    // This actually deals with subsumed groups, since only
+                                    // the innermost group will include the element in its leaves.
+                                    let targetGroup = groups.find(group => {
+                                        let leaves = group.leaves.map(leaf => leaf.id);
+                                        return leaves.includes(target.id);
+
+                                    });
+                                    target = targetGroup;
+                                    target.innerBounds = target.bounds.inflate(-1);
+
+                                }
+
+
+                                var route = cola.makeEdgeBetween(source.innerBounds, target.innerBounds, 5);
                                 return lineFunction([route.sourceIntersection, route.arrowStart]);
                             });
 
@@ -454,14 +584,16 @@
 
 
 
-
                         groupLabel.attr("x", function (d) { 
                             return d.bounds.x + d.bounds.width() / 2; 
                         
                         }) // Center horizontally
-                            .attr("y", function (d) { return d.bounds.y + 12; })
-                            .attr("text-anchor", "middle") // Center the text on its position
-                            .raise();
+                        .attr("y", function (d) { return d.bounds.y + 12; })
+                        .attr("text-anchor", "middle") // Center the text on its position
+                        .lower();
+
+
+                        linkGroups.select("text.linklabel").raise();
 
                     });
 
@@ -477,7 +609,557 @@
 
         </div>
 
+        <!-- <div id="webcola">
 
+            <h3> Layout Constraints </h3>
+            <pre id="constraints"> [
+  {
+    "top": {
+      "id": "Floor1",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "bottom": {
+      "id": "Floor0",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 15
+  },
+  {
+    "axis": "x",
+    "node1": {
+      "id": "Floor1",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "node2": {
+      "id": "Floor0",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    }
+  },
+  {
+    "top": {
+      "id": "Floor2",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "bottom": {
+      "id": "Floor1",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 15
+  },
+  {
+    "axis": "x",
+    "node1": {
+      "id": "Floor2",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "node2": {
+      "id": "Floor1",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    }
+  },
+  {
+    "left": {
+      "id": "Floor0",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "right": {
+      "id": "Residential3",
+      "color": "#E49204",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 15
+  },
+  {
+    "axis": "y",
+    "node1": {
+      "id": "Residential3",
+      "color": "#E49204",
+      "groups": [],
+      "attributes": {}
+    },
+    "node2": {
+      "id": "Floor0",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    }
+  },
+  {
+    "left": {
+      "id": "Floor1",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "right": {
+      "id": "Residential2",
+      "color": "#E49204",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 15
+  },
+  {
+    "axis": "y",
+    "node1": {
+      "id": "Residential2",
+      "color": "#E49204",
+      "groups": [],
+      "attributes": {}
+    },
+    "node2": {
+      "id": "Floor1",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    }
+  },
+  {
+    "left": {
+      "id": "Floor2",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "right": {
+      "id": "Residential1",
+      "color": "#E49204",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 15
+  },
+  {
+    "axis": "y",
+    "node1": {
+      "id": "Residential1",
+      "color": "#E49204",
+      "groups": [],
+      "attributes": {}
+    },
+    "node2": {
+      "id": "Floor2",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    }
+  },
+  {
+    "left": {
+      "id": "Residential0",
+      "color": "#E49204",
+      "groups": [],
+      "attributes": {}
+    },
+    "right": {
+      "id": "Floor0",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 15
+  },
+  {
+    "axis": "y",
+    "node1": {
+      "id": "Residential0",
+      "color": "#E49204",
+      "groups": [],
+      "attributes": {}
+    },
+    "node2": {
+      "id": "Floor0",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    }
+  },
+  {
+    "left": {
+      "id": "Commercial2",
+      "color": "#7C7AFA",
+      "groups": [],
+      "attributes": {}
+    },
+    "right": {
+      "id": "Floor1",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 15
+  },
+  {
+    "axis": "y",
+    "node1": {
+      "id": "Commercial2",
+      "color": "#7C7AFA",
+      "groups": [],
+      "attributes": {}
+    },
+    "node2": {
+      "id": "Floor1",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    }
+  },
+  {
+    "left": {
+      "id": "Commercial3",
+      "color": "#7C7AFA",
+      "groups": [],
+      "attributes": {}
+    },
+    "right": {
+      "id": "Floor1",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 15
+  },
+  {
+    "axis": "y",
+    "node1": {
+      "id": "Commercial3",
+      "color": "#7C7AFA",
+      "groups": [],
+      "attributes": {}
+    },
+    "node2": {
+      "id": "Floor1",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    }
+  },
+  {
+    "left": {
+      "id": "Commercial0",
+      "color": "#7C7AFA",
+      "groups": [],
+      "attributes": {}
+    },
+    "right": {
+      "id": "Floor2",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 15
+  },
+  {
+    "axis": "y",
+    "node1": {
+      "id": "Commercial0",
+      "color": "#7C7AFA",
+      "groups": [],
+      "attributes": {}
+    },
+    "node2": {
+      "id": "Floor2",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    }
+  },
+  {
+    "left": {
+      "id": "Commercial1",
+      "color": "#7C7AFA",
+      "groups": [],
+      "attributes": {}
+    },
+    "right": {
+      "id": "Floor2",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 15
+  },
+  {
+    "axis": "y",
+    "node1": {
+      "id": "Commercial1",
+      "color": "#7C7AFA",
+      "groups": [],
+      "attributes": {}
+    },
+    "node2": {
+      "id": "Floor2",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    }
+  }
+];</pre>
+
+            <h3 id="graphDefs"> Graph definitions </h3>
+            <h4>Nodes</h4>
+            <pre id="nodes"> [
+  {
+    "id": "Commercial0",
+    "color": "#7C7AFA",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Commercial1",
+    "color": "#7C7AFA",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Commercial2",
+    "color": "#7C7AFA",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Commercial3",
+    "color": "#7C7AFA",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Residential0",
+    "color": "#E49204",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Residential1",
+    "color": "#E49204",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Residential2",
+    "color": "#E49204",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Residential3",
+    "color": "#E49204",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Floor0",
+    "color": "#1B4E5B",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Floor1",
+    "color": "#1B4E5B",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Floor2",
+    "color": "#1B4E5B",
+    "groups": [],
+    "attributes": {}
+  }
+];</pre>
+            <h4>Edges</h4>
+            <pre id="edges"> [
+  {
+    "source": {
+      "id": "Floor0",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Floor1",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "upstairs",
+    "relationName": "upstairs",
+    "id": "Floor<:upstairs:Floor0->Floor1"
+  },
+  {
+    "source": {
+      "id": "Floor1",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Floor2",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "upstairs",
+    "relationName": "upstairs",
+    "id": "Floor<:upstairs:Floor1->Floor2"
+  },
+  {
+    "source": {
+      "id": "Floor0",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Residential3",
+      "color": "#E49204",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "blockA",
+    "relationName": "blockA",
+    "id": "Floor<:blockA:Floor0->Residential3"
+  },
+  {
+    "source": {
+      "id": "Floor1",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Residential2",
+      "color": "#E49204",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "blockA",
+    "relationName": "blockA",
+    "id": "Floor<:blockA:Floor1->Residential2"
+  },
+  {
+    "source": {
+      "id": "Floor2",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Residential1",
+      "color": "#E49204",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "blockA",
+    "relationName": "blockA",
+    "id": "Floor<:blockA:Floor2->Residential1"
+  },
+  {
+    "source": {
+      "id": "Floor0",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Residential0",
+      "color": "#E49204",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "blockB",
+    "relationName": "blockB",
+    "id": "Floor<:blockB:Floor0->Residential0"
+  },
+  {
+    "source": {
+      "id": "Floor1",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Commercial2",
+      "color": "#7C7AFA",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "blockB",
+    "relationName": "blockB",
+    "id": "Floor<:blockB:Floor1->Commercial2"
+  },
+  {
+    "source": {
+      "id": "Floor1",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Commercial3",
+      "color": "#7C7AFA",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "blockB",
+    "relationName": "blockB",
+    "id": "Floor<:blockB:Floor1->Commercial3"
+  },
+  {
+    "source": {
+      "id": "Floor2",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Commercial0",
+      "color": "#7C7AFA",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "blockB",
+    "relationName": "blockB",
+    "id": "Floor<:blockB:Floor2->Commercial0"
+  },
+  {
+    "source": {
+      "id": "Floor2",
+      "color": "#1B4E5B",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Commercial1",
+      "color": "#7C7AFA",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "blockB",
+    "relationName": "blockB",
+    "id": "Floor<:blockB:Floor2->Commercial1"
+  }
+];</pre>
+
+        </div> -->
 
     </div>
 

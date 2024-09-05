@@ -83,8 +83,6 @@
     </style>
 
     <script src="https://marvl.infotech.monash.edu/webcola/extern/graphlib-dot.min.js"></script>
-    <!-- Minified version -->
-    <!-- <script src="http://marvl.infotech.monash.edu/webcola/cola.min.js"></script> -->
     <!-- Full version -->
     <script src="https://marvl.infotech.monash.edu/webcola/cola.min.js"></script>
 
@@ -94,7 +92,6 @@
 
 <body>
     <div class="container">
-        
         <p> This is an interactive diagram. You can drag graph nodes around or zoom in and out.</p>
         <hr>
         <div class="container-fluid" id="svg-container" >
@@ -150,11 +147,13 @@
                         .handleDisconnected(true)
                         .size([width, height]);
 
-                    var nodes = [{"id":"Host0","color":"#FFE42B","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Host1","color":"#FFE42B","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Host2","color":"#FFE42B","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Host3","color":"#FFE42B","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Host4","color":"#FFE42B","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Microphone0","color":"#13DDF8","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Visitor0","color":"#1C40A7","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Visitor1","color":"#1C40A7","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Visitor2","color":"#1C40A7","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Visitor3","color":"#1C40A7","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Visitor4","color":"#1C40A7","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"_left_0","color":"transparent","attributes":{},"width":70,"height":45,"x":400,"y":400}];
+                    var nodes = [{"id":"Host0","color":"#84FDCF","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Host1","color":"#84FDCF","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Host2","color":"#84FDCF","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Host3","color":"#84FDCF","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Host4","color":"#84FDCF","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Microphone0","color":"#3DDD28","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Visitor0","color":"#C755F5","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Visitor1","color":"#C755F5","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Visitor2","color":"#C755F5","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Visitor3","color":"#C755F5","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Visitor4","color":"#C755F5","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"_left_0","color":"transparent","attributes":{},"width":70,"height":45,"x":400,"y":400}];
                     var edges = [{"source":10,"target":5,"relName":"holding","id":"Person<:holding:Visitor4->Microphone0","label":"holding"},{"source":6,"target":4,"relName":"left","id":"Person<:left:Visitor0->Host4","label":"left"},{"source":7,"target":3,"relName":"left","id":"Person<:left:Visitor1->Host3","label":"left"},{"source":8,"target":2,"relName":"left","id":"Person<:left:Visitor2->Host2","label":"left"},{"source":9,"target":7,"relName":"left","id":"Person<:left:Visitor3->Visitor1","label":"left"},{"source":10,"target":1,"relName":"left","id":"Person<:left:Visitor4->Host1","label":"left"},{"source":0,"target":8,"relName":"left","id":"Person<:left:Host0->Visitor2","label":"left"},{"source":1,"target":9,"relName":"left","id":"Person<:left:Host1->Visitor3","label":"left"},{"source":2,"target":10,"relName":"left","id":"Person<:left:Host2->Visitor4","label":"left"},{"source":3,"target":6,"relName":"left","id":"Person<:left:Host3->Visitor0","label":"left"},{"source":4,"target":0,"relName":"left","id":"Person<:left:Host4->Host0","label":"left"}];
                     var constraints = [{"axis":"x","left":11,"right":4,"gap":100},{"axis":"y","left":4,"right":11,"gap":0},{"axis":"x","left":11,"right":0,"gap":80.90169943749474},{"axis":"y","left":11,"right":0,"gap":58.778525229247315},{"axis":"x","left":11,"right":8,"gap":30.901699437494745},{"axis":"y","left":11,"right":8,"gap":95.10565162951535},{"axis":"x","left":2,"right":11,"gap":30.901699437494734},{"axis":"y","left":11,"right":2,"gap":95.10565162951536},{"axis":"x","left":10,"right":11,"gap":80.90169943749473},{"axis":"y","left":11,"right":10,"gap":58.77852522924732},{"axis":"x","left":1,"right":11,"gap":100},{"axis":"y","left":11,"right":1,"gap":1.2246467991473532e-14},{"axis":"x","left":9,"right":11,"gap":80.90169943749474},{"axis":"y","left":9,"right":11,"gap":58.7785252292473},{"axis":"x","left":7,"right":11,"gap":30.901699437494756},{"axis":"y","left":7,"right":11,"gap":95.10565162951535},{"axis":"x","left":11,"right":3,"gap":30.901699437494724},{"axis":"y","left":3,"right":11,"gap":95.10565162951536},{"axis":"x","left":11,"right":6,"gap":80.90169943749473},{"axis":"y","left":6,"right":11,"gap":58.778525229247336}];
                     var groups = [];
-
+                    function getNodeIndex(nodeId) {
+                            return nodes.findIndex(node => node.id === nodeId);
+                        }
 
                     const LINK_DISTANCE = Math.min(width, height) / Math.sqrt(nodes.length);
                     console.log("Link distance: " + LINK_DISTANCE);
@@ -182,9 +181,7 @@
                         colaLayout.prepareEdgeRouting(margin / 3);
                         console.log("Routing edges");
 
-                        function getNodeIndex(nodeId) {
-                            return nodes.findIndex(node => node.id === nodeId);
-                        }
+
 
                         // What I want to do is change the angle based on the number of edges between the same nodes
                         // Function to calculate curvature based on number of edges and index
@@ -213,9 +210,100 @@
                         link.attr("d", function (d, i) {
 
 
-                            // UGH THIS SORT OF WORKS BUT ONLY SOMETIMES CURVES IN THE WRONG DIRECTION
+                            // TODO: Will the edge hack break this?
+                            /*
+
+                                If so, we need to do something about it. Maybe dont route edges for the group edges in the same way.
+                                Or calculate route differently.
+                            */
 
                             var route = colaLayout.routeEdge(d);
+
+                            let n = d.id;
+                            if (n.startsWith("_g_")) {
+                                let source = d.source;
+                                let target = d.target;
+
+                                let sourceIndex = getNodeIndex(source.id);
+                                let targetIndex = getNodeIndex(target.id);
+
+                                // Depends on the source group and the target group.
+
+
+                                // This actually deals with subsumed groups, since only
+                                // the innermost group will include the element in its leaves.
+                                let targetGroup = groups.find(group => {
+                                    let leaves = group.leaves.map(leaf => leaf.id);
+                                    return leaves.includes(target.id);
+
+                                });
+
+                                let sourceGroup = groups.find(group => {
+                                    let leaves = group.leaves.map(leaf => leaf.id);
+                                    return leaves.includes(source.id);
+
+                                });
+
+                                const groupIsTarget = targetGroup && targetGroup.keyNode === sourceIndex;
+                                const groupIsSource = sourceGroup && sourceGroup.keyNode === targetIndex;
+
+                                if (groupIsSource && groupIsTarget) {
+                                    alert('Something is very wrong!');
+                                }
+
+
+                                // Only one of source group and target group can be a group.
+
+                                // Within source group, see if the target is the key
+
+                                function closestPointOnRect(bounds, point) {
+                                    // Destructure the rectangle bounds
+                                    const { x, y, X, Y } = bounds;
+
+                                    // Calculate the rectangle's edges
+                                    const left = x;
+                                    const right = X;
+                                    const top = y;
+                                    const bottom = Y;
+
+                                    // Clamp the point's coordinates to the rectangle's bounds
+                                    const closestX = Math.max(left, Math.min(point.x, right));
+                                    const closestY = Math.max(top, Math.min(point.y, bottom));
+
+                                    return { x: closestX, y: closestY };
+                                }
+
+
+
+
+                                if (groupIsTarget) {
+                                    let newTargetCoords = closestPointOnRect(targetGroup.bounds, route[0]);
+                                    let currentTarget = route[route.length - 1];
+                                    currentTarget.x = newTargetCoords.x;
+                                    currentTarget.y = newTargetCoords.y;
+
+
+                                }
+                                else if (groupIsSource) {
+                                    let newSourceCoords = closestPointOnRect(sourceGroup.bounds, route[route.length - 1]);
+                                    let currentSource = route[0];
+                                    currentSource.x = newSourceCoords.x;
+                                    currentSource.y = newSourceCoords.y;
+
+                                }
+                                else {
+                                    console.log("This is a group edge, but neither source nor target is a group.", d);
+                                }
+                                
+                                // Not ideal but we dont want odd curves.
+                                if (route.length > 2) {
+                                    route.splice(1, route.length - 2);
+                                }
+
+
+                            }
+
+
 
 
                             // If there are only two points in the route, get the midpoint of the route and add it to the route
@@ -247,8 +335,6 @@
 
 
                                 if (index > 0 && index < route.length - 1 && curvature !== 0) {
-                                    console.log(d.source.id + " to " + d.target.id);
-
 
                                     // Adjust the control points based on the direction
                                     // var offsetX = curvature * Math.cos(angle + Math.PI / 2);
@@ -285,6 +371,26 @@
                             })
                             .attr("text-anchor", "middle")
                             .raise();
+
+                            /**** This bit ensures we zoom to fit ***/
+                            
+
+                                const bbox = svg.node().getBBox();
+                                const padding = 10; // Padding in pixels
+
+                                const viewBox = [
+                                    bbox.x - padding,
+                                    bbox.y - padding,
+                                    bbox.width + 2 * padding,
+                                    bbox.height + 2 * padding
+                                ].join(' ');
+
+
+                                const topSvg = d3.select("#svg");
+                                topSvg.attr('viewBox', viewBox);
+                            /*************************************/
+
+
                     };
 
                     const linkGroups = svg.selectAll(".link-group")
@@ -389,12 +495,17 @@
                         })
                         .attr("fill-opacity", 0.3)
                         .call(colaLayout.drag);
-
+                    
+                    // TODO: Uncomment to reenable group labels
                     var groupLabel = svg.selectAll(".groupLabel")
                         .data(groups)
                         .enter().append("text")
                         .attr("class", "groupLabel")
-                        .text(function (d) { return d.name; })
+                        .text(function (d) { 
+                            // TODO: Added this
+                            return "";
+                            //return d.name; 
+                        })
                         .call(colaLayout.drag);
 
 
@@ -436,7 +547,26 @@
 
                         linkGroups.select("path.link")
                             .attr("d", function (d) {
-                                var route = cola.makeEdgeBetween(d.source.innerBounds, d.target.innerBounds, 5);
+                                
+                                let source = d.source;
+                                let target = d.target;
+
+                                let n = d.id;
+                                if (n.startsWith("_g_")) {
+                                    // This actually deals with subsumed groups, since only
+                                    // the innermost group will include the element in its leaves.
+                                    let targetGroup = groups.find(group => {
+                                        let leaves = group.leaves.map(leaf => leaf.id);
+                                        return leaves.includes(target.id);
+
+                                    });
+                                    target = targetGroup;
+                                    target.innerBounds = target.bounds.inflate(-1);
+
+                                }
+
+
+                                var route = cola.makeEdgeBetween(source.innerBounds, target.innerBounds, 5);
                                 return lineFunction([route.sourceIntersection, route.arrowStart]);
                             });
 
@@ -454,14 +584,16 @@
 
 
 
-
                         groupLabel.attr("x", function (d) { 
                             return d.bounds.x + d.bounds.width() / 2; 
                         
                         }) // Center horizontally
-                            .attr("y", function (d) { return d.bounds.y + 12; })
-                            .attr("text-anchor", "middle") // Center the text on its position
-                            .raise();
+                        .attr("y", function (d) { return d.bounds.y + 12; })
+                        .attr("text-anchor", "middle") // Center the text on its position
+                        .lower();
+
+
+                        linkGroups.select("text.linklabel").raise();
 
                     });
 
@@ -477,7 +609,580 @@
 
         </div>
 
+        <!-- <div id="webcola">
 
+            <h3> Layout Constraints </h3>
+            <pre id="constraints"> [
+  {
+    "left": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "right": {
+      "id": "Host4",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 100
+  },
+  {
+    "top": {
+      "id": "Host4",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "bottom": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "minDistance": 0
+  },
+  {
+    "left": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "right": {
+      "id": "Host0",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 80.90169943749474
+  },
+  {
+    "top": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "bottom": {
+      "id": "Host0",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 58.778525229247315
+  },
+  {
+    "left": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "right": {
+      "id": "Visitor2",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 30.901699437494745
+  },
+  {
+    "top": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "bottom": {
+      "id": "Visitor2",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 95.10565162951535
+  },
+  {
+    "left": {
+      "id": "Host2",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "right": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "minDistance": 30.901699437494734
+  },
+  {
+    "top": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "bottom": {
+      "id": "Host2",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 95.10565162951536
+  },
+  {
+    "left": {
+      "id": "Visitor4",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "right": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "minDistance": 80.90169943749473
+  },
+  {
+    "top": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "bottom": {
+      "id": "Visitor4",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 58.77852522924732
+  },
+  {
+    "left": {
+      "id": "Host1",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "right": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "minDistance": 100
+  },
+  {
+    "top": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "bottom": {
+      "id": "Host1",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 1.2246467991473532e-14
+  },
+  {
+    "left": {
+      "id": "Visitor3",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "right": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "minDistance": 80.90169943749474
+  },
+  {
+    "top": {
+      "id": "Visitor3",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "bottom": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "minDistance": 58.7785252292473
+  },
+  {
+    "left": {
+      "id": "Visitor1",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "right": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "minDistance": 30.901699437494756
+  },
+  {
+    "top": {
+      "id": "Visitor1",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "bottom": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "minDistance": 95.10565162951535
+  },
+  {
+    "left": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "right": {
+      "id": "Host3",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 30.901699437494724
+  },
+  {
+    "top": {
+      "id": "Host3",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "bottom": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "minDistance": 95.10565162951536
+  },
+  {
+    "left": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "right": {
+      "id": "Visitor0",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 80.90169943749473
+  },
+  {
+    "top": {
+      "id": "Visitor0",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "bottom": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "minDistance": 58.778525229247336
+  }
+];</pre>
+
+            <h3 id="graphDefs"> Graph definitions </h3>
+            <h4>Nodes</h4>
+            <pre id="nodes"> [
+  {
+    "id": "Host0",
+    "color": "#84FDCF",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Host1",
+    "color": "#84FDCF",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Host2",
+    "color": "#84FDCF",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Host3",
+    "color": "#84FDCF",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Host4",
+    "color": "#84FDCF",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Microphone0",
+    "color": "#3DDD28",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Visitor0",
+    "color": "#C755F5",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Visitor1",
+    "color": "#C755F5",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Visitor2",
+    "color": "#C755F5",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Visitor3",
+    "color": "#C755F5",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Visitor4",
+    "color": "#C755F5",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "_left_0",
+    "attributes": {},
+    "groups": [],
+    "color": "transparent"
+  }
+];</pre>
+            <h4>Edges</h4>
+            <pre id="edges"> [
+  {
+    "source": {
+      "id": "Visitor4",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Microphone0",
+      "color": "#3DDD28",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "holding",
+    "relationName": "holding",
+    "id": "Person<:holding:Visitor4->Microphone0"
+  },
+  {
+    "source": {
+      "id": "Visitor0",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Host4",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "left",
+    "relationName": "left",
+    "id": "Person<:left:Visitor0->Host4"
+  },
+  {
+    "source": {
+      "id": "Visitor1",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Host3",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "left",
+    "relationName": "left",
+    "id": "Person<:left:Visitor1->Host3"
+  },
+  {
+    "source": {
+      "id": "Visitor2",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Host2",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "left",
+    "relationName": "left",
+    "id": "Person<:left:Visitor2->Host2"
+  },
+  {
+    "source": {
+      "id": "Visitor3",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Visitor1",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "left",
+    "relationName": "left",
+    "id": "Person<:left:Visitor3->Visitor1"
+  },
+  {
+    "source": {
+      "id": "Visitor4",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Host1",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "left",
+    "relationName": "left",
+    "id": "Person<:left:Visitor4->Host1"
+  },
+  {
+    "source": {
+      "id": "Host0",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Visitor2",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "left",
+    "relationName": "left",
+    "id": "Person<:left:Host0->Visitor2"
+  },
+  {
+    "source": {
+      "id": "Host1",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Visitor3",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "left",
+    "relationName": "left",
+    "id": "Person<:left:Host1->Visitor3"
+  },
+  {
+    "source": {
+      "id": "Host2",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Visitor4",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "left",
+    "relationName": "left",
+    "id": "Person<:left:Host2->Visitor4"
+  },
+  {
+    "source": {
+      "id": "Host3",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Visitor0",
+      "color": "#C755F5",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "left",
+    "relationName": "left",
+    "id": "Person<:left:Host3->Visitor0"
+  },
+  {
+    "source": {
+      "id": "Host4",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Host0",
+      "color": "#84FDCF",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "left",
+    "relationName": "left",
+    "id": "Person<:left:Host4->Host0"
+  }
+];</pre>
+
+        </div> -->
 
     </div>
 

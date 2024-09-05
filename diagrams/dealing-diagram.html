@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Alloy Instance Layout</title>
+    <title>Alloy Instance Diagram</title>
     <style>
 
 
@@ -83,8 +83,6 @@
     </style>
 
     <script src="https://marvl.infotech.monash.edu/webcola/extern/graphlib-dot.min.js"></script>
-    <!-- Minified version -->
-    <!-- <script src="http://marvl.infotech.monash.edu/webcola/cola.min.js"></script> -->
     <!-- Full version -->
     <script src="https://marvl.infotech.monash.edu/webcola/cola.min.js"></script>
 
@@ -94,9 +92,8 @@
 
 <body>
     <div class="container">
-        
-
         <p> This is an interactive diagram. You can drag graph nodes around or zoom in and out.</p>
+        <hr>
         <div class="container-fluid" id="svg-container" >
             <svg id="svg" width="800" height="800" class="svg-border" >
                 <defs>
@@ -150,11 +147,13 @@
                         .handleDisconnected(true)
                         .size([width, height]);
 
-                    var nodes = [{"id":"Card0","color":"#96839C","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Card1","color":"#96839C","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Card2","color":"#96839C","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Card3","color":"#96839C","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Card4","color":"#96839C","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Card5","color":"#96839C","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Card6","color":"#96839C","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Person0","color":"#B92F22","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Person1","color":"#B92F22","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Person2","color":"#B92F22","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Dealer0","color":"#CC0C60","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"_left_0","color":"transparent","attributes":{},"width":70,"height":45,"x":400,"y":400}];
-                    var edges = [{"source":7,"target":8,"relName":"left","id":"Person<:left:Person0->Person1","label":"left"},{"source":8,"target":9,"relName":"left","id":"Person<:left:Person1->Person2","label":"left"},{"source":9,"target":10,"relName":"left","id":"Person<:left:Person2->Dealer0","label":"left"},{"source":10,"target":7,"relName":"left","id":"Person<:left:Dealer0->Person0","label":"left"},{"source":7,"target":4,"relName":"hand","id":"Person<:hand:Person0->Card4","label":"hand"},{"source":8,"target":2,"relName":"hand","id":"Person<:hand:Person1->Card2","label":"hand"},{"source":9,"target":0,"relName":"hand","id":"Person<:hand:Person2->Card0","label":"hand"}];
+                    var nodes = [{"id":"Card0","color":"#36F4D1","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Card1","color":"#36F4D1","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Card2","color":"#36F4D1","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Card3","color":"#36F4D1","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Card4","color":"#36F4D1","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Card5","color":"#36F4D1","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Card6","color":"#36F4D1","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Person0","color":"#8DA424","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Person1","color":"#8DA424","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Person2","color":"#8DA424","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Dealer0","color":"#4B78FD","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"_left_0","color":"transparent","attributes":{},"width":70,"height":45,"x":400,"y":400}];
+                    var edges = [{"source":7,"target":8,"relName":"left","id":"Person<:left:Person0->Person1","label":"left"},{"source":8,"target":9,"relName":"left","id":"Person<:left:Person1->Person2","label":"left"},{"source":9,"target":10,"relName":"left","id":"Person<:left:Person2->Dealer0","label":"left"},{"source":10,"target":7,"relName":"left","id":"Person<:left:Dealer0->Person0","label":"left"},{"source":7,"target":4,"relName":"hand","id":"_g_Person<:hand:Person0->Card4","label":"hand"},{"source":8,"target":2,"relName":"hand","id":"_g_Person<:hand:Person1->Card2","label":"hand"},{"source":9,"target":0,"relName":"hand","id":"_g_Person<:hand:Person2->Card0","label":"hand"}];
                     var constraints = [{"axis":"x","left":11,"right":8,"gap":100},{"axis":"y","left":8,"right":11,"gap":0},{"axis":"x","left":11,"right":9,"gap":6.123233995736766e-15},{"axis":"y","left":11,"right":9,"gap":100},{"axis":"x","left":10,"right":11,"gap":100},{"axis":"y","left":11,"right":10,"gap":1.2246467991473532e-14},{"axis":"x","left":7,"right":11,"gap":1.8369701987210297e-14},{"axis":"y","left":7,"right":11,"gap":100}];
-                    var groups = [{"leaves":[4,5,6],"padding":20,"name":"Person0:hand","groups":[],"keyNode":7,"id":"Person0:hand"},{"leaves":[2,3],"padding":20,"name":"Person1:hand","groups":[],"keyNode":8,"id":"Person1:hand"},{"leaves":[0,1],"padding":20,"name":"Person2:hand","groups":[],"keyNode":9,"id":"Person2:hand"}];
-
+                    var groups = [{"leaves":[4,5,6],"padding":5,"name":"Person0:hand","groups":[],"keyNode":7,"id":"Person0:hand"},{"leaves":[2,3],"padding":5,"name":"Person1:hand","groups":[],"keyNode":8,"id":"Person1:hand"},{"leaves":[0,1],"padding":5,"name":"Person2:hand","groups":[],"keyNode":9,"id":"Person2:hand"}];
+                    function getNodeIndex(nodeId) {
+                            return nodes.findIndex(node => node.id === nodeId);
+                        }
 
                     const LINK_DISTANCE = Math.min(width, height) / Math.sqrt(nodes.length);
                     console.log("Link distance: " + LINK_DISTANCE);
@@ -168,7 +167,7 @@
                         .links(edges)
                         .constraints(constraints)
                         .groups(groups)
-                        .jaccardLinkLengths(LINK_DISTANCE, 3);
+                        .jaccardLinkLengths(LINK_DISTANCE, 2);
 
 
                     const margin = 10;
@@ -182,9 +181,7 @@
                         colaLayout.prepareEdgeRouting(margin / 3);
                         console.log("Routing edges");
 
-                        function getNodeIndex(nodeId) {
-                            return nodes.findIndex(node => node.id === nodeId);
-                        }
+
 
                         // What I want to do is change the angle based on the number of edges between the same nodes
                         // Function to calculate curvature based on number of edges and index
@@ -213,9 +210,100 @@
                         link.attr("d", function (d, i) {
 
 
-                            // UGH THIS SORT OF WORKS BUT ONLY SOMETIMES CURVES IN THE WRONG DIRECTION
+                            // TODO: Will the edge hack break this?
+                            /*
+
+                                If so, we need to do something about it. Maybe dont route edges for the group edges in the same way.
+                                Or calculate route differently.
+                            */
 
                             var route = colaLayout.routeEdge(d);
+
+                            let n = d.id;
+                            if (n.startsWith("_g_")) {
+                                let source = d.source;
+                                let target = d.target;
+
+                                let sourceIndex = getNodeIndex(source.id);
+                                let targetIndex = getNodeIndex(target.id);
+
+                                // Depends on the source group and the target group.
+
+
+                                // This actually deals with subsumed groups, since only
+                                // the innermost group will include the element in its leaves.
+                                let targetGroup = groups.find(group => {
+                                    let leaves = group.leaves.map(leaf => leaf.id);
+                                    return leaves.includes(target.id);
+
+                                });
+
+                                let sourceGroup = groups.find(group => {
+                                    let leaves = group.leaves.map(leaf => leaf.id);
+                                    return leaves.includes(source.id);
+
+                                });
+
+                                const groupIsTarget = targetGroup && targetGroup.keyNode === sourceIndex;
+                                const groupIsSource = sourceGroup && sourceGroup.keyNode === targetIndex;
+
+                                if (groupIsSource && groupIsTarget) {
+                                    alert('Something is very wrong!');
+                                }
+
+
+                                // Only one of source group and target group can be a group.
+
+                                // Within source group, see if the target is the key
+
+                                function closestPointOnRect(bounds, point) {
+                                    // Destructure the rectangle bounds
+                                    const { x, y, X, Y } = bounds;
+
+                                    // Calculate the rectangle's edges
+                                    const left = x;
+                                    const right = X;
+                                    const top = y;
+                                    const bottom = Y;
+
+                                    // Clamp the point's coordinates to the rectangle's bounds
+                                    const closestX = Math.max(left, Math.min(point.x, right));
+                                    const closestY = Math.max(top, Math.min(point.y, bottom));
+
+                                    return { x: closestX, y: closestY };
+                                }
+
+
+
+
+                                if (groupIsTarget) {
+                                    let newTargetCoords = closestPointOnRect(targetGroup.bounds, route[0]);
+                                    let currentTarget = route[route.length - 1];
+                                    currentTarget.x = newTargetCoords.x;
+                                    currentTarget.y = newTargetCoords.y;
+
+
+                                }
+                                else if (groupIsSource) {
+                                    let newSourceCoords = closestPointOnRect(sourceGroup.bounds, route[route.length - 1]);
+                                    let currentSource = route[0];
+                                    currentSource.x = newSourceCoords.x;
+                                    currentSource.y = newSourceCoords.y;
+
+                                }
+                                else {
+                                    console.log("This is a group edge, but neither source nor target is a group.", d);
+                                }
+                                
+                                // Not ideal but we dont want odd curves.
+                                if (route.length > 2) {
+                                    route.splice(1, route.length - 2);
+                                }
+
+
+                            }
+
+
 
 
                             // If there are only two points in the route, get the midpoint of the route and add it to the route
@@ -247,8 +335,6 @@
 
 
                                 if (index > 0 && index < route.length - 1 && curvature !== 0) {
-                                    console.log(d.source.id + " to " + d.target.id);
-
 
                                     // Adjust the control points based on the direction
                                     // var offsetX = curvature * Math.cos(angle + Math.PI / 2);
@@ -285,6 +371,26 @@
                             })
                             .attr("text-anchor", "middle")
                             .raise();
+
+                            /**** This bit ensures we zoom to fit ***/
+                            
+
+                                const bbox = svg.node().getBBox();
+                                const padding = 10; // Padding in pixels
+
+                                const viewBox = [
+                                    bbox.x - padding,
+                                    bbox.y - padding,
+                                    bbox.width + 2 * padding,
+                                    bbox.height + 2 * padding
+                                ].join(' ');
+
+
+                                const topSvg = d3.select("#svg");
+                                topSvg.attr('viewBox', viewBox);
+                            /*************************************/
+
+
                     };
 
                     const linkGroups = svg.selectAll(".link-group")
@@ -389,12 +495,17 @@
                         })
                         .attr("fill-opacity", 0.3)
                         .call(colaLayout.drag);
-
+                    
+                    // TODO: Uncomment to reenable group labels
                     var groupLabel = svg.selectAll(".groupLabel")
                         .data(groups)
                         .enter().append("text")
                         .attr("class", "groupLabel")
-                        .text(function (d) { return d.name; })
+                        .text(function (d) { 
+                            // TODO: Added this
+                            return "";
+                            //return d.name; 
+                        })
                         .call(colaLayout.drag);
 
 
@@ -436,7 +547,26 @@
 
                         linkGroups.select("path.link")
                             .attr("d", function (d) {
-                                var route = cola.makeEdgeBetween(d.source.innerBounds, d.target.innerBounds, 5);
+                                
+                                let source = d.source;
+                                let target = d.target;
+
+                                let n = d.id;
+                                if (n.startsWith("_g_")) {
+                                    // This actually deals with subsumed groups, since only
+                                    // the innermost group will include the element in its leaves.
+                                    let targetGroup = groups.find(group => {
+                                        let leaves = group.leaves.map(leaf => leaf.id);
+                                        return leaves.includes(target.id);
+
+                                    });
+                                    target = targetGroup;
+                                    target.innerBounds = target.bounds.inflate(-1);
+
+                                }
+
+
+                                var route = cola.makeEdgeBetween(source.innerBounds, target.innerBounds, 5);
                                 return lineFunction([route.sourceIntersection, route.arrowStart]);
                             });
 
@@ -454,14 +584,16 @@
 
 
 
-
                         groupLabel.attr("x", function (d) { 
                             return d.bounds.x + d.bounds.width() / 2; 
                         
                         }) // Center horizontally
-                            .attr("y", function (d) { return d.bounds.y + 12; })
-                            .attr("text-anchor", "middle") // Center the text on its position
-                            .raise();
+                        .attr("y", function (d) { return d.bounds.y + 12; })
+                        .attr("text-anchor", "middle") // Center the text on its position
+                        .lower();
+
+
+                        linkGroups.select("text.linklabel").raise();
 
                     });
 
@@ -476,6 +608,353 @@
             </script>
 
         </div>
+
+        <!-- <div id="webcola">
+
+            <h3> Layout Constraints </h3>
+            <pre id="constraints"> [
+  {
+    "left": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "right": {
+      "id": "Person1",
+      "color": "#8DA424",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 100
+  },
+  {
+    "top": {
+      "id": "Person1",
+      "color": "#8DA424",
+      "groups": [],
+      "attributes": {}
+    },
+    "bottom": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "minDistance": 0
+  },
+  {
+    "left": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "right": {
+      "id": "Person2",
+      "color": "#8DA424",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 6.123233995736766e-15
+  },
+  {
+    "top": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "bottom": {
+      "id": "Person2",
+      "color": "#8DA424",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 100
+  },
+  {
+    "left": {
+      "id": "Dealer0",
+      "color": "#4B78FD",
+      "groups": [],
+      "attributes": {}
+    },
+    "right": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "minDistance": 100
+  },
+  {
+    "top": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "bottom": {
+      "id": "Dealer0",
+      "color": "#4B78FD",
+      "groups": [],
+      "attributes": {}
+    },
+    "minDistance": 1.2246467991473532e-14
+  },
+  {
+    "left": {
+      "id": "Person0",
+      "color": "#8DA424",
+      "groups": [],
+      "attributes": {}
+    },
+    "right": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "minDistance": 1.8369701987210297e-14
+  },
+  {
+    "top": {
+      "id": "Person0",
+      "color": "#8DA424",
+      "groups": [],
+      "attributes": {}
+    },
+    "bottom": {
+      "id": "_left_0",
+      "attributes": {},
+      "groups": [],
+      "color": "transparent"
+    },
+    "minDistance": 100
+  }
+];</pre>
+
+            <h3 id="graphDefs"> Graph definitions </h3>
+            <h4>Nodes</h4>
+            <pre id="nodes"> [
+  {
+    "id": "Card0",
+    "color": "#36F4D1",
+    "groups": [
+      "Person2:hand"
+    ],
+    "attributes": {}
+  },
+  {
+    "id": "Card1",
+    "color": "#36F4D1",
+    "groups": [
+      "Person2:hand"
+    ],
+    "attributes": {}
+  },
+  {
+    "id": "Card2",
+    "color": "#36F4D1",
+    "groups": [
+      "Person1:hand"
+    ],
+    "attributes": {}
+  },
+  {
+    "id": "Card3",
+    "color": "#36F4D1",
+    "groups": [
+      "Person1:hand"
+    ],
+    "attributes": {}
+  },
+  {
+    "id": "Card4",
+    "color": "#36F4D1",
+    "groups": [
+      "Person0:hand"
+    ],
+    "attributes": {}
+  },
+  {
+    "id": "Card5",
+    "color": "#36F4D1",
+    "groups": [
+      "Person0:hand"
+    ],
+    "attributes": {}
+  },
+  {
+    "id": "Card6",
+    "color": "#36F4D1",
+    "groups": [
+      "Person0:hand"
+    ],
+    "attributes": {}
+  },
+  {
+    "id": "Person0",
+    "color": "#8DA424",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Person1",
+    "color": "#8DA424",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Person2",
+    "color": "#8DA424",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Dealer0",
+    "color": "#4B78FD",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "_left_0",
+    "attributes": {},
+    "groups": [],
+    "color": "transparent"
+  }
+];</pre>
+            <h4>Edges</h4>
+            <pre id="edges"> [
+  {
+    "source": {
+      "id": "Person0",
+      "color": "#8DA424",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Person1",
+      "color": "#8DA424",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "left",
+    "relationName": "left",
+    "id": "Person<:left:Person0->Person1"
+  },
+  {
+    "source": {
+      "id": "Person1",
+      "color": "#8DA424",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Person2",
+      "color": "#8DA424",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "left",
+    "relationName": "left",
+    "id": "Person<:left:Person1->Person2"
+  },
+  {
+    "source": {
+      "id": "Person2",
+      "color": "#8DA424",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Dealer0",
+      "color": "#4B78FD",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "left",
+    "relationName": "left",
+    "id": "Person<:left:Person2->Dealer0"
+  },
+  {
+    "source": {
+      "id": "Dealer0",
+      "color": "#4B78FD",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Person0",
+      "color": "#8DA424",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "left",
+    "relationName": "left",
+    "id": "Person<:left:Dealer0->Person0"
+  },
+  {
+    "source": {
+      "id": "Person0",
+      "color": "#8DA424",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Card4",
+      "color": "#36F4D1",
+      "groups": [
+        "Person0:hand"
+      ],
+      "attributes": {}
+    },
+    "label": "hand",
+    "relationName": "hand",
+    "id": "_g_Person<:hand:Person0->Card4"
+  },
+  {
+    "source": {
+      "id": "Person1",
+      "color": "#8DA424",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Card2",
+      "color": "#36F4D1",
+      "groups": [
+        "Person1:hand"
+      ],
+      "attributes": {}
+    },
+    "label": "hand",
+    "relationName": "hand",
+    "id": "_g_Person<:hand:Person1->Card2"
+  },
+  {
+    "source": {
+      "id": "Person2",
+      "color": "#8DA424",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Card0",
+      "color": "#36F4D1",
+      "groups": [
+        "Person2:hand"
+      ],
+      "attributes": {}
+    },
+    "label": "hand",
+    "relationName": "hand",
+    "id": "_g_Person<:hand:Person2->Card0"
+  }
+];</pre>
+
+        </div> -->
 
     </div>
 
