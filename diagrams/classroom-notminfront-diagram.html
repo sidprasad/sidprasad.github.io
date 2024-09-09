@@ -147,9 +147,9 @@
                         .handleDisconnected(true)
                         .size([width, height]);
 
-                    var nodes = [{"id":"Student2","color":"#74EAEE","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Magoo0","color":"#B40034","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Table0","color":"#B3414F","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Table1","color":"#B3414F","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Table2","color":"#B3414F","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Table3","color":"#B3414F","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Table4","color":"#B3414F","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Row0","color":"#503D9D","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Row1","color":"#503D9D","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Row2","color":"#503D9D","attributes":{},"width":70,"height":45,"x":400,"y":400}];
+                    var nodes = [{"id":"Student2","color":"#E8B2A3","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Magoo0","color":"#E7AE07","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Table0","color":"#1145E0","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Table1","color":"#1145E0","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Table2","color":"#1145E0","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Table3","color":"#1145E0","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Table4","color":"#1145E0","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Row0","color":"#FAD021","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Row1","color":"#FAD021","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Row2","color":"#FAD021","attributes":{},"width":70,"height":45,"x":400,"y":400}];
                     var edges = [{"source":8,"target":9,"relName":"behind","id":"Row<:behind:Row1->Row2","label":"behind"},{"source":9,"target":7,"relName":"behind","id":"Row<:behind:Row2->Row0","label":"behind"},{"source":5,"target":4,"relName":"right","id":"Table<:right:Table3->Table2","label":"right"},{"source":6,"target":3,"relName":"right","id":"Table<:right:Table4->Table1","label":"right"},{"source":1,"target":2,"relName":"seatedAt","id":"Student<:seatedAt:Magoo0->Table0","label":"seatedAt"},{"source":0,"target":4,"relName":"seatedAt","id":"Student<:seatedAt:Student2->Table2","label":"seatedAt"},{"source":2,"target":7,"relName":"row","id":"_g_Table<:row:Table0->Row0","label":"row"},{"source":3,"target":8,"relName":"row","id":"_g_Table<:row:Table1->Row1","label":"row"},{"source":4,"target":9,"relName":"row","id":"_g_Table<:row:Table2->Row2","label":"row"}];
-                    var constraints = [{"axis":"y","left":8,"right":9,"gap":15},{"axis":"x","left":9,"right":8,"gap":0,"equality":true},{"axis":"y","left":9,"right":7,"gap":15},{"axis":"x","left":7,"right":9,"gap":0,"equality":true},{"axis":"x","left":5,"right":4,"gap":15},{"axis":"y","left":4,"right":5,"gap":0,"equality":true},{"axis":"x","left":6,"right":3,"gap":15},{"axis":"y","left":3,"right":6,"gap":0,"equality":true},{"axis":"x","left":2,"right":1,"gap":15},{"axis":"x","left":4,"right":0,"gap":15},{"axis":"x","left":2,"right":7,"gap":15},{"axis":"y","left":7,"right":2,"gap":0,"equality":true},{"axis":"x","left":3,"right":8,"gap":15},{"axis":"y","left":8,"right":3,"gap":0,"equality":true},{"axis":"x","left":4,"right":9,"gap":15},{"axis":"y","left":9,"right":4,"gap":0,"equality":true}];
+                    var constraints = [{"axis":"y","left":8,"right":9,"gap":15},{"axis":"x","left":9,"right":8,"gap":0,"equality":true},{"axis":"y","left":9,"right":7,"gap":15},{"axis":"x","left":7,"right":9,"gap":0,"equality":true},{"axis":"x","left":5,"right":4,"gap":15},{"axis":"y","left":4,"right":5,"gap":0,"equality":true},{"axis":"x","left":6,"right":3,"gap":15},{"axis":"y","left":3,"right":6,"gap":0,"equality":true},{"axis":"x","left":2,"right":1,"gap":15},{"axis":"x","left":4,"right":0,"gap":15},{"axis":"x","left":7,"right":2,"gap":15},{"axis":"y","left":7,"right":2,"gap":0,"equality":true},{"axis":"x","left":8,"right":3,"gap":15},{"axis":"y","left":8,"right":3,"gap":0,"equality":true},{"axis":"x","left":9,"right":4,"gap":15},{"axis":"y","left":9,"right":4,"gap":0,"equality":true}];
                     var groups = [{"leaves":[2],"padding":5,"name":"Row0:row","groups":[],"keyNode":7,"id":"Row0:row"},{"leaves":[3,6],"padding":5,"name":"Row1:row","groups":[],"keyNode":8,"id":"Row1:row"},{"leaves":[4,5],"padding":5,"name":"Row2:row","groups":[],"keyNode":9,"id":"Row2:row"}];
                     function getNodeIndex(nodeId) {
                             return nodes.findIndex(node => node.id === nodeId);
@@ -616,13 +616,13 @@
   {
     "top": {
       "id": "Row1",
-      "color": "#503D9D",
+      "color": "#FAD021",
       "groups": [],
       "attributes": {}
     },
     "bottom": {
       "id": "Row2",
-      "color": "#503D9D",
+      "color": "#FAD021",
       "groups": [],
       "attributes": {}
     },
@@ -632,13 +632,13 @@
     "axis": "x",
     "node1": {
       "id": "Row2",
-      "color": "#503D9D",
+      "color": "#FAD021",
       "groups": [],
       "attributes": {}
     },
     "node2": {
       "id": "Row1",
-      "color": "#503D9D",
+      "color": "#FAD021",
       "groups": [],
       "attributes": {}
     }
@@ -646,13 +646,13 @@
   {
     "top": {
       "id": "Row2",
-      "color": "#503D9D",
+      "color": "#FAD021",
       "groups": [],
       "attributes": {}
     },
     "bottom": {
       "id": "Row0",
-      "color": "#503D9D",
+      "color": "#FAD021",
       "groups": [],
       "attributes": {}
     },
@@ -662,13 +662,13 @@
     "axis": "x",
     "node1": {
       "id": "Row0",
-      "color": "#503D9D",
+      "color": "#FAD021",
       "groups": [],
       "attributes": {}
     },
     "node2": {
       "id": "Row2",
-      "color": "#503D9D",
+      "color": "#FAD021",
       "groups": [],
       "attributes": {}
     }
@@ -676,7 +676,7 @@
   {
     "left": {
       "id": "Table3",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row2:row"
       ],
@@ -684,7 +684,7 @@
     },
     "right": {
       "id": "Table2",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row2:row"
       ],
@@ -696,7 +696,7 @@
     "axis": "y",
     "node1": {
       "id": "Table2",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row2:row"
       ],
@@ -704,7 +704,7 @@
     },
     "node2": {
       "id": "Table3",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row2:row"
       ],
@@ -714,7 +714,7 @@
   {
     "left": {
       "id": "Table4",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row1:row"
       ],
@@ -722,7 +722,7 @@
     },
     "right": {
       "id": "Table1",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row1:row"
       ],
@@ -734,7 +734,7 @@
     "axis": "y",
     "node1": {
       "id": "Table1",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row1:row"
       ],
@@ -742,7 +742,7 @@
     },
     "node2": {
       "id": "Table4",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row1:row"
       ],
@@ -752,7 +752,7 @@
   {
     "left": {
       "id": "Table0",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row0:row"
       ],
@@ -760,7 +760,7 @@
     },
     "right": {
       "id": "Magoo0",
-      "color": "#B40034",
+      "color": "#E7AE07",
       "groups": [],
       "attributes": {}
     },
@@ -769,7 +769,7 @@
   {
     "left": {
       "id": "Table2",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row2:row"
       ],
@@ -777,7 +777,7 @@
     },
     "right": {
       "id": "Student2",
-      "color": "#74EAEE",
+      "color": "#E8B2A3",
       "groups": [],
       "attributes": {}
     },
@@ -785,17 +785,17 @@
   },
   {
     "left": {
-      "id": "Table0",
-      "color": "#B3414F",
-      "groups": [
-        "Row0:row"
-      ],
+      "id": "Row0",
+      "color": "#FAD021",
+      "groups": [],
       "attributes": {}
     },
     "right": {
-      "id": "Row0",
-      "color": "#503D9D",
-      "groups": [],
+      "id": "Table0",
+      "color": "#1145E0",
+      "groups": [
+        "Row0:row"
+      ],
       "attributes": {}
     },
     "minDistance": 15
@@ -804,13 +804,13 @@
     "axis": "y",
     "node1": {
       "id": "Row0",
-      "color": "#503D9D",
+      "color": "#FAD021",
       "groups": [],
       "attributes": {}
     },
     "node2": {
       "id": "Table0",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row0:row"
       ],
@@ -819,17 +819,17 @@
   },
   {
     "left": {
-      "id": "Table1",
-      "color": "#B3414F",
-      "groups": [
-        "Row1:row"
-      ],
+      "id": "Row1",
+      "color": "#FAD021",
+      "groups": [],
       "attributes": {}
     },
     "right": {
-      "id": "Row1",
-      "color": "#503D9D",
-      "groups": [],
+      "id": "Table1",
+      "color": "#1145E0",
+      "groups": [
+        "Row1:row"
+      ],
       "attributes": {}
     },
     "minDistance": 15
@@ -838,13 +838,13 @@
     "axis": "y",
     "node1": {
       "id": "Row1",
-      "color": "#503D9D",
+      "color": "#FAD021",
       "groups": [],
       "attributes": {}
     },
     "node2": {
       "id": "Table1",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row1:row"
       ],
@@ -853,32 +853,32 @@
   },
   {
     "left": {
+      "id": "Row2",
+      "color": "#FAD021",
+      "groups": [],
+      "attributes": {}
+    },
+    "right": {
       "id": "Table2",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row2:row"
       ],
       "attributes": {}
     },
-    "right": {
-      "id": "Row2",
-      "color": "#503D9D",
-      "groups": [],
-      "attributes": {}
-    },
     "minDistance": 15
   },
   {
     "axis": "y",
     "node1": {
       "id": "Row2",
-      "color": "#503D9D",
+      "color": "#FAD021",
       "groups": [],
       "attributes": {}
     },
     "node2": {
       "id": "Table2",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row2:row"
       ],
@@ -892,19 +892,19 @@
             <pre id="nodes"> [
   {
     "id": "Student2",
-    "color": "#74EAEE",
+    "color": "#E8B2A3",
     "groups": [],
     "attributes": {}
   },
   {
     "id": "Magoo0",
-    "color": "#B40034",
+    "color": "#E7AE07",
     "groups": [],
     "attributes": {}
   },
   {
     "id": "Table0",
-    "color": "#B3414F",
+    "color": "#1145E0",
     "groups": [
       "Row0:row"
     ],
@@ -912,7 +912,7 @@
   },
   {
     "id": "Table1",
-    "color": "#B3414F",
+    "color": "#1145E0",
     "groups": [
       "Row1:row"
     ],
@@ -920,7 +920,7 @@
   },
   {
     "id": "Table2",
-    "color": "#B3414F",
+    "color": "#1145E0",
     "groups": [
       "Row2:row"
     ],
@@ -928,7 +928,7 @@
   },
   {
     "id": "Table3",
-    "color": "#B3414F",
+    "color": "#1145E0",
     "groups": [
       "Row2:row"
     ],
@@ -936,7 +936,7 @@
   },
   {
     "id": "Table4",
-    "color": "#B3414F",
+    "color": "#1145E0",
     "groups": [
       "Row1:row"
     ],
@@ -944,19 +944,19 @@
   },
   {
     "id": "Row0",
-    "color": "#503D9D",
+    "color": "#FAD021",
     "groups": [],
     "attributes": {}
   },
   {
     "id": "Row1",
-    "color": "#503D9D",
+    "color": "#FAD021",
     "groups": [],
     "attributes": {}
   },
   {
     "id": "Row2",
-    "color": "#503D9D",
+    "color": "#FAD021",
     "groups": [],
     "attributes": {}
   }
@@ -966,13 +966,13 @@
   {
     "source": {
       "id": "Row1",
-      "color": "#503D9D",
+      "color": "#FAD021",
       "groups": [],
       "attributes": {}
     },
     "target": {
       "id": "Row2",
-      "color": "#503D9D",
+      "color": "#FAD021",
       "groups": [],
       "attributes": {}
     },
@@ -983,13 +983,13 @@
   {
     "source": {
       "id": "Row2",
-      "color": "#503D9D",
+      "color": "#FAD021",
       "groups": [],
       "attributes": {}
     },
     "target": {
       "id": "Row0",
-      "color": "#503D9D",
+      "color": "#FAD021",
       "groups": [],
       "attributes": {}
     },
@@ -1000,7 +1000,7 @@
   {
     "source": {
       "id": "Table3",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row2:row"
       ],
@@ -1008,7 +1008,7 @@
     },
     "target": {
       "id": "Table2",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row2:row"
       ],
@@ -1021,7 +1021,7 @@
   {
     "source": {
       "id": "Table4",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row1:row"
       ],
@@ -1029,7 +1029,7 @@
     },
     "target": {
       "id": "Table1",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row1:row"
       ],
@@ -1042,13 +1042,13 @@
   {
     "source": {
       "id": "Magoo0",
-      "color": "#B40034",
+      "color": "#E7AE07",
       "groups": [],
       "attributes": {}
     },
     "target": {
       "id": "Table0",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row0:row"
       ],
@@ -1061,13 +1061,13 @@
   {
     "source": {
       "id": "Student2",
-      "color": "#74EAEE",
+      "color": "#E8B2A3",
       "groups": [],
       "attributes": {}
     },
     "target": {
       "id": "Table2",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row2:row"
       ],
@@ -1080,7 +1080,7 @@
   {
     "source": {
       "id": "Table0",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row0:row"
       ],
@@ -1088,7 +1088,7 @@
     },
     "target": {
       "id": "Row0",
-      "color": "#503D9D",
+      "color": "#FAD021",
       "groups": [],
       "attributes": {}
     },
@@ -1099,7 +1099,7 @@
   {
     "source": {
       "id": "Table1",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row1:row"
       ],
@@ -1107,7 +1107,7 @@
     },
     "target": {
       "id": "Row1",
-      "color": "#503D9D",
+      "color": "#FAD021",
       "groups": [],
       "attributes": {}
     },
@@ -1118,7 +1118,7 @@
   {
     "source": {
       "id": "Table2",
-      "color": "#B3414F",
+      "color": "#1145E0",
       "groups": [
         "Row2:row"
       ],
@@ -1126,7 +1126,7 @@
     },
     "target": {
       "id": "Row2",
-      "color": "#503D9D",
+      "color": "#FAD021",
       "groups": [],
       "attributes": {}
     },
