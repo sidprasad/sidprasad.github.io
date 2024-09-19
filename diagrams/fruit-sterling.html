@@ -594,13 +594,35 @@
         const bbox = d3.select('.zoomable').node().getBBox();
         const padding = 10; // Padding in pixels
 
-        const viewBox = [
-            bbox.x - padding,
-            bbox.y - padding,
-            bbox.width + 2 * padding,
-            bbox.height + 2 * padding
-        ].join(' ');
+        const viewBoxWidth = bbox.width + 2 * padding;
+        const viewBoxHeight = bbox.height + 2 * padding;
 
+        const iframeWidth = window.innerWidth;
+        const iframeHeight = window.innerHeight;
+
+        const aspectRatioContent = viewBoxWidth / viewBoxHeight;
+        const aspectRatioIframe = iframeWidth / iframeHeight;
+
+        let viewBox;
+        if (aspectRatioContent > aspectRatioIframe) {
+            // Content is wider than the iframe
+            const adjustedHeight = viewBoxWidth / aspectRatioIframe;
+            viewBox = [
+                bbox.x - padding,
+                bbox.y - (adjustedHeight - bbox.height) / 2 - padding,
+                viewBoxWidth,
+                adjustedHeight
+            ].join(' ');
+        } else {
+            // Content is taller than the iframe
+            const adjustedWidth = viewBoxHeight * aspectRatioIframe;
+            viewBox = [
+                bbox.x - (adjustedWidth - bbox.width) / 2 - padding,
+                bbox.y - padding,
+                adjustedWidth,
+                viewBoxHeight
+            ].join(' ');
+        }
 
         const topSvg = d3.select("#diagram");
         topSvg.attr('viewBox', viewBox);
