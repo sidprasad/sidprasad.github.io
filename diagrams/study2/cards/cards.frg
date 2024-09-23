@@ -3,14 +3,16 @@
 
 one sig Dealer {}
 
+sig Card {}
+
  sig Player {
     left : one Player,
     right : one Player,
-    holding : lone Dealer
+    holding : lone Dealer,
+    hand : set Card
 }
 
-// sig Visitor extends Player {}
-// sig Host extends Player {}
+
 
 pred wellformed {
     all p : Player |   {
@@ -20,6 +22,24 @@ pred wellformed {
 
     right = ~left // Everyone is sitting next to someone
 }
+
+
+pred withCards {
+    all p : Player | {
+        some (p.hand)
+    }
+
+    // Cards cannot be in two hands
+    all p1, p2 : Player | {
+        (p1 != p2) => no (p1.hand & p2.hand)
+    }
+
+    // All cards are in someone's hand
+    all c : Card | {
+        some p : Player | c in p.hand
+    }
+}
+
 
 // Small blind is one Player clockwise (to the left) of the dealer
 // Big blind is two people clockwise (to the left) of the dealer
@@ -45,7 +65,8 @@ pred bigBlind[p : Player] {
 
 run {
     wellformed
-} for exactly 7 Player, 1 Dealer
+    withCards
+} for exactly 5 Player, exactly 5 Card, 1 Dealer
 
 // Who is the big blind?
 

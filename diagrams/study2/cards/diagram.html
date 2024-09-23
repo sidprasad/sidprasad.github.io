@@ -146,9 +146,9 @@
                         .handleDisconnected(true)
                         .size([width, height]);
 
-                    var nodes = [{"id":"Player0","color":"#d34c59","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Player1","color":"#d34c59","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Player2","color":"#d34c59","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Player3","color":"#d34c59","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Player4","color":"#d34c59","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Player5","color":"#d34c59","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Player6","color":"#d34c59","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Dealer0","color":"#f84569","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"_left_0","color":"transparent","attributes":{},"width":70,"height":45,"x":400,"y":400}];
-                    var edges = [{"source":6,"target":7,"relName":"holding","id":"Player<:holding:Player6->Dealer0","label":"holding"},{"source":0,"target":6,"relName":"left","id":"Player<:left:Player0->Player6","label":"left"},{"source":1,"target":5,"relName":"left","id":"Player<:left:Player1->Player5","label":"left"},{"source":2,"target":4,"relName":"left","id":"Player<:left:Player2->Player4","label":"left"},{"source":3,"target":2,"relName":"left","id":"Player<:left:Player3->Player2","label":"left"},{"source":4,"target":0,"relName":"left","id":"Player<:left:Player4->Player0","label":"left"},{"source":5,"target":3,"relName":"left","id":"Player<:left:Player5->Player3","label":"left"},{"source":6,"target":1,"relName":"left","id":"Player<:left:Player6->Player1","label":"left"},{"source":0,"target":4,"relName":"right","id":"Player<:right:Player0->Player4","label":"right"},{"source":1,"target":6,"relName":"right","id":"Player<:right:Player1->Player6","label":"right"},{"source":2,"target":3,"relName":"right","id":"Player<:right:Player2->Player3","label":"right"},{"source":3,"target":5,"relName":"right","id":"Player<:right:Player3->Player5","label":"right"},{"source":4,"target":2,"relName":"right","id":"Player<:right:Player4->Player2","label":"right"},{"source":5,"target":1,"relName":"right","id":"Player<:right:Player5->Player1","label":"right"},{"source":6,"target":0,"relName":"right","id":"Player<:right:Player6->Player0","label":"right"}];
-                    var constraints = [{"axis":"x","left":8,"right":6,"gap":100},{"axis":"y","left":6,"right":8,"gap":0},{"axis":"x","left":8,"right":1,"gap":62.34898018587336},{"axis":"y","left":8,"right":1,"gap":78.18314824680299},{"axis":"x","left":5,"right":8,"gap":22.252093395631434},{"axis":"y","left":8,"right":5,"gap":97.49279121818236},{"axis":"x","left":3,"right":8,"gap":90.09688679024191},{"axis":"y","left":8,"right":3,"gap":43.38837391175582},{"axis":"x","left":2,"right":8,"gap":90.09688679024191},{"axis":"y","left":2,"right":8,"gap":43.3883739117558},{"axis":"x","left":4,"right":8,"gap":22.25209339563146},{"axis":"y","left":4,"right":8,"gap":97.49279121818236},{"axis":"x","left":8,"right":0,"gap":62.34898018587334},{"axis":"y","left":0,"right":8,"gap":78.18314824680299}];
+                    var nodes = [{"id":"Card0","color":"#909914","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Card1","color":"#909914","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Card2","color":"#909914","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Card3","color":"#909914","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Card4","color":"#909914","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Player0","color":"#b24792","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Player1","color":"#b24792","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Player2","color":"#b24792","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Player3","color":"#b24792","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Player4","color":"#b24792","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"Dealer0","color":"#fe4c5c","attributes":{},"width":70,"height":45,"x":400,"y":400},{"id":"_left_0","color":"transparent","attributes":{},"width":70,"height":45,"x":400,"y":400}];
+                    var edges = [{"source":5,"target":6,"relName":"left","id":"Player<:left:Player0->Player1","label":"left"},{"source":6,"target":7,"relName":"left","id":"Player<:left:Player1->Player2","label":"left"},{"source":7,"target":8,"relName":"left","id":"Player<:left:Player2->Player3","label":"left"},{"source":8,"target":9,"relName":"left","id":"Player<:left:Player3->Player4","label":"left"},{"source":9,"target":5,"relName":"left","id":"Player<:left:Player4->Player0","label":"left"},{"source":5,"target":9,"relName":"right","id":"Player<:right:Player0->Player4","label":"right"},{"source":6,"target":5,"relName":"right","id":"Player<:right:Player1->Player0","label":"right"},{"source":7,"target":6,"relName":"right","id":"Player<:right:Player2->Player1","label":"right"},{"source":8,"target":7,"relName":"right","id":"Player<:right:Player3->Player2","label":"right"},{"source":9,"target":8,"relName":"right","id":"Player<:right:Player4->Player3","label":"right"},{"source":5,"target":4,"relName":"hand","id":"Player<:hand:Player0->Card4","label":"hand"},{"source":6,"target":3,"relName":"hand","id":"Player<:hand:Player1->Card3","label":"hand"},{"source":7,"target":2,"relName":"hand","id":"Player<:hand:Player2->Card2","label":"hand"},{"source":8,"target":1,"relName":"hand","id":"Player<:hand:Player3->Card1","label":"hand"},{"source":9,"target":0,"relName":"hand","id":"Player<:hand:Player4->Card0","label":"hand"},{"source":9,"target":10,"relName":"holding","id":"Player<:holding:Player4->Dealer0","label":"holding"}];
+                    var constraints = [{"axis":"x","left":11,"right":6,"gap":100},{"axis":"y","left":6,"right":11,"gap":0},{"axis":"x","left":11,"right":7,"gap":30.901699437494745},{"axis":"y","left":11,"right":7,"gap":95.10565162951535},{"axis":"x","left":8,"right":11,"gap":80.90169943749473},{"axis":"y","left":11,"right":8,"gap":58.77852522924732},{"axis":"x","left":9,"right":11,"gap":80.90169943749474},{"axis":"y","left":9,"right":11,"gap":58.7785252292473},{"axis":"x","left":11,"right":5,"gap":30.901699437494724},{"axis":"y","left":5,"right":11,"gap":95.10565162951536}];
                     var groups = [];
                     function getNodeIndex(nodeId) {
                             return nodes.findIndex(node => node.id === nodeId);
@@ -620,8 +620,8 @@
       "color": "transparent"
     },
     "right": {
-      "id": "Player6",
-      "color": "#d34c59",
+      "id": "Player1",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
@@ -629,8 +629,8 @@
   },
   {
     "top": {
-      "id": "Player6",
-      "color": "#d34c59",
+      "id": "Player1",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
@@ -650,12 +650,12 @@
       "color": "transparent"
     },
     "right": {
-      "id": "Player1",
-      "color": "#d34c59",
+      "id": "Player2",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
-    "minDistance": 62.34898018587336
+    "minDistance": 30.901699437494745
   },
   {
     "top": {
@@ -665,47 +665,17 @@
       "color": "transparent"
     },
     "bottom": {
-      "id": "Player1",
-      "color": "#d34c59",
+      "id": "Player2",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
-    "minDistance": 78.18314824680299
-  },
-  {
-    "left": {
-      "id": "Player5",
-      "color": "#d34c59",
-      "groups": [],
-      "attributes": {}
-    },
-    "right": {
-      "id": "_left_0",
-      "attributes": {},
-      "groups": [],
-      "color": "transparent"
-    },
-    "minDistance": 22.252093395631434
-  },
-  {
-    "top": {
-      "id": "_left_0",
-      "attributes": {},
-      "groups": [],
-      "color": "transparent"
-    },
-    "bottom": {
-      "id": "Player5",
-      "color": "#d34c59",
-      "groups": [],
-      "attributes": {}
-    },
-    "minDistance": 97.49279121818236
+    "minDistance": 95.10565162951535
   },
   {
     "left": {
       "id": "Player3",
-      "color": "#d34c59",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
@@ -715,7 +685,7 @@
       "groups": [],
       "color": "transparent"
     },
-    "minDistance": 90.09688679024191
+    "minDistance": 80.90169943749473
   },
   {
     "top": {
@@ -726,16 +696,16 @@
     },
     "bottom": {
       "id": "Player3",
-      "color": "#d34c59",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
-    "minDistance": 43.38837391175582
+    "minDistance": 58.77852522924732
   },
   {
     "left": {
-      "id": "Player2",
-      "color": "#d34c59",
+      "id": "Player4",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
@@ -745,12 +715,12 @@
       "groups": [],
       "color": "transparent"
     },
-    "minDistance": 90.09688679024191
+    "minDistance": 80.90169943749474
   },
   {
     "top": {
-      "id": "Player2",
-      "color": "#d34c59",
+      "id": "Player4",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
@@ -760,37 +730,7 @@
       "groups": [],
       "color": "transparent"
     },
-    "minDistance": 43.3883739117558
-  },
-  {
-    "left": {
-      "id": "Player4",
-      "color": "#d34c59",
-      "groups": [],
-      "attributes": {}
-    },
-    "right": {
-      "id": "_left_0",
-      "attributes": {},
-      "groups": [],
-      "color": "transparent"
-    },
-    "minDistance": 22.25209339563146
-  },
-  {
-    "top": {
-      "id": "Player4",
-      "color": "#d34c59",
-      "groups": [],
-      "attributes": {}
-    },
-    "bottom": {
-      "id": "_left_0",
-      "attributes": {},
-      "groups": [],
-      "color": "transparent"
-    },
-    "minDistance": 97.49279121818236
+    "minDistance": 58.7785252292473
   },
   {
     "left": {
@@ -801,16 +741,16 @@
     },
     "right": {
       "id": "Player0",
-      "color": "#d34c59",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
-    "minDistance": 62.34898018587334
+    "minDistance": 30.901699437494724
   },
   {
     "top": {
       "id": "Player0",
-      "color": "#d34c59",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
@@ -820,7 +760,7 @@
       "groups": [],
       "color": "transparent"
     },
-    "minDistance": 78.18314824680299
+    "minDistance": 95.10565162951536
   }
 ];</pre>
 
@@ -828,50 +768,68 @@
             <h4>Nodes</h4>
             <pre id="nodes"> [
   {
+    "id": "Card0",
+    "color": "#909914",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Card1",
+    "color": "#909914",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Card2",
+    "color": "#909914",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Card3",
+    "color": "#909914",
+    "groups": [],
+    "attributes": {}
+  },
+  {
+    "id": "Card4",
+    "color": "#909914",
+    "groups": [],
+    "attributes": {}
+  },
+  {
     "id": "Player0",
-    "color": "#d34c59",
+    "color": "#b24792",
     "groups": [],
     "attributes": {}
   },
   {
     "id": "Player1",
-    "color": "#d34c59",
+    "color": "#b24792",
     "groups": [],
     "attributes": {}
   },
   {
     "id": "Player2",
-    "color": "#d34c59",
+    "color": "#b24792",
     "groups": [],
     "attributes": {}
   },
   {
     "id": "Player3",
-    "color": "#d34c59",
+    "color": "#b24792",
     "groups": [],
     "attributes": {}
   },
   {
     "id": "Player4",
-    "color": "#d34c59",
-    "groups": [],
-    "attributes": {}
-  },
-  {
-    "id": "Player5",
-    "color": "#d34c59",
-    "groups": [],
-    "attributes": {}
-  },
-  {
-    "id": "Player6",
-    "color": "#d34c59",
+    "color": "#b24792",
     "groups": [],
     "attributes": {}
   },
   {
     "id": "Dealer0",
-    "color": "#f84569",
+    "color": "#fe4c5c",
     "groups": [],
     "attributes": {}
   },
@@ -886,99 +844,82 @@
             <pre id="edges"> [
   {
     "source": {
-      "id": "Player6",
-      "color": "#d34c59",
-      "groups": [],
-      "attributes": {}
-    },
-    "target": {
-      "id": "Dealer0",
-      "color": "#f84569",
-      "groups": [],
-      "attributes": {}
-    },
-    "label": "holding",
-    "relationName": "holding",
-    "id": "Player<:holding:Player6->Dealer0"
-  },
-  {
-    "source": {
       "id": "Player0",
-      "color": "#d34c59",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
     "target": {
-      "id": "Player6",
-      "color": "#d34c59",
+      "id": "Player1",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
     "label": "left",
     "relationName": "left",
-    "id": "Player<:left:Player0->Player6"
+    "id": "Player<:left:Player0->Player1"
   },
   {
     "source": {
       "id": "Player1",
-      "color": "#d34c59",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
     "target": {
-      "id": "Player5",
-      "color": "#d34c59",
+      "id": "Player2",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
     "label": "left",
     "relationName": "left",
-    "id": "Player<:left:Player1->Player5"
+    "id": "Player<:left:Player1->Player2"
   },
   {
     "source": {
       "id": "Player2",
-      "color": "#d34c59",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
     "target": {
-      "id": "Player4",
-      "color": "#d34c59",
+      "id": "Player3",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
     "label": "left",
     "relationName": "left",
-    "id": "Player<:left:Player2->Player4"
+    "id": "Player<:left:Player2->Player3"
   },
   {
     "source": {
       "id": "Player3",
-      "color": "#d34c59",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
     "target": {
-      "id": "Player2",
-      "color": "#d34c59",
+      "id": "Player4",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
     "label": "left",
     "relationName": "left",
-    "id": "Player<:left:Player3->Player2"
+    "id": "Player<:left:Player3->Player4"
   },
   {
     "source": {
       "id": "Player4",
-      "color": "#d34c59",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
     "target": {
       "id": "Player0",
-      "color": "#d34c59",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
@@ -988,48 +929,14 @@
   },
   {
     "source": {
-      "id": "Player5",
-      "color": "#d34c59",
-      "groups": [],
-      "attributes": {}
-    },
-    "target": {
-      "id": "Player3",
-      "color": "#d34c59",
-      "groups": [],
-      "attributes": {}
-    },
-    "label": "left",
-    "relationName": "left",
-    "id": "Player<:left:Player5->Player3"
-  },
-  {
-    "source": {
-      "id": "Player6",
-      "color": "#d34c59",
-      "groups": [],
-      "attributes": {}
-    },
-    "target": {
-      "id": "Player1",
-      "color": "#d34c59",
-      "groups": [],
-      "attributes": {}
-    },
-    "label": "left",
-    "relationName": "left",
-    "id": "Player<:left:Player6->Player1"
-  },
-  {
-    "source": {
       "id": "Player0",
-      "color": "#d34c59",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
     "target": {
       "id": "Player4",
-      "color": "#d34c59",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
@@ -1040,104 +947,172 @@
   {
     "source": {
       "id": "Player1",
-      "color": "#d34c59",
-      "groups": [],
-      "attributes": {}
-    },
-    "target": {
-      "id": "Player6",
-      "color": "#d34c59",
-      "groups": [],
-      "attributes": {}
-    },
-    "label": "right",
-    "relationName": "right",
-    "id": "Player<:right:Player1->Player6"
-  },
-  {
-    "source": {
-      "id": "Player2",
-      "color": "#d34c59",
-      "groups": [],
-      "attributes": {}
-    },
-    "target": {
-      "id": "Player3",
-      "color": "#d34c59",
-      "groups": [],
-      "attributes": {}
-    },
-    "label": "right",
-    "relationName": "right",
-    "id": "Player<:right:Player2->Player3"
-  },
-  {
-    "source": {
-      "id": "Player3",
-      "color": "#d34c59",
-      "groups": [],
-      "attributes": {}
-    },
-    "target": {
-      "id": "Player5",
-      "color": "#d34c59",
-      "groups": [],
-      "attributes": {}
-    },
-    "label": "right",
-    "relationName": "right",
-    "id": "Player<:right:Player3->Player5"
-  },
-  {
-    "source": {
-      "id": "Player4",
-      "color": "#d34c59",
-      "groups": [],
-      "attributes": {}
-    },
-    "target": {
-      "id": "Player2",
-      "color": "#d34c59",
-      "groups": [],
-      "attributes": {}
-    },
-    "label": "right",
-    "relationName": "right",
-    "id": "Player<:right:Player4->Player2"
-  },
-  {
-    "source": {
-      "id": "Player5",
-      "color": "#d34c59",
-      "groups": [],
-      "attributes": {}
-    },
-    "target": {
-      "id": "Player1",
-      "color": "#d34c59",
-      "groups": [],
-      "attributes": {}
-    },
-    "label": "right",
-    "relationName": "right",
-    "id": "Player<:right:Player5->Player1"
-  },
-  {
-    "source": {
-      "id": "Player6",
-      "color": "#d34c59",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
     "target": {
       "id": "Player0",
-      "color": "#d34c59",
+      "color": "#b24792",
       "groups": [],
       "attributes": {}
     },
     "label": "right",
     "relationName": "right",
-    "id": "Player<:right:Player6->Player0"
+    "id": "Player<:right:Player1->Player0"
+  },
+  {
+    "source": {
+      "id": "Player2",
+      "color": "#b24792",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Player1",
+      "color": "#b24792",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "right",
+    "relationName": "right",
+    "id": "Player<:right:Player2->Player1"
+  },
+  {
+    "source": {
+      "id": "Player3",
+      "color": "#b24792",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Player2",
+      "color": "#b24792",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "right",
+    "relationName": "right",
+    "id": "Player<:right:Player3->Player2"
+  },
+  {
+    "source": {
+      "id": "Player4",
+      "color": "#b24792",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Player3",
+      "color": "#b24792",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "right",
+    "relationName": "right",
+    "id": "Player<:right:Player4->Player3"
+  },
+  {
+    "source": {
+      "id": "Player0",
+      "color": "#b24792",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Card4",
+      "color": "#909914",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "hand",
+    "relationName": "hand",
+    "id": "Player<:hand:Player0->Card4"
+  },
+  {
+    "source": {
+      "id": "Player1",
+      "color": "#b24792",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Card3",
+      "color": "#909914",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "hand",
+    "relationName": "hand",
+    "id": "Player<:hand:Player1->Card3"
+  },
+  {
+    "source": {
+      "id": "Player2",
+      "color": "#b24792",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Card2",
+      "color": "#909914",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "hand",
+    "relationName": "hand",
+    "id": "Player<:hand:Player2->Card2"
+  },
+  {
+    "source": {
+      "id": "Player3",
+      "color": "#b24792",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Card1",
+      "color": "#909914",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "hand",
+    "relationName": "hand",
+    "id": "Player<:hand:Player3->Card1"
+  },
+  {
+    "source": {
+      "id": "Player4",
+      "color": "#b24792",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Card0",
+      "color": "#909914",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "hand",
+    "relationName": "hand",
+    "id": "Player<:hand:Player4->Card0"
+  },
+  {
+    "source": {
+      "id": "Player4",
+      "color": "#b24792",
+      "groups": [],
+      "attributes": {}
+    },
+    "target": {
+      "id": "Dealer0",
+      "color": "#fe4c5c",
+      "groups": [],
+      "attributes": {}
+    },
+    "label": "holding",
+    "relationName": "holding",
+    "id": "Player<:holding:Player4->Dealer0"
   }
 ];</pre>
 
