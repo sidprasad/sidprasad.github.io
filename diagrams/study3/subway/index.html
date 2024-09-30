@@ -10,7 +10,14 @@
     <p>An urban planner is trying to design a new subway system. They have represented their design with a diagram, where:</p>
     <ul>
         <li>Subway stations are represented by graph nodes.</li>
-        <li>The next station accessible via the train from a station is represented by edges labelled <code>next</code>.</li>
+        <li>Train connections between stations are represented by edges labeled <code>next</code>. These connections are strictly one-way.
+            <ul>
+                <li>A <code>next</code> edge from <code>Station A</code> to <code>Station B</code> means that there is a a train that goes directly from from <code>Station A</code> to <code>Station B</code>.</li>
+                <li>If there is no<code>next</code> edge from <code>Station B</code> to <code>Station A</code>, there is no direct train from <code>Station B</code> to <code>Station A</code>.</li>
+            </ul>
+            
+        </li>
+            
         <li>The relative positions of stations are represented by edges labelled <code>north</code> and <code>east</code>.
             <ul>
                 <li>A <code>north</code> edge means that the pointed at station is directly north of the pointing station.</li>
@@ -37,10 +44,10 @@
     <h3>Question 3</h3>
     <p>Which is the northernmost station from which you can get to Station2?</p>
     <p><strong>Answer:</strong> Station4</p>
-
+<!-- 
     <h3>Question 4 [REMOVED]</h3>
     <p>A good subway system is resilient to train breakdowns and slowdowns. This means that there are sometimes multiple paths between important stations.</p>
     <p>How many paths are there from Station1 to Station4?</p>
-    <p><strong>Answer:</strong> 0</p>
+    <p><strong>Answer:</strong> 0</p> -->
 </body>
 </html>
