@@ -1,0 +1,51 @@
+{
+    "fieldDirections": [],
+    "groupBy": [
+        {
+            "fieldName": "fruit",
+            "groupOn" : "domain"
+        }
+    ],
+    "closures": [],
+    "attributeFields": [],
+    "hideDisconnected": false,
+    "hideDisconnectedBuiltIns": true,
+    "sigColors": [
+        {
+            "sigName": "Banana",
+            "color": "#FDDA0D"
+        },
+        {
+            "sigName": "Apple",
+            "color": "red"
+        },
+        {
+            "sigName": "Pear",
+            "color": "green"
+        },
+        {
+            "sigName": "Basket",
+            "color": "grey"
+        }
+    ],
+    "sigIcons" : [
+        {
+            "path": "https://sidprasad.github.io/diagrams/img/apple.png",
+            "sigName": "Apple",
+            "height" : 70,
+            "width" : 70
+        },
+        {
+            "path": "https://sidprasad.github.io/diagrams/img/banana.png",
+            "sigName": "Banana",
+            "height" : 70,
+            "width" : 70
+        },
+        {
+            "path": "https://sidprasad.github.io/diagrams/img/pear.png",
+            "sigName": "Pear",
+            "height" : 70,
+            "width" : 70
+        }
+    ]
+}
