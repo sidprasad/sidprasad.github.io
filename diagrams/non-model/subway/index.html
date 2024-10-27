@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subway System Design</title>
+</head>
+<body>
+    <h1>Subway System Design</h1>
+    <p>An urban planner is trying to design a new subway system. They have represented their design with a diagram, where:</p>
+    <ul>
+        <li>Subway stations are represented by graph nodes.</li>
+        <li>Train connections between stations are represented by edges labeled <code>next</code>. These connections are strictly one-way.
+            <ul>
+                <li>A <code>next</code> edge from <code>Station A</code> to <code>Station B</code> means that there is a a train that goes directly from from <code>Station A</code> to <code>Station B</code>.</li>
+                <li>If there is no<code>next</code> edge from <code>Station B</code> to <code>Station A</code>, there is no direct train from <code>Station B</code> to <code>Station A</code>.</li>
+            </ul>
+            
+        </li>
+            
+        <li>The relative positions of stations are represented by edges labelled <code>north</code> and <code>east</code>.
+            <ul>
+                <li>A <code>north</code> edge means that the pointed at station is directly north of the pointing station.</li>
+                <li>An <code>east</code> edge means that the pointed at station is directly east of the pointing station.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Diagram</h3>
+    <iframe src="diagram.html" width="100%" height="1000px"></iframe>
+
+    <h3>Sterling</h3>
+    <iframe src="sterling.html" width="100%" height="1000px"></iframe>
+
+    <h3>Question 1</h3>
+    <p>What is the southern most station in diagram?</p>
+    <p><strong>Answer:</strong> Station0</p>
+
+    <h3>Question 2</h3>
+    <p>The subway system is designed so that riders can get <b>to</b> the downtown station from <em>any other</em> station. 
+        In terms of the diagram, this means that there is a station that can be reached following <code>next</code> edges from any other station.</p>
+    <p>Which station in the diagram is the downtown station?</p>
+    <p><strong>Answer:</strong> Station3</p>
+
+    <h3>Question 3</h3>
+    <p>Which is the northernmost station from which you can get to Station2?</p>
+    <p><strong>Answer:</strong> Station4</p>
+<!-- 
+    <h3>Question 4 [REMOVED]</h3>
+    <p>A good subway system is resilient to train breakdowns and slowdowns. This means that there are sometimes multiple paths between important stations.</p>
+    <p>How many paths are there from Station1 to Station4?</p>
+    <p><strong>Answer:</strong> 0</p> -->
+</body>
+</html>
