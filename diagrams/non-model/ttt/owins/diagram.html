@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Cope and Drag</title>
+
+    <!-- Include Bootstrap CSS, JQuery, etc -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="../css/diagramstyle.css">
+
+    <script src="https://marvl.infotech.monash.edu/webcola/extern/graphlib-dot.min.js"></script>
+    <!-- Full version -->
+    <script src="https://marvl.infotech.monash.edu/webcola/cola.min.js"></script>
+
+    <!-- Include d3 here -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <!-- Include your custom JavaScript file -->
+    <script src="../js/renderer.js" defer></script>
+    <script>
+        window.addEventListener('load', function () {
+
+            var width = 800, height = 800;
+            var nodes = [{ "id": "Cell0", "color": "#00ad6c", "attributes": { "mark": ["X"] }, "width": 100, "height": 60, "x": 60, "y": 510, "icon": null, "fixed": 0 }, { "id": "Cell1", "color": "#00ad6c", "attributes": {}, "width": 100, "height": 60, "x": 340, "y": 190, "icon": null, "fixed": 0 }, { "id": "Cell2", "color": "#00ad6c", "attributes": { "mark": ["X"] }, "width": 100, "height": 60, "x": 340, "y": 510, "icon": null, "fixed": 0 }, { "id": "Cell3", "color": "#00ad6c", "attributes": {}, "width": 100, "height": 60, "x": 60, "y": 190, "icon": null, "fixed": 0 }, { "id": "Cell4", "color": "#00ad6c", "attributes": { "mark": ["X"] }, "width": 100, "height": 60, "x": 350, "y": 350, "icon": null, "fixed": 0 }, { "id": "Cell5", "color": "#00ad6c", "attributes": {}, "width": 100, "height": 60, "x": 50, "y": 350, "icon": null, "fixed": 0 }, { "id": "Cell6", "color": "#00ad6c", "attributes": { "mark": ["O"] }, "width": 100, "height": 60, "x": 200, "y": 670, "icon": null, "fixed": 0 }, { "id": "Cell7", "color": "#00ad6c", "attributes": { "mark": ["O"] }, "width": 100, "height": 60, "x": 200, "y": 350, "icon": null, "fixed": 0 }, { "id": "Cell8", "color": "#00ad6c", "attributes": { "mark": ["O"] }, "width": 100, "height": 60, "x": 200, "y": 30, "icon": null, "fixed": 0 }, { "id": "X", "color": "#a94ba0", "attributes": {}, "width": 100, "height": 60, "x": 350, "y": 30, "icon": null, "fixed": 1 }, { "id": "O", "color": "#ff5252", "attributes": {}, "width": 100, "height": 60, "x": 500, "y": 30, "icon": null, "fixed": 1 }];
+            var edges = [{ "source": 0, "target": 6, "relName": "right", "id": "Cell<:right:Cell0->Cell6", "label": "right" }, { "source": 1, "target": 4, "relName": "right", "id": "Cell<:right:Cell1->Cell4", "label": "right" }, { "source": 3, "target": 7, "relName": "right", "id": "Cell<:right:Cell3->Cell7", "label": "right" }, { "source": 5, "target": 0, "relName": "right", "id": "Cell<:right:Cell5->Cell0", "label": "right" }, { "source": 7, "target": 2, "relName": "right", "id": "Cell<:right:Cell7->Cell2", "label": "right" }, { "source": 8, "target": 1, "relName": "right", "id": "Cell<:right:Cell8->Cell1", "label": "right" }, { "source": 1, "target": 7, "relName": "down", "id": "Cell<:down:Cell1->Cell7", "label": "down" }, { "source": 2, "target": 6, "relName": "down", "id": "Cell<:down:Cell2->Cell6", "label": "down" }, { "source": 3, "target": 5, "relName": "down", "id": "Cell<:down:Cell3->Cell5", "label": "down" }, { "source": 4, "target": 2, "relName": "down", "id": "Cell<:down:Cell4->Cell2", "label": "down" }, { "source": 7, "target": 0, "relName": "down", "id": "Cell<:down:Cell7->Cell0", "label": "down" }, { "source": 8, "target": 3, "relName": "down", "id": "Cell<:down:Cell8->Cell3", "label": "down" }];
+            var constraints = [{ "axis": "x", "left": 0, "right": 6, "gap": 115 }, { "axis": "y", "left": 6, "right": 0, "gap": 0, "equality": true }, { "axis": "x", "left": 1, "right": 4, "gap": 115 }, { "axis": "y", "left": 4, "right": 1, "gap": 0, "equality": true }, { "axis": "x", "left": 3, "right": 7, "gap": 115 }, { "axis": "y", "left": 7, "right": 3, "gap": 0, "equality": true }, { "axis": "x", "left": 5, "right": 0, "gap": 115 }, { "axis": "y", "left": 0, "right": 5, "gap": 0, "equality": true }, { "axis": "x", "left": 7, "right": 2, "gap": 115 }, { "axis": "y", "left": 2, "right": 7, "gap": 0, "equality": true }, { "axis": "x", "left": 8, "right": 1, "gap": 115 }, { "axis": "y", "left": 1, "right": 8, "gap": 0, "equality": true }, { "axis": "y", "left": 1, "right": 7, "gap": 75 }, { "axis": "x", "left": 7, "right": 1, "gap": 0, "equality": true }, { "axis": "y", "left": 2, "right": 6, "gap": 75 }, { "axis": "x", "left": 6, "right": 2, "gap": 0, "equality": true }, { "axis": "y", "left": 3, "right": 5, "gap": 75 }, { "axis": "x", "left": 5, "right": 3, "gap": 0, "equality": true }, { "axis": "y", "left": 4, "right": 2, "gap": 75 }, { "axis": "x", "left": 2, "right": 4, "gap": 0, "equality": true }, { "axis": "y", "left": 7, "right": 0, "gap": 75 }, { "axis": "x", "left": 0, "right": 7, "gap": 0, "equality": true }, { "axis": "y", "left": 8, "right": 3, "gap": 75 }, { "axis": "x", "left": 3, "right": 8, "gap": 0, "equality": true }];
+            var groups = [];
+
+            if (width && height && nodes && edges && constraints && groups) {
+                setupLayout(d3, nodes, edges, constraints, groups, width, height);
+            } else {
+                console.error('Missing required data for layout');
+            }
+        });
+    </script>
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        const config = {
+            startOnLoad: true,
+            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'cardinal' },
+            securityLevel: 'loose',
+        };
+        mermaid.initialize(config);
+
+        window.stateclick = function (i) {
+            // First, set the instance number's value to i
+            document.getElementById('instancenumber').value = i;
+            // Now submit the form
+            document.getElementById('controlsForm').submit();
+
+        };
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid">
+
+
+
+
+
+        <div class="row">
+            <div id="svg-container" class="col">
+                <svg id="svg" width="800" height="800" class="svg-border">
+                    <defs>
+                        <marker id="end-arrow" markerWidth="15" markerHeight="10" refX="12" refY="5" orient="auto">
+                            <polygon points="0 0, 15 5, 0 10" />
+                        </marker>
+                    </defs>
+                    <g class="zoomable">
+                        <!-- Your graph elements go here -->
+                    </g>
+                </svg>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+
+</html>

@@ -62,13 +62,46 @@ pred ttt {
     square_grid
 }
 
-pred ttt_buggy {
+pred nonsquare {
     grid
     not square_grid // THIS IS THE BUG
+    some down
+    some right
 }
 
-run ttt_buggy for exactly 9 Cell for {
+
+inst xo {
     X = `X
     O = `O
     Mark = X + O
 }
+
+pred owinner_diag {
+    ttt
+    some c1, c2, c3: Cell | {
+       
+       c1.mark = O and c2.mark = O and c3.mark = O
+       
+       topLeft[c1]
+       c2 = c1.right.down
+       c3 = c2.right.down
+
+       //all c : (Cell - (c1 + c2 + c3)) | c.mark != O
+
+    }
+
+    
+
+    # ({c : Cell |  c.mark = O}) = #({c : Cell | c.mark = X}) 
+
+
+}
+
+
+run {
+    ttt
+    owinner_diag
+} for exactly 9 Cell for xo
+
+
+//run nonsquare for exactly 9 Cell for xo
