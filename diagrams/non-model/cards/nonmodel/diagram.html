@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Cope and Drag</title>
+
+    <!-- Include Bootstrap CSS, JQuery, etc -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="../../css/diagramstyle.css">
+
+    <script src="https://marvl.infotech.monash.edu/webcola/extern/graphlib-dot.min.js"></script>
+    <!-- Full version -->
+    <script src="https://marvl.infotech.monash.edu/webcola/cola.min.js"></script>
+
+    <!-- Include d3 here -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <!-- Include your custom JavaScript file -->
+    <script src="../../js/renderer.js" defer></script>
+    <script>
+        window.addEventListener('load', function () {
+
+            var width = 800, height = 800;
+            var nodes = [{ "id": "Card0", "color": "#909914", "attributes": {}, "width": 100, "height": 60, "x": 50, "y": 30, "icon": null, "fixed": 1 }, { "id": "Card1", "color": "#909914", "attributes": {}, "width": 100, "height": 60, "x": 200, "y": 30, "icon": null, "fixed": 1 }, { "id": "Card2", "color": "#909914", "attributes": {}, "width": 100, "height": 60, "x": 350, "y": 30, "icon": null, "fixed": 1 }, { "id": "Card3", "color": "#909914", "attributes": {}, "width": 100, "height": 60, "x": 500, "y": 30, "icon": null, "fixed": 1 }, { "id": "Card4", "color": "#909914", "attributes": {}, "width": 100, "height": 60, "x": 650, "y": 30, "icon": null, "fixed": 1 }, { "id": "Player0", "color": "#b24792", "attributes": { "hand": ["Card4"] }, "width": 100, "height": 60, "x": 800, "y": 30, "icon": null, "fixed": 0 }, { "id": "Player1", "color": "#b24792", "attributes": { "hand": ["Card3"] }, "width": 100, "height": 60, "x": 662.5, "y": 190, "icon": null, "fixed": 0 }, { "id": "Player2", "color": "#b24792", "attributes": { "hand": ["Card2"] }, "width": 100, "height": 60, "x": 482.5, "y": 350, "icon": null, "fixed": 0 }, { "id": "Player3", "color": "#b24792", "attributes": { "hand": ["Card1"] }, "width": 100, "height": 60, "x": 800, "y": 670, "icon": null, "fixed": 0 }, { "id": "Player4", "color": "#b24792", "attributes": { "hand": ["Card0"] }, "width": 100, "height": 60, "x": 662.5, "y": 510, "icon": null, "fixed": 0 }, { "id": "Dealer0", "color": "#fe4c5c", "attributes": {}, "width": 100, "height": 60, "x": 662.5, "y": 350, "icon": null, "fixed": 1 }, { "id": "_left_0", "color": "transparent", "attributes": {}, "width": 10, "height": 10, "x": 905, "y": 30, "fixed": 0 }];
+            var edges = [{ "source": 5, "target": 6, "relName": "left", "id": "Player<:left:Player0->Player1", "label": "left" }, { "source": 6, "target": 7, "relName": "left", "id": "Player<:left:Player1->Player2", "label": "left" }, { "source": 7, "target": 9, "relName": "left", "id": "Player<:left:Player2->Player4", "label": "left" }, { "source": 8, "target": 5, "relName": "left", "id": "Player<:left:Player3->Player0", "label": "left" }, { "source": 9, "target": 8, "relName": "left", "id": "Player<:left:Player4->Player3", "label": "left" }, { "source": 5, "target": 8, "relName": "right", "id": "Player<:right:Player0->Player3", "label": "right" }, { "source": 6, "target": 9, "relName": "right", "id": "Player<:right:Player1->Player4", "label": "right" }, { "source": 7, "target": 9, "relName": "right", "id": "Player<:right:Player2->Player4", "label": "right" }, { "source": 8, "target": 7, "relName": "right", "id": "Player<:right:Player3->Player2", "label": "right" }, { "source": 9, "target": 6, "relName": "right", "id": "Player<:right:Player4->Player1", "label": "right" }, { "source": 6, "target": 10, "relName": "holding", "id": "Player<:holding:Player1->Dealer0", "label": "holding" }];
+            var constraints = [{ "axis": "x", "left": 11, "right": 6, "gap": 155 }, { "axis": "y", "left": 6, "right": 11, "gap": 35 }, { "axis": "x", "left": 11, "right": 7, "gap": 85.90169943749474 }, { "axis": "y", "left": 11, "right": 7, "gap": 130.10565162951536 }, { "axis": "x", "left": 9, "right": 11, "gap": 135.90169943749473 }, { "axis": "y", "left": 11, "right": 9, "gap": 93.77852522924732 }, { "axis": "x", "left": 8, "right": 11, "gap": 135.90169943749476 }, { "axis": "y", "left": 8, "right": 11, "gap": 93.7785252292473 }, { "axis": "x", "left": 11, "right": 5, "gap": 85.90169943749473 }, { "axis": "y", "left": 5, "right": 11, "gap": 130.10565162951536 }];
+            var groups = [];
+
+            if (width && height && nodes && edges && constraints && groups) {
+                setupLayout(d3, nodes, edges, constraints, groups, width, height);
+            } else {
+                console.error('Missing required data for layout');
+            }
+        });
+    </script>
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        const config = {
+            startOnLoad: true,
+            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'cardinal' },
+            securityLevel: 'loose',
+        };
+        mermaid.initialize(config);
+
+        window.stateclick = function (i) {
+            // First, set the instance number's value to i
+            document.getElementById('instancenumber').value = i;
+            // Now submit the form
+            document.getElementById('controlsForm').submit();
+
+        };
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid">
+
+
+        <!-- MiniMap Temporal -->
+
+
+
+        <div class="row">
+            <div id="svg-container" class="col">
+                <svg id="svg" width="800" height="800" class="svg-border">
+                    <defs>
+                        <marker id="end-arrow" markerWidth="15" markerHeight="10" refX="12" refY="5" orient="auto">
+                            <polygon points="0 0, 15 5, 0 10" />
+                        </marker>
+                    </defs>
+                    <g class="zoomable">
+                        <!-- Your graph elements go here -->
+                    </g>
+                </svg>
+            </div>
+
+
+        </div>
+    </div>
+
+</body>
+
+
+</html>

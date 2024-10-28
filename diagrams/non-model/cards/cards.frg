@@ -36,6 +36,7 @@ pred badlyformed {
     // I want right to be slightly different from ~left
     one p : Player | {
         p.right != p.~left
+        some (p.holding)
     }
     no (right & iden)
 

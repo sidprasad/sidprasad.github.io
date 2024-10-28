@@ -1,6 +1,7 @@
 {
     "fieldDirections": [ 
 
+
     ],
     "groupBy": [
     ],
@@ -8,13 +9,13 @@
         {
             "fieldName": "left",
             "direction" : "clockwise"
-        },
-        {
-            "fieldName": "right",
-            "direction" : "counterclockwise"
         }
     ],
-    "attributeFields": [      ],
+    "attributeFields": [
+          {
+        "fieldName" : "hand"
+    }    
+    ],
     "hideDisconnected": true,
     "hideDisconnectedBuiltIns": true
 }
