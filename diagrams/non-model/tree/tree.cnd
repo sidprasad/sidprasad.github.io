@@ -1,2 +1,4 @@
 constraints:
     - orientation: { field: parent, directions: [above] }
+    - orientation: {field : left, directions: [below, left]}
+    - orientation: {field : right, directions: [below, right]}
