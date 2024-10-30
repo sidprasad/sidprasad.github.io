@@ -47,6 +47,6 @@ pred oneLevelTernary {
     tree
 }
 
-//run binaryTree for exactly 9 Node
+run binaryTree for exactly 9 Node
 
-run oneLevelTernary for exactly 9 Node
+//run oneLevelTernary for exactly 9 Node
