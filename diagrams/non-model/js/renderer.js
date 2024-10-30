@@ -82,6 +82,7 @@ function setupLayout(d3, nodes, edges, constraints, groups, width, height) {
         .groups(groups)
         .groupCompactness(1e-3)
         .jaccardLinkLengths(LINK_DISTANCE, 2);
+        //.linkDistance(50); // I *think* this is minimum link distance
 
     var lineFunction = d3.line()
         .x(function (d) { return d.x; })
@@ -352,7 +353,20 @@ function setupLayout(d3, nodes, edges, constraints, groups, width, height) {
         topSvg.attr('viewBox', viewBox);
         /*************************************/
 
+        linkGroups.on("mouseover", function (d) {
+            const relName = d.relName;
+            d3.selectAll(".link")
+                .filter(link => link.relName === relName)
+                .classed("highlighted", true);
+            })
+            .on("mouseout", function(event, d) {
+                console.log("Mouse out");
+                const relName = d.relName;
+                d3.selectAll(".link")
+                    .classed("highlighted", false);
 
+                
+            });
     };
 
 
@@ -581,6 +595,8 @@ function setupLayout(d3, nodes, edges, constraints, groups, width, height) {
         // Can we get all end-arrow markers and raise them?
         svg.selectAll("marker").raise();
 
+
+        linkGroups.select("text.linklabel").raise(); // Ensure link labels are raised
 
     });
 
