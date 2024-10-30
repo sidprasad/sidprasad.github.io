@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Zoomable Image</title>
+    <style>
+        #svg-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #zoomable-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .svg-border {
+            border: 2px solid black;
+        }
+    </style>
+    <!-- Include D3.js library -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+
+        <div class="container-fluid" id="svg-container">
+            <svg id="diagram" width="800" height="800" class="svg-border">
+                <g class="zoomable">
+                    <g
+                        transform="matrix(0.6874368085541199,0,0,0.6874368085541199,80.06646125986742,223.4555745956664)">
+                        <g id="">
+                            <defs>
+                                <marker id="arrow-10-[#333]" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="10"
+                                    markerHeight="10" markerUnits="userSpaceOnUse" orient="auto" fill="#333">
+                                    <path d="M 0 0 L 10 5 L 0 10 z"></path>
+                                </marker>
+                            </defs>
+                            <g class="nodes">
+                                <g id="Node0" transform="translate(-10 -560)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(214, 0, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Node0</text>
+                                </g>
+                                <g id="Node1" transform="translate(-90 400)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(214, 0, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Node1</text>
+                                </g>
+                                <g id="Node2" transform="translate(-90 560)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(214, 0, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Node2</text>
+                                </g>
+                                <g id="Node3" transform="translate(-90 240)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(214, 0, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Node3</text>
+                                </g>
+                                <g id="Node4" transform="translate(-10 -400)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(214, 0, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Node4</text>
+                                </g>
+                                <g id="Node5" transform="translate(-110 -80)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(214, 0, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Node5</text>
+                                </g>
+                                <g id="Node6" transform="translate(110 240)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(214, 0, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Node6</text>
+                                </g>
+                                <g id="Node7" transform="translate(90 -80)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(214, 0, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Node7</text>
+                                </g>
+                                <g id="Node8" transform="translate(-21.637433289070373 -221.0891709052607)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(214, 0, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Node8</text>
+                                </g>
+                                <g id="Node9" transform="translate(90 80)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(214, 0, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Node9</text>
+                                </g>
+                            </g>
+                            <g class="edges">
+                                <g id="Node<:parent:Node0->Node4">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-13.75,-530L-14.791666666666666,-521.6666666666666C-15.833333333333334,-513.3333333333334,-17.916666666666668,-496.6666666666667,-18.123311201731365,-481.65380859375C-18.329955736796062,-466.6409505208333,-16.65991147359212,-453.2819010416667,-15.824889341990152,-446.6023763020833L-14.989867210388184,-439.9228515625">
+                                    </path>
+                                    <path
+                                        d="M-13.75,-530L-14.791666666666666,-521.6666666666666C-15.833333333333334,-513.3333333333334,-17.916666666666668,-496.6666666666667,-17.91666666666667,-480C-17.916666666666675,-463.3333333333333,-15.833333333333348,-446.6666666666667,-14.791666666666686,-438.3333333333333L-13.750000000000021,-430"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-17.91666603088379" y="-480" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">parent</text>
+                                </g>
+                                <g id="Node<:parent:Node1->Node3">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-90,370L-90,361.6666666666667C-90,353.3333333333333,-90,336.6666666666667,-90,321.6666666666667C-90,306.6666666666667,-90,293.3333333333333,-90,286.6666666666667L-90,280">
+                                    </path>
+                                    <path
+                                        d="M-90,370L-90,361.6666666666667C-90,353.3333333333333,-90,336.6666666666667,-90,320C-90,303.3333333333333,-90,286.6666666666667,-90,278.3333333333333L-90,270"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text x="-90" y="320"
+                                        dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">parent</text>
+                                </g>
+                                <g id="Node<:parent:Node2->Node1">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-90,530L-90,521.6666666666666C-90,513.3333333333334,-90,496.6666666666667,-90,481.6666666666667C-90,466.6666666666667,-90,453.3333333333333,-90,446.6666666666667L-90,440">
+                                    </path>
+                                    <path
+                                        d="M-90,530L-90,521.6666666666666C-90,513.3333333333334,-90,496.6666666666667,-90,480C-90,463.3333333333333,-90,446.6666666666667,-90,438.3333333333333L-90,430"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text x="-90" y="480"
+                                        dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">parent</text>
+                                </g>
+                                <g id="Node<:parent:Node3->Node9">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-56.25000000000003,210L-46.87500000000002,201.66666666666666C-37.50000000000002,193.33333333333334,-18.75000000000001,176.66666666666666,-1.2456817626953172,161.10727310180664C16.258636474609375,145.54787953694662,32.51727294921875,131.09575907389322,40.64659118652344,123.86969884236653L48.775909423828125,116.64363861083984">
+                                    </path>
+                                    <path
+                                        d="M-56.25000000000003,210L-46.87500000000002,201.66666666666666C-37.50000000000002,193.33333333333334,-18.75000000000001,176.66666666666666,-3.552713678800501e-15,160C18.750000000000004,143.33333333333334,37.50000000000001,126.66666666666667,46.87500000000001,118.33333333333333L56.25000000000001,110"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-3.552713678800501e-15" y="160" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">parent</text>
+                                </g>
+                                <g id="Node<:parent:Node4->Node8">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-13.75,-370L-14.791666666666666,-361.6666666666667C-15.833333333333334,-353.3333333333333,-17.916666666666668,-336.6666666666667,-19.12087853749593,-318.51463317871094C-20.325090408325195,-300.3625996907552,-20.65018081665039,-280.72519938151044,-20.81272602081299,-270.906499226888L-20.975271224975586,-261.0877990722656">
+                                    </path>
+                                    <path
+                                        d="M-13.75,-370L-14.791666666666666,-361.6666666666667C-15.833333333333334,-353.3333333333333,-17.916666666666668,-336.6666666666667,-19.14846567537967,-316.8481951508768C-20.38026468409267,-297.0297236350869,-20.760529368185342,-274.0594472701738,-20.950661710231675,-262.57430908771727L-21.14079405227801,-251.0891709052607"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-19.50018882751465" y="-310.6785583496094" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">parent</text>
+                                </g>
+                                <g id="Node<:parent:Node5->Node8">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-102.5,-110L-100.41666666666667,-118.33333333333333C-98.33333333333333,-126.66666666666667,-94.16666666666667,-143.33333333333334,-87.5272668202718,-155.7372258504232C-80.88786697387695,-168.14111836751303,-71.7757339477539,-176.28223673502603,-67.21966743469238,-180.35279591878256L-62.66360092163086,-184.42335510253906">
+                                    </path>
+                                    <path
+                                        d="M-102.5,-110L-100.41666666666667,-118.33333333333333C-98.33333333333333,-126.66666666666667,-94.16666666666667,-143.33333333333334,-86.28488196433806,-156.8481951508768C-78.40309726200941,-170.36305696842024,-66.80619452401884,-180.72611393684045,-61.00774315502355,-185.90764242105058L-55.20929178602826,-191.0891709052607"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-87.1002426147461" y="-155.4151611328125" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">parent</text>
+                                </g>
+                                <g id="Node<:parent:Node7->Node9">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M90,-50L90,-41.666666666666664C90,-33.333333333333336,90,-16.666666666666668,90,-1.6666673024495442C90,13.333332061767578,90,26.666664123535156,90,33.333330154418945L90,39.999996185302734">
+                                    </path>
+                                    <path
+                                        d="M90,-50L90,-41.666666666666664C90,-33.333333333333336,90,-16.666666666666668,90,0C90,16.666666666666668,90,33.333333333333336,90,41.666666666666664L90,50"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text x="90" y="0"
+                                        dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">parent</text>
+                                </g>
+                                <g id="Node<:parent:Node8->Node7">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M28.275226409664157,-191.0891709052607L36.896022008053464,-185.90764242105058C45.51681760644277,-180.72611393684045,62.758408803221386,-170.36305696842024,72.2138499908034,-158.50195415356234C81.66929117838542,-146.64085133870444,83.33858235677083,-133.28170267740884,84.17322794596355,-126.60212834676106L85.00787353515625,-119.92255401611328">
+                                    </path>
+                                    <path
+                                        d="M28.275226409664157,-191.0891709052607L36.896022008053464,-185.90764242105058C45.51681760644277,-180.72611393684045,62.758408803221386,-170.36305696842024,72.42087106827735,-156.8481951508768C82.08333333333333,-143.33333333333334,84.16666666666667,-126.66666666666667,85.20833333333333,-118.33333333333333L86.25,-110"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="70.34351348876953" y="-159.5683135986328" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">parent</text>
+                                </g>
+                                <g id="Node<:parent:Node9->Node6">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M93.75,110L94.79166666666667,118.33333333333333C95.83333333333333,126.66666666666667,97.91666666666667,143.33333333333334,99.793275197347,158.34620412190756C101.66988372802734,173.35907491048178,103.33976745605469,186.71814982096353,104.17470932006836,193.39768727620444L105.00965118408203,200.0772247314453">
+                                    </path>
+                                    <path
+                                        d="M93.75,110L94.79166666666667,118.33333333333333C95.83333333333333,126.66666666666667,97.91666666666667,143.33333333333334,100,160C102.08333333333333,176.66666666666666,104.16666666666667,193.33333333333334,105.20833333333333,201.66666666666666L106.25,210"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text x="100" y="160"
+                                        dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">parent</text>
+                                </g>
+                                <g id="Node<:right:Node1->Node2">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-97.5,430L-99.58333333333333,438.3333333333333C-101.66666666666667,446.6666666666667,-105.83333333333333,463.3333333333333,-106.23742802937825,478.38306681315106C-106.64152272542317,493.43280029296875,-103.28304545084636,506.8656005859375,-101.60380681355794,513.5820007324219L-99.92456817626953,520.2984008789062">
+                                    </path>
+                                    <path
+                                        d="M-97.5,430L-99.58333333333333,438.3333333333333C-101.66666666666667,446.6666666666667,-105.83333333333333,463.3333333333333,-105.83333333333333,480C-105.83333333333333,496.6666666666667,-101.66666666666667,513.3333333333334,-99.58333333333333,521.6666666666666L-97.5,530"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-105.83333587646484" y="480" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">right</text>
+                                </g>
+                                <g id="Node<:right:Node3->Node1">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-97.5,270L-99.58333333333333,278.3333333333333C-101.66666666666667,286.6666666666667,-105.83333333333333,303.3333333333333,-106.23742802937825,318.383061726888C-106.64152272542317,333.4327901204427,-103.28304545084636,346.86558024088544,-101.60380681355794,353.58197530110675L-99.92456817626953,360.2983703613281">
+                                    </path>
+                                    <path
+                                        d="M-97.5,270L-99.58333333333333,278.3333333333333C-101.66666666666667,286.6666666666667,-105.83333333333333,303.3333333333333,-105.83333333333333,320C-105.83333333333333,336.6666666666667,-101.66666666666667,353.3333333333333,-99.58333333333333,361.6666666666667L-97.5,370"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-105.83333587646484" y="320" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">right</text>
+                                </g>
+                                <g id="Node<:right:Node4->Node0">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-6.25,-430L-5.208333333333333,-438.3333333333333C-4.166666666666667,-446.6666666666667,-2.0833333333333335,-463.3333333333333,-1.8766887187957764,-478.34619140625C-1.6700441042582195,-493.3590494791667,-3.340088208516439,-506.7180989583333,-4.175110260645549,-513.3976236979166L-5.010132312774658,-520.0771484375">
+                                    </path>
+                                    <path
+                                        d="M-6.25,-430L-5.208333333333333,-438.3333333333333C-4.166666666666667,-446.6666666666667,-2.0833333333333335,-463.3333333333333,-2.083333333333332,-480C-2.083333333333331,-496.6666666666667,-4.166666666666662,-513.3333333333334,-5.208333333333328,-521.6666666666666L-6.249999999999993,-530"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-2.0833332538604736" y="-480" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">right</text>
+                                </g>
+                                <g id="Node<:right:Node8->Node4">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-15.074724184181932,-251.0891709052607L-12.562270153484944,-262.57430908771727C-10.049816122787954,-274.0594472701738,-5.024908061393977,-297.0297236350869,-3.347548164709847,-315.1943814708638C-1.670188268025716,-333.3590393066406,-3.340376536051432,-346.71807861328125,-4.17547067006429,-353.39759826660156L-5.010564804077148,-360.0771179199219">
+                                    </path>
+                                    <path
+                                        d="M-15.074724184181932,-251.0891709052607L-12.562270153484944,-262.57430908771727C-10.049816122787954,-274.0594472701738,-5.024908061393977,-297.0297236350869,-3.554120697363654,-316.8481951508768C-2.083333333333331,-336.6666666666667,-4.166666666666662,-353.3333333333333,-5.208333333333328,-361.6666666666667L-6.249999999999993,-370"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-4.169450283050537" y="-310.1311340332031" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">right</text>
+                                </g>
+                                <g id="Node<:right:Node9->Node3">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M40,100L15,110C-10,120,-60,140,-83.32024765014648,156.71626790364584C-106.64049530029297,173.43253580729166,-103.28099060058594,186.86507161458334,-101.60123825073242,193.58133951822916L-99.9214859008789,200.297607421875">
+                                    </path>
+                                    <path
+                                        d="M40,100L15,110C-10,120,-60,140,-82.91666666666667,158.33333333333334C-105.83333333333333,176.66666666666666,-101.66666666666667,193.33333333333334,-99.58333333333333,201.66666666666666L-97.5,210"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-49.54610824584961" y="138.1673583984375" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">right</text>
+                                </g>
+                                <g id="Node<:left:Node6->Node9">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M113.75,210L114.79166666666667,201.66666666666666C115.83333333333333,193.33333333333334,117.91666666666667,176.66666666666666,116.41844685872395,161.56058247884116C114.92022705078125,146.45449829101562,109.8404541015625,132.90899658203125,107.30056762695312,126.13624572753906L104.76068115234375,119.36349487304688">
+                                    </path>
+                                    <path
+                                        d="M113.75,210L114.79166666666667,201.66666666666666C115.83333333333333,193.33333333333334,117.91666666666667,176.66666666666666,115.83333333333333,160C113.75,143.33333333333334,107.5,126.66666666666667,104.375,118.33333333333333L101.25,110"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="115.70267486572266" y="158.99607849121094" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">left</text>
+                                </g>
+                                <g id="Node<:left:Node7->Node8">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M97.5,-110L99.58333333333333,-118.33333333333333C101.66666666666667,-126.66666666666667,105.83333333333333,-143.33333333333334,95.82223320007324,-157.27934773763022C85.81113306681316,-171.2253621419271,61.622266133626304,-182.45072428385416,49.527832667032875,-188.06340535481772L37.43339920043945,-193.67608642578125">
+                                    </path>
+                                    <path
+                                        d="M97.5,-110L99.58333333333333,-118.33333333333333C101.66666666666667,-126.66666666666667,105.83333333333333,-143.33333333333334,94.31042778515494,-157.98093329768798C82.78752223697654,-172.62853326204265,55.575044473953085,-185.2570665240853,41.968805592441356,-191.57133315510666L28.362566710929627,-197.88559978612798"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="84.47264099121094" y="-167.5208282470703" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">left</text>
+                                </g>
+                                <g id="Node<:left:Node8->Node5">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-65.0309998090509,-191.0891709052607L-72.52583317420908,-185.90764242105058C-80.02066653936727,-180.72611393684045,-95.01033326968364,-170.36305696842024,-102.50485510123178,-158.5148605459777C-109.99937693277995,-146.66666412353516,-109.99875386555989,-133.3333282470703,-109.99844233194987,-126.66666030883789L-109.99813079833984,-119.99999237060547">
+                                    </path>
+                                    <path
+                                        d="M-65.0309998090509,-191.0891709052607L-72.52583317420908,-185.90764242105058C-80.02066653936727,-180.72611393684045,-95.01033326968364,-170.36305696842024,-102.50516663484181,-156.8481951508768C-110,-143.33333333333334,-110,-126.66666666666667,-110,-118.33333333333333L-110,-110"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-101.69841003417969" y="-158.24371337890625" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">left</text>
+                                </g>
+                                <g id="Node<:left:Node9->Node7">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M97.5,50L99.58333333333333,41.666666666666664C101.66666666666667,33.333333333333336,105.83333333333333,16.666666666666668,106.23742802937825,1.6169363657633464C106.64152272542317,-13.432793935139975,103.28304545084636,-26.86558787027995,101.60380681355794,-33.58198483784994L99.92456817626953,-40.29838180541992">
+                                    </path>
+                                    <path
+                                        d="M97.5,50L99.58333333333333,41.666666666666664C101.66666666666667,33.333333333333336,105.83333333333333,16.666666666666668,105.83333333333333,0C105.83333333333333,-16.666666666666668,101.66666666666667,-33.333333333333336,99.58333333333333,-41.666666666666664L97.5,-50"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="105.83333587646484" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">left</text>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </div>
+    </div>
+    <script>
+        // Add zoom behavior
+        const zoom = d3.zoom()
+            .scaleExtent([0.1, 10]) // Set the zoom scale extent
+            .on('zoom', zoomed);
+
+        function zoomed(event) {
+            d3.select('.zoomable').attr('transform', event.transform);
+        }
+        const diagram = d3.select('#diagram');
+        diagram.call(zoom);
+
+
+        // Select all nodes and make them draggable
+        const nodes = d3.selectAll('.nodes g');
+
+        function getNodePositions() {
+            const positions = {};
+            nodes.each(function () {
+                const node = d3.select(this);
+                const transform = node.attr('transform');
+                const translate = transform.match(/translate\(([^, ]+)[, ]+([^)]+)\)/);
+                if (translate) {
+                    const x = parseFloat(translate[1]);
+                    const y = parseFloat(translate[2]);
+                    positions[node.attr('id')] = { x, y };
+                }
+            });
+            console.log(positions);
+            return positions;
+        }
+
+        // Store the initial positions of the nodes
+        const nodePositions = getNodePositions();
+
+        function getEdgeSourceAndTarget(edgeId) {
+            // First find the id of the last : character and get the substring after it
+            const byParts = edgeId.split(':');
+            let rel = byParts[byParts.length - 1];
+
+            const [sourceId, targetId] = rel.split('->');
+            return { sourceId, targetId };
+        }
+
+        function updatePath(path, startX, startY, endX, endY) {
+            const controlPoint1 = `${(startX + endX) / 2},${startY}`;
+            const controlPoint2 = `${(startX + endX) / 2},${endY}`;
+            const newD = `M${startX},${startY} C${controlPoint1},${controlPoint2},${endX},${endY}`;
+            path.attr('d', newD);
+        }
+
+        function getIntersectionPoint(node, targetNode) {
+            const dx = targetNode.x - node.x;
+            const dy = targetNode.y - node.y;
+            const absDx = Math.abs(dx);
+            const absDy = Math.abs(dy);
+
+            let x = node.x;
+            let y = node.y;
+
+            const halfWidth = 50;
+            const halfHeight = 30;
+
+            if (absDx > absDy) {
+                x += dx > 0 ? halfWidth : -halfWidth;
+                y += dy * (halfWidth / absDx);
+            } else {
+                x += dx * (halfHeight / absDy);
+                y += dy > 0 ? halfHeight : -halfHeight;
+            }
+
+            return { x, y };
+        }
+
+        function updateEdges(nodeId) {
+            const node = nodePositions[nodeId];
+            // Update edges where the node is the source
+            d3.selectAll(`g[id*=":${nodeId}->"]`).each(function () {
+                const edge = d3.select(this);
+                const edgeId = edge.attr('id');
+
+                const { sourceId, targetId } = getEdgeSourceAndTarget(edgeId);
+                //assert (sourceId === nodeId);
+
+                const targetNode = nodePositions[targetId];
+                const sourceIntersection = getIntersectionPoint(node, targetNode);
+                const targetIntersection = getIntersectionPoint(targetNode, node);
+                edge.select('path').each(function () {
+                    updatePath(d3.select(this), sourceIntersection.x, sourceIntersection.y, targetIntersection.x, targetIntersection.y);
+                });
+
+                // Update the position of the label
+                edge.select('text').attr('x', (sourceIntersection.x + targetIntersection.x) / 2)
+                    .attr('y', (sourceIntersection.y + targetIntersection.y) / 2);
+            });
+
+            // Update edges where the node is the target
+            d3.selectAll(`g[id*="->${nodeId}"]`).each(function () {
+                const edge = d3.select(this);
+                const edgeId = edge.attr('id');
+
+                const { sourceId, targetId } = getEdgeSourceAndTarget(edgeId);
+                //assert (targetId === nodeId);
+
+                const sourceNode = nodePositions[sourceId];
+                const sourceIntersection = getIntersectionPoint(sourceNode, node);
+                const targetIntersection = getIntersectionPoint(node, sourceNode);
+                edge.select('path').each(function () {
+                    updatePath(d3.select(this), sourceIntersection.x, sourceIntersection.y, targetIntersection.x, targetIntersection.y);
+                });
+
+                // Update the position of the label
+                edge.select('text').attr('x', (sourceIntersection.x + targetIntersection.x) / 2)
+                    .attr('y', (sourceIntersection.y + targetIntersection.y) / 2);
+            });
+        }
+
+        nodes
+            .call(d3.drag()
+                .on('start', dragStarted)
+                .on('drag', dragged)
+                .on('end', dragEnded));
+
+        function dragStarted(event, d) {
+            d3.select(this).raise().attr('stroke', 'black');
+        }
+
+        function dragged(event, d) {
+            const nodeId = d3.select(this).attr('id');
+            nodePositions[nodeId].x = event.x;
+            nodePositions[nodeId].y = event.y;
+            d3.select(this).attr('transform', `translate(${event.x}, ${event.y})`);
+            updateEdges(nodeId); // Update the edges during the drag event
+        }
+
+        function dragEnded(event, d) {
+            d3.select(this).attr('stroke', null);
+        }
+
+
+
+        /**** This bit ensures we zoom to fit ***/
+        const bbox = d3.select('.zoomable').node().getBBox();
+        const padding = 10; // Padding in pixels
+
+        const viewBox = [
+            bbox.x - padding,
+            bbox.y - padding,
+            bbox.width + 2 * padding,
+            bbox.height + 2 * padding
+        ].join(' ');
+
+
+        const topSvg = d3.select("#diagram");
+        topSvg.attr('viewBox', viewBox);
+        /*************************************/
+
+    </script>
+</body>
+
+</html>
