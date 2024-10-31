@@ -1,7 +1,7 @@
 constraints:
     - orientation: { field: below, directions: [below] }
-    - orientation : {field: beside, directions : [directlyRight]}
-    -orientation : {field: color, directions: [directlyAbove]}
+    - orientation : {field: aligned, directions : [directlyRight]}
+    - orientation : {field: color, directions: [below]}
 directives:
     - projection : {sig : Face}
     - flag: hideDisconnected
@@ -20,7 +20,7 @@ directives:
     - icon:
         sig: Mouth
         icon:
-            path: "https://sidprasad.github.io/diagrams/non-model/face/mouth.jpg"
+            path: "https://sidprasad.github.io/diagrams/non-model/face/mouth.png"
             height: 40
             width: 200
     - color:
