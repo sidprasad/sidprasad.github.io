@@ -23,4 +23,11 @@ directives:
             path: "https://sidprasad.github.io/diagrams/non-model/face/mouth.jpg"
             height: 40
             width: 200
+    - color:
+        sig: Blue
+        value: "#0000ff"
+    - color:
+        sig: Brown
+        value: "#a52a2a"
+    
 
