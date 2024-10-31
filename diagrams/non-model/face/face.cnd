@@ -1,0 +1,26 @@
+constraints:
+    - orientation: { field: below, directions: [below] }
+    - orientation : {field: beside, directions : [directlyRight]}
+    -orientation : {field: color, directions: [directlyAbove]}
+directives:
+    - projection : {sig : Face}
+    - flag: hideDisconnected
+    - icon:
+        sig: Eye
+        icon:
+            path:  "https://sidprasad.github.io/diagrams/non-model/face/eye.jpg"
+            height: 70
+            width: 70
+    - icon:
+        sig : Nose
+        icon:
+            path: "https://sidprasad.github.io/diagrams/non-model/face/nose.jpg"
+            height: 70
+            width: 100
+    - icon:
+        sig: Mouth
+        icon:
+            path: "https://sidprasad.github.io/diagrams/non-model/face/mouth.jpg"
+            height: 40
+            width: 200
+

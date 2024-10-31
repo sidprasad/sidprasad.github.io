@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Zoomable Image</title>
+    <style>
+        #svg-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #zoomable-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .svg-border {
+            border: 2px solid black;
+        }
+    </style>
+    <!-- Include D3.js library -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+
+        <div class="container-fluid" id="svg-container">
+            <svg id="diagram" width="800" height="800" class="svg-border">
+                <g class="zoomable">
+                    <g transform="matrix(1,0,0,1,0,0)">
+                        <g id="">
+                            <defs>
+                                <marker id="arrow-10-[#333]" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="10"
+                                    markerHeight="10" markerUnits="userSpaceOnUse" orient="auto" fill="#333">
+                                    <path d="M 0 0 L 10 5 L 0 10 z"></path>
+                                </marker>
+                            </defs>
+                            <g class="nodes">
+                                <g id="Brown" transform="translate(-55 -80)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(77, 10, 10); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Brown</text>
+                                </g>
+                                <g id="Mouth" transform="translate(-155 240)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(197, 13, 13); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Mouth</text>
+                                </g>
+                                <g id="Nose" transform="translate(-155 80)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(193, 51, 141); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Nose</text>
+                                </g>
+                                <g id="Eye2" transform="translate(145 -80)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(0, 0, 0); stroke-width: 1; fill: rgb(255, 255, 255);"></rect>
+                                    <text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Eye2</text>
+                                </g>
+                                <g id="Eye1" transform="translate(-55 -240)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(0, 0, 0); stroke-width: 1; fill: rgb(255, 255, 255);"></rect>
+                                    <text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Eye1</text>
+                                </g>
+                                <g id="Blue" transform="translate(155 80)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(0, 16, 245); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Blue</text>
+                                </g>
+                            </g>
+                            <g class="edges">
+                                <g id="FacePart<:below:Nose->Mouth">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-155,110L-155,118.33333333333333C-155,126.66666666666667,-155,143.33333333333334,-155,158.33333333333334C-155,173.33333333333334,-155,186.66666666666666,-155,193.33333333333334L-155,200">
+                                    </path>
+                                    <path
+                                        d="M-155,110L-155,118.33333333333333C-155,126.66666666666667,-155,143.33333333333334,-155,160C-155,176.66666666666666,-155,193.33333333333334,-155,201.66666666666666L-155,210"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text x="-155" y="160"
+                                        dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">below</text>
+                                </g>
+                                <g id="FacePart<:below:Eye2->Nose">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M95,-52.41379310344826L79.16666666666667,-43.678160919540225C63.333333333333336,-34.94252873563217,31.666666666666668,-17.471264367816087,-0.18563206990559897,-0.4677787649220413C-32.03793080647787,16.535706837972004,-64.07586161295573,33.07141367594401,-80.09482701619466,41.339267094930015L-96.1137924194336,49.607120513916016">
+                                    </path>
+                                    <path
+                                        d="M95,-52.41379310344826L79.16666666666667,-43.678160919540225C63.333333333333336,-34.94252873563217,31.666666666666668,-17.471264367816087,-1.6666666666666667,0.29662588060808065C-35,18.06451612903225,-70,36.1290322580645,-87.5,45.16129032258062L-105,54.19354838709675"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-4.509183406829834" y="1.8102412223815918" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">below</text>
+                                </g>
+                                <g id="FacePart<:below:Eye1->Nose">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-96.24999999999996,-210L-107.7083333333333,-201.66666666666666C-119.16666666666663,-193.33333333333334,-142.08333333333331,-176.66666666666666,-153.54166666666666,-155C-165,-133.33333333333334,-165,-106.66666666666667,-165,-80C-165,-53.333333333333336,-165,-26.666666666666668,-164.1649958292643,-6.653802871704102C-163.32999165852866,13.359060923258463,-161.65998331705728,26.718121846516926,-160.82497914632162,33.39765230814616L-159.98997497558594,40.07718276977539">
+                                    </path>
+                                    <path
+                                        d="M-96.24999999999996,-210L-107.7083333333333,-201.66666666666666C-119.16666666666663,-193.33333333333334,-142.08333333333331,-176.66666666666666,-153.54166666666666,-155C-165,-133.33333333333334,-165,-106.66666666666667,-165,-80C-165,-53.333333333333336,-165,-26.666666666666668,-163.95833333333334,-5C-162.91666666666666,16.666666666666668,-160.83333333333334,33.333333333333336,-159.79166666666666,41.666666666666664L-158.75,50"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-164.94720458984375" y="-93.26105499267578" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">below</text>
+                                </g>
+                                <g id="Eye<:color:Eye2->Blue">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M148.75,-50L149.79166666666666,-41.666666666666664C150.83333333333334,-33.333333333333336,152.91666666666666,-16.666666666666668,153.95828755696616,-1.6666666666666667C154.99990844726562,13.333333333333334,154.99981689453125,26.666666666666668,154.99977111816406,33.333333333333336L154.99972534179688,40">
+                                    </path>
+                                    <path
+                                        d="M148.75,-50L149.79166666666666,-41.666666666666664C150.83333333333334,-33.333333333333336,152.91666666666666,-16.666666666666668,153.95833333333334,0C155,16.666666666666668,155,33.333333333333336,155,41.666666666666664L155,50"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="153.95010375976562" y="-0.12951548397541046" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">color</text>
+                                </g>
+                                <g id="Eye<:color:Eye1->Brown">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-55,-210L-55,-201.66666666666666C-55,-193.33333333333334,-55,-176.66666666666666,-55,-161.66666666666666C-55,-146.66666666666666,-55,-133.33333333333334,-55,-126.66666666666667L-55,-120">
+                                    </path>
+                                    <path
+                                        d="M-55,-210L-55,-201.66666666666666C-55,-193.33333333333334,-55,-176.66666666666666,-55,-160C-55,-143.33333333333334,-55.00000000000001,-126.66666666666667,-55.00000000000001,-118.33333333333333L-55.000000000000014,-110"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text x="-55" y="-160"
+                                        dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">color</text>
+                                </g>
+                                <g id="FacePart<:aligned:Eye1->Eye2">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-5,-220L20,-210C45,-200,95,-180,119.99896748860677,-163.3333307902018C144.99793497721353,-146.66666158040366,144.9958699544271,-133.33332316080728,144.99483744303384,-126.66665395100911L144.99380493164062,-119.99998474121094">
+                                    </path>
+                                    <path
+                                        d="M-5,-220L20,-210C45,-200,95,-180,120,-161.66666666666666C145,-143.33333333333334,145,-126.66666666666667,145,-118.33333333333333L145,-110"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="86.47821044921875" y="-181.14208984375" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">aligned</text>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+
+                </g>
+            </svg>
+        </div>
+    </div>
+    <script>
+        // Add zoom behavior
+        const zoom = d3.zoom()
+            .scaleExtent([0.1, 10]) // Set the zoom scale extent
+            .on('zoom', zoomed);
+
+        function zoomed(event) {
+            d3.select('.zoomable').attr('transform', event.transform);
+        }
+        const diagram = d3.select('#diagram');
+        diagram.call(zoom);
+
+
+        // Select all nodes and make them draggable
+        const nodes = d3.selectAll('.nodes g');
+
+        function getNodePositions() {
+            const positions = {};
+            nodes.each(function () {
+                const node = d3.select(this);
+                const transform = node.attr('transform');
+                const translate = transform.match(/translate\(([^, ]+)[, ]+([^)]+)\)/);
+                if (translate) {
+                    const x = parseFloat(translate[1]);
+                    const y = parseFloat(translate[2]);
+                    positions[node.attr('id')] = { x, y };
+                }
+            });
+            console.log(positions);
+            return positions;
+        }
+
+        // Store the initial positions of the nodes
+        const nodePositions = getNodePositions();
+
+        function getEdgeSourceAndTarget(edgeId) {
+            // First find the id of the last : character and get the substring after it
+            const byParts = edgeId.split(':');
+            let rel = byParts[byParts.length - 1];
+
+            const [sourceId, targetId] = rel.split('->');
+            return { sourceId, targetId };
+        }
+
+        function updatePath(path, startX, startY, endX, endY) {
+            const controlPoint1 = `${(startX + endX) / 2},${startY}`;
+            const controlPoint2 = `${(startX + endX) / 2},${endY}`;
+            const newD = `M${startX},${startY} C${controlPoint1},${controlPoint2},${endX},${endY}`;
+            path.attr('d', newD);
+        }
+
+        function getIntersectionPoint(node, targetNode) {
+            const dx = targetNode.x - node.x;
+            const dy = targetNode.y - node.y;
+            const absDx = Math.abs(dx);
+            const absDy = Math.abs(dy);
+
+            let x = node.x;
+            let y = node.y;
+
+            const halfWidth = 50;
+            const halfHeight = 30;
+
+            if (absDx > absDy) {
+                x += dx > 0 ? halfWidth : -halfWidth;
+                y += dy * (halfWidth / absDx);
+            } else {
+                x += dx * (halfHeight / absDy);
+                y += dy > 0 ? halfHeight : -halfHeight;
+            }
+
+            return { x, y };
+        }
+
+        function updateEdges(nodeId) {
+            const node = nodePositions[nodeId];
+            // Update edges where the node is the source
+            d3.selectAll(`g[id*=":${nodeId}->"]`).each(function () {
+                const edge = d3.select(this);
+                const edgeId = edge.attr('id');
+
+                const { sourceId, targetId } = getEdgeSourceAndTarget(edgeId);
+                //assert (sourceId === nodeId);
+
+                const targetNode = nodePositions[targetId];
+                const sourceIntersection = getIntersectionPoint(node, targetNode);
+                const targetIntersection = getIntersectionPoint(targetNode, node);
+                edge.select('path').each(function () {
+                    updatePath(d3.select(this), sourceIntersection.x, sourceIntersection.y, targetIntersection.x, targetIntersection.y);
+                });
+
+                // Update the position of the label
+                edge.select('text').attr('x', (sourceIntersection.x + targetIntersection.x) / 2)
+                    .attr('y', (sourceIntersection.y + targetIntersection.y) / 2);
+            });
+
+            // Update edges where the node is the target
+            d3.selectAll(`g[id*="->${nodeId}"]`).each(function () {
+                const edge = d3.select(this);
+                const edgeId = edge.attr('id');
+
+                const { sourceId, targetId } = getEdgeSourceAndTarget(edgeId);
+                //assert (targetId === nodeId);
+
+                const sourceNode = nodePositions[sourceId];
+                const sourceIntersection = getIntersectionPoint(sourceNode, node);
+                const targetIntersection = getIntersectionPoint(node, sourceNode);
+                edge.select('path').each(function () {
+                    updatePath(d3.select(this), sourceIntersection.x, sourceIntersection.y, targetIntersection.x, targetIntersection.y);
+                });
+
+                // Update the position of the label
+                edge.select('text').attr('x', (sourceIntersection.x + targetIntersection.x) / 2)
+                    .attr('y', (sourceIntersection.y + targetIntersection.y) / 2);
+            });
+        }
+
+        nodes
+            .call(d3.drag()
+                .on('start', dragStarted)
+                .on('drag', dragged)
+                .on('end', dragEnded));
+
+        function dragStarted(event, d) {
+            d3.select(this).raise().attr('stroke', 'black');
+        }
+
+        function dragged(event, d) {
+            const nodeId = d3.select(this).attr('id');
+            nodePositions[nodeId].x = event.x;
+            nodePositions[nodeId].y = event.y;
+            d3.select(this).attr('transform', `translate(${event.x}, ${event.y})`);
+            updateEdges(nodeId); // Update the edges during the drag event
+        }
+
+        function dragEnded(event, d) {
+            d3.select(this).attr('stroke', null);
+        }
+
+
+
+        /**** This bit ensures we zoom to fit ***/
+        const bbox = d3.select('.zoomable').node().getBBox();
+        const padding = 10; // Padding in pixels
+
+        const viewBox = [
+            bbox.x - padding,
+            bbox.y - padding,
+            bbox.width + 2 * padding,
+            bbox.height + 2 * padding
+        ].join(' ');
+
+
+        const topSvg = d3.select("#diagram");
+        topSvg.attr('viewBox', viewBox);
+        /*************************************/
+
+    </script>
+</body>
+
+</html>
