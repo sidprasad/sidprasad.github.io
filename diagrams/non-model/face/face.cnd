@@ -23,6 +23,12 @@ directives:
             path: "https://sidprasad.github.io/diagrams/non-model/face/mouth.png"
             height: 40
             width: 200
+    - icon:
+        sig: EyeBrow
+        icon:
+            path: "https://sidprasad.github.io/diagrams/non-model/face/eyebrow.png"
+            height: 50
+            width: 100
     - color:
         sig: Blue
         value: "#0000ff"
