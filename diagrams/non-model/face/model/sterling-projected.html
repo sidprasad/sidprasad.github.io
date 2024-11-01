@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Zoomable Image</title>
+    <style>
+        #svg-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #zoomable-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .svg-border {
+            border: 2px solid black;
+        }
+    </style>
+    <!-- Include D3.js library -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+
+        <div class="container-fluid" id="svg-container">
+            <svg id="diagram" width="800" height="800" class="svg-border">
+                <g class="zoomable">
+
+                    <g
+                        transform="matrix(0.6176292612961254,0,0,0.6176292612961254,81.19049830855162,-35.0534863713137)">
+                        <g id="">
+                            <defs>
+                                <marker id="arrow-10-[#333]" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="10"
+                                    markerHeight="10" markerUnits="userSpaceOnUse" orient="auto" fill="#333">
+                                    <path d="M 0 0 L 10 5 L 0 10 z"></path>
+                                </marker>
+                            </defs>
+                            <g class="nodes">
+                                <g id="Mouth" transform="translate(0 320)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(0, 80, 240); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Mouth</text>
+                                </g>
+                                <g id="Nose" transform="translate(0 160)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(36, 168, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Nose</text>
+                                </g>
+                                <g id="Chin" transform="translate(0 480)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(158, 108, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Chin</text>
+                                </g>
+                                <g id="EyeBrowA" transform="translate(90 -320)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(87, 12, 228); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">EyeBrowA</text>
+                                </g>
+                                <g id="EyeBrowB" transform="translate(-100 -160)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(87, 12, 228); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">EyeBrowB</text>
+                                </g>
+                                <g id="Eye2" transform="translate(-90 0)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(228, 7, 7); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Eye2</text>
+                                </g>
+                                <g id="Eye1" transform="translate(119.42913127985133 -200.47735683302358)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(228, 7, 7); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Eye1</text>
+                                </g>
+                                <g id="Hair" transform="translate(0 -480)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(179, 140, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Hair</text>
+                                </g>
+                            </g>
+                            <g class="edges">
+                                <g id="FacePart<:below:EyeBrowA->Eye1">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M93.75,-290L94.79166666666667,-281.6666666666667C95.83333333333333,-273.3333333333333,97.91666666666667,-256.6666666666667,99.16020584106445,-248.3043441772461C100.40374501546223,-239.94202168782553,100.80749003092448,-239.88404337565103,101.0093625386556,-239.8550542195638L101.21123504638672,-239.82606506347656">
+                                    </path>
+                                    <path
+                                        d="M93.75,-290L94.79166666666667,-281.6666666666667C95.83333333333333,-273.3333333333333,97.91666666666667,-256.6666666666667,99.73854719470853,-246.74622613883727C101.56042772275039,-236.82578561100786,103.1208554455008,-233.65157122201572,103.90106930687598,-232.06446402751965L104.68128316825118,-230.47735683302358"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="97.65860748291016" y="-259.8791809082031" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">below</text>
+                                </g>
+                                <g id="FacePart<:below:Eye2->Nose">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-90,30L-90,38.333333333333336C-90,46.666666666666664,-90,63.333333333333336,-81.87068176269531,78.89272689819336C-73.74136352539062,94.45212046305339,-57.48272705078125,108.90424092610677,-49.35340881347656,116.13030115763347L-41.224090576171875,123.35636138916016">
+                                    </path>
+                                    <path
+                                        d="M-90,30L-90,38.333333333333336C-90,46.666666666666664,-90,63.333333333333336,-80.625,80C-71.25,96.66666666666667,-52.50000000000001,113.33333333333333,-43.12500000000001,121.66666666666667L-33.750000000000014,130"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-75.97400665283203" y="87.27899169921875" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">below</text>
+                                </g>
+                                <g id="FacePart<:below:Nose->Mouth">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M0,190L0,198.33333333333334C0,206.66666666666666,0,223.33333333333334,1.2141975721154571e-8,238.33333333333334C2.4283951442309142e-8,253.33333333333334,4.8567902884618284e-8,266.6666666666667,6.070987860577286e-8,273.3333333333333L7.285185432692742e-8,280">
+                                    </path>
+                                    <path
+                                        d="M0,190L0,198.33333333333334C0,206.66666666666666,0,223.33333333333334,-2.3684757858670005e-15,240C-4.736951571734001e-15,256.6666666666667,-9.473903143468002e-15,273.3333333333333,-1.1842378929335004e-14,281.6666666666667L-1.4210854715202004e-14,290"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-2.3684758564530796e-15" y="240" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">below</text>
+                                </g>
+                                <g id="FacePart<:below:Mouth->Chin">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M0,350L0,358.3333333333333C0,366.6666666666667,0,383.3333333333333,1.2141975721154571e-8,398.3333333333333C2.4283951442309142e-8,413.3333333333333,4.8567902884618284e-8,426.6666666666667,6.070987860577286e-8,433.3333333333333L7.285185432692742e-8,440">
+                                    </path>
+                                    <path
+                                        d="M0,350L0,358.3333333333333C0,366.6666666666667,0,383.3333333333333,-2.3684757858670005e-15,400C-4.736951571734001e-15,416.6666666666667,-9.473903143468002e-15,433.3333333333333,-1.1842378929335004e-14,441.6666666666667L-1.4210854715202004e-14,450"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-2.3684758564530796e-15" y="400" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">below</text>
+                                </g>
+                                <g id="FacePart<:below:Hair->EyeBrowA">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M33.750000000000014,-450L43.12500000000001,-441.6666666666667C52.50000000000001,-433.3333333333333,71.25,-416.6666666666667,80.62460962931316,-401.6666666666667C89.9992192586263,-386.6666666666667,89.99843851725261,-373.3333333333333,89.99804814656575,-366.6666666666667L89.9976577758789,-360">
+                                    </path>
+                                    <path
+                                        d="M33.750000000000014,-450L43.12500000000001,-441.6666666666667C52.50000000000001,-433.3333333333333,71.25,-416.6666666666667,80.625,-400C90,-383.3333333333333,90,-366.6666666666667,90,-358.3333333333333L90,-350"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="75.97388458251953" y="-407.2789001464844" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">below</text>
+                                </g>
+                                <g id="FacePart<:below:Hair->EyeBrowB">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-41.249999999999964,-450L-52.70833333333331,-441.6666666666667C-64.16666666666664,-433.3333333333333,-87.08333333333331,-416.6666666666667,-98.54166666666667,-395C-110,-373.3333333333333,-110,-346.6666666666667,-110,-320C-110,-293.3333333333333,-110,-266.6666666666667,-109.16499328613281,-246.65380350748697C-108.32998657226562,-226.64094034830728,-106.65997314453125,-213.2818806966146,-105.82496643066406,-206.60235087076822L-104.98995971679688,-199.92282104492188">
+                                    </path>
+                                    <path
+                                        d="M-41.249999999999964,-450L-52.70833333333331,-441.6666666666667C-64.16666666666664,-433.3333333333333,-87.08333333333331,-416.6666666666667,-98.54166666666667,-395C-110,-373.3333333333333,-110,-346.6666666666667,-110,-320C-110,-293.3333333333333,-110,-266.6666666666667,-108.95833333333333,-245C-107.91666666666667,-223.33333333333334,-105.83333333333336,-206.66666666666666,-104.79166666666669,-198.33333333333334L-103.75000000000003,-190"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-109.94721221923828" y="-333.2610778808594" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">below</text>
+                                </g>
+                                <g id="FacePart<:below:EyeBrowB->Eye2">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-100,-130L-100,-121.66666666666667C-100,-113.33333333333333,-100,-96.66666666666667,-99.16501744588216,-81.65380096435547C-98.33003489176433,-66.64093526204427,-96.66006978352864,-53.28187052408854,-95.82508722941081,-46.60233815511068L-94.99010467529297,-39.92280578613281">
+                                    </path>
+                                    <path
+                                        d="M-100,-130L-100,-121.66666666666667C-100,-113.33333333333333,-100,-96.66666666666667,-98.95833333333333,-80C-97.91666666666667,-63.333333333333336,-95.83333333333333,-46.666666666666664,-94.79166666666667,-38.333333333333336L-93.75,-30"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-98.95011901855469" y="-79.8704833984375" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">below</text>
+                                </g>
+                                <g id="FacePart<:below:Eye1->Nose">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M117.08118851424443,-170.47735683302358L115.90099042853701,-155.397797360853C114.72079234282963,-140.31823788868238,112.36039617141482,-110.15911894434119,111.1801980857074,-81.74622613883726C110,-53.333333333333336,110,-26.666666666666668,110,0C110,26.666666666666668,110,53.333333333333336,99.88956006368001,74.019713083903C89.77912012736003,94.70609283447266,69.55824025472005,109.41218566894531,59.44780031840006,116.76523208618164L49.33736038208008,124.11827850341797">
+                                    </path>
+                                    <path
+                                        d="M117.08118851424443,-170.47735683302358L115.90099042853701,-155.397797360853C114.72079234282963,-140.31823788868238,112.36039617141482,-110.15911894434119,111.1801980857074,-81.74622613883726C110,-53.333333333333336,110,-26.666666666666668,110,0C110,26.666666666666668,110,53.333333333333336,98.54166666666667,75C87.08333333333333,96.66666666666667,64.16666666666664,113.33333333333333,52.708333333333314,121.66666666666667L41.24999999999997,130"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="110.0010757446289" y="-6.947112083435059" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">below</text>
+                                </g>
+                                <g id="FacePart<:aligned:EyeBrowA->EyeBrowB">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M52.50000000000003,-290L42.08333333333335,-281.6666666666667C31.666666666666686,-273.3333333333333,10.833333333333343,-256.6666666666667,-7.712650934855138,-241.10727183024088C-26.25863520304362,-225.5478769938151,-42.51727040608724,-211.09575398763022,-50.64658800760905,-203.86969248453775L-58.77590560913086,-196.6436309814453">
+                                    </path>
+                                    <path
+                                        d="M52.50000000000003,-290L42.08333333333335,-281.6666666666667C31.666666666666686,-273.3333333333333,10.833333333333343,-256.6666666666667,-8.958333333333334,-240C-28.75000000000001,-223.33333333333334,-47.50000000000002,-206.66666666666666,-56.87500000000002,-198.33333333333334L-66.25000000000003,-190"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-7.738868713378906" y="-241.02525329589844" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">aligned</text>
+                                </g>
+                                <g id="FacePart<:aligned:Eye1->Eye2">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M92.18024381508513,-170.47735683302358L78.48353651257095,-155.397797360853C64.78682921005675,-140.31823788868238,37.393414605028376,-110.15911894434119,14.58148882208613,-87.78738417920185C-8.23043696085612,-65.4156494140625,-26.46087392171224,-50.831298828125,-35.5760924021403,-43.53912353515625L-44.69131088256836,-36.2469482421875">
+                                    </path>
+                                    <path
+                                        d="M92.18024381508513,-170.47735683302358L78.48353651257095,-155.397797360853C64.78682921005675,-140.31823788868238,37.393414605028376,-110.15911894434119,13.28004063584752,-86.74622613883726C-10.833333333333337,-63.333333333333336,-31.666666666666675,-46.666666666666664,-42.08333333333334,-38.333333333333336L-52.500000000000014,-30"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="23.285451889038086" y="-96.64656066894531" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">aligned</text>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </div>
+    </div>
+    <script>
+        // Add zoom behavior
+        const zoom = d3.zoom()
+            .scaleExtent([0.1, 10]) // Set the zoom scale extent
+            .on('zoom', zoomed);
+
+        function zoomed(event) {
+            d3.select('.zoomable').attr('transform', event.transform);
+        }
+        const diagram = d3.select('#diagram');
+        diagram.call(zoom);
+
+
+        // Select all nodes and make them draggable
+        const nodes = d3.selectAll('.nodes g');
+
+        function getNodePositions() {
+            const positions = {};
+            nodes.each(function () {
+                const node = d3.select(this);
+                const transform = node.attr('transform');
+                const translate = transform.match(/translate\(([^, ]+)[, ]+([^)]+)\)/);
+                if (translate) {
+                    const x = parseFloat(translate[1]);
+                    const y = parseFloat(translate[2]);
+                    positions[node.attr('id')] = { x, y };
+                }
+            });
+            console.log(positions);
+            return positions;
+        }
+
+        // Store the initial positions of the nodes
+        const nodePositions = getNodePositions();
+
+        function getEdgeSourceAndTarget(edgeId) {
+            // First find the id of the last : character and get the substring after it
+            const byParts = edgeId.split(':');
+            let rel = byParts[byParts.length - 1];
+
+            const [sourceId, targetId] = rel.split('->');
+            return { sourceId, targetId };
+        }
+
+        function updatePath(path, startX, startY, endX, endY) {
+            const controlPoint1 = `${(startX + endX) / 2},${startY}`;
+            const controlPoint2 = `${(startX + endX) / 2},${endY}`;
+            const newD = `M${startX},${startY} C${controlPoint1},${controlPoint2},${endX},${endY}`;
+            path.attr('d', newD);
+        }
+
+        function getIntersectionPoint(node, targetNode) {
+            const dx = targetNode.x - node.x;
+            const dy = targetNode.y - node.y;
+            const absDx = Math.abs(dx);
+            const absDy = Math.abs(dy);
+
+            let x = node.x;
+            let y = node.y;
+
+            const halfWidth = 50;
+            const halfHeight = 30;
+
+            if (absDx > absDy) {
+                x += dx > 0 ? halfWidth : -halfWidth;
+                y += dy * (halfWidth / absDx);
+            } else {
+                x += dx * (halfHeight / absDy);
+                y += dy > 0 ? halfHeight : -halfHeight;
+            }
+
+            return { x, y };
+        }
+
+        function updateEdges(nodeId) {
+            const node = nodePositions[nodeId];
+            // Update edges where the node is the source
+            d3.selectAll(`g[id*=":${nodeId}->"]`).each(function () {
+                const edge = d3.select(this);
+                const edgeId = edge.attr('id');
+
+                const { sourceId, targetId } = getEdgeSourceAndTarget(edgeId);
+                //assert (sourceId === nodeId);
+
+                const targetNode = nodePositions[targetId];
+                const sourceIntersection = getIntersectionPoint(node, targetNode);
+                const targetIntersection = getIntersectionPoint(targetNode, node);
+                edge.select('path').each(function () {
+                    updatePath(d3.select(this), sourceIntersection.x, sourceIntersection.y, targetIntersection.x, targetIntersection.y);
+                });
+
+                // Update the position of the label
+                edge.select('text').attr('x', (sourceIntersection.x + targetIntersection.x) / 2)
+                    .attr('y', (sourceIntersection.y + targetIntersection.y) / 2);
+            });
+
+            // Update edges where the node is the target
+            d3.selectAll(`g[id*="->${nodeId}"]`).each(function () {
+                const edge = d3.select(this);
+                const edgeId = edge.attr('id');
+
+                const { sourceId, targetId } = getEdgeSourceAndTarget(edgeId);
+                //assert (targetId === nodeId);
+
+                const sourceNode = nodePositions[sourceId];
+                const sourceIntersection = getIntersectionPoint(sourceNode, node);
+                const targetIntersection = getIntersectionPoint(node, sourceNode);
+                edge.select('path').each(function () {
+                    updatePath(d3.select(this), sourceIntersection.x, sourceIntersection.y, targetIntersection.x, targetIntersection.y);
+                });
+
+                // Update the position of the label
+                edge.select('text').attr('x', (sourceIntersection.x + targetIntersection.x) / 2)
+                    .attr('y', (sourceIntersection.y + targetIntersection.y) / 2);
+            });
+        }
+
+        nodes
+            .call(d3.drag()
+                .on('start', dragStarted)
+                .on('drag', dragged)
+                .on('end', dragEnded));
+
+        function dragStarted(event, d) {
+            d3.select(this).raise().attr('stroke', 'black');
+        }
+
+        function dragged(event, d) {
+            const nodeId = d3.select(this).attr('id');
+            nodePositions[nodeId].x = event.x;
+            nodePositions[nodeId].y = event.y;
+            d3.select(this).attr('transform', `translate(${event.x}, ${event.y})`);
+            updateEdges(nodeId); // Update the edges during the drag event
+        }
+
+        function dragEnded(event, d) {
+            d3.select(this).attr('stroke', null);
+        }
+
+
+
+        /**** This bit ensures we zoom to fit ***/
+        const bbox = d3.select('.zoomable').node().getBBox();
+        const padding = 10; // Padding in pixels
+
+        const viewBox = [
+            bbox.x - padding,
+            bbox.y - padding,
+            bbox.width + 2 * padding,
+            bbox.height + 2 * padding
+        ].join(' ');
+
+
+        const topSvg = d3.select("#diagram");
+        topSvg.attr('viewBox', viewBox);
+        /*************************************/
+
+    </script>
+</body>
+
+</html>
