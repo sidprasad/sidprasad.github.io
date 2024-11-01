@@ -14,74 +14,68 @@
 <types> <type ID="2"/><type ID="2"/> </types>
 </field>
 
-<sig label="Color" ID="4" parentID="2">
+<sig label="FacePart" ID="4" parentID="2">
 
 </sig>
 
-<sig label="Brown" ID="5" parentID="4">
-<atom label="Brown"/>
-</sig>
-
-<sig label="FacePart" ID="6" parentID="2">
-
-</sig>
-
-<sig label="Nose" ID="7" parentID="6">
-<atom label="Nose"/>
-</sig>
-
-<sig label="EyeBrow" ID="8" parentID="6">
-<atom label="EyeBrowA"/><atom label="EyeBrowB"/>
-</sig>
-
-<sig label="Face" ID="9" parentID="2">
-<atom label="Face"/>
-</sig>
-
-<sig label="Eye" ID="10" parentID="6">
-<atom label="Eye2"/><atom label="Eye1"/>
-</sig>
-
-<sig label="Mouth" ID="11" parentID="6">
+<sig label="Mouth" ID="5" parentID="4">
 <atom label="Mouth"/>
 </sig>
 
-<sig label="Blue" ID="12" parentID="4">
-<atom label="Blue"/>
+<sig label="Nose" ID="6" parentID="4">
+<atom label="Nose"/>
 </sig>
 
-<field label="parts" ID="13" parentID="9">
+<sig label="Chin" ID="7" parentID="4">
+<atom label="Chin"/>
+</sig>
+
+<sig label="Face" ID="8" parentID="2">
+<atom label="Face"/>
+</sig>
+
+<sig label="EyeBrow" ID="9" parentID="4">
+<atom label="EyeBrowA"/><atom label="EyeBrowB"/>
+</sig>
+
+<sig label="Eye" ID="10" parentID="4">
+<atom label="Eye2"/><atom label="Eye1"/>
+</sig>
+
+<sig label="Hair" ID="11" parentID="4">
+<atom label="Hair"/>
+</sig>
+
+<field label="parts" ID="12" parentID="8">
 <tuple><atom label="Face"/><atom label="EyeBrowA"/></tuple>
 <tuple><atom label="Face"/><atom label="Eye2"/></tuple>
 <tuple><atom label="Face"/><atom label="Nose"/></tuple>
 <tuple><atom label="Face"/><atom label="Mouth"/></tuple>
+<tuple><atom label="Face"/><atom label="Hair"/></tuple>
 <tuple><atom label="Face"/><atom label="EyeBrowB"/></tuple>
+<tuple><atom label="Face"/><atom label="Chin"/></tuple>
 <tuple><atom label="Face"/><atom label="Eye1"/></tuple>
-<types><type ID="9"/><type ID="6"/></types>
+<types><type ID="8"/><type ID="4"/></types>
 
 </field>
 
-<field label="below" ID="14" parentID="6">
+<field label="below" ID="13" parentID="4">
 <tuple><atom label="EyeBrowA"/><atom label="Eye1"/></tuple>
 <tuple><atom label="Eye2"/><atom label="Nose"/></tuple>
 <tuple><atom label="Nose"/><atom label="Mouth"/></tuple>
+<tuple><atom label="Mouth"/><atom label="Chin"/></tuple>
+<tuple><atom label="Hair"/><atom label="EyeBrowA"/></tuple>
+<tuple><atom label="Hair"/><atom label="EyeBrowB"/></tuple>
 <tuple><atom label="EyeBrowB"/><atom label="Nose"/></tuple>
 <tuple><atom label="Eye1"/><atom label="Nose"/></tuple>
-<types><type ID="6"/><type ID="6"/></types>
+<types><type ID="4"/><type ID="4"/></types>
 
 </field>
 
-<field label="color" ID="15" parentID="10">
-<tuple><atom label="Eye2"/><atom label="Brown"/></tuple>
-<tuple><atom label="Eye1"/><atom label="Blue"/></tuple>
-<types><type ID="10"/><type ID="4"/></types>
-
-</field>
-
-<field label="aligned" ID="16" parentID="6">
+<field label="aligned" ID="14" parentID="4">
 <tuple><atom label="Eye2"/><atom label="EyeBrowB"/></tuple>
 <tuple><atom label="Eye1"/><atom label="Eye2"/></tuple>
-<types><type ID="6"/><type ID="6"/></types>
+<types><type ID="4"/><type ID="4"/></types>
 
 </field>
 

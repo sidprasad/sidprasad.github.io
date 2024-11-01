@@ -6,16 +6,14 @@ abstract sig FacePart {
     aligned : set FacePart
 }
 
-abstract sig Color {}
-one sig Brown, Blue extends Color {}
 
 sig EyeBrow extends FacePart {}
 
-sig Eye extends FacePart {
-    color : one Color
-}
+sig Eye extends FacePart {}
 sig Nose extends FacePart {}
 sig Mouth extends FacePart {}
+sig Chin extends FacePart {}
+sig Hair extends FacePart {}
 
 sig Face {
     parts : set FacePart
@@ -23,49 +21,38 @@ sig Face {
 
 
 inst face {
-    Brown = `Brown
-    Blue = `Blue
-    Color = `Brown + `Blue
     Face = `Face
     Eye = `Eye1 + `Eye2
-
+    Hair = `Hair
+    Chin = `Chin
     EyeBrow = `EyeBrowA + `EyeBrowB
 
     Nose = `Nose
     Mouth = `Mouth
-    FacePart = Eye + Nose + Mouth + EyeBrow
+    FacePart = Eye + Nose + Mouth + EyeBrow + Chin + Hair
 
 
-    below = `Eye1->`Nose + `Eye2->`Nose + `Nose->`Mouth + `EyeBrowA->`Eye1 + `EyeBrowB->`Eye2
+    below = Hair->EyeBrow + `EyeBrowA -> `Eye1 + `EyeBrowB->`Eye2 + Eye->Nose + Nose->Mouth + Mouth->Chin
     aligned = `Eye1->`Eye2 + `EyeBrowA->`EyeBrowB
-
-    color = `Eye1->`Brown + `Eye2->`Blue
-
-    parts = `Face -> (`Eye1 + `Eye2 + `Nose + `Mouth + `EyeBrowA + `EyeBrowB)
-
+    
+    parts = `Face -> (Eye + Nose + Mouth + EyeBrow + Chin + Hair)
 }
 
 inst nonface {
-    Brown = `Brown
-    Blue = `Blue
-    Color = `Brown + `Blue
-
     Face = `Face
     Eye = `Eye1 + `Eye2
+    Hair = `Hair
+    Chin = `Chin
+    EyeBrow = `EyeBrowA + `EyeBrowB
+
     Nose = `Nose
     Mouth = `Mouth
+    FacePart = Eye + Nose + Mouth + EyeBrow + Chin + Hair
 
-    EyeBrow = `EyeBrowA + `EyeBrowB
-    FacePart = Eye + Nose + Mouth + EyeBrow
-
-    below = `EyeBrowA->`Eye1 + Eye->Nose + `EyeBrowB->Nose + Nose->Mouth
-    
+    below = `EyeBrowA->`Eye1 + Eye->Nose + `EyeBrowB->Nose + Nose->Mouth + Mouth->Chin + Hair->EyeBrow    
     aligned = `Eye1 ->`Eye2 + `Eye2 -> `EyeBrowB
 
-    color = `Eye1->`Blue + `Eye2->`Brown
-
-    parts = `Face -> (`Eye1 + `Eye2 + `Nose + `Mouth + `EyeBrowA + `EyeBrowB)
-
+    parts = `Face -> (Eye + Nose + Mouth + EyeBrow + Chin + Hair)
 }
 
 run {} for nonface

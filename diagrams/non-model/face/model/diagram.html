@@ -12,7 +12,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
-    <link rel="stylesheet" href="../../css/diagramstyle.css">
+    <link rel="stylesheet" href="/css/diagramstyle.css">
 
     <script src="https://marvl.infotech.monash.edu/webcola/extern/graphlib-dot.min.js"></script>
     <!-- Full version -->
@@ -22,15 +22,15 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
 
     <!-- Include your custom JavaScript file -->
-    <script src="../../js/renderer.js" defer></script>
+    <script src="/js/renderer.js" defer></script>
     <script>
         window.addEventListener('load', function () {
 
             var width = 800, height = 800;
-            var nodes = [{ "id": "Brown", "color": "#a52a2a", "attributes": {}, "width": 100, "height": 60, "x": 185, "y": 355, "icon": null, "fixed": 0 }, { "id": "Nose", "color": "#72a52e", "attributes": {}, "width": 100, "height": 70, "x": 100, "y": 525, "icon": "https://sidprasad.github.io/diagrams/non-model/face/nose.jpg", "fixed": 0 }, { "id": "EyeBrowA", "color": "#c57124", "attributes": {}, "width": 100, "height": 50, "x": 252.5, "y": 25, "icon": "https://sidprasad.github.io/diagrams/non-model/face/eyebrow.png", "fixed": 0 }, { "id": "EyeBrowB", "color": "#c57124", "attributes": {}, "width": 100, "height": 50, "x": 330, "y": 185, "icon": "https://sidprasad.github.io/diagrams/non-model/face/eyebrow.png", "fixed": 0 }, { "id": "Eye2", "color": "#b5489c", "attributes": {}, "width": 70, "height": 70, "x": 320, "y": 355, "icon": "https://sidprasad.github.io/diagrams/non-model/face/eye.jpg", "fixed": 0 }, { "id": "Eye1", "color": "#b5489c", "attributes": {}, "width": 70, "height": 70, "x": 185, "y": 185, "icon": "https://sidprasad.github.io/diagrams/non-model/face/eye.jpg", "fixed": 0 }, { "id": "Mouth", "color": "#f04175", "attributes": {}, "width": 200, "height": 40, "x": 100, "y": 680, "icon": "https://sidprasad.github.io/diagrams/non-model/face/mouth.png", "fixed": 0 }, { "id": "Blue", "color": "#0000ff", "attributes": {}, "width": 100, "height": 60, "x": 330, "y": 525, "icon": null, "fixed": 0 }];
-            var edges = [{ "source": 2, "target": 5, "relName": "below", "id": "FacePart<:below:EyeBrowA->Eye1", "label": "below" }, { "source": 4, "target": 1, "relName": "below", "id": "FacePart<:below:Eye2->Nose", "label": "below" }, { "source": 1, "target": 6, "relName": "below", "id": "FacePart<:below:Nose->Mouth", "label": "below" }, { "source": 3, "target": 4, "relName": "below", "id": "FacePart<:below:EyeBrowB->Eye2", "label": "below" }, { "source": 5, "target": 1, "relName": "below", "id": "FacePart<:below:Eye1->Nose", "label": "below" }, { "source": 4, "target": 7, "relName": "color", "id": "Eye<:color:Eye2->Blue", "label": "color" }, { "source": 5, "target": 0, "relName": "color", "id": "Eye<:color:Eye1->Brown", "label": "color" }, { "source": 2, "target": 3, "relName": "aligned", "id": "FacePart<:aligned:EyeBrowA->EyeBrowB", "label": "aligned" }, { "source": 5, "target": 4, "relName": "aligned", "id": "FacePart<:aligned:Eye1->Eye2", "label": "aligned" }];
-            var constraints = [{ "axis": "y", "left": 2, "right": 5, "gap": 75 }, { "axis": "y", "left": 4, "right": 1, "gap": 85 }, { "axis": "y", "left": 1, "right": 6, "gap": 70 }, { "axis": "y", "left": 3, "right": 4, "gap": 75 }, { "axis": "y", "left": 5, "right": 1, "gap": 85 }, { "axis": "y", "left": 4, "right": 7, "gap": 80 }, { "axis": "y", "left": 5, "right": 0, "gap": 80 }, { "axis": "x", "left": 2, "right": 3, "gap": 115 }, { "axis": "y", "left": 3, "right": 2, "gap": 0, "equality": true }, { "axis": "x", "left": 5, "right": 4, "gap": 85 }, { "axis": "y", "left": 4, "right": 5, "gap": 0, "equality": true }];
-            var groups = [];
+            var nodes = [{ "id": "Mouth", "color": "#00a1a7", "attributes": {}, "width": 100, "height": 60, "x": 125, "y": 830, "icon": null, "fixed": 0 }, { "id": "Nose", "color": "#17ae5f", "attributes": {}, "width": 100, "height": 60, "x": 125, "y": 670, "icon": null, "fixed": 0 }, { "id": "Chin", "color": "#aa8a08", "attributes": {}, "width": 100, "height": 60, "x": 125, "y": 990, "icon": null, "fixed": 0 }, { "id": "Face", "color": "#d34c59", "attributes": {}, "width": 100, "height": 60, "x": 200, "y": 30, "icon": null, "fixed": 1 }, { "id": "EyeBrowA", "color": "#a34ca1", "attributes": {}, "width": 100, "height": 60, "x": 190, "y": 190, "icon": null, "fixed": 0 }, { "id": "EyeBrowB", "color": "#a34ca1", "attributes": {}, "width": 100, "height": 60, "x": 50, "y": 350, "icon": null, "fixed": 0 }, { "id": "Eye2", "color": "#e9407c", "attributes": {}, "width": 100, "height": 60, "x": 60, "y": 510, "icon": null, "fixed": 0 }, { "id": "Eye1", "color": "#e9407c", "attributes": {}, "width": 100, "height": 60, "x": 200, "y": 350, "icon": null, "fixed": 0 }, { "id": "Hair", "color": "#ff613c", "attributes": {}, "width": 100, "height": 60, "x": 50, "y": 30, "icon": null, "fixed": 0 }];
+            var edges = [{ "source": 4, "target": 7, "relName": "below", "id": "FacePart<:below:EyeBrowA->Eye1", "label": "below" }, { "source": 6, "target": 1, "relName": "below", "id": "FacePart<:below:Eye2->Nose", "label": "below" }, { "source": 1, "target": 0, "relName": "below", "id": "FacePart<:below:Nose->Mouth", "label": "below" }, { "source": 0, "target": 2, "relName": "below", "id": "FacePart<:below:Mouth->Chin", "label": "below" }, { "source": 8, "target": 4, "relName": "below", "id": "FacePart<:below:Hair->EyeBrowA", "label": "below" }, { "source": 8, "target": 5, "relName": "below", "id": "FacePart<:below:Hair->EyeBrowB", "label": "below" }, { "source": 5, "target": 6, "relName": "below", "id": "FacePart<:below:EyeBrowB->Eye2", "label": "below" }, { "source": 7, "target": 1, "relName": "below", "id": "FacePart<:below:Eye1->Nose", "label": "below" }, { "source": 4, "target": 5, "relName": "aligned", "id": "FacePart<:aligned:EyeBrowA->EyeBrowB", "label": "aligned" }, { "source": 7, "target": 6, "relName": "aligned", "id": "FacePart<:aligned:Eye1->Eye2", "label": "aligned" }, { "source": 3, "target": 4, "relName": "parts", "id": "_g_Face<:parts:Face->EyeBrowA", "label": "parts" }];
+            var constraints = [{ "axis": "y", "left": 4, "right": 7, "gap": 75 }, { "axis": "y", "left": 6, "right": 1, "gap": 75 }, { "axis": "y", "left": 1, "right": 0, "gap": 75 }, { "axis": "y", "left": 0, "right": 2, "gap": 75 }, { "axis": "y", "left": 8, "right": 4, "gap": 75 }, { "axis": "y", "left": 8, "right": 5, "gap": 75 }, { "axis": "y", "left": 5, "right": 6, "gap": 75 }, { "axis": "y", "left": 7, "right": 1, "gap": 75 }, { "axis": "x", "left": 4, "right": 5, "gap": 115 }, { "axis": "y", "left": 5, "right": 4, "gap": 0, "equality": true }, { "axis": "x", "left": 7, "right": 6, "gap": 115 }, { "axis": "y", "left": 6, "right": 7, "gap": 0, "equality": true }];
+            var groups = [{ "leaves": [4, 6, 1, 0, 8, 5, 2, 7], "padding": 10, "name": "Face:parts", "groups": [], "keyNode": 3, "id": "Face:parts" }];
 
             if (width && height && nodes && edges && constraints && groups) {
                 setupLayout(d3, nodes, edges, constraints, groups, width, height);
@@ -62,11 +62,6 @@
 <body>
     <div class="container-fluid">
 
-
-        <!-- MiniMap Temporal -->
-
-
-
         <div class="row">
             <div id="svg-container" class="col">
                 <svg id="svg" width="800" height="800" class="svg-border">
@@ -83,6 +78,7 @@
                     </g>
                 </svg>
             </div>
+
         </div>
     </div>
 
