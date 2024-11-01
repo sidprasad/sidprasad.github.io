@@ -1,0 +1,93 @@
+<alloy builddate="Friday, November 1st, 2024">
+<instance bitwidth="4" maxseq="-1" command="temporary-name_face_1" filename="/no-name.rkt" version="3.5"  >
+
+<sig label="seq/Int" ID="0" parentID="1" builtin="yes">
+</sig>
+
+<sig label="Int" ID="1" parentID="2" builtin="yes">
+</sig>
+
+<sig label="univ" ID="2" builtin="yes">
+</sig>
+
+<field label="no-field-guard" ID="3" parentID="2">
+<types> <type ID="2"/><type ID="2"/> </types>
+</field>
+
+<sig label="Color" ID="4" parentID="2">
+
+</sig>
+
+<sig label="Brown" ID="5" parentID="4">
+<atom label="Brown0"/>
+</sig>
+
+<sig label="FacePart" ID="6" parentID="2">
+
+</sig>
+
+<sig label="Mouth" ID="7" parentID="6">
+<atom label="Mouth0"/><atom label="Mouth1"/>
+</sig>
+
+<sig label="Nose" ID="8" parentID="6">
+<atom label="Nose0"/><atom label="Nose1"/>
+</sig>
+
+<sig label="Face" ID="9" parentID="2">
+<atom label="Face0"/><atom label="Face1"/>
+</sig>
+
+<sig label="Eye" ID="10" parentID="6">
+<atom label="Eye0"/><atom label="Eye1"/><atom label="Eye2"/><atom label="Eye3"/>
+</sig>
+
+<sig label="Blue" ID="11" parentID="4">
+<atom label="Blue0"/>
+</sig>
+
+<field label="parts" ID="12" parentID="9">
+<tuple><atom label="Face0"/><atom label="Eye1"/></tuple>
+<tuple><atom label="Face0"/><atom label="Eye2"/></tuple>
+<tuple><atom label="Face0"/><atom label="Nose0"/></tuple>
+<tuple><atom label="Face0"/><atom label="Mouth1"/></tuple>
+<tuple><atom label="Face1"/><atom label="Eye0"/></tuple>
+<tuple><atom label="Face1"/><atom label="Eye3"/></tuple>
+<tuple><atom label="Face1"/><atom label="Nose1"/></tuple>
+<tuple><atom label="Face1"/><atom label="Mouth0"/></tuple>
+<types><type ID="9"/><type ID="6"/></types>
+
+</field>
+
+<field label="below" ID="13" parentID="6">
+<tuple><atom label="Eye0"/><atom label="Nose1"/></tuple>
+<tuple><atom label="Eye1"/><atom label="Nose0"/></tuple>
+<tuple><atom label="Eye2"/><atom label="Nose0"/></tuple>
+<tuple><atom label="Eye3"/><atom label="Nose1"/></tuple>
+<tuple><atom label="Nose0"/><atom label="Mouth1"/></tuple>
+<tuple><atom label="Nose1"/><atom label="Mouth0"/></tuple>
+<types><type ID="6"/><type ID="6"/></types>
+
+</field>
+
+<field label="color" ID="14" parentID="10">
+<tuple><atom label="Eye0"/><atom label="Brown0"/></tuple>
+<tuple><atom label="Eye1"/><atom label="Brown0"/></tuple>
+<tuple><atom label="Eye2"/><atom label="Blue0"/></tuple>
+<tuple><atom label="Eye3"/><atom label="Blue0"/></tuple>
+<types><type ID="10"/><type ID="4"/></types>
+
+</field>
+
+<field label="aligned" ID="15" parentID="6">
+<tuple><atom label="Eye2"/><atom label="Eye1"/></tuple>
+<tuple><atom label="Eye3"/><atom label="Eye0"/></tuple>
+<types><type ID="6"/><type ID="6"/></types>
+
+</field>
+
+
+</instance>
+
+<source filename="/no-name.rkt" content="// Couldn't open source file (/no-name.rkt) (info: (2 . posix)). Is the file saved?"></source>
+</alloy>
