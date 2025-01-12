@@ -6,7 +6,7 @@ test expect {
   loopless : {isDirectedTree implies (no (^edges & iden))} is checked
   connected : {isDirectedTree implies (lone Node or Node in edges.Node + Node.edges) } is checked
 
-  roottest : {all r : Node | isRoot[r] implies (no edges.r)}
+  roottest : {all r : Node | isRoot[r] implies (no edges.r)} is checked
 }
 
 
