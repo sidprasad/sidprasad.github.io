@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Zoomable Image</title>
+    <style>
+        #svg-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #zoomable-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .svg-border {
+            border: 2px solid black;
+        }
+    </style>
+    <!-- Include D3.js library -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+
+        <div class="container-fluid" id="svg-container">
+            <svg id="diagram" width="800" height="800" class="svg-border">
+                <g class="zoomable">
+                    <g
+                        transform="matrix(0.8072167433022015,0,0,0.8072167433022015,-23.71234057382923,-13.880394482241492)">
+                        <g id="">
+                            <defs>
+                                <marker id="arrow-10-[#333]" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="10"
+                                    markerHeight="10" markerUnits="userSpaceOnUse" orient="auto" fill="#333">
+                                    <path d="M 0 0 L 10 5 L 0 10 z"></path>
+                                </marker>
+                            </defs>
+                            <g class="nodes">
+                                <g id="Brown0" transform="translate(75 160)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(80, 7, 7); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Brown0</text>
+                                </g>
+                                <g id="Mouth0" transform="translate(405 320)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(240, 0, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Mouth0</text>
+                                </g>
+                                <g id="Mouth1" transform="translate(-175 320)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(240, 0, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Mouth1</text>
+                                </g>
+                                <g id="Nose0" transform="translate(-385 160)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(10, 153, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Nose0</text>
+                                </g>
+                                <g id="Nose1" transform="translate(275 160)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(10, 153, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Nose1</text>
+                                </g>
+                                <g id="Face0" transform="translate(-340 -320)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Face0</text>
+                                </g>
+                                <g id="Face1" transform="translate(320 -320)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Face1</text>
+                                </g>
+                                <g id="Eye0" transform="translate(275 0)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(104, 105, 7); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="-0.16999999999999998em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Eye0</text><text
+                                        x="0" y="0" dy="0.8300000000000001em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">color:
+                                        Brown0</text>
+                                </g>
+                                <g id="Eye1" transform="translate(-385 0)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(104, 105, 7); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="-0.16999999999999998em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Eye1</text><text
+                                        x="0" y="0" dy="0.8300000000000001em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">color:
+                                        Brown0</text>
+                                </g>
+                                <g id="Eye2" transform="translate(-405 -160)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(104, 105, 7); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="-0.16999999999999998em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Eye2</text><text
+                                        x="0" y="0" dy="0.8300000000000001em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">color:
+                                        Blue0</text>
+                                </g>
+                                <g id="Eye3" transform="translate(220 -160)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(104, 105, 7); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="-0.16999999999999998em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Eye3</text><text
+                                        x="0" y="0" dy="0.8300000000000001em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">color:
+                                        Blue0</text>
+                                </g>
+                                <g id="Blue0" transform="translate(-165 0)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(29, 2, 227); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Blue0</text>
+                                </g>
+                            </g>
+                            <g class="edges">
+                                <g id="Face<:parts:Face0->Eye1">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-390,-297.1428571428571L-410.8333333333333,-287.6190476190476C-431.6666666666667,-278.0952380952381,-473.3333333333333,-259.04761904761904,-494.1666666666667,-236.19047619047618C-515,-213.33333333333334,-515,-186.66666666666666,-515,-160C-515,-133.33333333333334,-515,-106.66666666666667,-502.8777618408203,-85.8734957377116C-490.7555236816406,-65.08032480875652,-466.51104736328125,-50.16064961751302,-454.38880920410156,-42.700812021891274L-442.2665710449219,-35.24097442626953">
+                                    </path>
+                                    <path
+                                        d="M-390,-297.1428571428571L-410.8333333333333,-287.6190476190476C-431.6666666666667,-278.0952380952381,-473.3333333333333,-259.04761904761904,-494.1666666666667,-236.19047619047618C-515,-213.33333333333334,-515,-186.66666666666666,-515,-160C-515,-133.33333333333334,-515,-106.66666666666667,-501.4583333333333,-85C-487.9166666666667,-63.333333333333336,-460.8333333333333,-46.666666666666664,-447.2916666666667,-38.333333333333336L-433.75,-30"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text x="-514.734375"
+                                        y="-178.6388397216797" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">parts</text>
+                                </g>
+                                <g id="Face<:parts:Face0->Eye2">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-364.375,-290L-371.1458333333333,-281.6666666666667C-377.9166666666667,-273.3333333333333,-391.4583333333333,-256.6666666666667,-398.2288869222005,-241.66666666666666C-404.9994405110677,-226.66666666666666,-404.99888102213544,-213.33333333333334,-404.99860127766925,-206.66666666666666L-404.9983215332031,-200">
+                                    </path>
+                                    <path
+                                        d="M-364.375,-290L-371.1458333333333,-281.6666666666667C-377.9166666666667,-273.3333333333333,-391.4583333333333,-256.6666666666667,-398.2291666666667,-240C-405,-223.33333333333334,-405,-206.66666666666666,-405,-198.33333333333334L-405,-190"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-396.2552185058594" y="-244.4746856689453" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">parts</text>
+                                </g>
+                                <g id="Face<:parts:Face0->Nose0">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-315.625,-290L-308.8541666666667,-281.6666666666667C-302.0833333333333,-273.3333333333333,-288.5416666666667,-256.6666666666667,-281.7708333333333,-235C-275,-213.33333333333334,-275,-186.66666666666666,-275,-160C-275,-133.33333333333334,-275,-106.66666666666667,-275,-80C-275,-53.333333333333336,-275,-26.666666666666668,-275,0C-275,26.666666666666668,-275,53.333333333333336,-285.1104380289714,74.01971435546875C-295.2208760579427,94.70609537760417,-315.44175211588544,109.41219075520833,-325.55219014485675,116.76523844401042L-335.6626281738281,124.1182861328125">
+                                    </path>
+                                    <path
+                                        d="M-315.625,-290L-308.8541666666667,-281.6666666666667C-302.0833333333333,-273.3333333333333,-288.5416666666667,-256.6666666666667,-281.7708333333333,-235C-275,-213.33333333333334,-275,-186.66666666666666,-275,-160C-275,-133.33333333333334,-275,-106.66666666666667,-275,-80C-275,-53.333333333333336,-275,-26.666666666666668,-275,0C-275,26.666666666666668,-275,53.333333333333336,-286.4583333333333,75C-297.9166666666667,96.66666666666667,-320.8333333333333,113.33333333333333,-332.2916666666667,121.66666666666667L-343.75,130"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text x="-275"
+                                        y="-71.91477966308594" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">parts</text>
+                                </g>
+                                <g id="Face<:parts:Face0->Mouth1">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-290,-305.96491228070175L-250.83333333333334,-294.97076023391816C-211.66666666666666,-283.9766081871345,-133.33333333333334,-261.98830409356725,-94.16666666666667,-237.6608187134503C-55,-213.33333333333334,-55,-186.66666666666666,-55,-160C-55,-133.33333333333334,-55,-106.66666666666667,-55,-80C-55,-53.333333333333336,-55,-26.666666666666668,-55,0C-55,26.666666666666668,-55,53.333333333333336,-55,80C-55,106.66666666666667,-55,133.33333333333334,-55,160C-55,186.66666666666666,-55,213.33333333333334,-66.11324946085612,234.07550048828125C-77.22649892171223,254.81766764322916,-99.45299784342448,269.6353352864583,-110.5662473042806,277.04416910807294L-121.67949676513672,284.4530029296875">
+                                    </path>
+                                    <path
+                                        d="M-290,-305.96491228070175L-250.83333333333334,-294.97076023391816C-211.66666666666666,-283.9766081871345,-133.33333333333334,-261.98830409356725,-94.16666666666667,-237.6608187134503C-55,-213.33333333333334,-55,-186.66666666666666,-55,-160C-55,-133.33333333333334,-55,-106.66666666666667,-55,-80C-55,-53.333333333333336,-55,-26.666666666666668,-55,0C-55,26.666666666666668,-55,53.333333333333336,-55,80C-55,106.66666666666667,-55,133.33333333333334,-55,160C-55,186.66666666666666,-55,213.33333333333334,-67.5,235C-80,256.6666666666667,-105,273.3333333333333,-117.5,281.6666666666667L-130,290"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-54.999996185302734" y="-69.65982055664062" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">parts</text>
+                                </g>
+                                <g id="Face<:parts:Face1->Eye0">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M270,-307.0967741935484L226.66666666666666,-295.9139784946237C183.33333333333334,-284.73118279569894,96.66666666666667,-262.36559139784947,53.333333333333336,-237.8494623655914C10,-213.33333333333334,10,-186.66666666666666,10,-160C10,-133.33333333333334,10,-106.66666666666667,44.23778788248698,-82.99739774068196C78.47557576497395,-59.328128814697266,146.9511515299479,-38.65625762939453,181.1889394124349,-28.320322036743164L215.42672729492188,-17.984386444091797">
+                                    </path>
+                                    <path
+                                        d="M270,-307.0967741935484L226.66666666666666,-295.9139784946237C183.33333333333334,-284.73118279569894,96.66666666666667,-262.36559139784947,53.333333333333336,-237.8494623655914C10,-213.33333333333334,10,-186.66666666666666,10,-160C10,-133.33333333333334,10,-106.66666666666667,45.833333333333336,-82.51572327044025C81.66666666666667,-58.36477987421383,153.33333333333334,-36.72955974842766,189.16666666666666,-25.911949685534577L225,-15.094339622641492"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="10.729667663574219" y="-180.4675750732422" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">parts</text>
+                                </g>
+                                <g id="Face<:parts:Face1->Eye3">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M282.50000000000006,-290L272.08333333333337,-281.6666666666667C261.6666666666667,-273.3333333333333,240.83333333333334,-256.6666666666667,230.41709899902344,-241.66666666666666C220.00086466471353,-226.66666666666666,220.0017293294271,-213.33333333333334,220.00216166178384,-206.66666666666666L220.00259399414062,-200">
+                                    </path>
+                                    <path
+                                        d="M282.50000000000006,-290L272.08333333333337,-281.6666666666667C261.6666666666667,-273.3333333333333,240.83333333333334,-256.6666666666667,230.41666666666666,-240C220,-223.33333333333334,220,-206.66666666666666,220,-198.33333333333334L220,-190"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="236.44517517089844" y="-248.35421752929688" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">parts</text>
+                                </g>
+                                <g id="Face<:parts:Face1->Nose1">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M361.25,-290L372.7083333333333,-281.6666666666667C384.1666666666667,-273.3333333333333,407.0833333333333,-256.6666666666667,418.5416666666667,-235C430,-213.33333333333334,430,-186.66666666666666,430,-160C430,-133.33333333333334,430,-106.66666666666667,430,-80C430,-53.333333333333336,430,-26.666666666666668,430,0C430,26.666666666666668,430,53.333333333333336,413.9810333251953,74.9345194498698C397.9620666503906,96.53570556640625,365.92413330078125,113.0714111328125,349.90516662597656,121.33926391601562L333.8861999511719,129.60711669921875">
+                                    </path>
+                                    <path
+                                        d="M361.25,-290L372.7083333333333,-281.6666666666667C384.1666666666667,-273.3333333333333,407.0833333333333,-256.6666666666667,418.5416666666667,-235C430,-213.33333333333334,430,-186.66666666666666,430,-160C430,-133.33333333333334,430,-106.66666666666667,430,-80C430,-53.333333333333336,430,-26.666666666666668,430,0C430,26.666666666666668,430,53.333333333333336,412.5,75.6989247311828C395,98.06451612903226,360,116.12903225806451,342.5,125.16129032258065L325,134.19354838709677"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text x="430"
+                                        y="-65.724609375" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">parts</text>
+                                </g>
+                                <g id="Face<:parts:Face1->Mouth0">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M368.75,-290L382.2916666666667,-281.6666666666667C395.8333333333333,-273.3333333333333,422.9166666666667,-256.6666666666667,436.4583333333333,-235C450,-213.33333333333334,450,-186.66666666666666,450,-160C450,-133.33333333333334,450,-106.66666666666667,450,-80C450,-53.333333333333336,450,-26.666666666666668,450,0C450,26.666666666666668,450,53.333333333333336,450,80C450,106.66666666666667,450,133.33333333333334,450,160C450,186.66666666666666,450,213.33333333333334,446.1295471191406,233.5473429361979C442.25909423828125,253.7613525390625,434.5181884765625,267.522705078125,430.6477355957031,274.40338134765625L426.77728271484375,281.2840576171875">
+                                    </path>
+                                    <path
+                                        d="M368.75,-290L382.2916666666667,-281.6666666666667C395.8333333333333,-273.3333333333333,422.9166666666667,-256.6666666666667,436.4583333333333,-235C450,-213.33333333333334,450,-186.66666666666666,450,-160C450,-133.33333333333334,450,-106.66666666666667,450,-80C450,-53.333333333333336,450,-26.666666666666668,450,0C450,26.666666666666668,450,53.333333333333336,450,80C450,106.66666666666667,450,133.33333333333334,450,160C450,186.66666666666666,450,213.33333333333334,445.3125,235C440.625,256.6666666666667,431.25,273.3333333333333,426.5625,281.6666666666667L421.875,290"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text x="450"
+                                        y="-14.975341796875" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">parts</text>
+                                </g>
+                                <g id="FacePart<:below:Eye0->Nose1">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M271.25,30L270.2083333333333,38.333333333333336C269.1666666666667,46.666666666666664,267.0833333333333,63.333333333333336,266.87668863932294,78.34619267781575C266.6700439453125,93.35905202229817,268.340087890625,106.71810404459636,269.17510986328125,113.39763005574544L270.0101318359375,120.07715606689453">
+                                    </path>
+                                    <path
+                                        d="M271.25,30L270.2083333333333,38.333333333333336C269.1666666666667,46.666666666666664,267.0833333333333,63.333333333333336,267.0833333333333,80C267.0833333333333,96.66666666666667,269.1666666666667,113.33333333333333,270.2083333333333,121.66666666666667L271.25,130"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="267.0833435058594" y="80" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">below</text>
+                                </g>
+                                <g id="FacePart<:below:Eye1->Nose0">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-401.875,30L-406.5625,38.333333333333336C-411.25,46.666666666666664,-420.625,63.333333333333336,-421.44203694661456,78.54733657836914C-422.2590738932292,93.76133982340495,-414.5181477864583,107.52267964680989,-410.64768473307294,114.40334955851237L-406.7772216796875,121.28401947021484">
+                                    </path>
+                                    <path
+                                        d="M-401.875,30L-406.5625,38.333333333333336C-411.25,46.666666666666664,-420.625,63.333333333333336,-420.625,80C-420.625,96.66666666666667,-411.25,113.33333333333333,-406.5625,121.66666666666667L-401.875,130"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text x="-420.625"
+                                        y="80" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">below</text>
+                                </g>
+                                <g id="FacePart<:below:Eye2->Nose0">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-438.75,-130L-448.125,-121.66666666666667C-457.5,-113.33333333333333,-476.25,-96.66666666666667,-485.625,-75C-495,-53.333333333333336,-495,-26.666666666666668,-495,0C-495,26.666666666666668,-495,53.333333333333336,-484.8895619710286,74.01971435546875C-474.7791239420573,94.70609537760417,-454.55824788411456,109.41219075520833,-444.44780985514325,116.76523844401042L-434.3373718261719,124.1182861328125">
+                                    </path>
+                                    <path
+                                        d="M-438.75,-130L-448.125,-121.66666666666667C-457.5,-113.33333333333333,-476.25,-96.66666666666667,-485.625,-75C-495,-53.333333333333336,-495,-26.666666666666668,-495,0C-495,26.666666666666668,-495,53.333333333333336,-483.5416666666667,75C-472.0833333333333,96.66666666666667,-449.1666666666667,113.33333333333333,-437.7083333333333,121.66666666666667L-426.25,130"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-494.997802734375" y="3.890136957168579" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">below</text>
+                                </g>
+                                <g id="FacePart<:below:Eye3->Nose1">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M170,-132.41379310344826L154.16666666666666,-123.67816091954022C138.33333333333334,-114.94252873563217,106.66666666666667,-97.47126436781609,90.83333333333333,-75.40229885057471C75,-53.333333333333336,75,-26.666666666666668,75,0C75,26.666666666666668,75,53.333333333333336,98.45254007975261,76.0476811726888C121.9050801595052,98.76202901204427,168.8101603190104,117.52405802408855,192.26270039876303,126.90507253011067L215.71524047851562,136.2860870361328">
+                                    </path>
+                                    <path
+                                        d="M170,-132.41379310344826L154.16666666666666,-123.67816091954022C138.33333333333334,-114.94252873563217,106.66666666666667,-97.47126436781609,90.83333333333333,-75.40229885057471C75,-53.333333333333336,75,-26.666666666666668,75,0C75,26.666666666666668,75,53.333333333333336,100,76.66666666666667C125,100,175,120,200,130L225,140"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="75.66242980957031" y="23.760848999023438" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">below</text>
+                                </g>
+                                <g id="FacePart<:below:Nose0->Mouth1">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-385,190L-385,198.33333333333334C-385,206.66666666666666,-385,223.33333333333334,-359.89081319173175,241.23207092285156C-334.78162638346356,259.1308085123698,-284.56325276692706,278.26161702473956,-259.4540659586589,287.8270212809245L-234.34487915039062,297.3924255371094">
+                                    </path>
+                                    <path
+                                        d="M-385,190L-385,198.33333333333334C-385,206.66666666666666,-385,223.33333333333334,-358.3333333333333,241.82539682539684C-331.6666666666667,260.3174603174603,-278.3333333333333,280.63492063492066,-251.66666666666666,290.7936507936508L-225,300.95238095238096"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-321.3795166015625" y="262.07550048828125" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">below</text>
+                                </g>
+                                <g id="FacePart<:below:Nose1->Mouth0">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M275,190L275,198.33333333333334C275,206.66666666666666,275,223.33333333333334,287.1222381591797,239.12650553385416C299.2444763183594,254.919677734375,323.48895263671875,269.83935546875,335.61119079589844,277.2991943359375L347.7334289550781,284.759033203125">
+                                    </path>
+                                    <path
+                                        d="M275,190L275,198.33333333333334C275,206.66666666666666,275,223.33333333333334,288.5416666666667,240C302.0833333333333,256.6666666666667,329.1666666666667,273.3333333333333,342.7083333333333,281.6666666666667L356.25,290"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="299.49957275390625" y="251.21644592285156" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">below</text>
+                                </g>
+                                <g id="FacePart<:aligned:Eye2->Eye1">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-397.5,-130L-395.4166666666667,-121.66666666666667C-393.3333333333333,-113.33333333333333,-389.1666666666667,-96.66666666666667,-387.0834248860677,-81.66666666666667C-385.00018310546875,-66.66666666666667,-385.0003662109375,-53.333333333333336,-385.0004577636719,-46.666666666666664L-385.00054931640625,-40">
+                                    </path>
+                                    <path
+                                        d="M-397.5,-130L-395.4166666666667,-121.66666666666667C-393.3333333333333,-113.33333333333333,-389.1666666666667,-96.66666666666667,-387.0833333333333,-80C-385,-63.333333333333336,-385,-46.666666666666664,-385,-38.333333333333336L-385,-30"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-387.1480712890625" y="-80.5099868774414" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">aligned</text>
+                                </g>
+                                <g id="FacePart<:aligned:Eye3->Eye0">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M240.625,-130L246.35416666666666,-121.66666666666667C252.08333333333334,-113.33333333333333,263.5416666666667,-96.66666666666667,269.2705942789714,-81.66666666666667C274.99952189127606,-66.66666666666667,274.99904378255206,-53.333333333333336,274.9988047281901,-46.666666666666664L274.9985656738281,-40">
+                                    </path>
+                                    <path
+                                        d="M240.625,-130L246.35416666666666,-121.66666666666667C252.08333333333334,-113.33333333333333,263.5416666666667,-96.66666666666667,269.2708333333333,-80C275,-63.333333333333336,275,-46.666666666666664,275,-38.333333333333336L275,-30"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="268.0301208496094" y="-83.38673400878906" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">aligned</text>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </div>
+    </div>
+    <script>
+        // Add zoom behavior
+        const zoom = d3.zoom()
+            .scaleExtent([0.1, 10]) // Set the zoom scale extent
+            .on('zoom', zoomed);
+
+        function zoomed(event) {
+            d3.select('.zoomable').attr('transform', event.transform);
+        }
+        const diagram = d3.select('#diagram');
+        diagram.call(zoom);
+
+
+        // Select all nodes and make them draggable
+        const nodes = d3.selectAll('.nodes g');
+
+        function getNodePositions() {
+            const positions = {};
+            nodes.each(function () {
+                const node = d3.select(this);
+                const transform = node.attr('transform');
+                const translate = transform.match(/translate\(([^, ]+)[, ]+([^)]+)\)/);
+                if (translate) {
+                    const x = parseFloat(translate[1]);
+                    const y = parseFloat(translate[2]);
+                    positions[node.attr('id')] = { x, y };
+                }
+            });
+            console.log(positions);
+            return positions;
+        }
+
+        // Store the initial positions of the nodes
+        const nodePositions = getNodePositions();
+
+        function getEdgeSourceAndTarget(edgeId) {
+            // First find the id of the last : character and get the substring after it
+            const byParts = edgeId.split(':');
+            let rel = byParts[byParts.length - 1];
+
+            const [sourceId, targetId] = rel.split('->');
+            return { sourceId, targetId };
+        }
+
+        function updatePath(path, startX, startY, endX, endY) {
+            const controlPoint1 = `${(startX + endX) / 2},${startY}`;
+            const controlPoint2 = `${(startX + endX) / 2},${endY}`;
+            const newD = `M${startX},${startY} C${controlPoint1},${controlPoint2},${endX},${endY}`;
+            path.attr('d', newD);
+        }
+
+        function getIntersectionPoint(node, targetNode) {
+            const dx = targetNode.x - node.x;
+            const dy = targetNode.y - node.y;
+            const absDx = Math.abs(dx);
+            const absDy = Math.abs(dy);
+
+            let x = node.x;
+            let y = node.y;
+
+            const halfWidth = 50;
+            const halfHeight = 30;
+
+            if (absDx > absDy) {
+                x += dx > 0 ? halfWidth : -halfWidth;
+                y += dy * (halfWidth / absDx);
+            } else {
+                x += dx * (halfHeight / absDy);
+                y += dy > 0 ? halfHeight : -halfHeight;
+            }
+
+            return { x, y };
+        }
+
+        function updateEdges(nodeId) {
+            const node = nodePositions[nodeId];
+            // Update edges where the node is the source
+            d3.selectAll(`g[id*=":${nodeId}->"]`).each(function () {
+                const edge = d3.select(this);
+                const edgeId = edge.attr('id');
+
+                const { sourceId, targetId } = getEdgeSourceAndTarget(edgeId);
+                //assert (sourceId === nodeId);
+
+                const targetNode = nodePositions[targetId];
+                const sourceIntersection = getIntersectionPoint(node, targetNode);
+                const targetIntersection = getIntersectionPoint(targetNode, node);
+                edge.select('path').each(function () {
+                    updatePath(d3.select(this), sourceIntersection.x, sourceIntersection.y, targetIntersection.x, targetIntersection.y);
+                });
+
+                // Update the position of the label
+                edge.select('text').attr('x', (sourceIntersection.x + targetIntersection.x) / 2)
+                    .attr('y', (sourceIntersection.y + targetIntersection.y) / 2);
+            });
+
+            // Update edges where the node is the target
+            d3.selectAll(`g[id*="->${nodeId}"]`).each(function () {
+                const edge = d3.select(this);
+                const edgeId = edge.attr('id');
+
+                const { sourceId, targetId } = getEdgeSourceAndTarget(edgeId);
+                //assert (targetId === nodeId);
+
+                const sourceNode = nodePositions[sourceId];
+                const sourceIntersection = getIntersectionPoint(sourceNode, node);
+                const targetIntersection = getIntersectionPoint(node, sourceNode);
+                edge.select('path').each(function () {
+                    updatePath(d3.select(this), sourceIntersection.x, sourceIntersection.y, targetIntersection.x, targetIntersection.y);
+                });
+
+                // Update the position of the label
+                edge.select('text').attr('x', (sourceIntersection.x + targetIntersection.x) / 2)
+                    .attr('y', (sourceIntersection.y + targetIntersection.y) / 2);
+            });
+        }
+
+        nodes
+            .call(d3.drag()
+                .on('start', dragStarted)
+                .on('drag', dragged)
+                .on('end', dragEnded));
+
+        function dragStarted(event, d) {
+            d3.select(this).raise().attr('stroke', 'black');
+        }
+
+        function dragged(event, d) {
+            const nodeId = d3.select(this).attr('id');
+            nodePositions[nodeId].x = event.x;
+            nodePositions[nodeId].y = event.y;
+            d3.select(this).attr('transform', `translate(${event.x}, ${event.y})`);
+            updateEdges(nodeId); // Update the edges during the drag event
+        }
+
+        function dragEnded(event, d) {
+            d3.select(this).attr('stroke', null);
+        }
+
+
+
+        /**** This bit ensures we zoom to fit ***/
+        const bbox = d3.select('.zoomable').node().getBBox();
+        const padding = 10; // Padding in pixels
+
+        const viewBox = [
+            bbox.x - padding,
+            bbox.y - padding,
+            bbox.width + 2 * padding,
+            bbox.height + 2 * padding
+        ].join(' ');
+
+
+        const topSvg = d3.select("#diagram");
+        topSvg.attr('viewBox', viewBox);
+        /*************************************/
+
+    </script>
+</body>
+
+</html>

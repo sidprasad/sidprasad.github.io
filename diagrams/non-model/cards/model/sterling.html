@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Zoomable Image</title>
+    <style>
+        #svg-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #zoomable-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .svg-border {
+            border: 2px solid black;
+        }
+    </style>
+    <!-- Include D3.js library -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+
+        <div class="container-fluid" id="svg-container">
+            <svg id="diagram" width="800" height="800" class="svg-border">
+                <g class="zoomable">
+
+                    <g transform="matrix(1,0,0,1,607,204)">
+                        <g id="">
+                            <defs>
+                                <marker id="arrow-10-[#333]" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="10"
+                                    markerHeight="10" markerUnits="userSpaceOnUse" orient="auto" fill="#333">
+                                    <path d="M 0 0 L 10 5 L 0 10 z"></path>
+                                </marker>
+                            </defs>
+                            <g class="nodes">
+                                <g id="Card0" transform="translate(-12.5 400)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(0, 148, 44); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Card0</text>
+                                </g>
+                                <g id="Card1" transform="translate(-47.5 240)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(0, 148, 44); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Card1</text>
+                                </g>
+                                <g id="Card2" transform="translate(-187.5 80)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(0, 148, 44); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Card2</text>
+                                </g>
+                                <g id="Card3" transform="translate(-187.5 -80)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(0, 148, 44); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Card3</text>
+                                </g>
+                                <g id="Card4" transform="translate(-187.5 -240)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(0, 148, 44); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Card4</text>
+                                </g>
+                                <g id="Player0" transform="translate(37.5 -400)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(118, 9, 251); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="-0.16999999999999998em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Player0</text><text
+                                        x="0" y="0" dy="0.8300000000000001em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">hand:
+                                        Card4</text>
+                                </g>
+                                <g id="Player1" transform="translate(12.5 -240)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(118, 9, 251); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="-0.16999999999999998em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Player1</text><text
+                                        x="0" y="0" dy="0.8300000000000001em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">hand:
+                                        Card3</text>
+                                </g>
+                                <g id="Player2" transform="translate(12.5 -81)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(118, 9, 251); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="-0.16999999999999998em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Player2</text><text
+                                        x="0" y="0" dy="0.8300000000000001em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">hand:
+                                        Card2</text>
+                                </g>
+                                <g id="Player3" transform="translate(12.5 80)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(118, 9, 251); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="-0.16999999999999998em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Player3</text><text
+                                        x="0" y="0" dy="0.8300000000000001em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">hand:
+                                        Card1</text>
+                                </g>
+                                <g id="Player4" transform="translate(152.5 240)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(118, 9, 251); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="-0.16999999999999998em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Player4</text><text
+                                        x="0" y="0" dy="0.8300000000000001em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">hand:
+                                        Card0</text>
+                                </g>
+                                <g id="Dealer0" transform="translate(187.5 400)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(242, 7, 7); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Dealer0</text>
+                                </g>
+                            </g>
+                            <g class="edges">
+                                <g id="Player<:left:Player0->Player1">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-5.624999999999959,-370L-17.604166666666632,-361.6666666666667C-29.583333333333304,-353.3333333333333,-53.54166666666666,-336.6666666666667,-57.3915147781372,-321.1072743733724C-61.24136288960775,-305.5478820800781,-44.98272577921549,-291.09576416015625,-36.85340722401937,-283.8697052001953L-28.724088668823242,-276.6436462402344">
+                                    </path>
+                                    <path
+                                        d="M-5.624999999999959,-370L-17.604166666666632,-361.6666666666667C-29.583333333333304,-353.3333333333333,-53.54166666666666,-336.6666666666667,-56.14583333333332,-320C-58.75000000000001,-303.3333333333333,-40.00000000000001,-286.6666666666667,-30.625000000000014,-278.3333333333333L-21.250000000000018,-270"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-54.95136260986328" y="-324.485107421875" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">left</text>
+                                </g>
+                                <g id="Player<:left:Player1->Player2">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M5.000000000000007,-210L2.9166666666666727,-201.66666666666666C0.833333333333338,-193.33333333333334,-3.333333333333331,-176.66666666666666,-3.7580416202545153,-161.78239949544272C-4.1827499071757,-146.89813232421875,-0.8654998143513998,-133.7962646484375,0.7931252320607504,-127.24533081054688L2.4517502784729004,-120.69439697265625">
+                                    </path>
+                                    <path
+                                        d="M5.000000000000007,-210L2.9166666666666727,-201.66666666666666C0.833333333333338,-193.33333333333334,-3.333333333333331,-176.66666666666666,-3.3491561181434606,-160.16666666666666C-3.3649789029535904,-143.66666666666666,0.7700421940928189,-127.33333333333333,2.837552742616024,-119.16666666666667L4.9050632911392285,-111"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-3.348181962966919" y="-160.5006561279297" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">left</text>
+                                </g>
+                                <g id="Player<:left:Player2->Player3">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M8.796296296296298,-51L7.746913580246915,-42.5C6.697530864197532,-34,4.598765432098766,-17,4.384405880798528,-1.8204727172851562C4.170046329498291,13.359054565429688,5.840092658996582,26.718109130859375,6.6751158237457275,33.39763641357422L7.510138988494873,40.07716369628906">
+                                    </path>
+                                    <path
+                                        d="M8.796296296296298,-51L7.746913580246915,-42.5C6.697530864197532,-34,4.598765432098766,-17,4.591049382716047,-0.16666666666666666C4.583333333333329,16.666666666666668,6.666666666666657,33.333333333333336,7.7083333333333215,41.666666666666664L8.749999999999986,50"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="4.591524124145508" y="-0.5001128315925598" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">left</text>
+                                </g>
+                                <g id="Player<:left:Player3->Player4">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M12.5,110L12.5,118.33333333333333C12.5,126.66666666666667,12.5,143.33333333333334,26.052927652994793,159.41119639078775C39.605855305989586,175.4890594482422,66.71171061197917,190.97811889648438,80.26463826497395,198.72264862060547L93.81756591796875,206.46717834472656">
+                                    </path>
+                                    <path
+                                        d="M12.5,110L12.5,118.33333333333333C12.5,126.66666666666667,12.5,143.33333333333334,27.5,160.23809523809524C42.5,177.14285714285714,72.5,194.2857142857143,87.5,202.8571428571429L102.5,211.42857142857144"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="41.12173843383789" y="172.845947265625" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">left</text>
+                                </g>
+                                <g id="Player<:left:Player4->Player0">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M148.75,210L147.70833333333334,201.66666666666666C146.66666666666666,193.33333333333334,144.58333333333334,176.66666666666666,143.54166666666666,155C142.5,133.33333333333334,142.5,106.66666666666667,142.5,80C142.5,53.333333333333336,142.5,26.666666666666668,142.5,0C142.5,-26.666666666666668,142.5,-53.333333333333336,142.5,-80C142.5,-106.66666666666667,142.5,-133.33333333333334,142.5,-160C142.5,-186.66666666666666,142.5,-213.33333333333334,142.5,-240C142.5,-266.6666666666667,142.5,-293.3333333333333,132.88821919759116,-313.98992919921875C123.2764383951823,-334.6465250651042,104.05287679036458,-349.2930501302083,94.44109598795573,-356.61631266276044L84.82931518554688,-363.9395751953125">
+                                    </path>
+                                    <path
+                                        d="M148.75,210L147.70833333333334,201.66666666666666C146.66666666666666,193.33333333333334,144.58333333333334,176.66666666666666,143.54166666666666,155C142.5,133.33333333333334,142.5,106.66666666666667,142.5,80C142.5,53.333333333333336,142.5,26.666666666666668,142.5,0C142.5,-26.666666666666668,142.5,-53.333333333333336,142.5,-80C142.5,-106.66666666666667,142.5,-133.33333333333334,142.5,-160C142.5,-186.66666666666666,142.5,-213.33333333333334,142.5,-240C142.5,-266.6666666666667,142.5,-293.3333333333333,131.5625,-315C120.625,-336.6666666666667,98.75,-353.3333333333333,87.8125,-361.6666666666667L76.875,-370"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text x="142.5"
+                                        y="-92.25167846679688" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">left</text>
+                                </g>
+                                <g id="Player<:right:Player0->Player4">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M69.37500000000001,-370L78.22916666666667,-361.6666666666667C87.08333333333333,-353.3333333333333,104.79166666666667,-336.6666666666667,113.64583333333333,-315C122.5,-293.3333333333333,122.5,-266.6666666666667,122.5,-240C122.5,-213.33333333333334,122.5,-186.66666666666666,122.5,-160C122.5,-133.33333333333334,122.5,-106.66666666666667,122.5,-80C122.5,-53.333333333333336,122.5,-26.666666666666668,122.5,0C122.5,26.666666666666668,122.5,53.333333333333336,122.5,80C122.5,106.66666666666667,122.5,133.33333333333334,125.03990681966145,153.43941497802734C127.57981363932292,173.54549662272134,132.65962727864584,187.09099324544272,135.19953409830728,193.86374155680338L137.73944091796875,200.63648986816406">
+                                    </path>
+                                    <path
+                                        d="M69.37500000000001,-370L78.22916666666667,-361.6666666666667C87.08333333333333,-353.3333333333333,104.79166666666667,-336.6666666666667,113.64583333333333,-315C122.5,-293.3333333333333,122.5,-266.6666666666667,122.5,-240C122.5,-213.33333333333334,122.5,-186.66666666666666,122.5,-160C122.5,-133.33333333333334,122.5,-106.66666666666667,122.5,-80C122.5,-53.333333333333336,122.5,-26.666666666666668,122.5,0C122.5,26.666666666666668,122.5,53.333333333333336,122.5,80C122.5,106.66666666666667,122.5,133.33333333333334,125.625,155C128.75,176.66666666666666,135,193.33333333333334,138.125,201.66666666666666L141.25,210"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text x="122.5"
+                                        y="-87.38430786132812" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">right</text>
+                                </g>
+                                <g id="Player<:right:Player1->Player0">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M29.374999999999986,-270L34.06249999999999,-278.3333333333333C38.74999999999999,-286.6666666666667,48.125,-303.3333333333333,51.133178075154625,-318.38304138183594C54.14135615030924,-333.43274943033856,50.78271230061849,-346.86549886067706,49.10339037577311,-353.5818735758464L47.424068450927734,-360.2982482910156">
+                                    </path>
+                                    <path
+                                        d="M29.374999999999986,-270L34.06249999999999,-278.3333333333333C38.74999999999999,-286.6666666666667,48.125,-303.3333333333333,50.729166666666664,-320C53.333333333333336,-336.6666666666667,49.166666666666664,-353.3333333333333,47.08333333333334,-361.6666666666667L45.00000000000001,-370"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="50.393001556396484" y="-318.0437927246094" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">right</text>
+                                </g>
+                                <g id="Player<:right:Player2->Player1">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M29.588607594936718,-111L34.240506329113934,-119.16666666666667C38.89240506329114,-127.33333333333333,48.196202531645575,-143.66666666666666,48.977686531936065,-158.7140324910482C49.75917053222656,-173.7613983154297,42.018341064453125,-187.52279663085938,38.147926330566406,-194.40349578857422L34.27751159667969,-201.28419494628906">
+                                    </path>
+                                    <path
+                                        d="M29.588607594936718,-111L34.240506329113934,-119.16666666666667C38.89240506329114,-127.33333333333333,48.196202531645575,-143.66666666666666,48.160601265822784,-160.16666666666666C48.125,-176.66666666666666,38.75,-193.33333333333334,34.0625,-201.66666666666666L29.375,-210"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="48.15848922729492" y="-160.50509643554688" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">right</text>
+                                </g>
+                                <g id="Player<:right:Player3->Player2">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M29.375,50L34.0625,41.666666666666664C38.75,33.333333333333336,48.125,16.666666666666668,48.899672190348305,1.2902685801188152C49.67434438069662,-14.086129506429037,41.84868876139323,-28.172259012858074,37.93586095174154,-35.21532376607259L34.023033142089844,-42.25838851928711">
+                                    </path>
+                                    <path
+                                        d="M29.375,50L34.0625,41.666666666666664C38.75,33.333333333333336,48.125,16.666666666666668,48.09027777777777,-0.16666666666666666C48.05555555555555,-17,38.61111111111111,-34,33.88888888888888,-42.5L29.166666666666657,-51"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="48.08829879760742" y="-0.5044680237770081" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">right</text>
+                                </g>
+                                <g id="Player<:right:Player4->Player3">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M156.25,210L157.29166666666666,201.66666666666666C158.33333333333334,193.33333333333334,160.41666666666666,176.66666666666666,146.2622553507487,160.22875849405924C132.10784403483072,143.7908503214518,101.71568806966145,127.58170064290364,86.51961008707683,119.47712580362956L71.32353210449219,111.37255096435547">
+                                    </path>
+                                    <path
+                                        d="M156.25,210L157.29166666666666,201.66666666666666C158.33333333333334,193.33333333333334,160.41666666666666,176.66666666666666,144.79166666666666,159.44444444444443C129.16666666666666,142.2222222222222,95.83333333333333,124.44444444444441,79.16666666666667,115.55555555555553L62.5,106.66666666666664"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="128.18626403808594" y="145.00303649902344" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">right</text>
+                                </g>
+                                <g id="Player<:holding:Player4->Dealer0">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M165.625,270L169.27083333333334,278.3333333333333C172.91666666666666,286.6666666666667,180.20833333333334,303.3333333333333,183.85401662190756,318.3333333333333C187.49969991048178,333.3333333333333,187.49939982096353,346.6666666666667,187.49924977620444,353.3333333333333L187.4990997314453,360">
+                                    </path>
+                                    <path
+                                        d="M165.625,270L169.27083333333334,278.3333333333333C172.91666666666666,286.6666666666667,180.20833333333334,303.3333333333333,183.85416666666666,320C187.5,336.6666666666667,187.5,353.3333333333333,187.5,361.6666666666667L187.5,370"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="183.51686096191406" y="318.5025939941406" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">holding</text>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </div>
+    </div>
+    <script>
+        // Add zoom behavior
+        const zoom = d3.zoom()
+            .scaleExtent([0.1, 10]) // Set the zoom scale extent
+            .on('zoom', zoomed);
+
+        function zoomed(event) {
+            d3.select('.zoomable').attr('transform', event.transform);
+        }
+        const diagram = d3.select('#diagram');
+        diagram.call(zoom);
+
+
+        // Select all nodes and make them draggable
+        const nodes = d3.selectAll('.nodes g');
+
+        function getNodePositions() {
+            const positions = {};
+            nodes.each(function () {
+                const node = d3.select(this);
+                const transform = node.attr('transform');
+                const translate = transform.match(/translate\(([^, ]+)[, ]+([^)]+)\)/);
+                if (translate) {
+                    const x = parseFloat(translate[1]);
+                    const y = parseFloat(translate[2]);
+                    positions[node.attr('id')] = { x, y };
+                }
+            });
+            console.log(positions);
+            return positions;
+        }
+
+        // Store the initial positions of the nodes
+        const nodePositions = getNodePositions();
+
+        function getEdgeSourceAndTarget(edgeId) {
+            // First find the id of the last : character and get the substring after it
+            const byParts = edgeId.split(':');
+            let rel = byParts[byParts.length - 1];
+
+            const [sourceId, targetId] = rel.split('->');
+            return { sourceId, targetId };
+        }
+
+        function updatePath(path, startX, startY, endX, endY) {
+            const controlPoint1 = `${(startX + endX) / 2},${startY}`;
+            const controlPoint2 = `${(startX + endX) / 2},${endY}`;
+            const newD = `M${startX},${startY} C${controlPoint1},${controlPoint2},${endX},${endY}`;
+            path.attr('d', newD);
+        }
+
+        function getIntersectionPoint(node, targetNode) {
+            const dx = targetNode.x - node.x;
+            const dy = targetNode.y - node.y;
+            const absDx = Math.abs(dx);
+            const absDy = Math.abs(dy);
+
+            let x = node.x;
+            let y = node.y;
+
+            const halfWidth = 50;
+            const halfHeight = 30;
+
+            if (absDx > absDy) {
+                x += dx > 0 ? halfWidth : -halfWidth;
+                y += dy * (halfWidth / absDx);
+            } else {
+                x += dx * (halfHeight / absDy);
+                y += dy > 0 ? halfHeight : -halfHeight;
+            }
+
+            return { x, y };
+        }
+
+        function updateEdges(nodeId) {
+            const node = nodePositions[nodeId];
+            // Update edges where the node is the source
+            d3.selectAll(`g[id*=":${nodeId}->"]`).each(function () {
+                const edge = d3.select(this);
+                const edgeId = edge.attr('id');
+
+                const { sourceId, targetId } = getEdgeSourceAndTarget(edgeId);
+                //assert (sourceId === nodeId);
+
+                const targetNode = nodePositions[targetId];
+                const sourceIntersection = getIntersectionPoint(node, targetNode);
+                const targetIntersection = getIntersectionPoint(targetNode, node);
+                edge.select('path').each(function () {
+                    updatePath(d3.select(this), sourceIntersection.x, sourceIntersection.y, targetIntersection.x, targetIntersection.y);
+                });
+
+                // Update the position of the label
+                edge.select('text').attr('x', (sourceIntersection.x + targetIntersection.x) / 2)
+                    .attr('y', (sourceIntersection.y + targetIntersection.y) / 2);
+            });
+
+            // Update edges where the node is the target
+            d3.selectAll(`g[id*="->${nodeId}"]`).each(function () {
+                const edge = d3.select(this);
+                const edgeId = edge.attr('id');
+
+                const { sourceId, targetId } = getEdgeSourceAndTarget(edgeId);
+                //assert (targetId === nodeId);
+
+                const sourceNode = nodePositions[sourceId];
+                const sourceIntersection = getIntersectionPoint(sourceNode, node);
+                const targetIntersection = getIntersectionPoint(node, sourceNode);
+                edge.select('path').each(function () {
+                    updatePath(d3.select(this), sourceIntersection.x, sourceIntersection.y, targetIntersection.x, targetIntersection.y);
+                });
+
+                // Update the position of the label
+                edge.select('text').attr('x', (sourceIntersection.x + targetIntersection.x) / 2)
+                    .attr('y', (sourceIntersection.y + targetIntersection.y) / 2);
+            });
+        }
+
+        nodes
+            .call(d3.drag()
+                .on('start', dragStarted)
+                .on('drag', dragged)
+                .on('end', dragEnded));
+
+        function dragStarted(event, d) {
+            d3.select(this).raise().attr('stroke', 'black');
+        }
+
+        function dragged(event, d) {
+            const nodeId = d3.select(this).attr('id');
+            nodePositions[nodeId].x = event.x;
+            nodePositions[nodeId].y = event.y;
+            d3.select(this).attr('transform', `translate(${event.x}, ${event.y})`);
+            updateEdges(nodeId); // Update the edges during the drag event
+        }
+
+        function dragEnded(event, d) {
+            d3.select(this).attr('stroke', null);
+        }
+
+
+
+        /**** This bit ensures we zoom to fit ***/
+        const bbox = d3.select('.zoomable').node().getBBox();
+        const padding = 10; // Padding in pixels
+
+        const viewBox = [
+            bbox.x - padding,
+            bbox.y - padding,
+            bbox.width + 2 * padding,
+            bbox.height + 2 * padding
+        ].join(' ');
+
+
+        const topSvg = d3.select("#diagram");
+        topSvg.attr('viewBox', viewBox);
+        /*************************************/
+
+    </script>
+</body>
+
+</html>

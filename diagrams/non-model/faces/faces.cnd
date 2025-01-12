@@ -1,0 +1,33 @@
+constraints:
+    - orientation: { field: below, directions: [below] }
+    - orientation : {field: aligned, directions : [directlyRight]}
+    - group : {field: parts, target: domain}
+directives:
+    - attribute : {field : color}
+    - flag: hideDisconnected
+    - icon:
+        sig: Eye
+        icon:
+            path:  "https://sidprasad.github.io/diagrams/non-model/faces/eye.jpg"
+            height: 70
+            width: 70
+    - icon:
+        sig : Nose
+        icon:
+            path: "https://sidprasad.github.io/diagrams/non-model/faces/nose.jpg"
+            height: 70
+            width: 100
+    - icon:
+        sig: Mouth
+        icon:
+            path: "https://sidprasad.github.io/diagrams/non-model/faces/mouth.png"
+            height: 40
+            width: 200
+    - color:
+        sig: Blue
+        value: "#0000ff"
+    - color:
+        sig: Brown
+        value: "#a52a2a"
+    
+

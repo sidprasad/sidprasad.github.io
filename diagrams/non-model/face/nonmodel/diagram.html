@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Cope and Drag</title>
+
+    <!-- Include Bootstrap CSS, JQuery, etc -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="../../css/diagramstyle.css">
+
+    <script src="https://marvl.infotech.monash.edu/webcola/extern/graphlib-dot.min.js"></script>
+    <!-- Full version -->
+    <script src="https://marvl.infotech.monash.edu/webcola/cola.min.js"></script>
+
+    <!-- Include d3 here -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <!-- Include your custom JavaScript file -->
+    <script src="../../js/renderer.js" defer></script>
+    <script>
+        window.addEventListener('load', function () {
+
+            var width = 800, height = 800;
+            var nodes = [{ "id": "Mouth", "color": "#00a1a7", "attributes": {}, "width": 100, "height": 60, "x": 92.5, "y": 990, "icon": null, "fixed": 0 }, { "id": "Nose", "color": "#17ae5f", "attributes": {}, "width": 100, "height": 60, "x": 92.5, "y": 830, "icon": null, "fixed": 0 }, { "id": "Chin", "color": "#aa8a08", "attributes": {}, "width": 100, "height": 60, "x": 92.5, "y": 1150, "icon": null, "fixed": 0 }, { "id": "Face", "color": "#d34c59", "attributes": {}, "width": 100, "height": 60, "x": 50, "y": 30, "icon": null, "fixed": 1 }, { "id": "EyeBrowA", "color": "#a34ca1", "attributes": {}, "width": 100, "height": 60, "x": 82.5, "y": 190, "icon": null, "fixed": 0 }, { "id": "EyeBrowB", "color": "#a34ca1", "attributes": {}, "width": 100, "height": 60, "x": 210, "y": 670, "icon": null, "fixed": 0 }, { "id": "Eye2", "color": "#e9407c", "attributes": {}, "width": 100, "height": 60, "x": 125, "y": 510, "icon": null, "fixed": 0 }, { "id": "Eye1", "color": "#e9407c", "attributes": {}, "width": 100, "height": 60, "x": 82.5, "y": 350, "icon": null, "fixed": 0 }, { "id": "Hair", "color": "#ff613c", "attributes": {}, "width": 100, "height": 60, "x": 210, "y": 30, "icon": null, "fixed": 0 }];
+            var edges = [{ "source": 4, "target": 7, "relName": "below", "id": "FacePart<:below:EyeBrowA->Eye1", "label": "below" }, { "source": 6, "target": 1, "relName": "below", "id": "FacePart<:below:Eye2->Nose", "label": "below" }, { "source": 1, "target": 0, "relName": "below", "id": "FacePart<:below:Nose->Mouth", "label": "below" }, { "source": 0, "target": 2, "relName": "below", "id": "FacePart<:below:Mouth->Chin", "label": "below" }, { "source": 8, "target": 4, "relName": "below", "id": "FacePart<:below:Hair->EyeBrowA", "label": "below" }, { "source": 8, "target": 5, "relName": "below", "id": "FacePart<:below:Hair->EyeBrowB", "label": "below" }, { "source": 5, "target": 1, "relName": "below", "id": "FacePart<:below:EyeBrowB->Nose", "label": "below" }, { "source": 7, "target": 1, "relName": "below", "id": "FacePart<:below:Eye1->Nose", "label": "below" }, { "source": 6, "target": 5, "relName": "aligned", "id": "FacePart<:aligned:Eye2->EyeBrowB", "label": "aligned" }, { "source": 7, "target": 6, "relName": "aligned", "id": "FacePart<:aligned:Eye1->Eye2", "label": "aligned" }, { "source": 3, "target": 4, "relName": "parts", "id": "_g_Face<:parts:Face->EyeBrowA", "label": "parts" }];
+            var constraints = [{ "axis": "y", "left": 4, "right": 7, "gap": 75 }, { "axis": "y", "left": 6, "right": 1, "gap": 75 }, { "axis": "y", "left": 1, "right": 0, "gap": 75 }, { "axis": "y", "left": 0, "right": 2, "gap": 75 }, { "axis": "y", "left": 8, "right": 4, "gap": 75 }, { "axis": "y", "left": 8, "right": 5, "gap": 75 }, { "axis": "y", "left": 5, "right": 1, "gap": 75 }, { "axis": "y", "left": 7, "right": 1, "gap": 75 }, { "axis": "x", "left": 6, "right": 5, "gap": 115 }, { "axis": "y", "left": 5, "right": 6, "gap": 0, "equality": true }, { "axis": "x", "left": 7, "right": 6, "gap": 115 }, { "axis": "y", "left": 6, "right": 7, "gap": 0, "equality": true }];
+            var groups = [{ "leaves": [4, 6, 1, 0, 8, 5, 2, 7], "padding": 10, "name": "Face:parts", "groups": [], "keyNode": 3, "id": "Face:parts" }];
+
+            if (width && height && nodes && edges && constraints && groups) {
+                setupLayout(d3, nodes, edges, constraints, groups, width, height);
+            } else {
+                console.error('Missing required data for layout');
+            }
+        });
+    </script>
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        const config = {
+            startOnLoad: true,
+            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'cardinal' },
+            securityLevel: 'loose',
+        };
+        mermaid.initialize(config);
+
+        window.stateclick = function (i) {
+            // First, set the instance number's value to i
+            document.getElementById('instancenumber').value = i;
+            // Now submit the form
+            document.getElementById('controlsForm').submit();
+
+        };
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid">
+
+
+        <!-- MiniMap Temporal -->
+
+
+
+        <div class="row">
+            <div id="svg-container" class="col">
+                <svg id="svg" width="800" height="800" class="svg-border">
+                    <defs>
+                        <marker id="end-arrow" markerWidth="25" markerHeight="10" refX="20" refY="5" orient="auto">
+                            <!-- Transparent block for padding before the arrowhead -->
+                            <rect x="0" y="0" width="30" height="10" fill="transparent" />
+                            <!-- Arrowhead polygon -->
+                            <polygon points="10 0, 25 5, 10 10" />
+                        </marker>
+                    </defs>
+                    <g class="zoomable">
+                        <!-- Your graph elements go here -->
+                    </g>
+                </svg>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+
+</html>

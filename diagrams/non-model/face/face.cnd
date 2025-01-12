@@ -1,0 +1,15 @@
+constraints:
+    - orientation: { field: below, directions: [below] }
+    - orientation : {field: aligned, directions : [directlyRight]}
+    - orientation : {field: color, directions: [below]}
+directives:
+    - projection : {sig : Face}
+    - flag: hideDisconnected
+    - color:
+        sig: Blue
+        value: "#0000ff"
+    - color:
+        sig: Brown
+        value: "#a52a2a"
+    
+

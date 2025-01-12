@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Zoomable Image</title>
+    <style>
+        #svg-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #zoomable-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .svg-border {
+            border: 2px solid black;
+        }
+    </style>
+    <!-- Include D3.js library -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+
+        <div class="container-fluid" id="svg-container">
+            <svg id="diagram" width="800" height="800" class="svg-border">
+                <g class="zoomable">
+                    <g
+                        transform="matrix(0.6515988706674123,0,0,0.6515988706674123,-7.878274037523076,46.25648832759654)">
+                        <g id="">
+                            <defs>
+                                <marker id="arrow-10-[#333]" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="10"
+                                    markerHeight="10" markerUnits="userSpaceOnUse" orient="auto" fill="#333">
+                                    <path d="M 0 0 L 10 5 L 0 10 z"></path>
+                                </marker>
+                            </defs>
+                            <g class="nodes">
+                                <g id="Cell0" transform="translate(297.5 240)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(4, 219, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="-0.16999999999999998em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Cell0</text><text
+                                        x="0" y="0" dy="0.8300000000000001em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">mark:
+                                        O</text>
+                                </g>
+                                <g id="Cell1" transform="translate(-97.5 240)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(4, 219, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="-0.16999999999999998em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Cell1</text><text
+                                        x="0" y="0" dy="0.8300000000000001em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">mark:
+                                        X</text>
+                                </g>
+                                <g id="Cell2" transform="translate(252.5 80)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(4, 219, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="-0.16999999999999998em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Cell2</text><text
+                                        x="0" y="0" dy="0.8300000000000001em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">mark:
+                                        O</text>
+                                </g>
+                                <g id="Cell3" transform="translate(-187.5 -80)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(4, 219, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="-0.16999999999999998em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Cell3</text><text
+                                        x="0" y="0" dy="0.8300000000000001em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">mark:
+                                        X</text>
+                                </g>
+                                <g id="Cell4" transform="translate(12.5 -240)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(4, 219, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="-0.16999999999999998em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Cell4</text><text
+                                        x="0" y="0" dy="0.8300000000000001em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">mark:
+                                        O</text>
+                                </g>
+                                <g id="Cell5" transform="translate(-197.5 -400)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(4, 219, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="-0.16999999999999998em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Cell5</text><text
+                                        x="0" y="0" dy="0.8300000000000001em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">mark:
+                                        X</text>
+                                </g>
+                                <g id="Cell6" transform="translate(-197.5 -240)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(4, 219, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Cell6</text>
+                                </g>
+                                <g id="Cell7" transform="translate(22.5 -80)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(4, 219, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="-0.16999999999999998em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Cell7</text><text
+                                        x="0" y="0" dy="0.8300000000000001em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">mark:
+                                        X</text>
+                                </g>
+                                <g id="Cell8" transform="translate(12.5 80)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(4, 219, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="-0.16999999999999998em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">Cell8</text><text
+                                        x="0" y="0" dy="0.8300000000000001em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">mark:
+                                        O</text>
+                                </g>
+                                <g id="X" transform="translate(-297.5 400)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(225, 0, 255); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">X</text>
+                                </g>
+                                <g id="O" transform="translate(142.5 400)">
+                                    <rect x="-50" y="-30" width="100" height="60"
+                                        style="stroke: rgb(240, 0, 0); stroke-width: 1; fill: rgb(255, 255, 255);">
+                                    </rect><text x="0" y="0" dy="0.33em"
+                                        style="font-family: monospace; font-size: 14px; text-anchor: middle; user-select: none; fill: rgb(51, 51, 51);">O</text>
+                                </g>
+                            </g>
+                            <g class="edges">
+                                <g id="Cell<:right:Cell2->Cell0">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M269.375,110L274.0625,118.33333333333333C278.75,126.66666666666667,288.125,143.33333333333334,292.8123016357422,158.33333333333334C297.4996032714844,173.33333333333334,297.49920654296875,186.66666666666666,297.49900817871094,193.33333333333334L297.4988098144531,200">
+                                    </path>
+                                    <path
+                                        d="M269.375,110L274.0625,118.33333333333333C278.75,126.66666666666667,288.125,143.33333333333334,292.8125,160C297.5,176.66666666666666,297.5,193.33333333333334,297.5,201.66666666666666L297.5,210"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="292.1122741699219" y="157.62109375" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">right</text>
+                                </g>
+                                <g id="Cell<:right:Cell4->Cell3">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-28.749999999999964,-210L-40.20833333333331,-201.66666666666666C-51.66666666666665,-193.33333333333334,-74.58333333333333,-176.66666666666666,-94.17098490397136,-161.10727310180664C-113.75863647460938,-145.54787953694662,-130.01727294921875,-131.09575907389322,-138.14659118652344,-123.86969884236653L-146.27590942382812,-116.64363861083984">
+                                    </path>
+                                    <path
+                                        d="M-28.749999999999964,-210L-40.20833333333331,-201.66666666666666C-51.66666666666665,-193.33333333333334,-74.58333333333333,-176.66666666666666,-95.41666666666667,-160C-116.25,-143.33333333333334,-135.00000000000003,-126.66666666666667,-144.37500000000003,-118.33333333333333L-153.75000000000003,-110"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-92.87408447265625" y="-162.02574157714844" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">right</text>
+                                </g>
+                                <g id="Cell<:right:Cell5->Cell6">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-197.5,-370L-197.5,-361.6666666666667C-197.5,-353.3333333333333,-197.5,-336.6666666666667,-197.5,-321.6666666666667C-197.5,-306.6666666666667,-197.5,-293.3333333333333,-197.5,-286.6666666666667L-197.5,-280">
+                                    </path>
+                                    <path
+                                        d="M-197.5,-370L-197.5,-361.6666666666667C-197.5,-353.3333333333333,-197.5,-336.6666666666667,-197.5,-320C-197.5,-303.3333333333333,-197.5,-286.6666666666667,-197.5,-278.3333333333333L-197.5,-270"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text x="-197.5"
+                                        y="-320" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">right</text>
+                                </g>
+                                <g id="Cell<:right:Cell7->Cell8">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M22.5,-50L22.5,-41.666666666666664C22.5,-33.333333333333336,22.5,-16.666666666666668,21.6650177637736,-1.6538009643554688C20.8300355275472,13.359064737955729,19.160071055094402,26.718129475911457,18.325088818868,33.39766184488932L17.4901065826416,40.07719421386719">
+                                    </path>
+                                    <path
+                                        d="M22.5,-50L22.5,-41.666666666666664C22.5,-33.333333333333336,22.5,-16.666666666666668,21.458333333333332,0C20.416666666666668,16.666666666666668,18.333333333333332,33.333333333333336,17.291666666666668,41.666666666666664L16.25,50"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="21.450176239013672" y="0.12951889634132385" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">right</text>
+                                </g>
+                                <g id="Cell<:down:Cell3->Cell8">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-153.75,-50L-144.375,-41.666666666666664C-135,-33.333333333333336,-116.25,-16.666666666666668,-96.76456006368001,-0.9802862803141276C-77.27912012736003,14.706094106038412,-57.058240254720054,29.412188212076824,-46.94780031840006,36.76523526509603L-36.83736038208008,44.118282318115234">
+                                    </path>
+                                    <path
+                                        d="M-153.75,-50L-144.375,-41.666666666666664C-135,-33.333333333333336,-116.25,-16.666666666666668,-95.41666666666667,0C-74.58333333333333,16.666666666666668,-51.666666666666664,33.333333333333336,-40.208333333333336,41.666666666666664L-28.75,50"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-92.87408447265625" y="2.025742292404175" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">down</text>
+                                </g>
+                                <g id="Cell<:down:Cell4->Cell7">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M16.250000000000007,-210L17.29166666666667,-201.66666666666666C18.33333333333334,-193.33333333333334,20.416666666666668,-176.66666666666666,21.45828978220622,-161.66666539510092C22.49991289774577,-146.66666412353516,22.499825795491535,-133.3333282470703,22.49978224436442,-126.66666030883789L22.499738693237305,-119.99999237060547">
+                                    </path>
+                                    <path
+                                        d="M16.250000000000007,-210L17.29166666666667,-201.66666666666666C18.33333333333334,-193.33333333333334,20.416666666666668,-176.66666666666666,21.458333333333332,-160C22.499999999999996,-143.33333333333334,22.49999999999999,-126.66666666666667,22.49999999999999,-118.33333333333333L22.499999999999986,-110"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="21.45011329650879" y="-160.1295166015625" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">down</text>
+                                </g>
+                                <g id="Cell<:down:Cell5->Cell4">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-147.5,-380.95238095238096L-120.83333333333333,-370.7936507936508C-94.16666666666667,-360.63492063492066,-40.833333333333336,-340.3174603174603,-14.167770703633627,-323.4920584058005C12.49779192606608,-306.6666564941406,12.495583852132162,-293.33331298828125,12.494479815165201,-286.66664123535156L12.493375778198242,-279.9999694824219">
+                                    </path>
+                                    <path
+                                        d="M-147.5,-380.95238095238096L-120.83333333333333,-370.7936507936508C-94.16666666666667,-360.63492063492066,-40.833333333333336,-340.3174603174603,-14.16666666666667,-321.8253968253968C12.499999999999995,-303.3333333333333,12.499999999999991,-286.6666666666667,12.499999999999988,-278.3333333333333L12.499999999999986,-270"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-51.12049865722656" y="-342.07550048828125" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">down</text>
+                                </g>
+                                <g id="Cell<:down:Cell6->Cell3">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-197.5,-210L-197.5,-201.66666666666666C-197.5,-193.33333333333334,-197.5,-176.66666666666666,-196.6650187174479,-161.65380223592123C-195.83003743489584,-146.64093780517578,-194.16007486979166,-133.28187561035156,-193.3250935872396,-126.60234451293945L-192.4901123046875,-119.92281341552734">
+                                    </path>
+                                    <path
+                                        d="M-197.5,-210L-197.5,-201.66666666666666C-197.5,-193.33333333333334,-197.5,-176.66666666666666,-196.45833333333334,-160C-195.41666666666666,-143.33333333333334,-193.33333333333334,-126.66666666666667,-192.29166666666666,-118.33333333333333L-191.25,-110"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-196.45010375976562" y="-159.8704833984375" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">down</text>
+                                </g>
+                                <g id="Cell<:down:Cell7->Cell2">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M72.5,-62.60869565217392L102.5,-52.17391304347827C132.5,-41.739130434782616,192.5,-20.869565217391308,222.49876149495444,-3.768112127331721C252.49752298990884,13.333340962727865,252.49504597981772,26.66668192545573,252.49380747477213,33.333352406819664L252.49256896972656,40.000022888183594">
+                                    </path>
+                                    <path
+                                        d="M72.5,-62.60869565217392L102.5,-52.17391304347827C132.5,-41.739130434782616,192.5,-20.869565217391308,222.5,-2.10144927536232C252.5,16.666666666666668,252.5,33.333333333333336,252.5,41.666666666666664L252.5,50"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="178.64598083496094" y="-23.698429107666016" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">down</text>
+                                </g>
+                                <g id="Cell<:down:Cell8->Cell1">
+                                    <path marker-end="url(#arrow-10-[#333])"
+                                        style="stroke: rgb(51, 51, 51); stroke-width: 1; fill: none;"
+                                        d="M-28.749999999999964,110L-40.20833333333331,118.33333333333333C-51.66666666666665,126.66666666666667,-74.58333333333333,143.33333333333334,-86.04119110107422,158.33333333333334C-97.49904886881511,173.33333333333334,-97.4980977376302,186.66666666666666,-97.49762217203777,193.33333333333334L-97.49714660644531,200">
+                                    </path>
+                                    <path
+                                        d="M-28.749999999999964,110L-40.20833333333331,118.33333333333333C-51.66666666666665,126.66666666666667,-74.58333333333333,143.33333333333334,-86.04166666666667,160C-97.5,176.66666666666666,-97.5,193.33333333333334,-97.5,201.66666666666666L-97.5,210"
+                                        stroke="transparent" stroke-width="11" fill="none"></path><text
+                                        x="-78.48918914794922" y="150.62559509277344" dy="0.33em"
+                                        style="font-family: monospace; font-size: 12px; text-anchor: middle; user-select: none;">down</text>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+
+                </g>
+            </svg>
+        </div>
+    </div>
+    <script>
+        // Add zoom behavior
+        const zoom = d3.zoom()
+            .scaleExtent([0.1, 10]) // Set the zoom scale extent
+            .on('zoom', zoomed);
+
+        function zoomed(event) {
+            d3.select('.zoomable').attr('transform', event.transform);
+        }
+        const diagram = d3.select('#diagram');
+        diagram.call(zoom);
+
+
+        // Select all nodes and make them draggable
+        const nodes = d3.selectAll('.nodes g');
+
+        function getNodePositions() {
+            const positions = {};
+            nodes.each(function () {
+                const node = d3.select(this);
+                const transform = node.attr('transform');
+                const translate = transform.match(/translate\(([^, ]+)[, ]+([^)]+)\)/);
+                if (translate) {
+                    const x = parseFloat(translate[1]);
+                    const y = parseFloat(translate[2]);
+                    positions[node.attr('id')] = { x, y };
+                }
+            });
+            console.log(positions);
+            return positions;
+        }
+
+        // Store the initial positions of the nodes
+        const nodePositions = getNodePositions();
+
+        function getEdgeSourceAndTarget(edgeId) {
+            // First find the id of the last : character and get the substring after it
+            const byParts = edgeId.split(':');
+            let rel = byParts[byParts.length - 1];
+
+            const [sourceId, targetId] = rel.split('->');
+            return { sourceId, targetId };
+        }
+
+        function updatePath(path, startX, startY, endX, endY) {
+            const controlPoint1 = `${(startX + endX) / 2},${startY}`;
+            const controlPoint2 = `${(startX + endX) / 2},${endY}`;
+            const newD = `M${startX},${startY} C${controlPoint1},${controlPoint2},${endX},${endY}`;
+            path.attr('d', newD);
+        }
+
+        function getIntersectionPoint(node, targetNode) {
+            const dx = targetNode.x - node.x;
+            const dy = targetNode.y - node.y;
+            const absDx = Math.abs(dx);
+            const absDy = Math.abs(dy);
+
+            let x = node.x;
+            let y = node.y;
+
+            const halfWidth = 50;
+            const halfHeight = 30;
+
+            if (absDx > absDy) {
+                x += dx > 0 ? halfWidth : -halfWidth;
+                y += dy * (halfWidth / absDx);
+            } else {
+                x += dx * (halfHeight / absDy);
+                y += dy > 0 ? halfHeight : -halfHeight;
+            }
+
+            return { x, y };
+        }
+
+        function updateEdges(nodeId) {
+            const node = nodePositions[nodeId];
+            // Update edges where the node is the source
+            d3.selectAll(`g[id*=":${nodeId}->"]`).each(function () {
+                const edge = d3.select(this);
+                const edgeId = edge.attr('id');
+
+                const { sourceId, targetId } = getEdgeSourceAndTarget(edgeId);
+                //assert (sourceId === nodeId);
+
+                const targetNode = nodePositions[targetId];
+                const sourceIntersection = getIntersectionPoint(node, targetNode);
+                const targetIntersection = getIntersectionPoint(targetNode, node);
+                edge.select('path').each(function () {
+                    updatePath(d3.select(this), sourceIntersection.x, sourceIntersection.y, targetIntersection.x, targetIntersection.y);
+                });
+
+                // Update the position of the label
+                edge.select('text').attr('x', (sourceIntersection.x + targetIntersection.x) / 2)
+                    .attr('y', (sourceIntersection.y + targetIntersection.y) / 2);
+            });
+
+            // Update edges where the node is the target
+            d3.selectAll(`g[id*="->${nodeId}"]`).each(function () {
+                const edge = d3.select(this);
+                const edgeId = edge.attr('id');
+
+                const { sourceId, targetId } = getEdgeSourceAndTarget(edgeId);
+                //assert (targetId === nodeId);
+
+                const sourceNode = nodePositions[sourceId];
+                const sourceIntersection = getIntersectionPoint(sourceNode, node);
+                const targetIntersection = getIntersectionPoint(node, sourceNode);
+                edge.select('path').each(function () {
+                    updatePath(d3.select(this), sourceIntersection.x, sourceIntersection.y, targetIntersection.x, targetIntersection.y);
+                });
+
+                // Update the position of the label
+                edge.select('text').attr('x', (sourceIntersection.x + targetIntersection.x) / 2)
+                    .attr('y', (sourceIntersection.y + targetIntersection.y) / 2);
+            });
+        }
+
+        nodes
+            .call(d3.drag()
+                .on('start', dragStarted)
+                .on('drag', dragged)
+                .on('end', dragEnded));
+
+        function dragStarted(event, d) {
+            d3.select(this).raise().attr('stroke', 'black');
+        }
+
+        function dragged(event, d) {
+            const nodeId = d3.select(this).attr('id');
+            nodePositions[nodeId].x = event.x;
+            nodePositions[nodeId].y = event.y;
+            d3.select(this).attr('transform', `translate(${event.x}, ${event.y})`);
+            updateEdges(nodeId); // Update the edges during the drag event
+        }
+
+        function dragEnded(event, d) {
+            d3.select(this).attr('stroke', null);
+        }
+
+
+
+        /**** This bit ensures we zoom to fit ***/
+        const bbox = d3.select('.zoomable').node().getBBox();
+        const padding = 10; // Padding in pixels
+
+        const viewBox = [
+            bbox.x - padding,
+            bbox.y - padding,
+            bbox.width + 2 * padding,
+            bbox.height + 2 * padding
+        ].join(' ');
+
+
+        const topSvg = d3.select("#diagram");
+        topSvg.attr('viewBox', viewBox);
+        /*************************************/
+
+    </script>
+</body>
+
+</html>

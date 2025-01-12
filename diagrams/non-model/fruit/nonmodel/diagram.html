@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Cope and Drag</title>
+
+    <!-- Include Bootstrap CSS, JQuery, etc -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="../../css/diagramstyle.css">
+
+    <script src="https://marvl.infotech.monash.edu/webcola/extern/graphlib-dot.min.js"></script>
+    <!-- Full version -->
+    <script src="https://marvl.infotech.monash.edu/webcola/cola.min.js"></script>
+
+    <!-- Include d3 here -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <!-- Include your custom JavaScript file -->
+    <script src="../../js/renderer.js" defer></script>
+    <script>
+        window.addEventListener('load', function () {
+
+            var width = 800, height = 800;
+            var nodes = [{ "id": "Pear0", "color": "green", "attributes": {}, "width": 100, "height": 60, "x": 1550, "y": 190, "icon": null, "fixed": 0 }, { "id": "Pear1", "color": "green", "attributes": {}, "width": 100, "height": 60, "x": 500, "y": 190, "icon": null, "fixed": 0 }, { "id": "Pear2", "color": "green", "attributes": {}, "width": 100, "height": 60, "x": 1700, "y": 190, "icon": null, "fixed": 0 }, { "id": "Pear3", "color": "green", "attributes": {}, "width": 100, "height": 60, "x": 1850, "y": 190, "icon": null, "fixed": 0 }, { "id": "Pear4", "color": "green", "attributes": {}, "width": 100, "height": 60, "x": 2000, "y": 190, "icon": null, "fixed": 0 }, { "id": "Pear5", "color": "green", "attributes": {}, "width": 100, "height": 60, "x": 2150, "y": 190, "icon": null, "fixed": 0 }, { "id": "Fresh0", "color": "#aa8a08", "attributes": {}, "width": 100, "height": 60, "x": 1400, "y": 350, "icon": null, "fixed": 0 }, { "id": "Apple0", "color": "red", "attributes": {}, "width": 100, "height": 60, "x": 50, "y": 190, "icon": null, "fixed": 0 }, { "id": "Rotten0", "color": "#a34ca1", "attributes": {}, "width": 100, "height": 60, "x": 275, "y": 350, "icon": null, "fixed": 0 }, { "id": "Basket0", "color": "grey", "attributes": {}, "width": 100, "height": 60, "x": 350, "y": 30, "icon": null, "fixed": 1 }, { "id": "Basket1", "color": "grey", "attributes": {}, "width": 100, "height": 60, "x": 200, "y": 30, "icon": null, "fixed": 1 }, { "id": "Basket2", "color": "grey", "attributes": {}, "width": 100, "height": 60, "x": 650, "y": 30, "icon": null, "fixed": 1 }, { "id": "Banana0", "color": "#FDDA0D", "attributes": {}, "width": 100, "height": 60, "x": 650, "y": 190, "icon": null, "fixed": 0 }, { "id": "Banana1", "color": "#FDDA0D", "attributes": {}, "width": 100, "height": 60, "x": 800, "y": 190, "icon": null, "fixed": 0 }, { "id": "Banana2", "color": "#FDDA0D", "attributes": {}, "width": 100, "height": 60, "x": 950, "y": 190, "icon": null, "fixed": 0 }, { "id": "Banana3", "color": "#FDDA0D", "attributes": {}, "width": 100, "height": 60, "x": 1100, "y": 190, "icon": null, "fixed": 0 }, { "id": "Banana4", "color": "#FDDA0D", "attributes": {}, "width": 100, "height": 60, "x": 1250, "y": 190, "icon": null, "fixed": 0 }, { "id": "Banana5", "color": "#FDDA0D", "attributes": {}, "width": 100, "height": 60, "x": 200, "y": 190, "icon": null, "fixed": 0 }, { "id": "Banana6", "color": "#FDDA0D", "attributes": {}, "width": 100, "height": 60, "x": 350, "y": 190, "icon": null, "fixed": 0 }, { "id": "Banana7", "color": "#FDDA0D", "attributes": {}, "width": 100, "height": 60, "x": 1400, "y": 190, "icon": null, "fixed": 0 }];
+            var edges = [{ "source": 7, "target": 8, "relName": "status", "id": "Fruit<:status:Apple0->Rotten0", "label": "status" }, { "source": 12, "target": 6, "relName": "status", "id": "Fruit<:status:Banana0->Fresh0", "label": "status" }, { "source": 13, "target": 6, "relName": "status", "id": "Fruit<:status:Banana1->Fresh0", "label": "status" }, { "source": 14, "target": 6, "relName": "status", "id": "Fruit<:status:Banana2->Fresh0", "label": "status" }, { "source": 15, "target": 6, "relName": "status", "id": "Fruit<:status:Banana3->Fresh0", "label": "status" }, { "source": 16, "target": 6, "relName": "status", "id": "Fruit<:status:Banana4->Fresh0", "label": "status" }, { "source": 17, "target": 8, "relName": "status", "id": "Fruit<:status:Banana5->Rotten0", "label": "status" }, { "source": 18, "target": 8, "relName": "status", "id": "Fruit<:status:Banana6->Rotten0", "label": "status" }, { "source": 19, "target": 6, "relName": "status", "id": "Fruit<:status:Banana7->Fresh0", "label": "status" }, { "source": 0, "target": 6, "relName": "status", "id": "Fruit<:status:Pear0->Fresh0", "label": "status" }, { "source": 1, "target": 8, "relName": "status", "id": "Fruit<:status:Pear1->Rotten0", "label": "status" }, { "source": 2, "target": 6, "relName": "status", "id": "Fruit<:status:Pear2->Fresh0", "label": "status" }, { "source": 3, "target": 6, "relName": "status", "id": "Fruit<:status:Pear3->Fresh0", "label": "status" }, { "source": 4, "target": 6, "relName": "status", "id": "Fruit<:status:Pear4->Fresh0", "label": "status" }, { "source": 5, "target": 6, "relName": "status", "id": "Fruit<:status:Pear5->Fresh0", "label": "status" }, { "source": 9, "target": 18, "relName": "fruit", "id": "_g_Basket<:fruit:Basket0->Banana6", "label": "fruit" }, { "source": 10, "target": 17, "relName": "fruit", "id": "_g_Basket<:fruit:Basket1->Banana5", "label": "fruit" }, { "source": 11, "target": 12, "relName": "fruit", "id": "_g_Basket<:fruit:Basket2->Banana0", "label": "fruit" }];
+            var constraints = [{ "axis": "x", "left": 7, "right": 8, "gap": 115 }, { "axis": "x", "left": 12, "right": 6, "gap": 115 }, { "axis": "x", "left": 13, "right": 6, "gap": 115 }, { "axis": "x", "left": 14, "right": 6, "gap": 115 }, { "axis": "x", "left": 15, "right": 6, "gap": 115 }, { "axis": "x", "left": 16, "right": 6, "gap": 115 }, { "axis": "x", "left": 17, "right": 8, "gap": 115 }, { "axis": "x", "left": 18, "right": 8, "gap": 115 }, { "axis": "x", "left": 19, "right": 6, "gap": 115 }, { "axis": "x", "left": 0, "right": 6, "gap": 115 }, { "axis": "x", "left": 1, "right": 8, "gap": 115 }, { "axis": "x", "left": 2, "right": 6, "gap": 115 }, { "axis": "x", "left": 3, "right": 6, "gap": 115 }, { "axis": "x", "left": 4, "right": 6, "gap": 115 }, { "axis": "x", "left": 5, "right": 6, "gap": 115 }];
+            var groups = [{ "leaves": [18, 19], "padding": 10, "name": "Basket0:fruit", "groups": [], "keyNode": 9, "id": "Basket0:fruit" }, { "leaves": [17, 1, 2, 3, 4, 5], "padding": 10, "name": "Basket1:fruit", "groups": [], "keyNode": 10, "id": "Basket1:fruit" }, { "leaves": [12, 13, 14, 15, 16, 0], "padding": 10, "name": "Basket2:fruit", "groups": [], "keyNode": 11, "id": "Basket2:fruit" }];
+
+            if (width && height && nodes && edges && constraints && groups) {
+                setupLayout(d3, nodes, edges, constraints, groups, width, height);
+            } else {
+                console.error('Missing required data for layout');
+            }
+        });
+    </script>
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        const config = {
+            startOnLoad: true,
+            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'cardinal' },
+            securityLevel: 'loose',
+        };
+        mermaid.initialize(config);
+
+        window.stateclick = function (i) {
+            // First, set the instance number's value to i
+            document.getElementById('instancenumber').value = i;
+            // Now submit the form
+            document.getElementById('controlsForm').submit();
+
+        };
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid">
+
+
+
+
+        <div class="row">
+            <div id="svg-container" class="col">
+                <svg id="svg" width="800" height="800" class="svg-border">
+                    <defs>
+                        <marker id="end-arrow" markerWidth="15" markerHeight="10" refX="12" refY="5" orient="auto">
+                            <polygon points="0 0, 15 5, 0 10" />
+                        </marker>
+                    </defs>
+                    <g class="zoomable">
+                        <!-- Your graph elements go here -->
+                    </g>
+                </svg>
+            </div>
+
+
+        </div>
+    </div>
+
+</body>
+
+
+</html>

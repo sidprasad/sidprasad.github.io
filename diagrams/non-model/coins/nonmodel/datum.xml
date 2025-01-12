@@ -1,0 +1,52 @@
+<alloy builddate="Wednesday, October 30th, 2024">
+<instance bitwidth="4" maxseq="-1" command="temporary-name_coinflip_1" filename="/no-name.rkt" version="3.5"  >
+
+<sig label="seq/Int" ID="0" parentID="1" builtin="yes">
+</sig>
+
+<sig label="Int" ID="1" parentID="2" builtin="yes">
+</sig>
+
+<sig label="univ" ID="2" builtin="yes">
+</sig>
+
+<field label="no-field-guard" ID="3" parentID="2">
+<types> <type ID="2"/><type ID="2"/> </types>
+</field>
+
+<sig label="Side" ID="4" parentID="2">
+
+</sig>
+
+<sig label="Tails" ID="5" parentID="4">
+<atom label="Tails0"/>
+</sig>
+
+<sig label="Coin" ID="6" parentID="2">
+<atom label="Coin0"/><atom label="Coin1"/><atom label="Coin2"/><atom label="Coin3"/><atom label="Coin4"/><atom label="Coin5"/><atom label="Coin6"/><atom label="Coin7"/><atom label="Coin8"/>
+</sig>
+
+<sig label="Heads" ID="7" parentID="4">
+<atom label="Heads0"/>
+</sig>
+
+<field label="showing" ID="8" parentID="6">
+<tuple><atom label="Coin0"/><atom label="Tails0"/></tuple>
+<tuple><atom label="Coin1"/><atom label="Tails0"/></tuple>
+<tuple><atom label="Coin2"/><atom label="Tails0"/></tuple>
+<tuple><atom label="Coin3"/><atom label="Tails0"/></tuple>
+<tuple><atom label="Coin4"/><atom label="Tails0"/></tuple>
+<tuple><atom label="Coin5"/><atom label="Heads0"/></tuple>
+<tuple><atom label="Coin6"/><atom label="Heads0"/></tuple>
+<tuple><atom label="Coin7"/><atom label="Heads0"/></tuple>
+<tuple><atom label="Coin8"/><atom label="Heads0"/></tuple>
+<tuple><atom label="Coin8"/><atom label="Tails0"/></tuple>
+<types><type ID="6"/><type ID="4"/></types>
+
+</field>
+
+
+</instance>
+
+<source filename="/no-name.rkt" content="// Couldn't open source file (/no-name.rkt) (info: (2 . posix)). Is the file saved?"></source>
+</alloy>
