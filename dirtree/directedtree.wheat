@@ -11,4 +11,9 @@ pred isDirectedTree {
 	lone Node or Node in edges.Node + Node.edges -- Either one node or every node has either a child or a parent.
 }
 
+pred isRoot[n : Node] {
+
+	no edges.n
+	lone Node or (Node in n.*edges)
+}
 
