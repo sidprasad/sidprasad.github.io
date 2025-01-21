@@ -6,6 +6,7 @@
     "twoNodeTree" : "A directed tree can have two nodes, one edge ... or some such hint.",
 	"injective_insufficient" : "All injective graphs are not directed trees ... or some such hint.",
 	"roottest" : "Some msg",
-	"notJustInjective" : "A directed tree should be injective... or some such hint."
-	
+	"notJustInjective" : "A directed tree should be injective... or some such hint.",
+	"some_edges" : "Does a directed tree need to have edges? What about a one node tree?",
+	"canBeTernary" : "A directed tree is not necessarily a binary tree. A node could have more than two children."
 }
