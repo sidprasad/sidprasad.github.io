@@ -1,6 +1,6 @@
 #lang forge
 
-option run_sterling off
+//option run_sterling off
 
 sig Node {
   key: one Int,     -- every node has some key 

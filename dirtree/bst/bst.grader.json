@@ -1,0 +1,15 @@
+{
+    "left_inv_test": "Can an element in a node's left sub-tree be greater than or equal to the node itself?",
+    "right_inv_test": "Can an element in a node's right sub-tree be less than or equal to the node itself?",
+    "empty_test": "If there are no nodes in a BST, it satisfies all the properties of a BST!",
+  
+    "tree_not_dag": "A tree is a kind of DAG, but what extra properties does a tree have that a general DAG might not?",
+    "max_one_parent": "In a tree, how many parents can a node have? What would happen if a node had more than one?",
+  
+    "no_cycles_test": "What happens if you follow parent-child relationships indefinitely in a BST? Should you ever return to a previously visited node?",
+    "connected": "How many roots can a tree have?",
+    "one_node_tree": "If a tree has only one node, what else needs to be true about the tree?",
+    "two_node_tree": "It is possible to have a BST with exactly 2 nodes! What are the possible configurations?",
+    "unbalanced_tree": "If a BST has N elements, does it always have to be balanced? What happens when elements are inserted in sorted order?"
+  }
+  
