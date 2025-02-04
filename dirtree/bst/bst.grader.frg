@@ -1,6 +1,3 @@
-#lang forge
-
-open "bst.frg"
 
 pred left_inv[n : Node] {
       some n.left => {
