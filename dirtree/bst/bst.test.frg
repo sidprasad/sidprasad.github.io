@@ -1,6 +1,6 @@
 #lang forge
 
-open "bst.wheat"
+open "bst.frg"
 //// Do not edit anything above this line ////
 
 
