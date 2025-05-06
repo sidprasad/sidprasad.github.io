@@ -1,7 +1,65 @@
 - title: "A Misconception-Driven Adaptive Tutor for Linear Temporal Logic"
   authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, Shriram Krishnamurthi"
-  venue: "CAV"
+  venue: "International Conference on Computer Aided Verification (CAV)"
   year: 2025
-  paper_url: "https://link.to/paper"
-  blog_url: "/2024/08/01/ltl-tutor.html"
-  code_url: "https://github.com/ltl-tutor"
+  status: "To appear"
+  paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/pgnk-ltl-tutor/
+  blog_url: https://blog.brownplt.org/2024/08/08/ltltutor.html
+  code_url: https://github.com/brownplt/LTLTutor
+
+- title: "Lightweight Diagramming for Lightweight Formal Methods: A Grounded Language Design"
+  authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, Shriram Krishnamurthi"
+  venue: "European Conference on Object-Oriented Programming (ECOOP)"
+  year: 2025
+  status: "To appear"
+  code_url: https://github.com/sidprasad/copeanddrag
+
+
+- title: "Misconceptions in Finite-Trace and Infinite-Trace Linear Temporal Logic"
+  authors: "Ben Greenman, Siddhartha Prasad, Antonio Di Stasio, Shufang Zhu, Giuseppe De Giacomo, Shriram Krishnamurthi, Marco Montali, Tim Nelson, Milda Zizyte"
+  venue: "International Symposium on Formal Methods (FM)"
+  year: 2024
+  blog_url: https://blog.brownplt.org/2024/07/07/little-tricky-logics-2.html
+  paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/gpdzdkmnz-miscon-finite-infinite-ltl/
+
+- title: "ContextQ: Generated Questions to Support Meaningful Parent-Child Dialogue While Co-Reading"
+  authors: "Griffin Dietz Smith, Siddhartha Prasad, Matt J Davidson, Leah Findlater, R Benjamin Shapiro"
+  venue: "ACM Interaction Design and Children Conference (IDC)"
+  year: 2024
+  paper_url: https://dl.acm.org/doi/10.1145/3628516.3655809
+
+
+- title: "Forge: A Tool and Language for Teaching Formal Methods"
+  authors: "Tim Nelson, Ben Greenman, Siddhartha Prasad, Tristan Dyer, Ethan Bove, Qianfan Chen, Charles Cutting, Thomas Del Vecchio, Sidney LeVine, Julianne Rudner, Ben Ryjikov, Alexander Varga, Andrew Wagner, Luke West, Shriram Krishnamurthi"
+  venue: "ACM SIGPLAN Conference on Object-Oriented Programming Systems, Languages & Applications (OOPSLA)"
+  year: 2024
+  blog_url: https://blog.brownplt.org/2024/04/21/forge.html
+  paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/ngp----forge/
+
+
+- title: "Conceptual Mutation Testing for Student Programming Misconceptions"
+  authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, Shriram Krishnamurthi"
+  venue: "The Art, Science, and Engineering of Programming"
+  year: 2024
+  blog_url: https://blog.brownplt.org/2023/10/31/conceptual-mutation-testing.html
+  paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/pgnk-conceptual-examplar/
+
+- title: "Generating Programs Trivially: Student Use of Large Language Models"
+  authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, Shriram Krishnamurthi"
+  venue: "ACM Conference on Global Computing Education (CompEd)"
+  year: 2023
+  blog_url: https://blog.brownplt.org/2023/09/19/generating-programs-trivially.html
+  paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/pgnk-gpt-use-of-llms/
+
+- title: "Making Hay from Wheats: A Classsourcing Method to Identify Misconceptions"
+  authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, John Wrenn, Shriram Krishnamurthi"
+  venue: "Koli Calling International Conference on Computing Education Research (Koli Calling)"
+  year: 2022
+  blog_url: https://blog.brownplt.org/2022/10/15/problem-misconceptions.html
+  paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/pgnwk-making-hay-wheats/
+
+- title: "Large-Scale Intelligent Microservices"
+  authors: "Mark Hamilton, Nick Gonsalves, Christina Lee, Anand Raman, Brendan Walsh, Siddhartha Prasad, Dalitso Banda, Lucy Zhang, Lei Zhang, William T Freeman"
+  venue: "IEEE International Conference on Big Data"
+  year: 2020
+  paper_url: https://arxiv.org/abs/2009.08044
