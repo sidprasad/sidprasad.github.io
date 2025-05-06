@@ -1,0 +1,7 @@
+- title: "A Misconception-Driven Adaptive Tutor for Linear Temporal Logic"
+  authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, Shriram Krishnamurthi"
+  venue: "CAV"
+  year: 2025
+  paper_url: "https://link.to/paper"
+  blog_url: "/2024/08/01/ltl-tutor.html"
+  code_url: "https://github.com/ltl-tutor"
