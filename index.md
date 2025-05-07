@@ -11,7 +11,8 @@ Previously, I was a software engineer at Microsoft, where I worked on the [XAML 
 
 ### Current Projects
 
-My current research follows two distinct strands:
+I'm currently actively pursuing a few projects:
 
 - [Diagramming by Refinement](/diagramming)
 - [Teaching Linear Temporal Logic](/lineartemporallogic)
+- [Conceptual Mutation Testing](/conceptualmutation)

@@ -6,6 +6,7 @@
   paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/pgnk-ltl-tutor/
   blog_url: https://blog.brownplt.org/2024/08/08/ltltutor.html
   code_url: https://github.com/brownplt/LTLTutor
+  project: 'ltl'
 
 - title: "Lightweight Diagramming for Lightweight Formal Methods: A Grounded Language Design"
   authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, Shriram Krishnamurthi"
@@ -13,6 +14,7 @@
   year: 2025
   status: "To appear in"
   code_url: https://github.com/sidprasad/copeanddrag
+  project: 'diagramming'
 
 
 - title: "Misconceptions in Finite-Trace and Infinite-Trace Linear Temporal Logic"
@@ -21,6 +23,7 @@
   year: 2024
   blog_url: https://blog.brownplt.org/2024/07/07/little-tricky-logics-2.html
   paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/gpdzdkmnz-miscon-finite-infinite-ltl/
+  project: 'ltl'
 
 - title: "ContextQ: Generated Questions to Support Meaningful Parent-Child Dialogue While Co-Reading"
   authors: "Griffin Dietz Smith, Siddhartha Prasad, Matt J Davidson, Leah Findlater, R Benjamin Shapiro"
@@ -35,6 +38,7 @@
   year: 2024
   blog_url: https://blog.brownplt.org/2024/04/21/forge.html
   paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/ngp----forge/
+  project: 'ltl'
 
 
 - title: "Conceptual Mutation Testing for Student Programming Misconceptions"
@@ -43,6 +47,7 @@
   year: 2024
   blog_url: https://blog.brownplt.org/2023/10/31/conceptual-mutation-testing.html
   paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/pgnk-conceptual-examplar/
+  project: 'conceptual-mutation-testing'
 
 - title: "Generating Programs Trivially: Student Use of Large Language Models"
   authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, Shriram Krishnamurthi"
@@ -57,6 +62,7 @@
   year: 2022
   blog_url: https://blog.brownplt.org/2022/10/15/problem-misconceptions.html
   paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/pgnwk-making-hay-wheats/
+  project: 'conceptual-mutation-testing'
 
 - title: "Large-Scale Intelligent Microservices"
   authors: "Mark Hamilton, Nick Gonsalves, Christina Lee, Anand Raman, Brendan Walsh, Siddhartha Prasad, Dalitso Banda, Lucy Zhang, Lei Zhang, William T Freeman"
