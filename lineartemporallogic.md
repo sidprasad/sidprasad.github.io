@@ -12,8 +12,8 @@ typical misconceptions that learners and even experts have. Our useful outcome h
 However, it isn’t always easy to add new materials to classes. Furthermore, your students make certain mistakes—now what? They need explanations of what went wrong, need additional drill problems, and need checks whether they got the additional ones right. It’s hard for an educator to make time for all that. And if one is an independent learner, they don’t even have access to such educators. Recognizing these practical difficulties, we have distilled our group’s expertise in LTL into an online tutor:
 
 <div style="text-align: center; margin: 20px 0;">
-  <a href="https://ltl-tutor.xyz" style="font-size: 1.5em; font-weight: bold; text-decoration: none; color: #007bff; border: 2px solid #007bff; padding: 10px 20px; border-radius: 8px; display: inline-block;">
-    Visit LTL Tutor
+  <a href="https://ltl-tutor.xyz" style="font-size: 1.2em; font-weight: bold; text-decoration: none; color: #007bff; padding: 10px 20px; border-radius: 8px; display: inline-block;">
+    ltl-tutor.xyz
   </a>
 </div>
 
