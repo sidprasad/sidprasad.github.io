@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7D4prO8KVyHl1yYkGmQIq8eg1F5D0Lkp4U" crossorigin="anonymous">
   </head>
   <body>
     {% include header.html %}
@@ -11,5 +13,8 @@
       {{ content }}
     </main>
     {% include footer.html %}
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-q20oA0FxB0pWfJVo3f9U2iIcnwKx6t9k4p4e2m9KAfF0xNKTpq6F0k0N6y7NfIoG" crossorigin="anonymous"></script>
   </body>
 </html>
