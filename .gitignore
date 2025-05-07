@@ -73,3 +73,5 @@ dist/
 # Temporary files
 *.tmp
 *.temp
+
+Gemfile.lock
