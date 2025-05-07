@@ -22,22 +22,45 @@ This tutor leverages the idea of **Conceptual Mutation Testing** ([something I h
 
 {% assign filtered_pubs = site.data.publications | where_exp: "pub", "pub.project == 'ltl' or pub.project == 'conceptual-mutation-testing'" %}
 
+<div class="publication-list">
 {% for pub in filtered_pubs %}
 
 
- {% if pub.paper_url %}
-#### [{{ pub.title }}]({{ pub.paper_url }})
-{% else %}
-#### {{ pub.title }}
-{% endif %}
+ <div class="publication-card">
+    <!-- Publication details -->
+    <div>
+        <h4 class="publication-title">
+            {% if pub.paper_url %}
+                <a href="{{ pub.paper_url }}">{{ pub.title }}</a>
+            {% else %}
+                {{ pub.title }}
+            {% endif %}
+        </h4>
+
+        <p class="publication-details">
+            <p class="publication-authors">
+                {{ pub.authors | replace: "Siddhartha Prasad", "<strong>Siddhartha Prasad</strong>" }}
+            </p>  
+            <p>
+                {% if pub.status %} <span class="publication-status">{{ pub.status }}</span> {% endif %}
+                <span class="publication-venue">{{ pub.venue }}</span> {{pub.year}}
+            </p>
+        </p>
+
+        <!-- Tags for blog and code -->
+        <div class="publication-tags">
+            {% if pub.blog_url %}
+                <a href="{{ pub.blog_url }}" class="publication-tag blog">Blog Post</a>
+            {% endif %}
+            {% if pub.code_url %}
+                <a href="{{ pub.code_url }}" class="publication-tag code">Code</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
 
 
-{% if pub.blog_url %}[[Blog Post]]({{ pub.blog_url }}){% endif %}
-{% if pub.code_url %}[[Code]]({{ pub.code_url }}){% endif %}
-
-*{{ pub.authors }}*  
-{% if pub.status %} {{ pub.status }} {% endif %} {{ pub.venue }}, _{{ pub.year }}_
 
 {% endfor %}
-
+</div>
 
