@@ -6,11 +6,11 @@ title: Diagramming by Refinement
 
 # Diagramming by Refinement
 
+Describe this please
 
+### Related Systems
 
-## Cope and Drag
-
-https://www.siddharthaprasad.com/copeanddrag/
+- [Cope and Drag](https://www.siddharthaprasad.com/copeanddrag/) diagramming by refinement for Forge.
 
 
 ### Related Publications
