@@ -19,9 +19,9 @@ title: Publications
 {% if pub.blog_url %}[[Blog Post]]({{ pub.blog_url }}){% endif %}
 {% if pub.code_url %}[[Code]]({{ pub.code_url }}){% endif %}
 
-*{{ pub.authors }}*  
-**{{ pub.venue }}**, _{{pub.year}}_
-{% if pub.status %} **{{ pub.status }}** {% endif %}
+*{{ pub.authors }}* 
+{% if pub.status %} **{{ pub.status }}** {% endif %}  **{{ pub.venue }}**, _{{pub.year}}_
+
 
 {% endfor %}
 {% endfor %}
