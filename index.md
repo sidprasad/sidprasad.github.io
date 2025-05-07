@@ -9,10 +9,40 @@ Previously, I was a software engineer at Microsoft, where I worked on the [XAML 
 
 ---
 
-### Current Projects
+## I'm actively and primarily working on
 
-I'm currently actively pursuing a few projects:
+<div style="display: flex; flex-direction: column; gap: 10px;">
 
-- [Diagramming by Refinement](/diagramming)
-- [Teaching Linear Temporal Logic](/lineartemporallogic)
-- [Conceptual Mutation Testing](/conceptualmutation)
+<div style="background-color: #f8f9fa; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
+  <a href="/diagramming" style="text-decoration: none; color: #007bff; font-weight: bold;">Diagramming by Refinement</a>
+  <p style="margin: 5px 0 0; font-size: 0.9em; color: #555;">Lightweight, constraint based systems for diagramming.</p>
+</div>
+
+<div style="background-color: #f8f9fa; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
+  <a href="/lineartemporallogic" style="text-decoration: none; color: #007bff; font-weight: bold;">Teaching Linear Temporal Logic</a>
+  <p style="margin: 5px 0 0; font-size: 0.9em; color: #555;">Understanding and operationalizing issues with linear temporal languages.</p>
+</div>
+
+
+</div>
+
+---
+
+## I'm also contributing to
+
+<div style="display: flex; flex-direction: column; gap: 10px;">
+
+<div style="background-color: #f8f9fa; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
+  <a href="https://forge-fm.org" style="text-decoration: none; color: #007bff; font-weight: bold;">Forge</a>
+  <p style="margin: 5px 0 0; font-size: 0.9em; color: #555;">A formal methods language for lightweight modeling and analysis.</p>
+</div>
+
+
+<div style="background-color: #f8f9fa; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
+  <a href="https://blog.brownplt.org/2024/01/01/examplar.html" style="text-decoration: none; color: #007bff; font-weight: bold;">Examplar</a>
+  <p style="margin: 5px 0 0; font-size: 0.9em; color: #555;">Executable examples for probem understanding.</p>
+</div>
+
+</div>
+
+
