@@ -3,7 +3,7 @@ email: siddharthaDOTaDOTprasad@gmail.com
 description: >-
   Siddhartha Prasad's personal website.
 baseurl: "" # Leave blank for user/organization GitHub Pages
-url: "sidprasad.github.io" # Use your custom domain
+url: "www.siddharthaprasad.com" # Use your custom domain
 
 markdown: kramdown
 theme: minima
