@@ -34,7 +34,7 @@ title: Publications
             </p>  
             <p>
             {% if pub.status %} <span class="publication-status">{{ pub.status }}</span> {% endif %}
-            <span class="publication-venue">{{ pub.venue }}</span>
+            <span class="publication-venue">{{ pub.venue }}</span> {{pub.year}}
             </p>
           </p>
 

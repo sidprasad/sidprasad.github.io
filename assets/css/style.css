@@ -20,7 +20,7 @@ nav a {
   gap: 20px;
 }
 
-/* Year section */
+/* Container for each year section */
 .publication-year-section {
   display: flex;
   align-items: flex-start;
@@ -37,7 +37,9 @@ nav a {
   width: 80px;
   text-align: center;
   position: sticky;
-  top: 10px; /* Adjust based on your layout */
+  top: 0; /* Stick to the top of the viewport */
+  background-color: #f9f9f9; /* Optional: Add background to avoid overlap */
+  z-index: 10; /* Ensure it stays above other content */
 }
 
 /* List of publications for the year */
