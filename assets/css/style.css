@@ -20,25 +20,40 @@ nav a {
   gap: 20px;
 }
 
-/* Individual publication card */
-.publication-card {
+/* Year section */
+.publication-year-section {
   display: flex;
   align-items: flex-start;
   gap: 20px;
+  position: relative;
+}
+
+/* Sticky year on the left */
+.publication-year-sticky {
+  flex-shrink: 0;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #555;
+  width: 80px;
+  text-align: center;
+  position: sticky;
+  top: 10px; /* Adjust based on your layout */
+}
+
+/* List of publications for the year */
+.publication-list {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Individual publication card */
+.publication-card {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 10px;
   background-color: #f9f9f9;
-}
-
-/* Year on the left */
-.publication-year {
-  flex-shrink: 0;
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #555;
-  width: 60px;
-  text-align: center;
 }
 
 /* Title link */
@@ -52,6 +67,22 @@ nav a {
   margin: 5px 0;
   font-size: 0.9em;
   color: #555;
+}
+
+/* Authors and status */
+.publication-authors {
+  font-style: italic;
+  color: #555; /* Muted text for authors */
+}
+
+.publication-status {
+  color: #555; /* Muted text for status */
+}
+
+/* Venue styling */
+.publication-venue {
+  font-weight: bold;
+  color: #333; /* Make the venue text stand out */
 }
 
 /* Tags for blog and code */
