@@ -3,17 +3,19 @@ layout: default
 title: Linear Temporal Logic
 ---
 
+# Misconceptions in Linear Temporal Logic
+
 I have been part of a a multi-year project to improve education in Linear Temporal Logic (LTL).
 In particular, this has involved building a detailed understanding of 
 typical misconceptions that learners and even experts have. Our useful outcome has been a [set of instruments](https://cs.brown.edu/~sk/Publications/Papers/Published/gpdzdkmnz-miscon-finite-infinite-ltl/) (think “quizzes”) that instructors can deploy in their classes to understand how well their students understand the logic and what weaknesses they have.
 
 However, it isn’t always easy to add new materials to classes. Furthermore, your students make certain mistakes—now what? They need explanations of what went wrong, need additional drill problems, and need checks whether they got the additional ones right. It’s hard for an educator to make time for all that. And if one is an independent learner, they don’t even have access to such educators. Recognizing these practical difficulties, we have distilled our group’s expertise in LTL into an online tutor:
 
----
-
-https://ltl-tutor.xyz
-
----
+<div style="text-align: center; margin: 20px 0;">
+  <a href="https://ltl-tutor.xyz" style="font-size: 1.5em; font-weight: bold; text-decoration: none; color: #007bff; border: 2px solid #007bff; padding: 10px 20px; border-radius: 8px; display: inline-block;">
+    Visit LTL Tutor
+  </a>
+</div>
 
 This tutor leverages the idea of **Conceptual Mutation Testing** ([something I have explored in a programming context](https://cs.brown.edu/~sk/Publications/Papers/Published/pgnk-conceptual-examplar/)) to generate questions by mutating LTL formulae modulo our understanding of LTL misconceptions.
 

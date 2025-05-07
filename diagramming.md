@@ -6,7 +6,7 @@ title: Diagramming by Refinement
 
 # Diagramming by Refinement
 
-Describe this please
+*I will be a very happy camper once I can describe this well.**
 
 ### Related Systems
 
