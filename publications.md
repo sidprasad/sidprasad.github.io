@@ -3,44 +3,40 @@ layout: default
 title: Publications
 ---
 
-<div style="display: flex; flex-direction: column; gap: 20px;">
+<div class="publications-container">
 
 {% assign grouped_pubs = site.data.publications | group_by: "year" | sort: "name" | reverse %}
 
 {% for group in grouped_pubs %}
   {% for pub in group.items %}
-  <div style="display: flex; align-items: flex-start; gap: 20px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; background-color: #f9f9f9;">
+  <div class="publication-card">
     <!-- Year on the left -->
-    <div style="flex-shrink: 0; font-size: 1.2em; font-weight: bold; color: #555; width: 60px; text-align: center;">
+    <div class="publication-year">
       {{ pub.year }}
     </div>
 
     <!-- Publication details -->
     <div>
-      <h4 style="margin: 0;">
+      <h4 class="publication-title">
         {% if pub.paper_url %}
-        <a href="{{ pub.paper_url }}" style="text-decoration: none; color: #007bff;">{{ pub.title }}</a>
+        <a href="{{ pub.paper_url }}">{{ pub.title }}</a>
         {% else %}
         {{ pub.title }}
         {% endif %}
       </h4>
 
-      <p style="margin: 5px 0; font-size: 0.9em; color: #555;">
+      <p class="publication-details">
         *{{ pub.authors }}*  
         {% if pub.status %} {{ pub.status }} {% endif %} {{ pub.venue }}
       </p>
 
       <!-- Tags for blog and code -->
-      <div style="margin-top: 5px;">
+      <div class="publication-tags">
         {% if pub.blog_url %}
-        <span style="display: inline-block; background-color: #d1e7dd; color: #0f5132; padding: 5px 10px; border-radius: 12px; margin-right: 10px;">
-          <a href="{{ pub.blog_url }}" style="text-decoration: none; color: inherit;">Blog Post</a>
-        </span>
+        <a href="{{ pub.blog_url }}" class="publication-tag blog">Blog Post</a>
         {% endif %}
         {% if pub.code_url %}
-        <span style="display: inline-block; background-color: #cfe2ff; color: #084298; padding: 5px 10px; border-radius: 12px;">
-          <a href="{{ pub.code_url }}" style="text-decoration: none; color: inherit;">Code</a>
-        </span>
+        <a href="{{ pub.code_url }}" class="publication-tag code">Code</a>
         {% endif %}
       </div>
     </div>

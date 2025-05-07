@@ -12,3 +12,68 @@ header, footer {
 nav a {
   margin: 0 10px;
 }
+
+/* Container for all publications */
+.publications-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Individual publication card */
+.publication-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+/* Year on the left */
+.publication-year {
+  flex-shrink: 0;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #555;
+  width: 60px;
+  text-align: center;
+}
+
+/* Title link */
+.publication-title a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+/* Authors and venue */
+.publication-details {
+  margin: 5px 0;
+  font-size: 0.9em;
+  color: #555;
+}
+
+/* Tags for blog and code */
+.publication-tags {
+  margin-top: 5px;
+}
+
+.publication-tag {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 12px;
+  margin-right: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.publication-tag.blog {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+.publication-tag.code {
+  background-color: #cfe2ff;
+  color: #084298;
+}
