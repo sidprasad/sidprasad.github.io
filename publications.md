@@ -20,7 +20,7 @@ title: Publications
 {% if pub.code_url %}[[Code]]({{ pub.code_url }}){% endif %}
 
 *{{ pub.authors }}* 
-{% if pub.status %} **{{ pub.status }}** {% endif %}  **{{ pub.venue }}**, _{{pub.year}}_
+{% if pub.status %} {{ pub.status }} {% endif %}  **{{ pub.venue }}**, _{{pub.year}}_
 
 
 {% endfor %}
