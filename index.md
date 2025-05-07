@@ -10,7 +10,7 @@ I am a PhD student in Computer Science at Brown University, advised by [Shriram 
 
 Previously, I was a software engineer at Microsoft, where I worked on the [XAML language](https://en.wikipedia.org/wiki/Extensible_Application_Markup_Language) (2015/2016-2018), and then [Azure's AI services](https://azure.microsoft.com/en-us/products/ai-services) (2018-2021). My research interests are informed by my time as an engineer. I have written code that doesn't do what I want it to, and I want to spare everyone else the indignity.
 
----
+
 
 ## I'm primarily working on
 
@@ -29,7 +29,6 @@ Previously, I was a software engineer at Microsoft, where I worked on the [XAML 
 
 </div>
 
----
 
 ## I'm also contributing to
 

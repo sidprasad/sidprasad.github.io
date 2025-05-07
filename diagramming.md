@@ -6,14 +6,11 @@ title: Diagramming by Refinement
 
 # Diagramming by Refinement
 
-*I will be a very happy camper once I can describe this well.**
-
-### Related Systems
-
-- [Cope and Drag](https://www.siddharthaprasad.com/copeanddrag/) diagramming by refinement for Forge.
+*I will be a very happy camper once I can describe this well.*
+For now, check out [Cope and Drag](https://www.siddharthaprasad.com/copeanddrag/), a system for diagramming by refinement for Forge.
 
 
-### Related Publications
+## Related Publications
 
 {% assign filtered_pubs = site.data.publications | where_exp: "pub", "pub.project == 'diagramming'" %}
 

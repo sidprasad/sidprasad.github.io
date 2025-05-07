@@ -20,7 +20,7 @@ However, it isn’t always easy to add new materials to classes. Furthermore, yo
 This tutor leverages the idea of **Conceptual Mutation Testing** ([something I have explored in a programming context](https://cs.brown.edu/~sk/Publications/Papers/Published/pgnk-conceptual-examplar/)) to generate questions by mutating LTL formulae modulo our understanding of LTL misconceptions.
 
 
-### Related Publications
+## Related Publications
 
 {% assign filtered_pubs = site.data.publications | where_exp: "pub", "pub.project == 'ltl' or pub.project == 'conceptual-mutation-testing'" %}
 
