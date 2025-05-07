@@ -6,7 +6,7 @@ title: Diagramming by Refinement
 
 # Diagramming by Refinement
 
-*I will be a very happy camper once I can describe this well.*
+The high level idea here is that I want to bring the benefits of formal methods to diagramming. *I will be a very happy camper once I can describe this well.*
 For now, check out [Cope and Drag](https://www.siddharthaprasad.com/copeanddrag/), a system for diagramming by refinement for Forge.
 
 
