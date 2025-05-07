@@ -10,10 +10,10 @@ title: Publications
 ### {{ group.name }} <!-- Year as a header -->
 
 {% for pub in group.items %}
-#### {% if pub.paper_url %}
-[{{ pub.title }}]({{ pub.paper_url }})
+{% if pub.paper_url %}
+####  [{{ pub.title }}]({{ pub.paper_url }})
 {% else %}
-{{ pub.title }}
+####  {{ pub.title }}
 {% endif %}
 
 {% if pub.blog_url %}[[Blog Post]]({{ pub.blog_url }}){% endif %}
