@@ -1,10 +1,18 @@
+/* Use Cardo for the entire site */
 body {
-  font-family: sans-serif;
+  font-family: 'Cardo', serif;
   max-width: 800px;
   margin: auto;
   padding: 2rem;
   background: #f9f9f9;
 }
+
+/* Use bold Cardo for headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cardo', serif;
+  font-weight: 700;
+}
+
 header, footer {
   text-align: center;
   margin-bottom: 1rem;
@@ -58,8 +66,10 @@ nav a {
   background-color: #f9f9f9;
 }
 
-/* Title link */
+/* Optional: Adjust publication titles for better readability */
 .publication-title a {
+  font-family: 'Cardo', serif;
+  font-weight: 700;
   text-decoration: none;
   color: #007bff;
 }
@@ -109,4 +119,39 @@ nav a {
 .publication-tag.code {
   background-color: #cfe2ff;
   color: #084298;
+}
+
+/* Project list container */
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between project cards */
+}
+
+/* Individual project card */
+.project-card {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Project link (title) */
+.project-link {
+  text-decoration: none;
+  color: #4a4a4a; /* Neutral dark gray for the link */
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.project-link:hover {
+  color: darkblue; /* Change color on hover */
+}
+
+/* Project description */
+.project-description {
+  margin: 5px 0 0;
+  font-size: 0.9em;
+  color: #555;
 }
