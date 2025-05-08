@@ -9,7 +9,7 @@ Previously, I was a software engineer at Microsoft, where I worked on the [XAML 
 
 ---
 
-## I'm primarily working on
+### I'm primarily working on
 
 <div class="project-list">
 
@@ -25,9 +25,8 @@ Previously, I was a software engineer at Microsoft, where I worked on the [XAML 
 
 </div>
 
----
 
-## I'm also contributing to
+### I'm also contributing to
 
 <div class="project-list">
 
