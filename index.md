@@ -22,8 +22,8 @@ Previously, I was a software engineer at Microsoft, where I worked on the [XAML 
 </div>
 
 <div style="background-color: #f8f9fa; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
-  <a href="/lineartemporallogic" style="text-decoration: none; color: #007bff; font-weight: bold;">Misconceptions in Linear Temporal Logic</a>
-  <p style="margin: 5px 0 0; font-size: 0.9em; color: #555;">Undersdtanding, identifying, and addressing Linear Temporal Logic misconceptions.</p>
+  <a href="/lineartemporallogic" style="text-decoration: none; color: #007bff; font-weight: bold;">Linear Temporal Logic</a>
+  <p style="margin: 5px 0 0; font-size: 0.9em; color: #555;">Understanding, identifying, and addressing Linear Temporal Logic misconceptions.</p>
 </div>
 
 

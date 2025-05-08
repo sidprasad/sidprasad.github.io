@@ -56,6 +56,8 @@
   year: 2023
   blog_url: https://blog.brownplt.org/2023/09/19/generating-programs-trivially.html
   paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/pgnk-gpt-use-of-llms/
+  code_url: https://github.com/sidprasad/gpt-3-vscode
+  project: 'forge'
 
 - title: "Making Hay from Wheats: A Classsourcing Method to Identify Misconceptions"
   authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, John Wrenn, Shriram Krishnamurthi"

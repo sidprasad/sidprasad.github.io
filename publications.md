@@ -27,6 +27,15 @@ title: Publications
             {{ pub.title }}
             {% endif %}
           </h4>
+          <!-- Tags for blog and code -->
+          <div class="publication-tags">
+            {% if pub.blog_url %}
+            <a href="{{ pub.blog_url }}" class="publication-tag blog">Blog Post</a>
+            {% endif %}
+            {% if pub.code_url %}
+            <a href="{{ pub.code_url }}" class="publication-tag code">Code</a>
+            {% endif %}
+          </div>
 
           <p class="publication-details">
             <p class="publication-authors">
@@ -38,15 +47,7 @@ title: Publications
             </p>
           </p>
 
-          <!-- Tags for blog and code -->
-          <div class="publication-tags">
-            {% if pub.blog_url %}
-            <a href="{{ pub.blog_url }}" class="publication-tag blog">Blog Post</a>
-            {% endif %}
-            {% if pub.code_url %}
-            <a href="{{ pub.code_url }}" class="publication-tag code">Code</a>
-            {% endif %}
-          </div>
+
         </div>
       </div>
       {% endfor %}
