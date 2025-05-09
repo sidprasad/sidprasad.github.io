@@ -11,7 +11,7 @@ title: Diagramming by Refinement
 
 
 I am very interested in cognitive science literature on diagramming, especially
-when it comes to diagrams as tools for [theorizing](https://www.activityanalysis.net/method-diagramming-as-theorizing/), exploration, debugging, and presentation.
+when it comes to diagrams as tools for [theorizing](https://www.activityanalysis.net/method-diagramming-as-theorizing/), [exploration](https://onlinelibrary.wiley.com/doi/epdf/10.1111/j.1551-6708.1987.tb00863.x), debugging, and communication.
 
 At a high level, this project introduces a set of core **spatial** operations that can be combined to refine default system output into *useful* (if not pretty) diagrams. I believe that this core ethos broadly applies across various contexts, including:
 
