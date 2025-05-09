@@ -15,7 +15,7 @@ Previously, I was a software engineer at Microsoft, where I worked on the [XAML 
 
   <div class="project-card">
     <a href="/diagramming" class="project-link">Diagramming by Refinement</a>
-    <p class="project-description">Bringing lightweight formal methods to diagramming.</p>
+    <p class="project-description">Bringing lightweight formal methods and spatial reasoning to diagramming.</p>
   </div>
 
   <div class="project-card">
