@@ -4,10 +4,7 @@ title: Diagramming by Refinement
 ---
 
 
-# Diagramming by Refinement
-
-
-
+# Diagramming by Spatial Refinement
 
 I am very interested in **diagrams**, especially
 when it comes to how they enable [thinking](https://www.researchgate.net/publication/232083479_Thinking_with_Sketches), [theorizing](https://www.activityanalysis.net/method-diagramming-as-theorizing/), [exploration](https://onlinelibrary.wiley.com/doi/epdf/10.1111/j.1551-6708.1987.tb00863.x),  and communication. 
