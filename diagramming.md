@@ -15,7 +15,7 @@ The most important part of a diagram deals with how it is spatially laid out,
 not finer details of aesthetic rendering. This project involves identifying, exploring, and implementing a set of core **spatial** operations that can be combined to refine default system output into *useful* (not pretty) diagrams. I believe that this core ethos broadly applies across various contexts, including:
 
 
-**Lightweight Formal Methods** : The [Cope and Drag](https://www.siddharthaprasad.com/copeanddrag/) allows users to refine [Forge](https://forge-fm.org/) output into domain specific diagrams.
+**Lightweight Formal Methods** : [Cope and Drag](https://www.siddharthaprasad.com/copeanddrag/) allows users to refine [Forge](https://forge-fm.org/) output into domain specific diagrams.
 
 
 ## Related Publications
