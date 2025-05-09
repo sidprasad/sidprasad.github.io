@@ -10,8 +10,15 @@ title: Diagramming by Refinement
 > “Spatial thinking is the foundation of abstract thought” - B Tversky
 
 
-The high level idea here is that I want to bring the benefits of formal methods to diagramming. *I will be a very happy camper once I can describe this well.*
-For now, check out [Cope and Drag](https://www.siddharthaprasad.com/copeanddrag/), a system for diagramming by refinement for Forge.
+I am very interested in cognitive science literature on diagramming, especially
+when it comes to diagrams as tools for [theorizing](https://www.activityanalysis.net/method-diagramming-as-theorizing/), exploration, debugging, and presentation.
+
+At a high level, this project introduces a set of core **spatial** operations that can be combined to refine default system output into *useful* (if not pretty) diagrams. I believe that this core ethos broadly applies across various contexts, including:
+
+
+**Lightweight Formal Methods** : The [Cope and Drag](https://www.siddharthaprasad.com/copeanddrag/) allows users to refine [Forge](https://forge-fm.org/) output into domain specific diagrams.
+
+
 
 
 ## Related Publications
