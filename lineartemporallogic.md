@@ -9,6 +9,9 @@ I have been part of a a multi-year project to improve education in Linear Tempor
 In particular, this has involved building a detailed understanding of 
 typical misconceptions that learners and even experts have. Our useful outcome has been a [set of instruments](https://cs.brown.edu/~sk/Publications/Papers/Published/gpdzdkmnz-miscon-finite-infinite-ltl/) (think “quizzes”) that instructors can deploy in their classes to understand how well their students understand the logic and what weaknesses they have.
 
+
+> *Eventually, I will understand LTL* - Anon.
+
 However, it isn’t always easy to add new materials to classes. Furthermore, your students make certain mistakes—now what? They need explanations of what went wrong, need additional drill problems, and need checks whether they got the additional ones right. It’s hard for an educator to make time for all that. And if one is an independent learner, they don’t even have access to such educators. Recognizing these practical difficulties, we have distilled our group’s expertise in LTL into an online tutor:
 
 <div style="text-align: center; margin: 20px 0;">
@@ -16,6 +19,7 @@ However, it isn’t always easy to add new materials to classes. Furthermore, yo
     ltl-tutor.xyz
   </a>
 </div>
+
 
 This tutor leverages the idea of **Conceptual Mutation Testing** ([something I have explored in a programming context](https://cs.brown.edu/~sk/Publications/Papers/Published/pgnk-conceptual-examplar/)) to generate questions by mutating LTL formulae modulo our understanding of LTL misconceptions.
 
