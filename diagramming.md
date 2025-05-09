@@ -9,7 +9,7 @@ title: Diagramming by Refinement
 I am very interested in **diagrams**, especially
 when it comes to how they enable [thinking](https://www.researchgate.net/publication/232083479_Thinking_with_Sketches), [theorizing](https://www.activityanalysis.net/method-diagramming-as-theorizing/), [exploration](https://onlinelibrary.wiley.com/doi/epdf/10.1111/j.1551-6708.1987.tb00863.x),  and communication. 
 
-> “Spatial thinking is the foundation of abstract thought” - B Tversky
+> *“Spatial thinking is the foundation of abstract thought”* - B Tversky
 
 The most important part of a diagram deals with how it is spatially laid out, 
 not finer details of aesthetic rendering. This project involves identifying, exploring, and implementing a set of core **spatial** operations that can be combined to refine default system output into *useful* (not pretty) diagrams. I believe that this core ethos broadly applies across various contexts, including:
