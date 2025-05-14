@@ -66,10 +66,15 @@ nav a {
   background-color: #f9f9f9;
 }
 
-/* Ensure links in publication-card and publication-title are styled correctly */
-.publication-card a,
-.publication-title a {
+/* Ensure links in publication-card are not underlined */
+.publication-card a {
   color: #333; /* Set to a standard black/grey color */
+  text-decoration: none !important; /* Force removal of underline */
+}
+
+/* Ensure links in publication-card and publication-title are styled correctly */
+.publication-title a {
+  color: #333 !important; /* Set to a standard black/grey color */
   text-decoration: none; /* Remove underline */
 }
 
