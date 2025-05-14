@@ -66,11 +66,17 @@ nav a {
   background-color: #f9f9f9;
 }
 
-/* Remove blue color and underline from links in publication-card and publication-title */
+/* Ensure links in publication-card and publication-title are styled correctly */
 .publication-card a,
 .publication-title a {
-  color: inherit; /* Inherit color from parent element */
+  color: #333; /* Set to a standard black/grey color */
   text-decoration: none; /* Remove underline */
+}
+
+/* Optional: Add hover effect for better user experience */
+.publication-card a:hover,
+.publication-title a:hover {
+  color: #555; /* Slightly lighter grey on hover */
 }
 
 /* Optional: Adjust publication titles for better readability */
