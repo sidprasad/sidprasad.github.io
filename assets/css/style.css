@@ -130,24 +130,20 @@ nav a {
 
 /* Individual project card */
 .project-card {
-  background-color: #f8f9fa;
+  background-color: #f8f9fa; /* Default background color */
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid #ddd; /* Default border color */
+  transition: border-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover effects */
 }
 
-/* Project link (title) */
-.project-link {
-  text-decoration: none;
-  color: #4a4a4a; /* Neutral dark gray for the link */
-  font-weight: bold;
-  font-size: 1.1em;
-  transition: color 0.3s ease; /* Smooth transition for hover effect */
+/* Hover effect for project card */
+.project-card:hover {
+  border-color: #4a4a4a; /* Dark gray border on hover */
+  transform: translateY(-3px); /* Slight lift on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
 }
 
-.project-link:hover {
-  color: darkblue; /* Change color on hover */
-}
 
 /* Project description */
 .project-description {

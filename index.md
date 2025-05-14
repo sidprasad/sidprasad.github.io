@@ -13,32 +13,41 @@ Previously, I was a software engineer at Microsoft, where I worked on the [XAML 
 
 <div class="project-list">
 
-  <div class="project-card">
-    <a href="/diagramming" class="project-link">Diagramming by Spatial Refinement</a>
-    <p class="project-description">Bringing spatial reasoning to diagramming.</p>
-  </div>
+  <a href="/diagramming" class="project-card-link">
+    <div class="project-card">
+      <h3 class="project-title">Diagramming by Spatial Refinement</h3>
+      <p class="project-description">Bringing spatial reasoning to diagramming.</p>
+    </div>
+  </a>
 
-  <div class="project-card">
-    <a href="/lineartemporallogic" class="project-link">Linear Temporal Logic</a>
-    <p class="project-description">Understanding, identifying, and addressing Linear Temporal Logic misconceptions.</p>
-  </div>
+  <a href="/lineartemporallogic" class="project-card-link">
+    <div class="project-card">
+      <h3 class="project-title">Linear Temporal Logic</h3>
+      <p class="project-description">Understanding, identifying, and addressing Linear Temporal Logic misconceptions.</p>
+    </div>
+  </a>
 
 </div>
+
 
 
 ### I'm also contributing to
 
 <div class="project-list">
 
-  <div class="project-card">
-    <a href="https://forge-fm.org" class="project-link">Forge</a>
-    <p class="project-description">A formal methods language for lightweight modeling and analysis.</p>
-  </div>
+  <a href="https://forge-fm.org" class="project-card-link">
+    <div class="project-card">
+      <h3 class="project-title">Forge</h3>
+      <p class="project-description">A formal methods language for lightweight modeling and analysis.</p>
+    </div>
+  </a>
 
-  <div class="project-card">
-    <a href="https://blog.brownplt.org/2024/01/01/examplar.html" class="project-link">Examplar</a>
-    <p class="project-description">Executable examples for problem understanding.</p>
-  </div>
+  <a href="https://blog.brownplt.org/2024/01/01/examplar.html" class="project-card-link">
+    <div class="project-card">
+      <h3 class="project-title">Examplar</h3>
+      <p class="project-description">Executable examples for problem understanding.</p>
+    </div>
+  </a>
 
 </div>
 
