@@ -66,11 +66,19 @@ nav a {
   background-color: #f9f9f9;
 }
 
+/* Ensure links in publication-card are not underlined */
+.publication-card a {
+  color: #333; /* Set to a standard black/grey color */
+  text-decoration: none !important; /* Force removal of underline */
+}
+
+
+
+
 /* Optional: Adjust publication titles for better readability */
 .publication-title a {
   font-family: 'Cardo', serif;
   font-weight: 700;
-  color: darkblue; 
 }
 
 /* Authors and venue */
