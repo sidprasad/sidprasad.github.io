@@ -3,12 +3,15 @@ layout: default
 title: Siddhartha Prasad
 ---
 
-I am a PhD student in Computer Science at Brown University, advised by [Shriram Krishnamurthi](https://cs.brown.edu/~sk/). I'm especially focused on helping people write programs that behave as they intend. This means that my research touches on programming languages, formal methods, human factors, and education.
+I am a PhD student in Computer Science at Brown University, advised by [Shriram Krishnamurthi](https://cs.brown.edu/~sk/). I'm especially focused on helping people write programs that behave as they intend. This means that my research touches on programming languages, formal methods[^1], human factors, and education.
 
-Previously, I was a software engineer at Microsoft, where I worked both on Windows and Azure [^1]. My research interests are informed by my time as an engineer. I have written code that doesn't do what I want it to, and I want to spare everyone else the indignity.
+Previously, I was a software engineer at Microsoft, where I worked both on Windows[^2] and Azure[^3]. My research interests are informed by my time as an engineer. I have written code that doesn't do what I want it to, and I want to spare everyone else the indignity.
 
 
-[^1]: I worked on the [XAML language](https://en.wikipedia.org/wiki/Extensible_Application_Markup_Language) from 2016-2018 and [Azure's AI services](https://azure.microsoft.com/en-us/products/ai-services)from 2018-2021.
+[^1]: [Not sure what formal methods are? I really like this page.](https://shemesh.larc.nasa.gov/fm/fm-what.html)
+
+[^2]: I worked on the [XAML UI Framework](https://github.com/microsoft/microsoft-ui-xaml) from 2016-2018.
+[^3]: I worked on [Azure's AI services](https://azure.microsoft.com/en-us/products/ai-services), with a particular focus on containerizing AI from 2018-2021.
 
 
 ### I'm primarily working on
@@ -53,4 +56,6 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 
 </div>
 
+
+---
 
