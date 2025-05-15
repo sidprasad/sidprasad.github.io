@@ -67,7 +67,7 @@ nav a {
 }
 
 /* Ensure links in publication-card are not underlined */
-.publication-card a {
+.project-card a {
   color: #333; /* Set to a standard black/grey color */
   text-decoration: none !important; /* Force removal of underline */
 }

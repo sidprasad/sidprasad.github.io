@@ -9,7 +9,7 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 
 
 [^1]: I worked on the [XAML language](https://en.wikipedia.org/wiki/Extensible_Application_Markup_Language) from 2016-2018 and [Azure's AI services](https://azure.microsoft.com/en-us/products/ai-services)from 2018-2021.
----
+
 
 ### I'm primarily working on
 
