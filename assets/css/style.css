@@ -158,3 +158,11 @@ nav a {
   font-size: 0.9em;
   color: #555;
 }
+
+.callout {
+  border-left: 4px solid #001828;
+  background: #f5f7fa;
+  padding: 1em 1.5em;
+  margin: 1.5em 0;
+  border-radius: 6px;
+}

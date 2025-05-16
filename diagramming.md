@@ -1,22 +1,88 @@
 ---
 layout: default
-title: Diagramming by Refinement
+title: Diagramming and Spatiality
 ---
 
+# Diagramming and Spatiality
 
-# Diagramming by Spatial Refinement
+I am deeply interested in **diagrams**, particularly in how they enable [thinking](https://www.researchgate.net/publication/232083479_Thinking_with_Sketches), [theorizing](https://www.activityanalysis.net/method-diagramming-as-theorizing/), [exploration](https://onlinelibrary.wiley.com/doi/epdf/10.1111/j.1551-6708.1987.tb00863.x), and communication.
 
-I am very interested in **diagrams**, especially
-when it comes to how they enable [thinking](https://www.researchgate.net/publication/232083479_Thinking_with_Sketches), [theorizing](https://www.activityanalysis.net/method-diagramming-as-theorizing/), [exploration](https://onlinelibrary.wiley.com/doi/epdf/10.1111/j.1551-6708.1987.tb00863.x),  and communication. 
+> *“Spatial thinking is the foundation of abstract thought.”*  
+> — [B. Tversky](https://www.hachettebookgroup.com/titles/barbara-tversky/mind-in-motion/9780465093076/?lens=basic-books)
 
-> *“Spatial thinking is the foundation of abstract thought”* - [B Tversky](https://www.hachettebookgroup.com/titles/barbara-tversky/mind-in-motion/9780465093076/?lens=basic-books)
+The most important aspect of a diagram is how it is **spatially arranged**, not its aesthetic rendering. I am interested in understanding the
+spatial operations that are needed to build *useful*[^1] (not pretty) diagrams. I am, however, not a cognitive scientist, a designer, or a psychologist.
+Informed by my background in programming languages, software engineering, and formal methods, I aim to operationalize the insights of these disciplines
+via a programming language-based approach.
+[^1]: Tools for thinking, theorizing, exploration, and communication.
 
-The most important part of a diagram deals with how it is spatially laid out, 
-not finer details of aesthetic rendering. This project involves identifying, exploring, and implementing a set of core **spatial** operations that can be combined to refine default system output into *useful* (not pretty) diagrams. I believe that this core ethos broadly applies across various contexts, including:
+
+## Diagramming by Specification
+
+The key difference between a program and a specification lies in how they relate to behavior. An empty program performs no actions -- it exhibits no behavior whatsoever. In contrast, an empty specification allows all possible behaviors, since it imposes no constraints. 
+In a lightweight specification language like [Forge](https://forge-fm.org), this means that an empty spec permits every conceivable structure
+or behavior, simply because nothing has been ruled out.
+
+> A program defines exactly what should happen, whereas a specification describes what required. 
+{:.callout}
 
 
-**Lightweight Formal Methods** : [Cope and Drag](https://www.siddharthaprasad.com/copeanddrag/) allows users to refine [Forge](https://forge-fm.org/) output into domain specific diagrams.
 
+### Cope and Drag: Lightweight Diagramming for Lightweight Formal Methods
+
+[Cope and Drag](https://www.siddharthaprasad.com/copeanddrag/) is a diagramming-by-specification programming language 
+designed for use with the Forge](https://forge-fm.org) lightweight formal methods[^2] tool.
+
+[^2]: [Lightweight Formal Methods](https://people.csail.mit.edu/dnj/publications/ieee96-roundtable.html)
+
+
+
+A central attribute of lightweight formal methods is that users can
+reason informally about their designs before doing so formally. 
+Whereas traditional verification tools require *properties*
+before the tools can do anything effective, tools like Forge can work
+with just system descriptions. They use a SAT-solver to generate
+instances of the system and present these to the user, most commonly
+in visual form. 
+
+<figure style="text-align: center;">
+  <img src="/assets/img/sterling-bt.png" alt="Sterling Binary Tree Example" style="max-height: 300px; width: auto;">
+  <figcaption style="font-size: 0.95em; color: #555;">Default Forge visualization of a binary tree.</figcaption>
+</figure>
+
+
+This has two benefits:
+1. Users can (hopefully quickly) spot ways in which the
+output does not conform to their intent, and improve their
+specification. 
+1. Seeing these violations suggests desirable and undesirable *properties*, which can then
+be formalized and turned into verification conditions.
+
+
+Thus, realizing lightweightness hinges heavily on the quality of visualizations. In
+turn, once properties exist, counterexamples to their success are also
+presented using the same mechanisms.
+
+
+Cope and Drag leverages this default visualization to enable diagramming by refinement. 
+- An **empty** Cope and Drag spec starts with the default Forge visualizer’s output.
+- As users progressively add **constraints** and **directives**, the diagram is selectively refined, making it more relevant and expressive for the user’s needs.
+
+This design provides a middle ground between purely programmatic approaches (which allow fine control but can be labor-intensive) and  pure genericism.
+Additionally, unlike optimization-focused based diagramming languages (e.g., Penrose, BlueFish), a diagram is only generated if the 
+Cope and Drag specification does not conflict with instances generated by the Forge model. This makes Cope and Drag a meaningful debugging tool, as it produces a solver-generated ''core'' of conflicting diagramming primitives for these *bad instances*.
+
+
+
+> 🔍 *See our upcoming [paper in ECOOP 2025](https://www.siddharthaprasad.com/unpublished/pgnk-lightweight-diagramming.pdf).*
+{:.callout}
+
+
+> See more details about Cope and Drag at https://www.siddharthaprasad.com/copeanddrag/
+{:.callout}
+
+
+---
 
 ## Related Publications
 
@@ -24,43 +90,35 @@ not finer details of aesthetic rendering. This project involves identifying, exp
 
 <div class="publication-list">
 {% for pub in filtered_pubs %}
-
-
- <div class="publication-card">
-    <!-- Publication details -->
+  <div class="publication-card">
     <div>
-        <h4 class="publication-title">
-            {% if pub.paper_url %}
-                <a href="{{ pub.paper_url }}">{{ pub.title }}</a>
-            {% else %}
-                {{ pub.title }}
-            {% endif %}
-        </h4>
+      <h4 class="publication-title">
+        {% if pub.paper_url %}
+          <a href="{{ pub.paper_url }}">{{ pub.title }}</a>
+        {% else %}
+          {{ pub.title }}
+        {% endif %}
+      </h4>
 
-        <p class="publication-details">
-            <p class="publication-authors">
-                {{ pub.authors | replace: "Siddhartha Prasad", "<strong>Siddhartha Prasad</strong>" }}
-            </p>  
-            <p>
-                {% if pub.status %} <span class="publication-status">{{ pub.status }}</span> {% endif %}
-                <span class="publication-venue">{{ pub.venue }}</span> {{pub.year}}
-            </p>
+      <p class="publication-details">
+        <p class="publication-authors">
+          {{ pub.authors | replace: "Siddhartha Prasad", "<strong>Siddhartha Prasad</strong>" }}
         </p>
+        <p>
+          {% if pub.status %} <span class="publication-status">{{ pub.status }}</span> {% endif %}
+          <span class="publication-venue">{{ pub.venue }}</span> {{ pub.year }}
+        </p>
+      </p>
 
-        <!-- Tags for blog and code -->
-        <div class="publication-tags">
-            {% if pub.blog_url %}
-                <a href="{{ pub.blog_url }}" class="publication-tag blog">Blog Post</a>
-            {% endif %}
-            {% if pub.code_url %}
-                <a href="{{ pub.code_url }}" class="publication-tag code">Code</a>
-            {% endif %}
-        </div>
+      <div class="publication-tags">
+        {% if pub.blog_url %}
+          <a href="{{ pub.blog_url }}" class="publication-tag blog">Blog Post</a>
+        {% endif %}
+        {% if pub.code_url %}
+          <a href="{{ pub.code_url }}" class="publication-tag code">Code</a>
+        {% endif %}
+      </div>
     </div>
-</div>
-
-
-
+  </div>
 {% endfor %}
 </div>
-
