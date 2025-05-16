@@ -20,7 +20,7 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 
   <a href="/diagramming" class="project-card-link">
     <div class="project-card">
-      <h3 class="project-title">Diagramming by Spatial Refinement</h3>
+      <h3 class="project-title">Diagramming and Spatiality</h3>
       <p class="project-description">Bringing spatial reasoning to diagramming.</p>
     </div>
   </a>
