@@ -11,8 +11,9 @@ I am deeply interested in **diagrams**, particularly in how they enable [thinkin
 >
 
 The most important aspect of a diagram is how it is **spatially arranged**, not its aesthetic rendering. I am interested in understanding the
-spatial operations that are needed to build useful[^1] (not pretty) diagrams. 
-[^1]: Tools for thinking, theorizing, exploration, and communication.
+spatial operations that are needed to build useful[^1] diagrams.
+
+[^1]: That is, diagrams that enable thinking, theorizing, exploration, and communication.
 
 I am, however, not a cognitive scientist, a designer, or a psychologist.
 Informed by my background in programming languages, software engineering, and formal methods, I aim to operationalize the insights of these disciplines
