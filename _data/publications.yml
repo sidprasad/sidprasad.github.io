@@ -39,7 +39,7 @@
   year: 2024
   blog_url: https://blog.brownplt.org/2024/04/21/forge.html
   paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/ngp----forge/
-  project: 'ltl'
+  project: 'forge'
 
 
 - title: "Conceptual Mutation Testing for Student Programming Misconceptions"
