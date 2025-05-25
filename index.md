@@ -16,6 +16,7 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 
 ### I'm primarily working on
 
+
 <div class="project-list">
 
   <a href="/diagramming" class="project-card-link">

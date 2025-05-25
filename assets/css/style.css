@@ -66,6 +66,11 @@ nav a {
   background-color: #f9f9f9;
 }
 
+.project-card-link {
+  text-decoration: none !important;
+  color: inherit;
+}
+
 .project-card a,
 .project-card a:visited,
 .project-card a:hover,
