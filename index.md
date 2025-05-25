@@ -61,7 +61,7 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
     <div class="project-card">
       <h3 class="project-title">Examplar</h3>
       <p class="project-description">
-      Computer Science students often begin coding with an incomplete understanding of the problem at hand, only realizing their mistake after investing significant effort or receiving instructor feedback. Examplar helps students check their understanding early by letting them write input–output examples and get instant feedback on whether their example suites are valid and thorough.
+      Computer Science students often begin coding with an incomplete understanding of the problem at hand, only realizing their mistake after investing significant effort or receiving instructor feedback. Examplar is an IDE for Pyret that helps students check their understanding early by letting them write input–output examples and get instant feedback on whether their example suites are valid and thorough.
       </p>
     </div>
   </a>
