@@ -24,7 +24,7 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
       <h3 class="project-title">Diagramming and Spatiality</h3>
       <p class="project-description">
       The most important aspect of a diagram is how it is spatially arranged, not its aesthetic rendering. I am interested in understanding the
-      spatial operations that are needed to build useful diagrams. Informed by my background in programming languages, software engineering, and formal methods.....
+      spatial operations that are needed to build useful diagrams. Informed by my background in programming languages, software engineering, and formal methods...[Click to continue]
       </p>
     </div>
   </a>
@@ -35,7 +35,7 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
       <p class="project-description">
         I am part of a multi-year project to improve education in Linear Temporal Logic (LTL).
         This has involved building a detailed understanding of 
-        typical misconceptions that learners and even experts have, building a ......
+        typical misconceptions that learners and even experts have, building a...[Click to continue]
       </p>
     </div>
   </a>
