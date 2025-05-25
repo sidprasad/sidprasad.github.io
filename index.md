@@ -14,7 +14,6 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 [^3]: I worked on [Azure's AI services](https://azure.microsoft.com/en-us/products/ai-services), with a particular focus on containerizing AI from 2018-2021.
 
 
-### I'm primarily working on
 
 
 <div class="project-list">
@@ -40,13 +39,8 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
     </div>
   </a>
 
-</div>
 
 
-
-### I'm also contributing to
-
-<div class="project-list">
 
   <a href="https://forge-fm.org" class="project-card-link">
     <div class="project-card">
