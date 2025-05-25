@@ -159,6 +159,10 @@ nav a {
   color: #555;
 }
 
+.project-description, .project-description a {
+  text-decoration: none !important;
+}
+
 .callout {
   border-left: 4px solid #001828;
   background: #f5f7fa;
