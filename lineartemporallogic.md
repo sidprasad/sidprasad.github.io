@@ -5,9 +5,9 @@ title: Linear Temporal Logic
 
 # Misconceptions in Linear Temporal Logic
 
-I have been part of a a multi-year project to improve education in Linear Temporal Logic (LTL).
-In particular, this has involved building a detailed understanding of 
-typical misconceptions that learners and even experts have. Our useful outcome has been a [set of instruments](https://cs.brown.edu/~sk/Publications/Papers/Published/gpdzdkmnz-miscon-finite-infinite-ltl/) (think “quizzes”) that instructors can deploy in their classes to understand how well their students understand the logic and what weaknesses they have.
+I am part of a multi-year project to improve education in Linear Temporal Logic (LTL).
+This has involved building a detailed understanding of 
+typical misconceptions that learners and even experts have, building a [set of instruments](https://cs.brown.edu/~sk/Publications/Papers/Published/gpdzdkmnz-miscon-finite-infinite-ltl/) (think “quizzes”) that instructors can deploy in their classes to understand how well their students understand the logic and what weaknesses they have.
 
 
 > *Eventually, I will understand LTL* 

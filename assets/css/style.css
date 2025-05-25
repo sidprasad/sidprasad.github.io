@@ -66,14 +66,15 @@ nav a {
   background-color: #f9f9f9;
 }
 
-/* Ensure links in publication-card are not underlined */
-.project-card a {
-  color: #333; /* Set to a standard black/grey color */
-  text-decoration: none !important; /* Force removal of underline */
+.project-card a,
+.project-card a:visited,
+.project-card a:hover,
+.project-description a,
+.project-description a:visited,
+.project-description a:hover {
+  text-decoration: none !important;
+  color: inherit;
 }
-
-
-
 
 /* Optional: Adjust publication titles for better readability */
 .publication-title a {
