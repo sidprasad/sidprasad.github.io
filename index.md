@@ -43,14 +43,19 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
   <a href="https://forge-fm.org" class="project-card-link">
     <div class="project-card">
       <h3 class="project-title">Forge</h3>
-      <p class="project-description">A formal methods language for lightweight modeling and analysis.</p>
+      <p class="project-description">Forge is designed to bring lightweight formal
+      methods to programmers. Refined over multiple years of teaching, it adds a gradual progression of languages, a toolkit for domain-specific visualizations, and a form of unit testing for logical predicates to the Alloy language.
+
+</p>
     </div>
   </a>
 
   <a href="https://blog.brownplt.org/2024/01/01/examplar.html" class="project-card-link">
     <div class="project-card">
       <h3 class="project-title">Examplar</h3>
-      <p class="project-description">Executable examples for problem understanding.</p>
+      <p class="project-description">
+      Computer Science students often begin coding with an incomplete understanding of the problem at hand, only realizing their mistake after investing significant effort -- or not until they receive feedback. Examplar helps students check their understanding early by letting them write input–output examples and get instant feedback on whether their examples are valid (match the problem) and **thorough** (cover key concepts).
+      </p>
     </div>
   </a>
 
