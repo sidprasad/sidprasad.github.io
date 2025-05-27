@@ -64,5 +64,12 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 </div>
 
 
----
+
+
+## Misc 
+
+Here are some misc academic contributions of which I'm particularly proud:
+
+- The [Kleene Algebra library](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Algebra/Order/Kleene.html) for the Lean Mathlib project.
+
 
