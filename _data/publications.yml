@@ -17,7 +17,7 @@
   project: 'diagramming'
   paper_url: /unpublished/pgnk-lightweight-diagramming.pdf
   descr: "Model finders (e.g., Alloy and Forge) discover instances of a datatype specification and counterexamples to conjectures. Instances can help users debug their designs, but only if they are properly understood. This paper introduces a visualizer called CnD that avoids misleading diagrams by default and offers a low-code way to communicate domain-specific constraints. CnD helps shed light on ``unknown unknowns'' in the early stages of a specification design."
-
+  blog_url: https://blog.brownplt.org/2025/06/09/copeanddrag.html
 
 - title: "Misconceptions in Finite-Trace and Infinite-Trace Linear Temporal Logic"
   authors: "Ben Greenman, Siddhartha Prasad, Antonio Di Stasio, Shufang Zhu, Giuseppe De Giacomo, Shriram Krishnamurthi, Marco Montali, Tim Nelson, Milda Zizyte"
