@@ -22,10 +22,11 @@ title: Publications
         <div>
           <h4 class="publication-title">
             {% if pub.paper_url %}
-            <a href="{{ pub.paper_url }}">{{ pub.title }}</a>
+              <a href="{{ pub.paper_url }}">{{ pub.title }}</a>
             {% else %}
-            {{ pub.title }}
+              {{ pub.title }}
             {% endif %}
+
           </h4>
           <!-- Tags for blog and code -->
           <div class="publication-tags">
@@ -34,6 +35,9 @@ title: Publications
             {% endif %}
             {% if pub.code_url %}
             <a href="{{ pub.code_url }}" class="publication-tag code">Code</a>
+            {% endif %}
+            {% if pub.award %}
+              <span class="award-medal" title="{{ pub.award }}">🥇</span>
             {% endif %}
           </div>
 
