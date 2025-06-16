@@ -20,25 +20,37 @@ title: Publications
       <div class="publication-card">
         <!-- Publication details -->
         <div>
-          <h4 class="publication-title">
-            {% if pub.paper_url %}
+          {% if pub.paper_url %}
+            <h4 class="publication-title">
               <a href="{{ pub.paper_url }}">{{ pub.title }}</a>
-            {% else %}
+              {% if pub.award %}
+                <span class="award-medal"
+                      tabindex="0"
+                      onclick="this.nextElementSibling.classList.toggle('show-award');"
+                      onkeypress="if(event.key==='Enter'||event.key===' '){this.click();}"
+                      style="cursor:pointer;"
+                      title="{{ pub.award | escape }}">
+                  🏅
+                </span>
+                <span class="award-text">{{ pub.award }}</span>
+              {% endif %}
+            </h4>
+          {% else %}
+            <h4 class="publication-title">
               {{ pub.title }}
-            {% endif %}
-            {% if pub.award %}
-              <span class="award-medal"
-                    tabindex="0"
-                    onclick="this.nextElementSibling.classList.toggle('show-award');"
-                    onkeypress="if(event.key==='Enter'||event.key===' '){this.click();}"
-                    style="cursor:pointer;"
-                    title={{ pub.title}}>
-                🏅
-              </span>
-              <span class="award-text" style="display:none;">{{ pub.award }}</span>
-            {% endif %}
-
-          </h4>
+              {% if pub.award %}
+                <span class="award-medal"
+                      tabindex="0"
+                      onclick="this.nextElementSibling.classList.toggle('show-award');"
+                      onkeypress="if(event.key==='Enter'||event.key===' '){this.click();}"
+                      style="cursor:pointer;"
+                      title="{{ pub.award | escape }}">
+                  🏅
+                </span>
+                <span class="award-text">{{ pub.award }}</span>
+              {% endif %}
+            </h4>
+          {% endif %}
           <!-- Tags for blog and code -->
           <div class="publication-tags">
             {% if pub.blog_url %}
