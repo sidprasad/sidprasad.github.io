@@ -26,6 +26,17 @@ title: Publications
             {% else %}
               {{ pub.title }}
             {% endif %}
+            {% if pub.award %}
+              <span class="award-medal"
+                    tabindex="0"
+                    onclick="this.nextElementSibling.classList.toggle('show-award');"
+                    onkeypress="if(event.key==='Enter'||event.key===' '){this.click();}"
+                    style="cursor:pointer;"
+                    title={{ pub.title}}>
+                🏅
+              </span>
+              <span class="award-text" style="display:none;">{{ pub.award }}</span>
+            {% endif %}
 
           </h4>
           <!-- Tags for blog and code -->
@@ -36,9 +47,7 @@ title: Publications
             {% if pub.code_url %}
             <a href="{{ pub.code_url }}" class="publication-tag code">Code</a>
             {% endif %}
-            {% if pub.award %}
-              <span class="award-medal" title="{{ pub.award }}">🥇</span>
-            {% endif %}
+
           </div>
 
           <p class="publication-details">
@@ -60,3 +69,26 @@ title: Publications
 {% endfor %}
 
 </div>
+
+<style>
+.award-medal {
+  margin-left: 0.4em;
+  font-size: 1em;
+  vertical-align: middle;
+  transition: transform 0.2s;
+}
+.award-medal:hover, .award-medal:focus {
+  transform: scale(1.2) rotate(-10deg);
+  outline: none;
+}
+.award-text {
+  display: none;
+  margin-left: 0.5em;
+  color: #b8860b;
+  font-weight: 500;
+  font-size: 0.95em;
+}
+.award-text.show-award {
+  display: inline;
+}
+</style>
