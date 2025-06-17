@@ -16,7 +16,7 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 
 
 
-<div class="project-list">
+<div class="project-list mb-5">
 
   <a href="/diagramming" class="project-card-link">
     <div class="project-card">
