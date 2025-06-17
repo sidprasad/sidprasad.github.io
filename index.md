@@ -23,7 +23,7 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
       <h3 class="project-title">Diagramming and Spatiality</h3>
       <p class="project-description">
       The most important aspect of a diagram is how it is spatially arranged, not its aesthetic rendering. I am interested in understanding the
-      spatial operations that are needed to build useful diagrams. Informed by my background in programming languages, software engineering, and formal methods...[Click to continue]
+      spatial operations that are needed to build useful diagrams.
       </p>
     </div>
   </a>
@@ -32,21 +32,20 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
     <div class="project-card">
       <h3 class="project-title">Linear Temporal Logic</h3>
       <p class="project-description">
-        I am part of a multi-year project to improve education in Linear Temporal Logic (LTL).
-        This has involved building a detailed understanding of 
-        typical misconceptions that learners and even experts have, building a...[Click to continue]
+        A learner's misconceptions are really alternate semantics in their head.
+        This project involves understanding and addressing misconceptions that
+        practioners have when working in LTL.
       </p>
     </div>
   </a>
 
 
-
-
   <a href="https://forge-fm.org" class="project-card-link">
     <div class="project-card">
       <h3 class="project-title">Forge</h3>
-      <p class="project-description">Forge is designed to bring lightweight formal
-      methods to programmers. Refined over multiple years of teaching, it adds a gradual progression of languages, a toolkit for domain-specific visualizations, and a form of unit testing for logical predicates to the Alloy language.
+      <p class="project-description">Forge is a sibling of the Alloy language designed with 
+      pedagogy in mind. Key features include a gradual progression of (sub)languages,
+      unit testing for logical predicates, and support for domain-specific visualizations.
 
 </p>
     </div>
@@ -55,8 +54,7 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
   <a href="https://blog.brownplt.org/2024/01/01/examplar.html" class="project-card-link">
     <div class="project-card">
       <h3 class="project-title">Examplar</h3>
-      <p class="project-description">
-      Computer Science students often begin coding with an incomplete understanding of the problem at hand, only realizing their mistake after investing significant effort or receiving instructor feedback. Examplar is an IDE for Pyret that helps students check their understanding early by letting them write input–output examples and get instant feedback on whether their example suites are valid and thorough.
+      <p class="project-description"> An IDE for Pyret that helps students check their understanding early by letting them write input–output examples and get instant feedback on whether these example suites are valid and thorough.
       </p>
     </div>
   </a>
