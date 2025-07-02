@@ -12,7 +12,6 @@
   authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, Shriram Krishnamurthi"
   venue: "European Conference on Object-Oriented Programming (ECOOP)"
   year: 2025
-  status: "To appear in"
   code_url: https://github.com/sidprasad/copeanddrag
   project: 'diagramming'
   paper_url: /unpublished/pgnk-lightweight-diagramming.pdf
