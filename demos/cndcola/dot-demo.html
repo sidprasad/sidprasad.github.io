@@ -7,6 +7,7 @@
 
 
 
+
         <!-- D3 v4 and WebCola -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <!-- <script src="../vendor/cola.js"></script> -->
@@ -21,7 +22,6 @@
     <!-- Demo components bundle (includes InstanceBuilder integration) -->
     <script src="./components/demo-integration.global.js"></script>
     <link rel="stylesheet" href="./components/demo-integration.css">
-
     
     <style>
         body {
@@ -136,8 +136,7 @@
             statusElement.className = `status ${type}`;
         }
         function loadExampleDOT() {
-            const example = `
-digraph BinaryTree {
+            const example = `digraph BinaryTree {
   // Node definitions with types
   A [label="Root", type="Entity"];
   B [label="Left Child", type="Entity"];
