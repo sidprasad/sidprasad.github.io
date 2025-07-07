@@ -34,7 +34,7 @@ interface IInputDataInstance extends IDataInstance {
     addRelationTuple(relationId: string, t: ITuple): void;
     removeAtom(id: string): void;
     removeRelationTuple(relationId: string, t: ITuple): void;
-    reify(): any;
+    reify(): unknown;
 }
 
 /**

@@ -27837,28 +27837,25 @@ var CndComponents = (() => {
       // Bootstrap active styling
     ].filter(Boolean).join(" ");
     return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: containerClasses, "aria-label": ariaLabel, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("label", { htmlFor: "cnd-layout-toggle", className: "h6 mb-0 text-dark", children: "CND Layout Specification:" }),
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "d-flex align-items-center gap-3", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: toggleLabelCodeClasses, children: "Code View" }),
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("label", { className: "cnd-layout-interface__toggle", htmlFor: "cnd-layout-toggle", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
-              "input",
-              {
-                id: "cnd-layout-toggle",
-                type: "checkbox",
-                checked: isNoCodeView,
-                onChange: handleToggleChange,
-                disabled,
-                className: "cnd-layout-interface__toggle-input",
-                "aria-describedby": "cnd-layout-toggle-description"
-              }
-            ),
-            /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: "cnd-layout-interface__toggle-slider" })
-          ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: toggleLabelNoCodeClasses, children: "No Code View" })
-        ] })
-      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom", children: /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "d-flex align-items-center gap-3", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: toggleLabelCodeClasses, children: "Code View" }),
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("label", { className: "cnd-layout-interface__toggle", htmlFor: "cnd-layout-toggle", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+            "input",
+            {
+              id: "cnd-layout-toggle",
+              type: "checkbox",
+              checked: isNoCodeView,
+              onChange: handleToggleChange,
+              disabled,
+              className: "cnd-layout-interface__toggle-input",
+              "aria-describedby": "cnd-layout-toggle-description"
+            }
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: "cnd-layout-interface__toggle-slider" })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: toggleLabelNoCodeClasses, children: "No Code View" })
+      ] }) }),
       /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { id: "cnd-layout-toggle-description", className: "visually-hidden", children: "Toggle between Code View (text editor) and No Code View (visual editor) for CND layout specification" }),
       /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "cnd-layout-interface__content", children: isNoCodeView ? (
         // No Code View - Bootstrap card layout
