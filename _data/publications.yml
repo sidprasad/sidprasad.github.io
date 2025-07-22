@@ -2,7 +2,6 @@
   authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, Shriram Krishnamurthi"
   venue: "International Conference on Computer Aided Verification (CAV)"
   year: 2025
-  status: "To appear in"
   paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/pgnk-ltl-tutor/
   blog_url: https://blog.brownplt.org/2024/08/08/ltltutor.html
   code_url: https://github.com/brownplt/LTLTutor
