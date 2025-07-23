@@ -6,6 +6,7 @@
   blog_url: https://blog.brownplt.org/2024/08/08/ltltutor.html
   code_url: https://github.com/brownplt/LTLTutor
   project: 'ltl'
+  award: "Distinguished Paper Award, CAV 2025. "
 
 - title: "Lightweight Diagramming for Lightweight Formal Methods: A Grounded Language Design"
   authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, Shriram Krishnamurthi"
