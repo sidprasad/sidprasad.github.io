@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagram</title>
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/cnd-core@1.1.9-beta.12/dist/browser/cnd-core-complete.global.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/cnd-core@1.1.9-beta.12/dist/components/react-component-integration.global.js"></script>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/cnd-core@1.1.9-beta.12/dist/components/react-component-integration.css" />
+
+<style>
+    .constraint-relationship-table .source-constraints-cell {
+        display: none;
+    }
+    
+    /* Optional: Make the remaining column take full width */
+    .constraint-relationship-table .diagram-constraints-cell {
+        width: 100%;
+    }
+    
+    /* Hide the error messages */
+    .error-message,
+    .alert,
+    .alert-danger,
+    .unsat-message {
+        display: none !important;
+    }
+    
+    /* Hide table headers */
+    .constraint-relationship-table thead,
+    .constraint-relationship-table th {
+        display: none;
+    }
+    
+
+</style>
+
+<body>
+    <div id="error-message"></div>
+    <div id="error-core"></div>
+
+    <!-- WebCola sPyTial Graph Element -->
+    <webcola-cnd-graph id="graph-container" width="{{ width }}" height="{{ height }}" layoutFormat="default"
+        aria-label="Interactive graph visualization">
+    </webcola-cnd-graph>
+
+    <script>
+        // Embedded data passed from the server
+        const cndSpec = `
+constraints:
+# Younger parent above and to your right.
+  - orientation:
+      selector: >-
+       { c , yp : Person  | yp in ( (c.parent) & younger[c.parent]) }
+
+      directions:
+        - right
+        - above
+# Older parent to your left and above.
+  - orientation:
+      selector: >-
+        { c , yp : Person  | yp in ( (c.parent) & ~younger[c.parent]) }
+      directions:
+        - left
+        - above
+
+# Parent above child
+  - orientation:
+      selector: parent
+      directions:
+          - above
+
+# Align parents if they share a child.
+  - orientation:
+      selector:  "{ p1, p2 : Person | (some c : Person | c in p1.(~parent) and c in p2.(~parent)) and (p2 in p1.younger) }"
+      directions: [directlyRight]
+
+
+# Align siblings with younger siblings to the right
+  - orientation:
+      selector: >-
+        { x, y : Person | (some (x.parent & y.parent)) and (y in x.younger) }
+      directions:
+        - directlyRight
+
+
+directives:
+  - hideField:
+        field: younger
+  - attribute:
+      field: age
+  - flag: hideDisconnectedBuiltIns
+
+        
+        
+        `;
+        const alloyXml = `
+        <alloy builddate="Thursday, August 14th, 2025">
+<instance bitwidth="8" maxseq="-1" command="s1" filename="/Users/siddharthaprasad/Desktop/SpatialRefinement/unsat-study/ftree/familytree.frg" version="4.1"  >
+
+<sig label="seq/Int" ID="0" parentID="1" builtin="yes">
+</sig>
+
+<sig label="Int" ID="1" parentID="2" builtin="yes">
+
+</sig>
+
+<sig label="univ" ID="2" builtin="yes">
+</sig>
+
+<field label="no-field-guard" ID="3" parentID="2">
+<types> <type ID="2"/><type ID="2"/> </types>
+</field>
+
+<sig label="Person" ID="4" parentID="2">
+<atom label="Mona"/><atom label="Matt"/><atom label="Patricia"/><atom label="Selma"/><atom label="Daniel"/><atom label="Margaret"/><atom label="Carmen"/><atom label="Elena"/><atom label="Clancy"/><atom label="Sofia"/><atom label="Kenji"/>
+</sig>
+
+<field label="parent" ID="5" parentID="4">
+<tuple><atom label="Matt"/><atom label="Elena"/></tuple>
+<tuple><atom label="Matt"/><atom label="Kenji"/></tuple>
+<tuple><atom label="Patricia"/><atom label="Clancy"/></tuple>
+<tuple><atom label="Patricia"/><atom label="Sofia"/></tuple>
+<tuple><atom label="Selma"/><atom label="Clancy"/></tuple>
+<tuple><atom label="Selma"/><atom label="Sofia"/></tuple>
+<tuple><atom label="Margaret"/><atom label="Elena"/></tuple>
+<tuple><atom label="Margaret"/><atom label="Kenji"/></tuple>
+<tuple><atom label="Carmen"/><atom label="Elena"/></tuple>
+<tuple><atom label="Carmen"/><atom label="Kenji"/></tuple>
+<tuple><atom label="Elena"/><atom label="Clancy"/></tuple>
+<tuple><atom label="Elena"/><atom label="Sofia"/></tuple>
+<tuple><atom label="Kenji"/><atom label="Mona"/></tuple>
+<tuple><atom label="Kenji"/><atom label="Daniel"/></tuple>
+<types><type ID="4"/><type ID="4"/></types>
+
+</field>
+
+<field label="age" ID="6" parentID="4">
+<tuple><atom label="Mona"/><atom label="79"/></tuple>
+<tuple><atom label="Matt"/><atom label="10"/></tuple>
+<tuple><atom label="Patricia"/><atom label="37"/></tuple>
+<tuple><atom label="Selma"/><atom label="36"/></tuple>
+<tuple><atom label="Daniel"/><atom label="83"/></tuple>
+<tuple><atom label="Margaret"/><atom label="2"/></tuple>
+<tuple><atom label="Carmen"/><atom label="8"/></tuple>
+<tuple><atom label="Elena"/><atom label="38"/></tuple>
+<tuple><atom label="Clancy"/><atom label="80"/></tuple>
+<tuple><atom label="Sofia"/><atom label="78"/></tuple>
+<tuple><atom label="Kenji"/><atom label="39"/></tuple>
+<types><type ID="4"/><type ID="1"/></types>
+
+</field>
+
+<field label="younger" ID="7" parentID="4">
+<tuple><atom label="Mona"/><atom label="Matt"/></tuple>
+<tuple><atom label="Mona"/><atom label="Patricia"/></tuple>
+<tuple><atom label="Mona"/><atom label="Selma"/></tuple>
+<tuple><atom label="Mona"/><atom label="Margaret"/></tuple>
+<tuple><atom label="Mona"/><atom label="Carmen"/></tuple>
+<tuple><atom label="Mona"/><atom label="Elena"/></tuple>
+<tuple><atom label="Mona"/><atom label="Sofia"/></tuple>
+<tuple><atom label="Mona"/><atom label="Kenji"/></tuple>
+<tuple><atom label="Matt"/><atom label="Margaret"/></tuple>
+<tuple><atom label="Matt"/><atom label="Carmen"/></tuple>
+<tuple><atom label="Patricia"/><atom label="Matt"/></tuple>
+<tuple><atom label="Patricia"/><atom label="Selma"/></tuple>
+<tuple><atom label="Patricia"/><atom label="Margaret"/></tuple>
+<tuple><atom label="Patricia"/><atom label="Carmen"/></tuple>
+<tuple><atom label="Selma"/><atom label="Matt"/></tuple>
+<tuple><atom label="Selma"/><atom label="Margaret"/></tuple>
+<tuple><atom label="Selma"/><atom label="Carmen"/></tuple>
+<tuple><atom label="Daniel"/><atom label="Mona"/></tuple>
+<tuple><atom label="Daniel"/><atom label="Matt"/></tuple>
+<tuple><atom label="Daniel"/><atom label="Patricia"/></tuple>
+<tuple><atom label="Daniel"/><atom label="Selma"/></tuple>
+<tuple><atom label="Daniel"/><atom label="Margaret"/></tuple>
+<tuple><atom label="Daniel"/><atom label="Carmen"/></tuple>
+<tuple><atom label="Daniel"/><atom label="Elena"/></tuple>
+<tuple><atom label="Daniel"/><atom label="Clancy"/></tuple>
+<tuple><atom label="Daniel"/><atom label="Sofia"/></tuple>
+<tuple><atom label="Daniel"/><atom label="Kenji"/></tuple>
+<tuple><atom label="Carmen"/><atom label="Margaret"/></tuple>
+<tuple><atom label="Elena"/><atom label="Matt"/></tuple>
+<tuple><atom label="Elena"/><atom label="Patricia"/></tuple>
+<tuple><atom label="Elena"/><atom label="Selma"/></tuple>
+<tuple><atom label="Elena"/><atom label="Margaret"/></tuple>
+<tuple><atom label="Elena"/><atom label="Carmen"/></tuple>
+<tuple><atom label="Clancy"/><atom label="Mona"/></tuple>
+<tuple><atom label="Clancy"/><atom label="Matt"/></tuple>
+<tuple><atom label="Clancy"/><atom label="Patricia"/></tuple>
+<tuple><atom label="Clancy"/><atom label="Selma"/></tuple>
+<tuple><atom label="Clancy"/><atom label="Margaret"/></tuple>
+<tuple><atom label="Clancy"/><atom label="Carmen"/></tuple>
+<tuple><atom label="Clancy"/><atom label="Elena"/></tuple>
+<tuple><atom label="Clancy"/><atom label="Sofia"/></tuple>
+<tuple><atom label="Clancy"/><atom label="Kenji"/></tuple>
+<tuple><atom label="Sofia"/><atom label="Matt"/></tuple>
+<tuple><atom label="Sofia"/><atom label="Patricia"/></tuple>
+<tuple><atom label="Sofia"/><atom label="Selma"/></tuple>
+<tuple><atom label="Sofia"/><atom label="Margaret"/></tuple>
+<tuple><atom label="Sofia"/><atom label="Carmen"/></tuple>
+<tuple><atom label="Sofia"/><atom label="Elena"/></tuple>
+<tuple><atom label="Sofia"/><atom label="Kenji"/></tuple>
+<tuple><atom label="Kenji"/><atom label="Matt"/></tuple>
+<tuple><atom label="Kenji"/><atom label="Patricia"/></tuple>
+<tuple><atom label="Kenji"/><atom label="Selma"/></tuple>
+<tuple><atom label="Kenji"/><atom label="Margaret"/></tuple>
+<tuple><atom label="Kenji"/><atom label="Carmen"/></tuple>
+<tuple><atom label="Kenji"/><atom label="Elena"/></tuple>
+<types><type ID="4"/><type ID="4"/></types>
+
+</field>
+
+
+</instance>
+
+
+</alloy>
+        
+        `;
+
+
+        /**
+         * Load and render the graph using the webcola-cnd-graph custom element
+         */
+        async function loadGraph() {
+            const graphElement = document.getElementById('graph-container');
+
+
+            // Step 1: Mount error message modal if available
+            if (window.mountErrorMessageModal) {
+                console.log('Mounting error message modal');
+                window.mountErrorMessageModal('error-core');
+            }
+
+
+            try {
+
+
+                const alloyDatum = CndCore.AlloyInstance.parseAlloyXML(alloyXml);
+                if (!alloyDatum.instances || alloyDatum.instances.length === 0) {
+                    throw new Error('No instances found in Alloy XML');
+                }
+
+                
+                // Create a data instance from the JSON data
+                const dataInstance = new CndCore.AlloyDataInstance(alloyDatum.instances[0]);
+
+                window.dataInstance = dataInstance; // Expose for debugging
+
+                // Initialize the evaluation context
+                const evaluationContext = { sourceData: dataInstance };
+                const sgqEvaluator = new CndCore.SGraphQueryEvaluator();
+                sgqEvaluator.initialize(evaluationContext);
+                console.log('Evaluation context initialized');
+
+                window.evaluator = sgqEvaluator; // Expose evaluator for debugging
+
+                // Parse the CND specification
+                const layoutSpec = CndCore.parseLayoutSpec(cndSpec);
+                console.log('Layout spec parsed');
+
+                // Generate the layout
+                const layoutInstance = new CndCore.LayoutInstance(layoutSpec, sgqEvaluator, 0, true);
+                const layoutResult = layoutInstance.generateLayout(dataInstance, {});
+                console.log('Layout generated');
+
+                // Check for layout errors
+                if (layoutResult.error) {
+                    console.error('Layout generation error:', layoutResult.error);
+
+                    // Check if this is a constraint conflict error
+                    if (layoutResult.error.errorMessages) {
+                        if (window.showPositionalError) {
+                            window.showPositionalError(layoutResult.error.errorMessages);
+                        } else {
+                            showError(`Positional constraint conflict: ${layoutResult.error.message}`);
+                        }
+                    } else if (layoutResult.error.overlappingNodes) {
+                        if (window.showGroupOverlapError) {
+                            window.showGroupOverlapError(layoutResult.error.message);
+                        } else {
+                            showError(`Group overlap error: ${layoutResult.error.message}`);
+                        }
+                    } else {
+                        if (window.showGeneralError) {
+                            window.showGeneralError(`Layout generation error: ${layoutResult.error.message}`);
+                        } else {
+                            showError(`Layout generation error: ${layoutResult.error.message}`);
+                        }
+                    }
+
+                    // Set the webcola-cnd-graph element to indicate unsat state
+                    const webcolaGraphElement = document.getElementById('graph-container');
+                    webcolaGraphElement.setAttribute('unsat', "");
+
+                }
+
+                const instanceLayout = layoutResult.layout;
+                const webcolaGraphElement = document.getElementById('graph-container');
+
+                await graphElement.renderLayout(instanceLayout);
+            } catch (error) {
+                console.error('Error rendering graph:', error);
+                if (window.showGeneralError) {
+                    window.showGeneralError(`Layout generation failed: ${error.message}`);
+                } else {
+                    showError(`Error rendering graph: ${error.message}`);
+                }
+            }
+        }
+
+       
+
+
+
+        // Auto-load when page loads
+        window.addEventListener('load', loadGraph);
+    </script>
+</body>
+
+</html>
