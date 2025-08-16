@@ -17,16 +17,27 @@
 <body>
     <div id="error-message"></div>
     <div id="error-core"></div>
-    <p style="text-align:center; color:#555; margin-bottom:10px;">
-To explore the diagram: zoom with your mouse scroll wheel or trackpad, pan by dragging the background, and move elements by dragging them.
-</p>
-<p style="text-align:center; color:#555; margin-bottom:10px;">
-Boxes with dotted boundaries indicate that some rules involving them cannot be satisfied.
-</p>
+<div class="diagram-controls" style="display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 30px auto 20px;">
+  <div style="text-align:left; color:#555;">
+    <div style="margin-bottom:6px;">
+      Zoom with your mouse scroll wheel or trackpad, pan by dragging the background, and move elements by dragging them.
+    </div>
+    <div>
+      Boxes with dotted boundaries indicate that some rules involving them cannot be satisfied.
+    </div>
+  </div>
+  <button id="reset-graph-btn" title="Reset diagram"
+    style="font-size:1em; padding:2px 8px; border-radius:5px; border:1px solid #ccc; background:#f8f8f8; cursor:pointer;">
+    ↻ Reset Diagram
+  </button>
+</div>
+
     <!-- WebCola sPyTial Graph Element -->
     <webcola-cnd-graph id="graph-container" width="{{ width }}" height="{{ height }}" layoutFormat="default"
         aria-label="Interactive graph visualization">
     </webcola-cnd-graph>
+
+
 
     <script>
         // Embedded data passed from the server
@@ -279,9 +290,7 @@ directives:
             }
         }
 
-       
-
-
+        document.getElementById('reset-graph-btn').addEventListener('click', loadGraph);
 
         // Auto-load when page loads
         window.addEventListener('load', loadGraph);
