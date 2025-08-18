@@ -15,7 +15,24 @@
         href="https://cdn.jsdelivr.net/npm/cnd-core@1.1.9-beta.9/dist/components/react-component-integration.css" />
 
 
+    <style>
 
+        .diagram-box {
+  display: block;
+  background: #fff;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin: 0 auto 24px auto;
+  padding: 12px;
+}
+
+body {
+  background: #f7f7fa;
+}
+
+
+    </style>
 <body>
     <div id="error-message"></div>
     <div id="error-core"></div>
@@ -34,10 +51,14 @@
 
 
 
-    <!-- WebCola sPyTial Graph Element -->
-    <webcola-cnd-graph id="graph-container" width="{{ width }}" height="{{ height }}" layoutFormat="default"
-        aria-label="Interactive graph visualization">
-    </webcola-cnd-graph>
+<webcola-cnd-graph
+  id="graph-container"
+
+  layoutFormat="default"
+  aria-label="Interactive graph visualization"
+  class="diagram-box"
+</webcola-cnd-graph>
+
 
     <script>
         // Embedded data passed from the server

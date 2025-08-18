@@ -64,34 +64,50 @@
                 border-image-repeat: round;
             }
         }
+
+        .diagram-box {
+            display: block;
+            background: #fff;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            margin: 0 auto 24px auto;
+            padding: 12px;
+        }
+
+        body {
+            background: #f7f7fa;
+        }
     </style>
 
 <body>
     <div id="error-message"></div>
     <div id="error-core"></div>
-  <div class="diagram-controls" style="display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 30px auto 20px;">
-  <div style="text-align:left; color:#555;">
-    <div style="margin-bottom:6px;">
-      Zoom with your mouse scroll wheel or trackpad, pan by dragging the background, and move elements by dragging them.
+    <div class="diagram-controls"
+        style="display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 30px auto 20px;">
+        <div style="text-align:left; color:#555;">
+            <div style="margin-bottom:6px;">
+                Zoom with your mouse scroll wheel or trackpad, pan by dragging the background, and move elements by
+                dragging them.
+            </div>
+            <div class="unsat-box-tip">
+                Boxes with dashed boundaries indicate that some rules involving them cannot be satisfied.
+            </div>
+        </div>
+        <button id="reset-graph-btn" title="Reset diagram"
+            style="font-size:1em; padding:2px 8px; border-radius:5px; border:1px solid #ccc; background:#f8f8f8; cursor:pointer;">
+            ↻ Reset Diagram
+        </button>
     </div>
-    <div class="unsat-box-tip">
-      Boxes with dashed boundaries indicate that some rules involving them cannot be satisfied.
-    </div>
-  </div>
-  <button id="reset-graph-btn" title="Reset diagram"
-    style="font-size:1em; padding:2px 8px; border-radius:5px; border:1px solid #ccc; background:#f8f8f8; cursor:pointer;">
-    ↻ Reset Diagram
-  </button>
-</div>
 
     <!-- WebCola sPyTial Graph Element -->
-    <webcola-cnd-graph id="graph-container" width="{{ width }}" height="{{ height }}" layoutFormat="default"
+    <webcola-cnd-graph id="graph-container"   class="diagram-box" layoutFormat="default"
         aria-label="Interactive graph visualization">
     </webcola-cnd-graph>
 
     <script>
         // Embedded data passed from the server
-                const cndSpec = `
+        const cndSpec = `
 constraints:
   - orientation:
       selector: '{ c , yp : Person  | yp in ( (c.parent) & younger[c.parent]) }'

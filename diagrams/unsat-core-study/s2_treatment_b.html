@@ -39,6 +39,20 @@
                 border-image-repeat: round;
             }
         }
+
+                .diagram-box {
+  display: block;
+  background: #fff;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin: 0 auto 24px auto;
+  padding: 12px;
+}
+
+body {
+  background: #f7f7fa;
+}
 </style>
 
 
@@ -61,7 +75,7 @@
 </div>
 
     <!-- WebCola sPyTial Graph Element -->
-    <webcola-cnd-graph id="graph-container" width="{{ width }}" height="{{ height }}" layoutFormat="default"
+    <webcola-cnd-graph id="graph-container"   class="diagram-box" layoutFormat="default"
         aria-label="Interactive graph visualization">
     </webcola-cnd-graph>
 
