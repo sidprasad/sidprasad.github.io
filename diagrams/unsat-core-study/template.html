@@ -52,54 +52,7 @@
 
     <script>
         // Embedded data passed from the server
-        const cndSpec = `
-constraints:
-# Younger parent above and to your right.
-  - orientation:
-      selector: >-
-       { c , yp : Person  | yp in ( (c.parent) & younger[c.parent]) }
-
-      directions:
-        - right
-        - above
-# Older parent to your left and above.
-  - orientation:
-      selector: >-
-        { c , yp : Person  | yp in ( (c.parent) & ~younger[c.parent]) }
-      directions:
-        - left
-        - above
-
-# Parent above child
-  - orientation:
-      selector: parent
-      directions:
-          - above
-
-# Align parents if they share a child.
-  - orientation:
-      selector:  "{ p1, p2 : Person | (some c : Person | c in p1.(~parent) and c in p2.(~parent)) and (p2 in p1.younger) }"
-      directions: [directlyRight]
-
-
-# Align siblings with younger siblings to the right
-  - orientation:
-      selector: >-
-        { x, y : Person | (some (x.parent & y.parent)) and (y in x.younger) }
-      directions:
-        - directlyRight
-
-
-directives:
-  - hideField:
-        field: younger
-  - attribute:
-      field: age
-  - flag: hideDisconnectedBuiltIns
-
-        
-        
-        `;
+        const cndSpec = ``
         const alloyXml = `
         <alloy builddate="Thursday, August 14th, 2025">
 <instance bitwidth="8" maxseq="-1" command="s1" filename="/Users/siddharthaprasad/Desktop/SpatialRefinement/unsat-study/ftree/familytree.frg" version="4.1"  >
