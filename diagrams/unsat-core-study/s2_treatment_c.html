@@ -41,6 +41,29 @@
         #hover-instructions {
             display: none !important;
         }
+
+        .unsat-box-tip {
+            border: 2px dashed #ff0000;
+            border-radius: 8px;
+            padding: 10px 16px;
+            margin-bottom: 8px;
+            font-size: 1em;
+            animation: dashmove 1s linear infinite;
+            box-sizing: border-box;
+        }
+
+        @keyframes dashmove {
+            to {
+                border-style: dashed;
+                border-width: 2px;
+                border-color: #f40000;
+                border-radius: 8px;
+                border-image-slice: 1;
+                border-image-width: 2px;
+                border-image-outset: 0;
+                border-image-repeat: round;
+            }
+        }
     </style>
 
 <body>
@@ -51,8 +74,8 @@
     <div style="margin-bottom:6px;">
       Zoom with your mouse scroll wheel or trackpad, pan by dragging the background, and move elements by dragging them.
     </div>
-    <div>
-      Boxes with dotted boundaries indicate that some rules involving them cannot be satisfied.
+    <div class="unsat-box-tip">
+      Boxes with dashed boundaries indicate that some rules involving them cannot be satisfied.
     </div>
   </div>
   <button id="reset-graph-btn" title="Reset diagram"
