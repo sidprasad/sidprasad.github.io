@@ -120,7 +120,7 @@
   </div>
 
 </div>
-
+<!-- ...existing code... -->
 <script>
 function resizeParent() {
   if (window.parent && window.parent.postMessage) {
@@ -131,12 +131,15 @@ function resizeParent() {
   }
 }
 
+// number of rows to show initially (make this a variable)
+const VISIBLE_ROWS = 3;
+
 document.querySelectorAll('.table-wrapper').forEach(wrapper => {
   const rows = wrapper.querySelectorAll('tbody tr');
   const btn = wrapper.querySelector('.toggle-btn');
-  // hide rows after the 4th
+  // hide rows after the VISIBLE_ROWS-th (0-based index)
   rows.forEach((row, idx) => {
-    if (idx >= 4) row.classList.add('hidden-row');
+    if (idx >= VISIBLE_ROWS) row.classList.add('hidden-row');
   });
   btn.addEventListener('click', () => {
     const hidden = wrapper.querySelectorAll('tbody tr.hidden-row');
@@ -145,7 +148,7 @@ document.querySelectorAll('.table-wrapper').forEach(wrapper => {
       btn.textContent = 'Show less';
     } else {
       rows.forEach((row, idx) => {
-        if (idx >= 4) row.classList.add('hidden-row');
+        if (idx >= VISIBLE_ROWS) row.classList.add('hidden-row');
       });
       btn.textContent = 'Show more';
     }
@@ -153,8 +156,9 @@ document.querySelectorAll('.table-wrapper').forEach(wrapper => {
   });
 });
 
-// send height on initial load
+// send height on initial load too
 window.addEventListener('load', resizeParent);
 </script>
+
 </body>
 </html>
