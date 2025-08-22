@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Smith Family</title>
+<style>
+  :root {
+    --gap: 12px;
+    --border: #ccc;
+    --cell: #eee;
+    --head: #f8f8f8;
+    --rule: #ddd;
+  }
+  body {
+    margin: 0;
+    font-family: sans-serif;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border);
+    margin-bottom: 0.5em;
+  }
+  th, td {
+    padding: 6px 8px;
+    border: 1px solid var(--cell);
+  }
+  thead th {
+    background: var(--head);
+  }
+  tbody tr.hidden-row {
+    display: none;
+  }
+  .toggle-btn {
+    cursor: pointer;
+    color: #007acc;
+    background: none;
+    border: none;
+    padding: 4px;
+    font-size: 0.9em;
+    margin-bottom: 1em;
+  }
+</style>
+</head>
+<body>
+
+<div class="grid">
+
+  <!-- Person table -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th style="color:#e74c3c;">person</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Mona</td></tr>
+        <tr><td>Matt</td></tr>
+        <tr><td>Selene</td></tr>
+        <tr><td>Elena</td></tr>
+        <tr><td>Clancy</td></tr>
+        <tr><td>Nora</td></tr>
+        <tr><td>Margaret</td></tr>
+        <tr><td>Carmen</td></tr>
+        <tr><td>Daniel</td></tr>
+        <tr><td>Sofia</td></tr>
+        <tr><td>Kenji</td></tr>
+      </tbody>
+    </table>
+    <button class="toggle-btn">Show more</button>
+  </div>
+
+  <!-- Child table -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th colspan="2" style="color:#8e44ad;">child</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Mona</td><td>Kenji</td></tr>
+        <tr><td>Elena</td><td>Matt</td></tr>
+        <tr><td>Elena</td><td>Margaret</td></tr>
+        <tr><td>Elena</td><td>Carmen</td></tr>
+        <tr><td>Clancy</td><td>Selene</td></tr>
+        <tr><td>Clancy</td><td>Elena</td></tr>
+        <tr><td>Clancy</td><td>Nora</td></tr>
+        <tr><td>Daniel</td><td>Kenji</td></tr>
+        <tr><td>Sofia</td><td>Selene</td></tr>
+        <tr><td>Sofia</td><td>Elena</td></tr>
+        <tr><td>Sofia</td><td>Nora</td></tr>
+        <tr><td>Kenji</td><td>Matt</td></tr>
+        <tr><td>Kenji</td><td>Margaret</td></tr>
+        <tr><td>Kenji</td><td>Carmen</td></tr>
+      </tbody>
+    </table>
+    <button class="toggle-btn">Show more</button>
+  </div>
+
+  <!-- Age table -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th colspan="2" style="color:#16a085;">age</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Mona</td><td>79</td></tr>
+        <tr><td>Matt</td><td>10</td></tr>
+        <tr><td>Selene</td><td>37</td></tr>
+        <tr><td>Elena</td><td>38</td></tr>
+        <tr><td>Clancy</td><td>80</td></tr>
+        <tr><td>Nora</td><td>36</td></tr>
+        <tr><td>Margaret</td><td>2</td></tr>
+        <tr><td>Carmen</td><td>8</td></tr>
+        <tr><td>Daniel</td><td>83</td></tr>
+        <tr><td>Sofia</td><td>78</td></tr>
+        <tr><td>Kenji</td><td>39</td></tr>
+      </tbody>
+    </table>
+    <button class="toggle-btn">Show more</button>
+  </div>
+
+</div>
+
+<script>
+function resizeParent() {
+  if (window.parent && window.parent.postMessage) {
+    window.parent.postMessage(
+      { type: 'resize', height: document.body.scrollHeight },
+      '*'
+    );
+  }
+}
+
+document.querySelectorAll('.table-wrapper').forEach(wrapper => {
+  const rows = wrapper.querySelectorAll('tbody tr');
+  const btn = wrapper.querySelector('.toggle-btn');
+  // hide rows after the 4th
+  rows.forEach((row, idx) => {
+    if (idx >= 4) row.classList.add('hidden-row');
+  });
+  btn.addEventListener('click', () => {
+    const hidden = wrapper.querySelectorAll('tbody tr.hidden-row');
+    if (hidden.length > 0) {
+      hidden.forEach(r => r.classList.remove('hidden-row'));
+      btn.textContent = 'Show less';
+    } else {
+      rows.forEach((row, idx) => {
+        if (idx >= 4) row.classList.add('hidden-row');
+      });
+      btn.textContent = 'Show more';
+    }
+    resizeParent();
+  });
+});
+
+// send height on initial load too
+window.addEventListener('load', resizeParent);
+</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Collapsible Tables (Ed/Charles/etc)</title>
+<style>
+  :root {
+    --gap: 12px;
+    --border: #ccc;
+    --cell: #eee;
+    --head: #f8f8f8;
+    --rule: #ddd;
+  }
+  body {
+    margin: 0;
+    font-family: sans-serif;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border);
+    margin-bottom: 0.5em;
+  }
+  th, td {
+    padding: 6px 8px;
+    border: 1px solid var(--cell);
+  }
+  thead th {
+    background: var(--head);
+  }
+  tbody tr.hidden-row {
+    display: none;
+  }
+  .toggle-btn {
+    cursor: pointer;
+    color: #007acc;
+    background: none;
+    border: none;
+    padding: 4px;
+    font-size: 0.9em;
+    margin-bottom: 1em;
+  }
+</style>
+</head>
+<body>
+
+<div class="grid">
+
+  <!-- Person table -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th style="color:#e74c3c;">person</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ed</td></tr>
+        <tr><td>Charles</td></tr>
+        <tr><td>Joe</td></tr>
+        <tr><td>Iris</td></tr>
+        <tr><td>Sinead</td></tr>
+        <tr><td>Diego</td></tr>
+        <tr><td>Lucia</td></tr>
+        <tr><td>Ananya</td></tr>
+        <tr><td>Ana</td></tr>
+        <tr><td>Arjun</td></tr>
+      </tbody>
+    </table>
+    <button class="toggle-btn">Show more</button>
+  </div>
+
+  <!-- Child table -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th colspan="2" style="color:#8e44ad;">child</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ed</td><td>Joe</td></tr>
+        <tr><td>Ed</td><td>Sinead</td></tr>
+        <tr><td>Ed</td><td>Diego</td></tr>
+        <tr><td>Charles</td><td>Iris</td></tr>
+        <tr><td>Charles</td><td>Ananya</td></tr>
+        <tr><td>Charles</td><td>Arjun</td></tr>
+        <tr><td>Sinead</td><td>Iris</td></tr>
+        <tr><td>Sinead</td><td>Ananya</td></tr>
+        <tr><td>Sinead</td><td>Arjun</td></tr>
+        <tr><td>Lucia</td><td>Joe</td></tr>
+        <tr><td>Ana</td><td>Sinead</td></tr>
+        <tr><td>Ana</td><td>Diego</td></tr>
+      </tbody>
+    </table>
+    <button class="toggle-btn">Show more</button>
+  </div>
+
+  <!-- Age table -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th colspan="2" style="color:#27ae60;">age</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ed</td><td>60</td></tr>
+        <tr><td>Charles</td><td>35</td></tr>
+        <tr><td>Joe</td><td>2</td></tr>
+        <tr><td>Iris</td><td>13</td></tr>
+        <tr><td>Sinead</td><td>33</td></tr>
+        <tr><td>Diego</td><td>32</td></tr>
+        <tr><td>Lucia</td><td>62</td></tr>
+        <tr><td>Ananya</td><td>11</td></tr>
+        <tr><td>Ana</td><td>59</td></tr>
+        <tr><td>Arjun</td><td>8</td></tr>
+      </tbody>
+    </table>
+    <button class="toggle-btn">Show more</button>
+  </div>
+
+</div>
+
+<script>
+function resizeParent() {
+  if (window.parent && window.parent.postMessage) {
+    window.parent.postMessage(
+      { type: 'resize', height: document.body.scrollHeight },
+      '*'
+    );
+  }
+}
+
+document.querySelectorAll('.table-wrapper').forEach(wrapper => {
+  const rows = wrapper.querySelectorAll('tbody tr');
+  const btn = wrapper.querySelector('.toggle-btn');
+  // hide rows after the 4th
+  rows.forEach((row, idx) => {
+    if (idx >= 4) row.classList.add('hidden-row');
+  });
+  btn.addEventListener('click', () => {
+    const hidden = wrapper.querySelectorAll('tbody tr.hidden-row');
+    if (hidden.length > 0) {
+      hidden.forEach(r => r.classList.remove('hidden-row'));
+      btn.textContent = 'Show less';
+    } else {
+      rows.forEach((row, idx) => {
+        if (idx >= 4) row.classList.add('hidden-row');
+      });
+      btn.textContent = 'Show more';
+    }
+    resizeParent();
+  });
+});
+
+// send height on initial load
+window.addEventListener('load', resizeParent);
+</script>
+</body>
+</html>
