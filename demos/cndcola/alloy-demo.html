@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alloy CND Demo</title>
+    <title>WebCola CND Demo</title>
     
     <!-- Bootstrap CSS for component styling -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -132,16 +132,19 @@
     </style>
 </head>
 <body>
-    <div class="container border">
-        <h1>CnD Alloy Visualization Demo</h1>
-        
+    <div class="container border" id="main-panel">
+        <h1>🎯 WebCola Alloy Visualization Demo</h1>
+        <p>This demonstrates the complete Alloy XML → AlloyDataInstance → ForgeEvaluator → Layout → WebCola pipeline.</p>
         <div>
             <!-- Editable Input Fields -->
             <div>
                 <label for="webcola-alloy">Alloy XML Instance:</label>
                 <textarea id="webcola-alloy" placeholder="Paste your Alloy XML instance here..."></textarea>
             </div>
+            <div id="evaluator-repl-mount"></div>
             <div id="status" class="status info">Ready to load Alloy graph...</div>
+            <div id="error-messages"></div>
+            <div id="relation-highlighter-mount"></div>
             <div id="graph-container-wrapper">
                 <div id="graph-controls">
                     <select title="Choose the Layout Format" class="form-select form-select-sm" id="layoutFormat" name="layoutFormat" onchange="changeLayoutFormat()" aria-label="Layout format selection">
@@ -169,20 +172,15 @@
         </div>
     </div>
 
-    <!-- D3 v4 and WebCola -->
-        <script src="https://d3js.org/d3.v4.min.js"></script>
-        <!-- <script src="../vendor/cola.js"></script> -->
-        <script src="https://cdn.jsdelivr.net/npm/webcola@3.4.0/WebCola/cola.min.js"></script>
-        <!-- React for components -->
-        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-        
-        <!-- Complete CND-Core browser bundle -->
-        <script src="https://cdn.jsdelivr.net/npm/cnd-core/dist/browser/cnd-core-complete.global.js"></script>
-        
-        <!-- Demo components bundle (includes InstanceBuilder integration) -->
-        <script src="./components/demo-integration.global.js"></script>
-        <link rel="stylesheet" href="./components/demo-integration.css">
+    <!-- D3 v4 and WebCola - the working combination -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="../vendor/cola.js"></script>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/cnd-core@1.2.1/dist/browser/cnd-core-complete.global.js"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/cnd-core@1.2.1/dist/components/react-component-integration.global.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cnd-core@1.2.1/dist/components/react-component-integration.css" /> 
+    
     <script>
         // Variables to store data
         let currentInstanceLayout = null;
@@ -257,9 +255,6 @@
 
                 // Get CND specification from input field
                 const cndSpec = getCurrentCNDSpec() || "";
-                // if (!cndSpec) {
-                //     throw new Error('Please enter a CND layout specification');
-                // }
 
                 console.log('Using Alloy XML:', alloyXml.substring(0, 200) + '...');
                 console.log('Using CND Spec:', cndSpec.substring(0, 200) + '...');
@@ -293,9 +288,30 @@
 
                 console.log('Created ForgeEvaluator:', forgeEvaluator);
 
+                // NOTE: Mount Evaluator REPL
+                if (window.mountEvaluatorRepl) {
+                    window.mountEvaluatorRepl('evaluator-repl-mount', forgeEvaluator, 0);
+                } else {
+                    console.warn('Evaluator REPL mount function not available. Skipping REPL mount.');
+                }
+
                 // Step 3: Parse layout specification
                 updateStatus('Parsing layout specification...', 'info');
-                const layoutSpec = CndCore.parseLayoutSpec(cndSpec);
+                let layoutSpec = null;
+                try {
+                    layoutSpec = CndCore.parseLayoutSpec(cndSpec);
+                    if (window.clearAllErrors) {
+                        window.clearAllErrors();
+                    }
+                } catch (error) {
+                    console.error('Layout spec parse error:', error);
+                    if (window.showParseError) {
+                        window.showParseError(error.message, 'Layout Specification');
+                    } else {
+                        updateStatus(`Layout spec parse error: ${error.message}`, 'error');
+                    }
+                    return;
+                }
                 console.log('Parsed Layout Spec:', layoutSpec);
 
                 // Step 4: Create LayoutInstance with ForgeEvaluator
@@ -315,8 +331,58 @@
                 // Step 5: Generate layout using Alloy data instance
                 updateStatus('Generating layout with Alloy data...', 'info');
                 const projections = {};
-                const layoutResult = layoutInstance.generateLayout(alloyDataInstance, projections);
-                currentInstanceLayout = layoutResult.layout;
+
+                try {
+                    const layoutResult = layoutInstance.generateLayout(alloyDataInstance, projections);
+                    currentInstanceLayout = layoutResult.layout;
+    
+                    if (layoutResult.error) {
+                        console.error('Layout generation error:', layoutResult.error);
+    
+                        // Check if this is a constraint conflict error
+                        if (layoutResult.error.errorMessages) {
+                            if (window.showPositionalError) {
+                                window.showPositionalError(layoutResult.error.errorMessages);
+                            } else {
+                                updateStatus(`Positional constraint conflict: ${layoutResult.error.message}`, 'error');
+                            }
+                        } else if (layoutResult.error.overlappingNodes) {
+                            if (window.showGroupOverlapError) {
+                                window.showGroupOverlapError(layoutResult.error.message);
+                            } else {
+                                updateStatus(`Group overlap error: ${layoutResult.error.message}`, 'error');
+                            }
+                        } else {
+                            if (window.showGeneralError) {
+                                window.showGeneralError(`Layout generation error: ${layoutResult.error.message}`);
+                            } else {
+                                updateStatus(`Layout generation error: ${layoutResult.error.message}`, 'error');
+                            }
+                        }
+
+                        // Set the webcola-cnd-graph element to indicate unsat state
+                        const webcolaGraphElement = document.getElementById('graph-container');
+                        webcolaGraphElement.setAttribute('unsat', "");
+
+                        return;
+                    }
+                } catch (error) {
+                    if (window.showGeneralError) {
+                        window.showGeneralError(`Layout generation failed: ${error.message}`);
+                    } else {
+                        updateStatus(`Layout generation failed: ${error.message}`, 'error');
+                    }
+                    return;
+                }
+
+                const webcolaGraphElement = document.getElementById('graph-container');
+                webcolaGraphElement.removeAttribute('unsat'); // Clear unsat state
+
+                // Clear errors on successful layout generation
+                if (window.clearAllErrors) {
+                    window.clearAllErrors();
+                }
+
                 console.log('Generated Instance Layout using Alloy pipeline:', currentInstanceLayout);
 
                 updateStatus('Alloy pipeline complete with ForgeEvaluator! Ready to render.', 'success');
@@ -331,6 +397,7 @@
          * Render the graph using the webcola-cnd-graph custom element
          */
         async function renderGraph() {
+            clearGraph(); // Clear existing graph first
             const graphElement = document.getElementById('graph-container');
             
             try {
@@ -346,7 +413,7 @@
                 
                 // Use the real InstanceLayout data with WebCola custom element
                 await graphElement.renderLayout(currentInstanceLayout);
-                
+
                 updateStatus('Alloy graph rendered successfully!', 'success');
             } catch (error) {
                 console.error('Error rendering Alloy graph:', error);
@@ -402,13 +469,24 @@
 
             // Re-render the graph with the new layout format
             try {
+                if (!currentInstanceLayout) {
+                    throw new Error('No layout data available. Please load an Alloy graph first.');
+                }
                 await graphElement.renderLayout(currentInstanceLayout);
-                statusElement.textContent = 'Real graph rendered successfully!';
+                updateStatus('Graph layout changed successfully!', 'success');
             } catch (error) {
                 console.error('Error rendering graph:', error);
-                statusElement.textContent = `Render error: ${error.message}`;
+                updateStatus(`Render error: ${error.message}`, 'error');
             }
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mouont the window.mountRelationHighlighter
+            const graphElement = document.getElementById('graph-container');
+            if (graphElement && window.mountRelationHighlighter) {
+                window.mountRelationHighlighter('relation-highlighter-mount', 'graph-container');
+            }
+        });
 
         // Auto-initialize when page loads
         window.addEventListener('load', () => {
@@ -416,6 +494,11 @@
             // Mount React component if available
             if (window.mountCndLayoutInterface) {
                 window.mountCndLayoutInterface();
+            }
+
+            // Mount error message system
+            if (window.mountErrorMessageModal) {
+                window.mountErrorMessageModal();
             }
         });
 
