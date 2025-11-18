@@ -18,61 +18,46 @@ title: Publications
     <div class="publication-list">
       {% for pub in group.items %}
       <div class="publication-card">
-        <!-- Publication details -->
-        <div>
-          {% if pub.paper_url %}
+        <div class="publication-card-inner">
+          <!-- Left side: main publication info -->
+          <div class="publication-main">
             <h4 class="publication-title">
-              <a href="{{ pub.paper_url }}">{{ pub.title }}</a>
-              {% if pub.award %}
-                <span class="award-medal"
-                      tabindex="0"
-                      onclick="this.nextElementSibling.classList.toggle('show-award');"
-                      onkeypress="if(event.key==='Enter'||event.key===' '){this.click();}"
-                      style="cursor:pointer;"
-                      title="{{ pub.award | escape }}">
-                  🏅
-                </span>
-                <span class="award-text">{{ pub.award }}</span>
+              {% if pub.paper_url %}
+                <a href="{{ pub.paper_url }}">{{ pub.title }}</a>
+              {% else %}
+                {{ pub.title }}
               {% endif %}
             </h4>
-          {% else %}
-            <h4 class="publication-title">
-              {{ pub.title }}
-              {% if pub.award %}
-                <span class="award-medal"
-                      tabindex="0"
-                      onclick="this.nextElementSibling.classList.toggle('show-award');"
-                      onkeypress="if(event.key==='Enter'||event.key===' '){this.click();}"
-                      style="cursor:pointer;"
-                      title="{{ pub.award | escape }}">
-                  🏅
-                </span>
-                <span class="award-text">{{ pub.award }}</span>
-              {% endif %}
-            </h4>
-          {% endif %}
-          <!-- Tags for blog and code -->
-          <div class="publication-tags">
-            {% if pub.blog_url %}
-            <a href="{{ pub.blog_url }}" class="publication-tag blog">Blog Post</a>
-            {% endif %}
-            {% if pub.code_url %}
-            <a href="{{ pub.code_url }}" class="publication-tag code">Code</a>
-            {% endif %}
 
+            <!-- Tags for blog and code -->
+            <div class="publication-tags">
+              {% if pub.blog_url %}
+              <a href="{{ pub.blog_url }}" class="publication-tag blog">Blog Post</a>
+              {% endif %}
+              {% if pub.code_url %}
+              <a href="{{ pub.code_url }}" class="publication-tag code">Code</a>
+              {% endif %}
+            </div>
+
+            <p class="publication-details">
+              <p class="publication-authors">
+                {{ pub.authors | replace: "Siddhartha Prasad", "<strong>Siddhartha Prasad</strong>" }}
+              </p>  
+              <p>
+              {% if pub.status %} <span class="publication-status">{{ pub.status }}</span> {% endif %}
+              <span class="publication-venue">{{ pub.venue }}</span> {{pub.year}}
+              </p>
+            </p>
           </div>
 
-          <p class="publication-details">
-            <p class="publication-authors">
-              {{ pub.authors | replace: "Siddhartha Prasad", "<strong>Siddhartha Prasad</strong>" }}
-            </p>  
-            <p>
-            {% if pub.status %} <span class="publication-status">{{ pub.status }}</span> {% endif %}
-            <span class="publication-venue">{{ pub.venue }}</span> {{pub.year}}
-            </p>
-          </p>
-
-
+          <!-- Right side: awards (if any) -->
+          {% if pub.awards %}
+          <div class="publication-awards-sidebar">
+            {% for award in pub.awards %}
+              <div class="award-item">{{ award }}</div>
+            {% endfor %}
+          </div>
+          {% endif %}
         </div>
       </div>
       {% endfor %}
@@ -83,24 +68,31 @@ title: Publications
 </div>
 
 <style>
-.award-medal {
-  margin-left: 0.4em;
-  font-size: 1em;
-  vertical-align: middle;
-  transition: transform 0.2s;
+.publication-card-inner {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
 }
-.award-medal:hover, .award-medal:focus {
-  transform: scale(1.2) rotate(-10deg);
-  outline: none;
+
+.publication-main {
+  flex: 1;
+  min-width: 0; /* allows text to wrap properly */
 }
-.award-text {
-  display: none;
-  margin-left: 0.5em;
-  color: #b8860b;
+
+.publication-awards-sidebar {
+  flex-shrink: 0;
+  width: 200px;
+  padding: 8px 12px;
+  background: #fff8e6;
+  border-left: 3px solid #b8860b;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.award-item {
+  color: #7a5c00;
   font-weight: 500;
-  font-size: 0.95em;
-}
-.award-text.show-award {
-  display: inline;
+  margin: 4px 0;
+  line-height: 1.4;
 }
 </style>

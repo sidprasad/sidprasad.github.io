@@ -32,7 +32,6 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
     <div class="project-card">
       <h3 class="project-title">Linear Temporal Logic</h3>
       <p class="project-description">
-        A learner's misconceptions are really alternate semantics in their head.
         This project involves understanding and addressing misconceptions that
         practioners have when working in LTL.
       </p>
