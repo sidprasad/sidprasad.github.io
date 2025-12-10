@@ -3,12 +3,10 @@ layout: default
 title: Siddhartha Prasad
 ---
 
-I am a PhD student in Computer Science at Brown University, advised by [Shriram Krishnamurthi](https://cs.brown.edu/~sk/). I'm especially focused on helping people write programs that behave as they intend. This means that my research touches on programming languages, formal methods, human factors, and education.
+
+I am a PhD student in Computer Science at Brown University, advised by [Shriram Krishnamurthi](https://cs.brown.edu/~sk/). My research takes a programming-languages approach to improving how people express intent and reason about program behavior, drawing on ideas from formal methods, human–computer interaction, and cognitive science. I am especially interested in how models of human cognition can inform the design of languages, semantics, and interactive tools for understanding complex computational structures.
 
 Previously, I was a software engineer at Microsoft, where I worked both on Windows[^1] and Azure[^2]. My research interests are informed by my time as an engineer. I have written code that doesn't do what I want it to, and I want to spare everyone else the indignity.
-
-
-
 
 [^1]: I worked on the [XAML UI Framework](https://github.com/microsoft/microsoft-ui-xaml) from 2016-2018.
 [^2]: I worked on [Azure's AI services](https://azure.microsoft.com/en-us/products/ai-services), with a particular focus on containerizing AI from 2018-2021.
@@ -22,8 +20,7 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
     <div class="project-card">
       <h3 class="project-title">Diagramming and Spatiality</h3>
       <p class="project-description">
-      The most important aspect of a diagram is how it is spatially arranged, not its aesthetic rendering. I am interested in understanding the
-      spatial operations that are needed to build useful diagrams.
+      The most important aspect of a diagram is how it is spatially arranged, not its aesthetic rendering. I am interested in understanding the spatial operations that are needed to build useful diagrams.
       </p>
     </div>
   </a>
