@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebCola JSON Visualization Demo</title>
+
+    <!-- Bootstrap CSS for component styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            max-width: 90vw;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            gap: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        #graph-container-wrapper {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            margin: 20px 0;
+        }
+        #graph-container {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #007acc;
+            border-radius: 8px;
+            display: block;
+        }
+        #graph-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px 12px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        button {
+            background-color: #007acc;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #005a9e;
+        }
+        #clearGraphButton {
+            background-color: red;
+        }
+        #clearGraphButton:hover {
+            background-color: rgb(200, 34, 34);
+        }
+        #applyLayoutButton {
+            font-size: 16px;
+        }
+        #applyLayoutButton:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .status.info { background: #e3f2fd; color: #1976d2; }
+        .status.success { background: #e8f5e8; color: #2e7d32; }
+        .status.error { background: #ffebee; color: #c62828; }
+
+        @media (max-width: 768px) {
+            #graph-controls {
+                top: 5px;
+                right: 5px;
+                padding: 6px 8px;
+                gap: 6px;
+            }
+
+            #graph-controls #clearGraphButton {
+                padding: 4px 8px;
+                font-size: 12px;
+            }
+
+            #graph-controls #layoutFormat {
+                padding: 4px 6px;
+                font-size: 12px;
+                min-width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container border" id="main-panel">
+        <h1>WebCola JSON Visualization Demo</h1>
+        <p>This demonstrates the complete JSON → JSONDataInstance → Evaluator → Layout → WebCola pipeline.</p>
+        <div>
+            <div>
+                <label for="webcola-json">JSON Data Instance:</label>
+                <textarea id="webcola-json" placeholder='{
+  "atoms": [
+    { "id": "p1", "label": "Alice", "type": "Person" },
+    { "id": "p2", "label": "Bob", "type": "Person" }
+  ],
+  "relations": [
+    {
+      "name": "friend",
+      "tuples": [
+        ["p1", "p2"]
+      ]
+    }
+  ]
+}'></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="evaluator-select">Evaluator:</label>
+                <select id="evaluator-select" class="form-select form-select-sm" onchange="handleEvaluatorChange()" aria-label="Evaluator selection">
+                    <option value="sgq" selected>Sgq (SGraphQueryEvaluator)</option>
+                    <option value="forge">Forge</option>
+                    <option value="sql">SQL</option>
+                </select>
+            </div>
+            <div id="sql-schemas-container" style="display: none;" class="mb-3">
+                <details>
+                    <summary class="text-muted small">📊 Available SQL Tables</summary>
+                    <div id="sql-schemas" class="small mt-2" style="max-height: 200px; overflow-y: auto; font-family: monospace; background: #f8f9fa; padding: 8px; border-radius: 4px;"></div>
+                </details>
+            </div>
+            <div id="status" class="status info">Ready to load JSON graph...</div>
+            <div id="error-messages"></div>
+            <div id="graph-container-wrapper">
+                <!-- <div id="graph-controls">
+                    <select title="Choose the Layout Format" class="form-select form-select-sm" id="layoutFormat" name="layoutFormat" onchange="changeLayoutFormat()" aria-label="Layout format selection">
+                        <option value="default" selected>Standard</option>
+                        <option value="grid">Grid (Beta)</option>
+                    </select>
+                    <button id="screenshotButton" onclick="takeScreenshot()" title="Download graph as PNG image" aria-label="Screenshot graph" style="background-color: #28a745;">Screenshot</button>
+                    <button id="clearGraphButton" onclick="clearGraph()" title="Clear the current graph visualization" aria-label="Clear graph">Clear</button>
+                </div> -->
+                <webcola-cnd-graph
+                    id="graph-container"
+                    width="800"
+                    height="600"
+                    layoutFormat="default"
+                    aria-label="Interactive graph visualization">
+                </webcola-cnd-graph>
+            </div>
+        </div>
+    </div>
+    <div id="cnd-panel" class="container d-flex flex-column col-md-4 border p-3">
+        <h5 class="h5 mb-2 text-dark">CND Layout Specification:</h5>
+        <button id="applyLayoutButton" class="mb-3" onclick="loadGraph()">Apply Layout</button>
+        <div class="mb-3">
+            <h6 class="h6 text-dark">Export Instance Views:</h6>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+                <button class="btn btn-sm btn-outline-primary" onclick="exportInstanceView('alloy')">Export Alloy View</button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="exportInstanceView('sql')">Export SQL View</button>
+            </div>
+            <textarea id="instance-export-output" readonly placeholder="Exported view will appear here..."></textarea>
+        </div>
+        <div id="webcola-cnd-container">
+            <!-- React element attached here -->
+        </div>
+        
+        <!-- Inline Projection Controls -->
+        <div id="projection-panel" class="mb-3">
+            <h6 class="h6 text-dark">Projections:</h6>
+            <div class="d-flex gap-2 mb-2">
+                <input id="projection-type-input" type="text" class="form-control form-control-sm"
+                       placeholder="Type name (e.g. Person)" autocomplete="off" />
+                <button id="addProjectionBtn" class="btn btn-sm btn-outline-primary" onclick="addProjection()" style="white-space:nowrap">Add</button>
+            </div>
+            <div id="projection-error" class="text-danger small mb-2" style="display:none"></div>
+            <div id="projection-list"></div>
+        </div>
+    </div>
+
+    <!-- D3 v4 and WebCola - the working combination -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="../vendor/cola.js"></script>
+
+    <!-- Complete CND-Core browser bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/spytial-core/dist/browser/spytial-core-complete.global.js"></script>
+
+    <!-- Your React component bundle (includes React runtime) -->
+    <script src="https://cdn.jsdelivr.net/npm/spytial-core/dist/components/react-component-integration.global.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/spytial-core/dist/components/react-component-integration.css">
+    <script>
+        let currentInstanceLayout = null;
+        let cachedEvaluator = null;
+        let cachedLayoutSpec = null;
+        let cachedInstance = null;
+        let cachedEvaluatorType = 'sgq';
+        // Projection state
+        let activeProjections = [];
+        let projectionSelections = {};
+        let projectedInstance = null;
+
+        function getCurrentJsonText() {
+            return document.getElementById('webcola-json').value.trim();
+        }
+
+        function getCurrentCNDSpec() {
+            return window.getCurrentCNDSpecFromReact ?
+                window.getCurrentCNDSpecFromReact() :
+                document.getElementById('webcola-cnd')?.value?.trim();
+        }
+
+        function updateStatus(message, type = 'info') {
+            const statusElement = document.getElementById('status');
+            statusElement.textContent = message;
+            statusElement.className = `status ${type}`;
+        }
+
+        function getSelectedEvaluatorType() {
+            return document.getElementById('evaluator-select')?.value || 'sgq';
+        }
+
+        function handleEvaluatorChange() {
+            cachedEvaluator = null;
+            cachedEvaluatorType = getSelectedEvaluatorType();
+            currentInstanceLayout = null;
+            updateStatus(`Evaluator set to ${cachedEvaluatorType.toUpperCase()}. Reload to apply.`, 'info');
+        }
+
+        function getCurrentExportInstance() {
+            if (cachedInstance) {
+                return cachedInstance;
+            }
+
+            const jsonText = getCurrentJsonText();
+            if (!jsonText) {
+                return null;
+            }
+
+            return new CndCore.JSONDataInstance(jsonText);
+        }
+
+        function exportInstanceView(format) {
+            try {
+                const instance = getCurrentExportInstance();
+                if (!instance) {
+                    throw new Error('No JSON instance available. Load data first.');
+                }
+
+                let output = '';
+                let fileName = '';
+
+                if (format === 'alloy') {
+                    output = CndCore.generateAlloySchema(instance);
+                    fileName = 'instance-schema.alloy';
+                } else if (format === 'sql') {
+                    output = CndCore.generateSQLSchema(instance);
+                    fileName = 'instance-schema.sql';
+                } else {
+                    throw new Error('Unknown export format.');
+                }
+
+                const outputArea = document.getElementById('instance-export-output');
+                outputArea.value = output;
+                outputArea.scrollTop = 0;
+
+                // const blob = new Blob([output], { type: 'text/plain;charset=utf-8' });
+                // const url = URL.createObjectURL(blob);
+                // const link = document.createElement('a');
+                // link.href = url;
+                // link.download = fileName;
+                // document.body.appendChild(link);
+                // link.click();
+                // document.body.removeChild(link);
+                // URL.revokeObjectURL(url);
+
+                updateStatus(`Exported ${format.toUpperCase()} view.`, 'success');
+            } catch (error) {
+                console.error('Export error:', error);
+                updateStatus(`Export failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function initializePipeline() {
+            try {
+                console.log('Complete CND-Core browser bundle loaded successfully');
+                console.log('Available on global CndCore:', Object.keys(CndCore));
+
+                console.log('JSONDataInstance available:', !!CndCore.JSONDataInstance);
+                console.log('SGraphQueryEvaluator available:', !!CndCore.SGraphQueryEvaluator);
+                console.log('LayoutInstance available:', !!CndCore.LayoutInstance);
+                console.log('parseLayoutSpec available:', !!CndCore.parseLayoutSpec);
+
+                updateStatus('JSON pipeline ready! Enter JSON data and CND specifications now.', 'success');
+                return true;
+            } catch (error) {
+                console.error('Failed to initialize JSON pipeline:', error);
+                updateStatus(`Pipeline init failed: ${error.message}`, 'error');
+                return false;
+            }
+        }
+
+        async function loadJsonData() {
+            try {
+                const evaluatorType = getSelectedEvaluatorType();
+                cachedEvaluatorType = evaluatorType;
+                updateStatus(`Processing JSON data with ${evaluatorType.toUpperCase()} evaluator...`, 'info');
+
+                const jsonText = getCurrentJsonText();
+                if (!jsonText) {
+                    throw new Error('Please enter a JSON data instance');
+                }
+
+                const cndSpec = getCurrentCNDSpec() || '';
+
+                console.log('Using JSON data:', jsonText.substring(0, 200) + '...');
+                console.log('Using CND Spec:', cndSpec.substring(0, 200) + '...');
+
+                updateStatus('Parsing JSON data...', 'info');
+                cachedInstance = new CndCore.JSONDataInstance(jsonText);
+
+                if (evaluatorType === 'forge') {
+                    updateStatus('Creating ForgeEvaluator...', 'info');
+                    cachedEvaluator = new CndCore.ForgeEvaluator();
+                    cachedEvaluator.initialize({ sourceData: cachedInstance });
+                } else if (evaluatorType === 'sql') {
+                    updateStatus('Creating SQLEvaluator...', 'info');
+                    cachedEvaluator = new CndCore.SQLEvaluator();
+                    cachedEvaluator.initialize({ sourceData: cachedInstance });
+                } else {
+                    updateStatus('Creating SGraphQueryEvaluator...', 'info');
+                    cachedEvaluator = new CndCore.SGraphQueryEvaluator();
+                    cachedEvaluator.initialize({ sourceData: cachedInstance });
+                }
+
+                // Show/hide SQL schemas based on evaluator type
+                const schemasContainer = document.getElementById('sql-schemas-container');
+                const schemasDiv = document.getElementById('sql-schemas');
+                if (evaluatorType === 'sql' && cachedEvaluator.getTableSchemas) {
+                    const schemas = cachedEvaluator.getTableSchemas();
+                    schemasDiv.innerHTML = schemas.map(s => 
+                        `<div><strong>${s.name}</strong> (${s.columns.join(', ')})</div>`
+                    ).join('');
+                    schemasContainer.style.display = 'block';
+                } else {
+                    schemasContainer.style.display = 'none';
+                }
+
+                updateStatus('Parsing layout specification...', 'info');
+                try {
+                    cachedLayoutSpec = CndCore.parseLayoutSpec(cndSpec);
+                    if (window.clearAllErrors) {
+                        window.clearAllErrors();
+                    }
+                } catch (error) {
+                    console.error('Layout spec parse error:', error);
+                    if (window.showParseError) {
+                        window.showParseError(error.message, 'Layout Specification');
+                    } else {
+                        updateStatus(`Layout spec parse error: ${error.message}`, 'error');
+                    }
+                    return;
+                }
+
+                await generateLayout();
+
+                updateStatus('JSON pipeline complete! Graph is ready to render.', 'success');
+            } catch (error) {
+                console.error('Failed to load JSON data:', error);
+                updateStatus(`JSON data loading failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function generateLayout() {
+            if (!cachedInstance || !cachedEvaluator || !cachedLayoutSpec) {
+                throw new Error('Missing required data for layout generation');
+            }
+
+            // Reset projected instance so we never use a stale one.
+            // The orchestrator will set it again after its React state update.
+            projectedInstance = null;
+
+            updateStatus('Creating layout...', 'info');
+            const ENABLE_ALIGNMENT_EDGES = true;
+
+            const layoutInstance = new CndCore.LayoutInstance(
+                cachedLayoutSpec,
+                cachedEvaluator,
+                0,
+                ENABLE_ALIGNMENT_EDGES
+            );
+
+            updateStatus('Generating layout with JSON data...', 'info');
+
+            // Apply projection transform if any projections are active
+            let instanceForLayout = cachedInstance;
+            if (activeProjections.length > 0) {
+                try {
+                    const result = CndCore.applyProjectionTransform(
+                        cachedInstance,
+                        activeProjections,
+                        projectionSelections
+                    );
+                    instanceForLayout = result.instance;
+                    projectedInstance = result.instance;
+                    renderProjectionChoices(result.choices);
+                } catch (err) {
+                    console.error('Projection transform failed:', err);
+                    showProjectionError(err.message);
+                    // Render rows with remove buttons so the user can fix/remove the bad projection.
+                    renderProjectionChoices([]);
+                }
+            } else {
+                projectedInstance = null;
+            }
+
+            const layoutResult = layoutInstance.generateLayout(instanceForLayout);
+            currentInstanceLayout = layoutResult.layout;
+
+            // 1. Check for selector errors first - early out if present
+            if (layoutResult.selectorErrors && layoutResult.selectorErrors.length > 0) {
+                console.warn('Selector errors:', layoutResult.selectorErrors);
+                if (window.showSelectorErrors) {
+                    window.showSelectorErrors(layoutResult.selectorErrors);
+                }
+                const webcolaGraphElement = document.getElementById('graph-container');
+                webcolaGraphElement.setAttribute('unsat', '');
+                return;
+            }
+
+            // 2. Standard IIS/constraint error handling
+            if (layoutResult.error) {
+                console.error('Layout generation error:', layoutResult.error);
+                
+                if (layoutResult.error.errorMessages) {
+                    // Check if it's a hidden-node conflict (hideAtom vs constraint reference)
+                    if (layoutResult.error.type === 'hidden-node-conflict' && window.showHiddenNodeConflict) {
+                        window.showHiddenNodeConflict(layoutResult.error.errorMessages);
+                    } else if (window.showPositionalError) {
+                        // Positional constraint conflict with IIS info
+                        window.showPositionalError(layoutResult.error.errorMessages);
+                    } else {
+                        updateStatus(`Positional constraint conflict: ${layoutResult.error.message}`, 'error');
+                    }
+                } else if (layoutResult.error.overlappingNodes) {
+                    // Group overlap error
+                    if (window.showGroupOverlapError) {
+                        window.showGroupOverlapError(layoutResult.error.message);
+                    } else {
+                        updateStatus(`Group overlap error: ${layoutResult.error.message}`, 'error');
+                    }
+                } else {
+                    // General error
+                    if (window.showGeneralError) {
+                        window.showGeneralError(`Layout generation error: ${layoutResult.error.message}`);
+                    } else {
+                        updateStatus(`Layout generation error: ${layoutResult.error.message}`, 'error');
+                    }
+                }
+
+                const webcolaGraphElement = document.getElementById('graph-container');
+                webcolaGraphElement.setAttribute('unsat', '');
+                return;
+            }
+
+            const webcolaGraphElement = document.getElementById('graph-container');
+            webcolaGraphElement.removeAttribute('unsat');
+
+            // Clear any previous errors on successful layout
+            if (window.clearAllErrors) {
+                window.clearAllErrors();
+            }
+        }
+
+        async function renderGraph() {
+            const graphElement = document.getElementById('graph-container');
+
+            try {
+                if (!currentInstanceLayout) {
+                    if (cachedInstance && cachedEvaluator && cachedLayoutSpec) {
+                        await generateLayout();
+                    } else {
+                        updateStatus('No layout data available. Processing JSON data first...', 'info');
+                        await loadJsonData();
+                    }
+
+                    if (!currentInstanceLayout) {
+                        console.warn('No layout data available to render (likely due to constraint errors)');
+                        return;
+                    }
+                }
+
+                if (graphElement.clear) {
+                    graphElement.clear();
+                } else {
+                    const svg = graphElement.shadowRoot?.querySelector('svg');
+                    if (svg) {
+                        const container = svg.querySelector('.zoomable');
+                        if (container) {
+                            container.innerHTML = '';
+                        }
+                    }
+                }
+
+                updateStatus('Rendering JSON graph with WebCola...', 'info');
+                await graphElement.renderLayout(currentInstanceLayout);
+
+                updateStatus('Graph rendered successfully!', 'success');
+            } catch (error) {
+                console.error('Error rendering JSON graph:', error);
+                updateStatus(`JSON render error: ${error.message}`, 'error');
+            }
+        }
+
+        async function takeScreenshot() {
+            const graphElement = document.getElementById('graph-container');
+            if (!graphElement || typeof graphElement.takeScreenshot !== 'function') {
+                updateStatus('No graph to capture. Load a graph first.', 'error');
+                return;
+            }
+
+            try {
+                updateStatus('Generating screenshot...', 'info');
+                await graphElement.takeScreenshot();
+                updateStatus('Screenshot saved!', 'success');
+            } catch (error) {
+                console.error('Screenshot error:', error);
+                updateStatus(`Screenshot failed: ${error.message}`, 'error');
+            }
+        }
+
+        function clearGraph() {
+            const graphElement = document.getElementById('graph-container');
+
+            console.log('clearGraph: Clearing visualization and resetting layout state');
+
+            if (graphElement.clear) {
+                graphElement.clear();
+            } else {
+                const svg = graphElement.shadowRoot?.querySelector('svg');
+                if (svg) {
+                    const container = svg.querySelector('.zoomable');
+                    if (container) {
+                        container.innerHTML = '';
+                    }
+                }
+            }
+
+            currentInstanceLayout = null;
+            cachedInstance = null;
+            cachedEvaluator = null;
+            cachedLayoutSpec = null;
+            cachedEvaluatorType = getSelectedEvaluatorType();
+            activeProjections = [];
+            projectionSelections = {};
+            projectedInstance = null;
+            const projListEl = document.getElementById('projection-list');
+            if (projListEl) projListEl.innerHTML = '';
+
+            updateStatus('Graph cleared.', 'info');
+        }
+
+        async function loadGraph() {
+            try {
+                await loadJsonData();
+                await renderGraph();
+            } catch (error) {
+                console.error('Failed to load and render JSON graph:', error);
+                updateStatus(`Failed to load JSON graph: ${error.message}`, 'error');
+            }
+        }
+
+        async function changeLayoutFormat() {
+            const graphElement = document.getElementById('graph-container');
+            const layoutFormat = document.getElementById('layoutFormat').value;
+            graphElement.setAttribute('layoutFormat', layoutFormat);
+            console.log(`Layout format changed to: ${layoutFormat}`);
+
+            try {
+                if (!currentInstanceLayout) {
+                    throw new Error('No layout data available. Please load a JSON graph first.');
+                }
+                await graphElement.renderLayout(currentInstanceLayout);
+                updateStatus('Graph layout changed successfully!', 'success');
+            } catch (error) {
+                console.error('Error rendering graph:', error);
+                updateStatus(`Render error: ${error.message}`, 'error');
+            }
+        }
+
+        // ── Projection UI (vanilla JS) ─────────────────────────────────
+
+        function showProjectionError(msg) {
+            const el = document.getElementById('projection-error');
+            el.textContent = msg;
+            el.style.display = 'block';
+        }
+
+        function clearProjectionError() {
+            const el = document.getElementById('projection-error');
+            el.textContent = '';
+            el.style.display = 'none';
+        }
+
+        function addProjection() {
+            const input = document.getElementById('projection-type-input');
+            const sig = input.value.trim();
+            if (!sig) return;
+
+            if (activeProjections.some(p => p.sig === sig)) {
+                showProjectionError('Already projecting over "' + sig + '".');
+                return;
+            }
+
+            clearProjectionError();
+            activeProjections.push({ sig });
+            input.value = '';
+            rerunProjectedLayout();
+        }
+
+        function removeProjection(sig) {
+            activeProjections = activeProjections.filter(p => p.sig !== sig);
+            delete projectionSelections[sig];
+            clearProjectionError();
+            rerunProjectedLayout();
+        }
+
+        function onProjectionAtomChange(sig, atomId) {
+            projectionSelections[sig] = atomId;
+            rerunProjectedLayout();
+        }
+
+        async function rerunProjectedLayout() {
+            if (!cachedInstance || !cachedEvaluator || !cachedLayoutSpec) return;
+            try {
+                await generateLayout();
+                await renderGraph();
+            } catch (error) {
+                console.error('Error re-running projected layout:', error);
+                updateStatus('Projection layout error: ' + error.message, 'error');
+            }
+        }
+
+        function renderProjectionChoices(choices) {
+            const listEl = document.getElementById('projection-list');
+            listEl.innerHTML = '';
+
+            for (const proj of activeProjections) {
+                const choice = choices.find(c => c.type === proj.sig);
+
+                const row = document.createElement('div');
+                row.className = 'd-flex align-items-center gap-2 mb-1';
+
+                const tag = document.createElement('span');
+                tag.className = 'badge bg-secondary d-flex align-items-center gap-1';
+                tag.textContent = proj.sig;
+                const removeBtn = document.createElement('button');
+                removeBtn.type = 'button';
+                removeBtn.className = 'btn-close btn-close-white ms-1';
+                removeBtn.style.fontSize = '0.5rem';
+                removeBtn.setAttribute('aria-label', 'Remove ' + proj.sig);
+                removeBtn.onclick = () => removeProjection(proj.sig);
+                tag.appendChild(removeBtn);
+                row.appendChild(tag);
+
+                if (choice && choice.atoms.length > 0) {
+                    const select = document.createElement('select');
+                    select.className = 'form-select form-select-sm';
+                    select.style.maxWidth = '200px';
+                    select.setAttribute('aria-label', 'Atom for ' + proj.sig);
+                    for (const atom of choice.atoms) {
+                        const opt = document.createElement('option');
+                        opt.value = atom;
+                        opt.textContent = atom;
+                        if (atom === choice.projectedAtom) opt.selected = true;
+                        select.appendChild(opt);
+                    }
+                    select.onchange = () => onProjectionAtomChange(proj.sig, select.value);
+                    row.appendChild(select);
+                } else if (choice) {
+                    const noAtoms = document.createElement('span');
+                    noAtoms.className = 'text-muted small';
+                    noAtoms.textContent = 'No atoms';
+                    row.appendChild(noAtoms);
+                } else {
+                    const notFound = document.createElement('span');
+                    notFound.className = 'text-danger small';
+                    notFound.textContent = 'Type not found';
+                    row.appendChild(notFound);
+                }
+
+                listEl.appendChild(row);
+            }
+        }
+
+        document.getElementById('projection-type-input')?.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addProjection();
+            }
+        });
+
+        window.addEventListener('load', () => {
+            initializePipeline();
+            if (window.mountCndLayoutInterface) {
+                window.mountCndLayoutInterface();
+            }
+
+            if (window.mountErrorMessageModal) {
+                window.mountErrorMessageModal();
+            }
+        });
+
+        window.loadGraph = loadGraph;
+        window.loadJsonData = loadJsonData;
+        window.renderGraph = renderGraph;
+        window.clearGraph = clearGraph;
+        window.addProjection = addProjection;
+        window.removeProjection = removeProjection;
+    </script>
+</body>
+</html>

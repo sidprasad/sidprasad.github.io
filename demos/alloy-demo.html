@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebCola CND Demo</title>
+    
+    <!-- Bootstrap CSS for component styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            /* max-width: 1200px; */
+            max-width: 90vw;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            gap: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        #graph-container-wrapper {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            margin: 20px 0;
+        }
+        #graph-container {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #007acc;
+            border-radius: 8px;
+            display: block; /* Why? Because it's an inline SVG by default */
+        }
+        #graph-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px 12px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        button {
+            background-color: #007acc;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #005a9e;
+        }
+        #clearGraphButton {
+            background-color: red;
+        }
+        #clearGraphButton:hover {
+            background-color: rgb(200, 34, 34);
+        }
+        #applyLayoutButton {
+            font-size: 16px;
+        }
+        #applyLayoutButton:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .status.info { background: #e3f2fd; color: #1976d2; }
+        .status.success { background: #e8f5e8; color: #2e7d32; }
+        .status.error { background: #ffebee; color: #c62828; }
+
+        /** TODO: Add support for smaller screen sizes */
+        /**
+         * Responsive design for smaller screens
+         * Following modern browser compatibility guidelines
+         */
+        @media (max-width: 768px) {
+            #graph-controls {
+                top: 5px;
+                right: 5px;
+                padding: 6px 8px;
+                gap: 6px;
+            }
+            
+            #graph-controls #clearGraphButton {
+                padding: 4px 8px;
+                font-size: 12px;
+            }
+            
+            #graph-controls #layoutFormat {
+                padding: 4px 6px;
+                font-size: 12px;
+                min-width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container border" id="main-panel">
+        <h1>WebCola Alloy Visualization Demo</h1>
+        <p>This demonstrates the complete Alloy XML → AlloyDataInstance → Evaluator → Layout → WebCola pipeline.</p>
+        <div>
+            <!-- Editable Input Fields -->
+            <div>
+                <label for="webcola-alloy">Alloy XML Instance:</label>
+                <textarea id="webcola-alloy" placeholder="Paste your Alloy XML instance here..."></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="evaluator-select">Evaluator:</label>
+                <select id="evaluator-select" class="form-select form-select-sm" onchange="handleEvaluatorChange()" aria-label="Evaluator selection">
+                    <option value="sgq" selected>Sgq (SGraphQueryEvaluator)</option>
+                    <option value="forge">Forge</option>
+                    <option value="sql">SQL</option>
+                </select>
+            </div>
+            <div id="evaluator-repl-mount"></div>
+            <div id="sql-schemas-container" style="display: none;" class="mb-3">
+                <details>
+                    <summary class="text-muted small">📊 Available SQL Tables</summary>
+                    <div id="sql-schemas" class="small mt-2" style="max-height: 200px; overflow-y: auto; font-family: monospace; background: #f8f9fa; padding: 8px; border-radius: 4px;"></div>
+                </details>
+            </div>
+            <div id="status" class="status info">Ready to load Alloy graph...</div>
+            <div id="error-messages"></div>
+            <div id="relation-highlighter-mount"></div>
+            <div id="graph-container-wrapper">
+                <!-- Use the webcola-cnd-graph custom element -->
+                <webcola-cnd-graph 
+                    id="graph-container"
+                    width="800" 
+                    height="600"
+                    layoutFormat="default"
+                    aria-label="Interactive graph visualization">
+                </webcola-cnd-graph>
+            </div>
+        </div>
+    </div>
+    <div id="cnd-panel" class="container d-flex flex-column col-md-4 border p-3">
+        <h5 class="h5 mb-2 text-dark">CND Layout Specification:</h5>
+        <button id="applyLayoutButton" class="mb-3" onclick="loadGraph()">Apply Layout</button>
+
+        <div class="mb-3">
+            <h6 class="h6 text-dark">Export Instance Views:</h6>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+                <button class="btn btn-sm btn-outline-primary" onclick="exportInstanceView('alloy')">Export Alloy View</button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="exportInstanceView('sql')">Export SQL View</button>
+            </div>
+            <textarea id="instance-export-output" readonly placeholder="Exported view will appear here..."></textarea>
+        </div>
+        
+        <!-- Inline Projection Controls -->
+        <div id="projection-panel" class="mb-3">
+            <h6 class="h6 text-dark">Projections:</h6>
+            <div class="d-flex gap-2 mb-2">
+                <input id="projection-type-input" type="text" class="form-control form-control-sm"
+                       placeholder="Type name (e.g. Node, Int)" autocomplete="off" />
+                <button id="addProjectionBtn" class="btn btn-sm btn-outline-primary" onclick="addProjection()" style="white-space:nowrap">Add</button>
+            </div>
+            <div id="projection-error" class="text-danger small mb-2" style="display:none"></div>
+            <div id="projection-list"></div>
+        </div>
+        
+        <!-- Sequence Explorer for multiple instances -->
+        <div id="sequence-explorer" class="mb-3" style="display: none;">
+            <h6 class="h6 text-dark">Sequence Explorer:</h6>
+            <div class="d-flex align-items-center gap-2 mb-2">
+                <button id="prevInstanceBtn" onclick="navigateInstance(-1)" class="btn btn-sm btn-outline-primary" disabled>◀ Prev</button>
+                <span id="instanceIndicator" class="badge bg-primary">Instance 1 / 1</span>
+                <button id="nextInstanceBtn" onclick="navigateInstance(1)" class="btn btn-sm btn-outline-primary" disabled>Next ▶</button>
+            </div>
+            <div class="mb-2">
+                <label class="form-label form-label-sm mb-1" for="sequencePolicy">Sequence Policy:</label>
+                <select id="sequencePolicy" class="form-select form-select-sm" aria-label="Sequence policy selection">
+                    <option value="ignore_history" selected>Ignore history (default)</option>
+                    <option value="stability">Stability</option>
+                    <option value="change_emphasis">Change emphasis</option>
+                    <option value="random_positioning">Random positioning</option>
+                </select>
+            </div>
+            <div id="priorPositionsInfo" class="small text-muted mt-1"></div>
+        </div>
+        
+        <div id="webcola-cnd-container">
+            <!-- React element attached here -->
+        </div>
+    </div>
+
+    <!-- D3 v4 and WebCola - the working combination -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="../vendor/cola.js"></script>
+    
+    <!-- Complete CND-Core browser bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/spytial-core/dist/browser/spytial-core-complete.global.js"></script>
+    
+    <!-- Your React component bundle (includes React runtime) -->
+    <script src="https://cdn.jsdelivr.net/npm/spytial-core/dist/components/react-component-integration.global.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/spytial-core/dist/components/react-component-integration.css">
+    <script>
+        // Variables to store data
+        let currentInstanceLayout = null;
+        
+        // Sequence state for multiple instances
+        let alloyInstances = [];           // Array of all parsed Alloy instances
+        let currentInstanceIndex = 0;      // Current instance being displayed
+        let prevInstance = null;           // Previous IDataInstance (for policy)
+        let parsedAlloyDatum = null;       // Cached parsed Alloy datum
+        let cachedEvaluator = null;        // Cached evaluator
+        let cachedEvaluatorType = 'sgq';
+        let cachedEvaluatorInstanceIndex = null;
+        let cachedLayoutSpec = null;       // Cached layout specification
+        
+        // Projection state (maps type to selected atom)
+        // Active projections: array of { sig: string }
+        let activeProjections = [];
+        // User selections: maps type name → selected atom id
+        let projectionSelections = {};
+        // The projected IDataInstance (null = use raw)
+        window._projectedInstance = null;
+
+        /**
+         * Get current Alloy XML from input field
+         * @returns {string} Alloy XML specification
+         */
+        function getCurrentAlloyXml() {
+            return document.getElementById('webcola-alloy').value.trim();
+        }
+
+        /**
+         * Get current CND specification from input field  
+         * @returns {string} CND layout specification
+         */
+        function getCurrentCNDSpec() {
+            // Try to get value from React component first
+            return window.getCurrentCNDSpecFromReact ? 
+                window.getCurrentCNDSpecFromReact() : 
+                document.getElementById('webcola-cnd')?.value?.trim();
+        }
+
+        function getSequencePolicyName() {
+            const policySelect = document.getElementById('sequencePolicy');
+            if (!policySelect || !policySelect.value) {
+                return 'ignore_history';
+            }
+            return policySelect.value;
+        }
+
+        // No stepper needed — renderLayout handles policy directly
+        document.getElementById('sequencePolicy')?.addEventListener('change', function() {
+            updateSequenceExplorer();
+        });
+
+        function getCurrentExportInstance() {
+            if (!alloyInstances.length) {
+                return null;
+            }
+
+            // Use the projected instance if the orchestrator has set one
+            if (window._projectedInstance) {
+                return window._projectedInstance;
+            }
+
+            return new CndCore.AlloyDataInstance(alloyInstances[currentInstanceIndex]);
+        }
+
+        /**
+         * Update status display with proper styling
+         * @param {string} message - Status message to display
+         * @param {string} type - Status type: 'info', 'success', 'error'
+         */
+        function updateStatus(message, type = 'info') {
+            const statusElement = document.getElementById('status');
+            statusElement.textContent = message;
+            statusElement.className = `status ${type}`;
+        }
+
+        function getSelectedEvaluatorType() {
+            return document.getElementById('evaluator-select')?.value || 'sgq';
+        }
+
+        function handleEvaluatorChange() {
+            cachedEvaluator = null;
+            cachedEvaluatorInstanceIndex = null;
+            cachedEvaluatorType = getSelectedEvaluatorType();
+            currentInstanceLayout = null;
+            updateStatus(`Evaluator set to ${cachedEvaluatorType.toUpperCase()}. Reload to apply.`, 'info');
+        }
+
+        function exportInstanceView(format) {
+            try {
+                const instance = getCurrentExportInstance();
+                if (!instance) {
+                    throw new Error('No Alloy instance available. Load data first.');
+                }
+
+                let output = '';
+                let fileName = '';
+
+                if (format === 'alloy') {
+                    output = CndCore.generateAlloySchema(instance);
+                    fileName = 'instance-schema.alloy';
+                } else if (format === 'sql') {
+                    output = CndCore.generateSQLSchema(instance);
+                    fileName = 'instance-schema.sql';
+                } else {
+                    throw new Error('Unknown export format.');
+                }
+
+                const outputArea = document.getElementById('instance-export-output');
+                outputArea.value = output;
+                outputArea.scrollTop = 0;
+
+                // const blob = new Blob([output], { type: 'text/plain;charset=utf-8' });
+                // const url = URL.createObjectURL(blob);
+                // const link = document.createElement('a');
+                // link.href = url;
+                // link.download = fileName;
+                // document.body.appendChild(link);
+                // link.click();
+                // document.body.removeChild(link);
+                // URL.revokeObjectURL(url);
+
+                // updateStatus(`Exported ${format.toUpperCase()} view.`, 'success');
+            } catch (error) {
+                console.error('Export error:', error);
+                updateStatus(`Export failed: ${error.message}`, 'error');
+            }
+        }
+
+        /**
+         * Initialize the Alloy pipeline components
+         * @returns {boolean} Success status
+         */
+        async function initializePipeline() {
+            try {
+                console.log('Complete CND-Core browser bundle loaded successfully');
+                console.log('Available on global CndCore:', Object.keys(CndCore));
+                
+                // Check for Alloy-specific components
+                console.log('parseAlloyXML available:', !!CndCore.AlloyInstance.parseAlloyXML);
+                console.log('ForgeEvaluator available:', !!CndCore.ForgeEvaluator);
+                console.log('SGraphQueryEvaluator available:', !!CndCore.SGraphQueryEvaluator);
+                console.log('SQLEvaluator available:', !!CndCore.SQLEvaluator);
+                console.log('LayoutInstance available:', !!CndCore.LayoutInstance);
+                console.log('parseLayoutSpec available:', !!CndCore.parseLayoutSpec);
+                
+                updateStatus('Alloy pipeline ready! Enter Alloy XML and CND specifications now.', 'success');
+                
+                return true;
+            } catch (error) {
+                console.error('Failed to initialize Alloy pipeline:', error);
+                updateStatus(`Pipeline init failed: ${error.message}`, 'error');
+                return false;
+            }
+        }
+
+        /**
+         * Process Alloy data using the complete Alloy → Evaluator → Layout pipeline
+         * Now supports multiple sequence instances
+         */
+        async function loadAlloyData() {
+            try {
+                const evaluatorType = getSelectedEvaluatorType();
+                cachedEvaluatorType = evaluatorType;
+                updateStatus(`Processing Alloy data with ${evaluatorType.toUpperCase()} evaluator...`, 'info');
+
+                // Get Alloy XML from input field
+                const alloyXml = getCurrentAlloyXml();
+                if (!alloyXml) {
+                    throw new Error('Please enter an Alloy XML instance')   ;
+                }
+
+                // Get CND specification from input field
+                const cndSpec = getCurrentCNDSpec() || "";
+
+                console.log('Using Alloy XML:', alloyXml.substring(0, 200) + '...');
+                console.log('Using CND Spec:', cndSpec.substring(0, 200) + '...');
+
+                // Step 1: Parse Alloy XML
+                updateStatus('Parsing Alloy XML...', 'info');
+                parsedAlloyDatum = CndCore.AlloyInstance.parseAlloyXML(alloyXml);
+                console.log('Parsed Alloy Datum:', parsedAlloyDatum);
+                
+                if (!parsedAlloyDatum.instances || parsedAlloyDatum.instances.length === 0) {
+                    throw new Error('No instances found in Alloy XML');
+                }
+
+                // Store all instances for sequence exploration
+                alloyInstances = parsedAlloyDatum.instances;
+                currentInstanceIndex = 0;
+                
+                // IMPORTANT: Reset projections when loading new data
+                window._projectedInstance = null;
+                activeProjections = [];
+                projectionSelections = {};
+                const projListEl = document.getElementById('projection-list');
+                if (projListEl) projListEl.innerHTML = '';
+                clearProjectionError();
+                
+                // Show sequence explorer if multiple instances
+                updateSequenceExplorer();
+
+                // Step 2: Create evaluator with Alloy data
+                await createEvaluatorForCurrentInstance(alloyXml);
+
+                // NOTE: Mount Evaluator REPL
+                if (window.mountEvaluatorRepl && cachedEvaluator) {
+                    window.mountEvaluatorRepl('evaluator-repl-mount', cachedEvaluator, 0);
+                } else if (!window.mountEvaluatorRepl) {
+                    console.warn('Evaluator REPL mount function not available. Skipping REPL mount.');
+                }
+
+                // Step 3: Parse layout specification
+                updateStatus('Parsing layout specification...', 'info');
+                try {
+                    cachedLayoutSpec = CndCore.parseLayoutSpec(cndSpec);
+                    if (window.clearAllErrors) {
+                        window.clearAllErrors();
+                    }
+                } catch (error) {
+                    console.error('Layout spec parse error:', error);
+                    if (window.showParseError) {
+                        window.showParseError(error.message, 'Layout Specification');
+                    } else {
+                        updateStatus(`Layout spec parse error: ${error.message}`, 'error');
+                    }
+                    return;
+                }
+                console.log('Parsed Layout Spec:', cachedLayoutSpec);
+
+                // Generate layout for current instance
+                await generateLayoutForCurrentInstance();
+
+                updateStatus(`Alloy pipeline complete! Showing instance ${currentInstanceIndex + 1} of ${alloyInstances.length}.`, 'success');
+                
+            } catch (error) {
+                console.error('Failed to load Alloy data:', error);
+                updateStatus(`Alloy data loading failed: ${error.message}`, 'error');
+            }
+        }
+
+        /**
+         * Generate layout for the current instance index
+         * Uses prior positions if available and enabled
+         */
+        async function generateLayoutForCurrentInstance() {
+            if (!alloyInstances.length || !cachedEvaluator || !cachedLayoutSpec) {
+                throw new Error('Missing required data for layout generation');
+            }
+
+            // Reset projected instance so we never use a stale one from
+            // a previous instance index.  The orchestrator will set it
+            // again asynchronously after its React state update fires.
+            window._projectedInstance = null;
+
+            const alloyDataInstance = new CndCore.AlloyDataInstance(alloyInstances[currentInstanceIndex]);
+            console.log(`Generating layout for instance ${currentInstanceIndex + 1}/${alloyInstances.length}`);
+            console.log('Using Alloy Data Instance:', alloyDataInstance);
+
+            if ((getSelectedEvaluatorType() === 'sgq' || getSelectedEvaluatorType() === 'sql') && cachedEvaluatorInstanceIndex !== currentInstanceIndex) {
+                await createEvaluatorForCurrentInstance();
+            }
+
+            // Step 4: Create LayoutInstance with evaluator
+            updateStatus(`Creating layout for instance ${currentInstanceIndex + 1}...`, 'info');
+            const ENABLE_ALIGNMENT_EDGES = true;
+            
+            const layoutInstance = new CndCore.LayoutInstance(
+                cachedLayoutSpec, 
+                cachedEvaluator, 
+                currentInstanceIndex, 
+                ENABLE_ALIGNMENT_EDGES
+            );
+            console.log('Created Layout Instance with evaluator:', layoutInstance);
+
+            // Step 5: Generate layout using Alloy data instance
+            updateStatus('Generating layout with Alloy data...', 'info');
+
+            // Apply projection transform if any projections are active
+            let instanceForLayout = alloyDataInstance;
+            if (activeProjections.length > 0) {
+                try {
+                    const result = CndCore.applyProjectionTransform(
+                        alloyDataInstance,
+                        activeProjections,
+                        projectionSelections
+                    );
+                    instanceForLayout = result.instance;
+                    window._projectedInstance = result.instance;
+                    // Update the atom dropdowns with the choices
+                    renderProjectionChoices(result.choices);
+                } catch (err) {
+                    console.error('Projection transform failed:', err);
+                    showProjectionError(err.message);
+                    // Render rows with remove buttons so the user can fix/remove the bad projection.
+                    // Pass empty choices — renderProjectionChoices falls back to "Type not found" per row.
+                    renderProjectionChoices([]);
+                    // Fall back to un-projected
+                }
+            } else {
+                window._projectedInstance = null;
+            }
+
+            try {
+                const layoutResult = layoutInstance.generateLayout(instanceForLayout);
+                currentInstanceLayout = layoutResult.layout;
+
+                // 1. Check for selector errors first - early out if present
+                if (layoutResult.selectorErrors && layoutResult.selectorErrors.length > 0) {
+                    console.warn('Selector errors:', layoutResult.selectorErrors);
+                    if (window.showSelectorErrors) {
+                        window.showSelectorErrors(layoutResult.selectorErrors);
+                    }
+                    const webcolaGraphElement = document.getElementById('graph-container');
+                    webcolaGraphElement.setAttribute('unsat', '');
+                    return;
+                }
+
+                // 2. Standard IIS/constraint error handling
+                if (layoutResult.error) {
+                    console.error('Layout generation error:', layoutResult.error);
+
+                    // Check if this is a constraint conflict error
+                    if (layoutResult.error.errorMessages) {
+                        if (layoutResult.error.type === 'hidden-node-conflict' && window.showHiddenNodeConflict) {
+                            window.showHiddenNodeConflict(layoutResult.error.errorMessages);
+                        } else if (window.showPositionalError) {
+                            window.showPositionalError(layoutResult.error.errorMessages);
+                        } else {
+                            updateStatus(`Positional constraint conflict: ${layoutResult.error.message}`, 'error');
+                        }
+                    } else if (layoutResult.error.overlappingNodes) {
+                        if (window.showGroupOverlapError) {
+                            window.showGroupOverlapError(layoutResult.error.message);
+                        } else {
+                            updateStatus(`Group overlap error: ${layoutResult.error.message}`, 'error');
+                        }
+                    } else {
+                        if (window.showGeneralError) {
+                            window.showGeneralError(`Layout generation error: ${layoutResult.error.message}`);
+                        } else {
+                            updateStatus(`Layout generation error: ${layoutResult.error.message}`, 'error');
+                        }
+                    }
+
+                    // Set the webcola-cnd-graph element to indicate unsat state
+                    const webcolaGraphElement = document.getElementById('graph-container');
+                    webcolaGraphElement.setAttribute('unsat', "");
+
+                    // Note: We still set currentInstanceLayout even with error, so visualization can show UNSAT state
+                    // The error is already displayed, no need to throw
+                    return;
+                }
+            } catch (error) {
+                if (window.showGeneralError) {
+                    window.showGeneralError(`Layout generation failed: ${error.message}`);
+                } else {
+                    updateStatus(`Layout generation failed: ${error.message}`, 'error');
+                }
+                return;
+            }
+
+            const webcolaGraphElement = document.getElementById('graph-container');
+            webcolaGraphElement.removeAttribute('unsat'); // Clear unsat state
+
+            // Clear any previous errors on successful layout
+            if (window.clearAllErrors) {
+                window.clearAllErrors();
+            }
+
+            console.log('Generated Instance Layout:', currentInstanceLayout);
+        }
+
+        /**
+         * Update the sequence explorer UI based on current state
+         */
+        function updateSequenceExplorer() {
+            const explorerDiv = document.getElementById('sequence-explorer');
+            const prevBtn = document.getElementById('prevInstanceBtn');
+            const nextBtn = document.getElementById('nextInstanceBtn');
+            const indicator = document.getElementById('instanceIndicator');
+            const priorInfo = document.getElementById('priorPositionsInfo');
+            const policyName = getSequencePolicyName();
+
+            if (alloyInstances.length <= 1) {
+                explorerDiv.style.display = 'none';
+                return;
+            }
+
+            explorerDiv.style.display = 'block';
+            indicator.textContent = `Instance ${currentInstanceIndex + 1} / ${alloyInstances.length}`;
+            
+            prevBtn.disabled = currentInstanceIndex === 0;
+            nextBtn.disabled = currentInstanceIndex === alloyInstances.length - 1;
+
+            priorInfo.textContent = `Policy: ${policyName}`;
+        }
+
+        /**
+         * Navigate to a different instance.
+         * @param {number} delta - Direction to navigate (-1 for prev, +1 for next)
+         */
+        async function navigateInstance(delta) {
+            const newIndex = currentInstanceIndex + delta;
+            if (newIndex < 0 || newIndex >= alloyInstances.length) return;
+
+            currentInstanceIndex = newIndex;
+            updateSequenceExplorer();
+
+            try {
+                await generateLayoutForCurrentInstance();
+                await renderGraph();
+                updateStatus(`Showing instance ${currentInstanceIndex + 1} of ${alloyInstances.length}`, 'success');
+            } catch (error) {
+                console.error('Error navigating to instance:', error);
+                updateStatus(`Navigation error: ${error.message}`, 'error');
+            }
+        }
+
+        /**
+         * Render the graph using the webcola-cnd-graph custom element.
+         * Passes the active policy + instance pair to renderLayout.
+         */
+        async function renderGraph() {
+            const graphElement = document.getElementById('graph-container');
+            
+            try {
+                // Check if we need to generate layout first
+                if (!currentInstanceLayout) {
+                    if (alloyInstances.length > 0 && cachedEvaluator && cachedLayoutSpec) {
+                        console.log('renderGraph: No layout available, generating for current instance');
+                        await generateLayoutForCurrentInstance();
+                    } else {
+                        updateStatus('No layout data available. Processing Alloy data first...', 'info');
+                        await loadAlloyData();
+                    }
+                    
+                    if (!currentInstanceLayout) {
+                        console.warn('No layout data available to render (likely due to constraint errors)');
+                        return;
+                    }
+                }
+                
+                // Capture layout state BEFORE clearing so the policy has positions to work with.
+                // After clear(), the DOM is empty and getLayoutState() returns nothing.
+                let capturedPositions = null;
+                if (prevInstance && graphElement.getLayoutState) {
+                    capturedPositions = graphElement.getLayoutState();
+                }
+
+                // Clear the graph before rendering the new layout
+                console.log('renderGraph: Clearing graph before render');
+                if (graphElement.clear) {
+                    graphElement.clear();
+                } else {
+                    const svg = graphElement.shadowRoot?.querySelector('svg');
+                    if (svg) {
+                        const container = svg.querySelector('.zoomable');
+                        if (container) {
+                            container.innerHTML = '';
+                        }
+                    }
+                }
+
+                updateStatus('Rendering Alloy graph with WebCola...', 'info');
+                
+                // Build render options: pass policy + instance pair directly.
+                // Supply the captured positions since we cleared the DOM above.
+                const currInstance = new CndCore.AlloyDataInstance(alloyInstances[currentInstanceIndex]);
+                const renderOptions = {};
+
+                if (prevInstance) {
+                    const policyName = getSequencePolicyName();
+                    renderOptions.policy = CndCore.getSequencePolicy(policyName);
+                    renderOptions.prevInstance = prevInstance;
+                    renderOptions.currInstance = currInstance;
+                    if (capturedPositions && capturedPositions.positions.length > 0) {
+                        renderOptions.priorPositions = capturedPositions;
+                    }
+                }
+
+                await graphElement.renderLayout(currentInstanceLayout, renderOptions);
+
+                // Track the instance we just rendered for the next step
+                prevInstance = currInstance;
+
+                updateStatus(`Instance ${currentInstanceIndex + 1}/${alloyInstances.length} rendered successfully!`, 'success');
+            } catch (error) {
+                console.error('Error rendering Alloy graph:', error);
+                updateStatus(`Alloy render error: ${error.message}`, 'error');
+            }
+        }
+
+        /**
+         * Take a screenshot of the graph and download as PNG.
+         * Delegates to the built-in component method which handles CSS inlining and icon embedding.
+         */
+        async function takeScreenshot() {
+            const graphElement = document.getElementById('graph-container');
+            if (!graphElement || typeof graphElement.takeScreenshot !== 'function') {
+                updateStatus('No graph to capture. Load a graph first.', 'error');
+                return;
+            }
+            
+            try {
+                updateStatus('Generating screenshot...', 'info');
+                await graphElement.takeScreenshot();
+                updateStatus('Screenshot saved!', 'success');
+            } catch (error) {
+                console.error('Screenshot error:', error);
+                updateStatus(`Screenshot failed: ${error.message}`, 'error');
+            }
+        }
+
+        /**
+         * Clear the graph and reset state
+         * This is called by the Clear button to fully reset the visualization
+         */
+        function clearGraph() {
+            const graphElement = document.getElementById('graph-container');
+            
+            console.log('clearGraph: Clearing visualization and resetting layout state');
+            
+            // Clear the graph using the component's clear method
+            if (graphElement.clear) {
+                graphElement.clear();
+            } else {
+                // Fallback: remove all SVG content
+                const svg = graphElement.shadowRoot?.querySelector('svg');
+                if (svg) {
+                    const container = svg.querySelector('.zoomable');
+                    if (container) {
+                        container.innerHTML = '';
+                    }
+                }
+            }
+            
+            // Clear stored layout (but preserve sequence state for navigation)
+            currentInstanceLayout = null;
+            
+            updateStatus('Graph cleared.', 'info');
+        }
+
+        /**
+         * Full reset - clears everything including sequence state
+         */
+        function resetAll() {
+            clearGraph();
+            alloyInstances = [];
+            currentInstanceIndex = 0;
+            prevInstance = null;
+            parsedAlloyDatum = null;
+            cachedEvaluator = null;
+            cachedLayoutSpec = null;
+            cachedEvaluatorType = getSelectedEvaluatorType();
+            cachedEvaluatorInstanceIndex = null;
+            updateSequenceExplorer();
+            updateStatus('All state reset.', 'info');
+        }
+
+        /**
+         * Load and render Alloy graph in one step
+         */
+        async function loadGraph() {
+            try {
+                await loadAlloyData();
+                await renderGraph();
+            } catch (error) {
+                console.error('Failed to load and render Alloy graph:', error);
+                updateStatus(`Failed to load Alloy graph: ${error.message}`, 'error');
+            }
+        }
+
+        async function changeLayoutFormat() {
+            const graphElement = document.getElementById('graph-container');
+            const layoutFormat = document.getElementById('layoutFormat').value;
+            graphElement.setAttribute('layoutFormat', layoutFormat);
+            console.log(`Layout format changed to: ${layoutFormat}`);
+
+            // Re-render the graph with the new layout format
+            try {
+                if (!currentInstanceLayout) {
+                    throw new Error('No layout data available. Please load an Alloy graph first.');
+                }
+                await graphElement.renderLayout(currentInstanceLayout);
+                updateStatus('Graph layout changed successfully!', 'success');
+            } catch (error) {
+                console.error('Error rendering graph:', error);
+                updateStatus(`Render error: ${error.message}`, 'error');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mount the window.mountRelationHighlighter
+            const graphElement = document.getElementById('graph-container');
+            if (graphElement && window.mountRelationHighlighter) {
+                window.mountRelationHighlighter('relation-highlighter-mount', 'graph-container');
+            }
+
+            // SequenceStepper captures layout state (including drag) internally,
+            // so no manual node-drag-end or layout-complete handlers are needed.
+            if (graphElement) {
+                graphElement.addEventListener('node-drag-end', (e) => {
+                    const detail = e.detail;
+                    console.log(`Node ${detail.id} dragged to (${detail.current.x.toFixed(2)}, ${detail.current.y.toFixed(2)})`);
+                });
+            }
+
+            // Add keyboard navigation for sequence explorer
+            document.addEventListener('keydown', (e) => {
+                // Only handle arrow keys when sequence explorer is visible and not typing in input
+                const sequenceExplorer = document.getElementById('sequence-explorer');
+                if (sequenceExplorer.style.display === 'none') return;
+                
+                const activeElement = document.activeElement;
+                const isTyping = activeElement.tagName === 'INPUT' || 
+                                 activeElement.tagName === 'TEXTAREA' || 
+                                 activeElement.isContentEditable;
+                if (isTyping) return;
+
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    navigateInstance(-1);
+                } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    navigateInstance(1);
+                }
+            });
+
+        });
+
+        // Auto-initialize when page loads
+        window.addEventListener('load', () => {
+            initializePipeline();
+            // Mount React component if available
+            if (window.mountCndLayoutInterface) {
+                window.mountCndLayoutInterface();
+            }
+
+            // Mount error message system
+            if (window.mountErrorMessageModal) {
+                window.mountErrorMessageModal();
+            }
+
+            // Mount Relation Highlighter
+            if (window.mountRelationHighlighter) {
+                window.mountRelationHighlighter('relation-highlighter-mount');
+            }
+        });
+
+        async function createEvaluatorForCurrentInstance(alloyXmlOverride) {
+            const evaluatorType = getSelectedEvaluatorType();
+            cachedEvaluatorType = evaluatorType;
+            if (evaluatorType === 'forge') {
+                const evaluationContext = {
+                    sourceData: alloyXmlOverride || getCurrentAlloyXml(),
+                };
+                updateStatus('Creating ForgeEvaluator...', 'info');
+                cachedEvaluator = new CndCore.ForgeEvaluator();
+                cachedEvaluator.initialize(evaluationContext);
+                cachedEvaluatorInstanceIndex = null;
+                console.log('Created ForgeEvaluator:', cachedEvaluator);
+            } else if (evaluatorType === 'sql') {
+                updateStatus('Creating SQLEvaluator...', 'info');
+                const instance = new CndCore.AlloyDataInstance(alloyInstances[currentInstanceIndex]);
+                cachedEvaluator = new CndCore.SQLEvaluator();
+                cachedEvaluator.initialize({ sourceData: instance });
+                cachedEvaluatorInstanceIndex = currentInstanceIndex;
+                console.log('Created SQLEvaluator:', cachedEvaluator);
+            } else {
+                updateStatus('Creating SGraphQueryEvaluator...', 'info');
+                const instance = new CndCore.AlloyDataInstance(alloyInstances[currentInstanceIndex]);
+                cachedEvaluator = new CndCore.SGraphQueryEvaluator();
+                cachedEvaluator.initialize({ sourceData: instance });
+                cachedEvaluatorInstanceIndex = currentInstanceIndex;
+                console.log('Created SGraphQueryEvaluator:', cachedEvaluator);
+            }
+
+            if (window.mountEvaluatorRepl && cachedEvaluator) {
+                window.mountEvaluatorRepl('evaluator-repl-mount', cachedEvaluator, 0);
+            }
+
+            // Show/hide SQL schemas based on evaluator type
+            const schemasContainer = document.getElementById('sql-schemas-container');
+            const schemasDiv = document.getElementById('sql-schemas');
+            if (evaluatorType === 'sql' && cachedEvaluator.getTableSchemas) {
+                const schemas = cachedEvaluator.getTableSchemas();
+                schemasDiv.innerHTML = schemas.map(s => 
+                    `<div><strong>${s.name}</strong> (${s.columns.join(', ')})</div>`
+                ).join('');
+                schemasContainer.style.display = 'block';
+            } else {
+                schemasContainer.style.display = 'none';
+            }
+        }
+
+        // ── Projection UI (vanilla JS) ─────────────────────────────────
+
+        /** Show an error message in the projection panel */
+        function showProjectionError(msg) {
+            const el = document.getElementById('projection-error');
+            el.textContent = msg;
+            el.style.display = 'block';
+        }
+
+        /** Hide the projection error */
+        function clearProjectionError() {
+            const el = document.getElementById('projection-error');
+            el.textContent = '';
+            el.style.display = 'none';
+        }
+
+        /** Add a new projection type from the input field */
+        function addProjection() {
+            const input = document.getElementById('projection-type-input');
+            const sig = input.value.trim();
+            if (!sig) return;
+
+            // Prevent duplicates
+            if (activeProjections.some(p => p.sig === sig)) {
+                showProjectionError('Already projecting over "' + sig + '".');
+                return;
+            }
+
+            clearProjectionError();
+            activeProjections.push({ sig });
+            input.value = '';
+
+            // Re-run layout with the new projection
+            rerunProjectedLayout();
+        }
+
+        /** Remove a projection and re-run layout */
+        function removeProjection(sig) {
+            activeProjections = activeProjections.filter(p => p.sig !== sig);
+            delete projectionSelections[sig];
+            clearProjectionError();
+            rerunProjectedLayout();
+        }
+
+        /** Handle atom selection change for a projected type */
+        function onProjectionAtomChange(sig, atomId) {
+            projectionSelections[sig] = atomId;
+            rerunProjectedLayout();
+        }
+
+        /** Re-run layout with current projection state */
+        async function rerunProjectedLayout() {
+            if (!alloyInstances.length || !cachedEvaluator || !cachedLayoutSpec) return;
+            try {
+                await generateLayoutForCurrentInstance();
+                await renderGraph();
+            } catch (error) {
+                console.error('Error re-running projected layout:', error);
+                updateStatus('Projection layout error: ' + error.message, 'error');
+            }
+        }
+
+        /**
+         * Render the projection atom-selector dropdowns.
+         * Called after applyProjectionTransform returns choices.
+         */
+        function renderProjectionChoices(choices) {
+            const listEl = document.getElementById('projection-list');
+            listEl.innerHTML = '';
+
+            for (const proj of activeProjections) {
+                const choice = choices.find(c => c.type === proj.sig);
+
+                const row = document.createElement('div');
+                row.className = 'd-flex align-items-center gap-2 mb-1';
+
+                // Tag with remove button
+                const tag = document.createElement('span');
+                tag.className = 'badge bg-secondary d-flex align-items-center gap-1';
+                tag.textContent = proj.sig;
+                const removeBtn = document.createElement('button');
+                removeBtn.type = 'button';
+                removeBtn.className = 'btn-close btn-close-white ms-1';
+                removeBtn.style.fontSize = '0.5rem';
+                removeBtn.setAttribute('aria-label', 'Remove ' + proj.sig);
+                removeBtn.onclick = () => removeProjection(proj.sig);
+                tag.appendChild(removeBtn);
+                row.appendChild(tag);
+
+                // Atom dropdown
+                if (choice && choice.atoms.length > 0) {
+                    const select = document.createElement('select');
+                    select.className = 'form-select form-select-sm';
+                    select.style.maxWidth = '200px';
+                    select.setAttribute('aria-label', 'Atom for ' + proj.sig);
+                    for (const atom of choice.atoms) {
+                        const opt = document.createElement('option');
+                        opt.value = atom;
+                        opt.textContent = atom;
+                        if (atom === choice.projectedAtom) opt.selected = true;
+                        select.appendChild(opt);
+                    }
+                    select.onchange = () => onProjectionAtomChange(proj.sig, select.value);
+                    row.appendChild(select);
+                } else if (choice) {
+                    const noAtoms = document.createElement('span');
+                    noAtoms.className = 'text-muted small';
+                    noAtoms.textContent = 'No atoms';
+                    row.appendChild(noAtoms);
+                } else {
+                    const notFound = document.createElement('span');
+                    notFound.className = 'text-danger small';
+                    notFound.textContent = 'Type not found';
+                    row.appendChild(notFound);
+                }
+
+                listEl.appendChild(row);
+            }
+
+            // If no projections, show nothing
+            if (activeProjections.length === 0) {
+                listEl.innerHTML = '';
+            }
+        }
+
+        // Wire up the Enter key on the projection text input
+        document.getElementById('projection-type-input')?.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addProjection();
+            }
+        });
+
+        // Expose functions globally for buttons
+        window.loadGraph = loadGraph;
+        window.loadAlloyData = loadAlloyData;
+        window.renderGraph = renderGraph;
+        window.clearGraph = clearGraph;
+        window.navigateInstance = navigateInstance;
+        window.resetAll = resetAll;
+        window.addProjection = addProjection;
+        window.removeProjection = removeProjection;
+    </script>
+</body>
+</html>
