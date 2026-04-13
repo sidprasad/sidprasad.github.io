@@ -6,6 +6,7 @@
   venue: "ACM SIGPLAN Conference on Programming Language Design and Implementation (PLDI)"
   year: 2026
   paper_url: unpublished/ptkns-spytial.pdf
+  code_url: https://github.com/sidprasad/spytial-core
   status: "Upcoming"
 
 - title: "A Misconception-Driven Adaptive Tutor for Linear Temporal Logic"
