@@ -1,3 +1,13 @@
+
+
+
+- title: "Diagramming Program Values by Spatial Refinement"
+  authors: "Siddhartha Prasad, Michael Tu, Karan Kashyap, Tim Nelson, Shriram Krishnamurthi"
+  venue: "ACM SIGPLAN Conference on Programming Language Design and Implementation (PLDI)"
+  year: 2026
+  paper_url: unpublished/ptkns-spytial.pdf
+  status: "Upcoming"
+
 - title: "A Misconception-Driven Adaptive Tutor for Linear Temporal Logic"
   authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, Shriram Krishnamurthi"
   venue: "International Conference on Computer Aided Verification (CAV)"

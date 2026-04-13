@@ -101,7 +101,14 @@ nav a {
 }
 
 .publication-status {
-  color: #555; /* Muted text for status */
+  display: inline-block;
+  background: #e8f4fd;
+  color: #1a6fa0;
+  font-size: 0.85em;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 6px;
 }
 
 /* Venue styling */
