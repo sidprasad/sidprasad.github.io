@@ -1,3 +1,10 @@
+- title: "Diagramming Program Values by Spatial Refinement"
+  authors: "Siddhartha Prasad, Michael Tu, Karan Kashyap, Tim Nelson, Shriram Krishnamurthi"
+  venue: "ACM SIGPLAN Conference on Programming Language Design and Implementation"
+  venue_short: "PLDI"
+  year: 2026
+  paper_url: unpublished/ptkns-spytial.pdf
+  status: "Upcoming"
 
 
 - title: "hS: Speculative Script Reordering at Subprocess Granularity"
@@ -8,13 +15,14 @@
   paper_url: https://atlas.cs.brown.edu/pdf/hs:osdi:2026.pdf
   status: "Upcoming"
 
-- title: "Diagramming Program Values by Spatial Refinement"
-  authors: "Siddhartha Prasad, Michael Tu, Karan Kashyap, Tim Nelson, Shriram Krishnamurthi"
-  venue: "ACM SIGPLAN Conference on Programming Language Design and Implementation"
-  venue_short: "PLDI"
+- title: "Meaningful Human-in-the-Loop Checking of GenAI Synthesis for Restricted Languages"
+  authors: "Siddhartha Prasad, Skyler Austen, Kathi Fisler, Shriram Krishnamurthi"
+  venue: "European Conference on Object-Oriented Programming"
+  venue_short: "ECOOP"
   year: 2026
-  paper_url: unpublished/ptkns-spytial.pdf
+  blog_url: https://blog.brownplt.org/2025/12/11/pick-regex.html
   status: "Upcoming"
+
 
 - title: "A Misconception-Driven Adaptive Tutor for Linear Temporal Logic"
   authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, Shriram Krishnamurthi"
