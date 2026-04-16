@@ -52,7 +52,12 @@ This tutor leverages the idea of **Conceptual Mutation Testing** [^1] to generat
             </p>  
             <p>
                 {% if pub.status %} <span class="publication-status">{{ pub.status }}</span> {% endif %}
-                <span class="publication-venue">{{ pub.venue }}</span> {{pub.year}}
+                {% if pub.venue_short %}
+                    <span class="publication-venue" title="{{ pub.venue }}">{{ pub.venue_short }}</span>
+                {% else %}
+                    <span class="publication-venue">{{ pub.venue }}</span>
+                {% endif %}
+                {{pub.year}}
             </p>
         </p>
 

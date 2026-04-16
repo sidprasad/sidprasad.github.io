@@ -117,6 +117,11 @@ nav a {
   color: #333; /* Make the venue text stand out */
 }
 
+.publication-venue[title] {
+  border-bottom: 1px dotted #999;
+  cursor: help;
+}
+
 /* Tags for blog and code */
 .publication-tags {
   margin-top: 5px;
