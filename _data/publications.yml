@@ -1,6 +1,13 @@
 
 
 
+- title: "hS: Speculative Script Reordering at Subprocess Granularity"
+  authors: "Georgios Liargkovas, Di Jin, Tianyu (Ezri) Zhu, Dan Liu, A. Bolun Thompson, Anirudh Narsipur, Seong-Heon Jung, Siddhartha Prasad, Diomidis Spinellis, Michael Greenberg, Konstantinos Kallas, Nikos Vasilakis"
+  venue: "USENIX Symposium on Operating Systems Design and Implementation (OSDI)"
+  year: 2026
+  paper_url: https://atlas.cs.brown.edu/pdf/hs:osdi:2026.pdf
+  status: "Upcoming"
+
 - title: "Diagramming Program Values by Spatial Refinement"
   authors: "Siddhartha Prasad, Michael Tu, Karan Kashyap, Tim Nelson, Shriram Krishnamurthi"
   venue: "ACM SIGPLAN Conference on Programming Language Design and Implementation (PLDI)"
@@ -8,6 +15,7 @@
   paper_url: unpublished/ptkns-spytial.pdf
   code_url: https://github.com/sidprasad/spytial-core
   status: "Upcoming"
+  project: 'diagramming'
 
 - title: "A Misconception-Driven Adaptive Tutor for Linear Temporal Logic"
   authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, Shriram Krishnamurthi"
