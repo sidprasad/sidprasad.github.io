@@ -1,0 +1,163 @@
+% Document class and font size
+\documentclass[a4paper,9pt]{extarticle}
+
+% Packages
+\usepackage[utf8]{inputenc} % For input encoding
+\usepackage{geometry} % For page margins
+\geometry{letterpaper, margin=0.75in} % Set paper size and margins
+\usepackage{titlesec} % For section title formatting
+\usepackage{enumitem} % For itemized list formatting
+\usepackage{hyperref} % For hyperlinks
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+
+% Formatting
+\setlist{noitemsep} % Removes item separation
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}[\titlerule] % Section title format
+\titlespacing*{\section}{0pt}{\baselineskip}{\baselineskip} % Section title spacing
+%%%%%%%%%%
+
+% Begin document
+\begin{document}
+
+% Disable page numbers
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead{}
+%\fancyhead[L]{\textit{Siddhartha Prasad}}
+\fancyhead[R]{\textit{Apr 2026}}
+%\thispagestyle{empty} % Remove header from the first page
+
+% Header
+\begin{flushleft}
+\textbf{\LARGE Siddhartha Prasad}\\[2pt] % Name
+ \href{mailto:siddhartha.a.prasad@gmail.com}{siddhartha.a.prasad@gmail.com} | \href{sidprasad.github.io}{sidprasad.github.io} % Contact info
+\end{flushleft}
+
+% Education Section
+
+\noindent
+I am a researcher focused on helping people write programs that behave as they intend. My research interests are informed by my time as an engineer. I have written code that doesn't do what I want it to, and I want to spare everyone else the indignity.
+% Education Section
+
+
+\section*{Education}
+\noindent
+\textbf{Brown University}, Providence, RI \hfill Jan 2022 - Ongoing\\ % University name and location
+PhD in Computer Science 
+
+\noindent\\
+\textbf{Tufts University},  Medford, MA \hfill  May 2016\\ % University name and location
+Bachelor of Science in Computer Science and Mathematics \hfill Summa cum Laude\\  \phantom{.}  \hfill  High Thesis Honors\\
+% Experience Section
+\section*{Employment}
+\noindent
+\textbf{Apple} \hfill Seattle, WA\\ % Company name and location
+\textit{Research Intern \hfill Human-Centered Machine Learning team \hfill May - Sept 2023} \\
+Researcher on the  team, exploring how AI and formal methods techniques can be used to support early childhood education.\\[1ex]
+
+\noindent
+\textbf{Microsoft} \hfill Redmond, WA \\ 
+\textit{Software Engineer II\hfill Applied AI team  \hfill April 2018 - Sept 2021}
+\begin{itemize}
+    \item Developer on the Azure Cognitive Services team, that allow for AI to easily be injected into apps, bots, and websites.
+    \item Built a containerized framework that allowed AI models to be run portably across a variety of operating systems and architectures. 
+\end{itemize}
+
+\noindent
+\textit{Software Engineer \hfill Developer Ecosystem team \hfill Aug 2016 - March 2018} 
+\begin{itemize}
+\item Developed APIs and features for XAML, a UI language used by developers to build Universal Windows apps.
+\item Designed XAML APIs for input modalities (keyboard, gamepad, ink), accessibility, and cross-platform language support.
+\end{itemize}
+\noindent
+\textit{Intern \hfill Developer Ecosystem team \hfill May - Aug 2015}\\[1ex]
+
+\noindent
+\textbf{INRIA} \hfill Saclay, France \\ 
+\textit{Intern \hfill Parsifal team \hfill Jun - July 2014}\\
+Research on correctness certificates for first order term-rewriting.
+
+
+\section*{Publications}
+
+\noindent
+2026 \quad \textbf{Diagramming Program Values by Spatial Refinement} \\
+\textbf{Siddhartha Prasad}, Michael Tu, Karan Kashyap, Tim Nelson, Shriram Krishnamurthi \\
+\textit{ACM SIGPLAN Conference on Programming Language Design and Implementation (PLDI)} \textbf{[To appear]} \\[0.75ex]
+
+\noindent
+2026 \quad \textbf{hS: Speculative Script Reordering at Subprocess Granularity} \\
+Georgios Liargkovas, Di Jin, Tianyu (Ezri) Zhu, Dan Liu, A. Bolun Thompson, Anirudh Narsipur,
+Seong-Heon Jung, \textbf{Siddhartha Prasad}, Diomidis Spinellis, Michael Greenberg, Konstantinos Kallas,
+Nikos Vasilakis \\
+\textit{USENIX Symposium on Operating Systems Design and Implementation (OSDI)} \textbf{[To appear]} \\[0.75ex]
+
+\noindent
+2026 \quad \textbf{Meaningful Human-in-the-Loop Checking of GenAI Synthesis for Restricted Languages} \\
+\textbf{Siddhartha Prasad}, Skyler Austen, Kathi Fisler, Shriram Krishnamurthi \\
+\textit{European Conference on Object-Oriented Programming (ECOOP)} \textbf{[To appear]} \\[0.75ex]
+
+\noindent
+2025 \quad \textbf{A Misconception-Driven Adaptive Tutor for Linear Temporal Logic} \\
+\textbf{Siddhartha Prasad}, Ben Greenman, Tim Nelson, Shriram Krishnamurthi \\
+\textit{International Conference on Computer Aided Verification (CAV)} \textbf{[Distinguished Paper]} \\[0.75ex]
+
+\noindent
+2025 \quad \textbf{Lightweight Diagramming for Lightweight Formal Methods: A Grounded Language Design} \\
+\textbf{Siddhartha Prasad}, Ben Greenman, Tim Nelson, Shriram Krishnamurthi \\
+\textit{European Conference on Object-Oriented Programming (ECOOP)} \textbf{[Distinguished Paper] [Distinguished Artifact]} \\[0.75ex]
+
+\noindent
+2024 \quad \textbf{Misconceptions in Finite-Trace and Infinite-Trace Linear Temporal Logic} \\
+Ben Greenman, \textbf{Siddhartha Prasad}, Antonio Di Stasio, Shufang Zhu, Giuseppe De Giacomo, 
+Shriram Krishnamurthi, Marco Montali, Tim Nelson, Milda Zizyte \\
+\textit{International Symposium on Formal Methods (FM)} \\[0.75ex]
+
+\noindent
+2024 \quad \textbf{ContextQ: Generated Questions to Support Meaningful Parent-Child Dialogue While Co-Reading} \\
+Griffin Dietz Smith, \textbf{Siddhartha Prasad}, Matt J Davidson, Leah Findlater, R Benjamin Shapiro \\
+\textit{Interaction Design and Children (IDC)} \\[0.75ex]
+
+\noindent
+2024 \quad \textbf{Forge: A Tool and Language for Teaching Formal Methods} \\
+Tim Nelson, Ben Greenman, \textbf{Siddhartha Prasad}, Tristan Dyer, Ethan Bove, Qianfan Chen, Charles Cutting, 
+Thomas Del Vecchio, Sidney LeVine, Julianne Rudner, Ben Ryjikov, Alexander Varga, Andrew Wagner, 
+Luke West, Shriram Krishnamurthi \\
+\textit{OOPSLA (ACM SIGPLAN)} \\[0.75ex]
+
+\noindent
+2024 \quad \textbf{Conceptual Mutation Testing for Student Programming Misconceptions} \\
+\textbf{Siddhartha Prasad}, Ben Greenman, Tim Nelson, Shriram Krishnamurthi \\
+\textit{The Art, Science, and Engineering of Programming} \\[0.75ex]
+
+\noindent
+2023 \quad \textbf{Generating Programs Trivially: Student Use of Large Language Models} \\
+\textbf{Siddhartha Prasad}, Ben Greenman, Tim Nelson, Shriram Krishnamurthi \\
+\textit{ACM Conference on Global Computing Education (CompEd)} \\[0.75ex]
+
+\noindent
+2022 \quad \textbf{Making Hay from Wheats: A Classsourcing Method to Identify Misconceptions} \\
+\textbf{Siddhartha Prasad}, Ben Greenman, Tim Nelson, John Wrenn, Shriram Krishnamurthi \\
+\textit{Koli Calling International Conference on Computing Education Research} \\[0.75ex]
+
+\noindent
+2020 \quad \textbf{Large-Scale Intelligent Microservices} \\
+Mark Hamilton, Nick Gonsalves, Christina Lee, Anand Raman, Brendan Walsh, \textbf{Siddhartha Prasad}, 
+Dalitso Banda, Lucy Zhang, Lei Zhang, William T Freeman \\
+\textit{IEEE International Conference on Big Data} \\[0.75ex]
+
+\section*{Teaching}
+\noindent
+Sheridan Teaching Seminar Certificate, Brown University \hfill 2023 \\[0.5ex]
+
+\noindent
+\textbf{Teaching Assistant Experience} \\
+Brown University: CSCI 1710 (Logic for Systems, 2022–2026),
+CSCI 1730 (Programming Languages, 2025) \\
+Tufts University: CS 160 (Algorithms, 2014), 
+CS 105 (Programming Languages, 2015–2016)
+
+
+
+\end{document}

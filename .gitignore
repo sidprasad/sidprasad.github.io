@@ -75,3 +75,6 @@ dist/
 *.temp
 
 Gemfile.lock
+
+# LaTeX CV build artifacts
+cvsrc/build/

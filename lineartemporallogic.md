@@ -69,6 +69,9 @@ This tutor leverages the idea of **Conceptual Mutation Testing** [^1] to generat
             {% if pub.code_url %}
                 <a href="{{ pub.code_url }}" class="publication-tag code">Code</a>
             {% endif %}
+            {% if pub.tool_url %}
+                <a href="{{ pub.tool_url }}" class="publication-tag tool">Tool</a>
+            {% endif %}
         </div>
     </div>
 </div>
