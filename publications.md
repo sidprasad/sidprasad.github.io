@@ -57,7 +57,7 @@ title: Publications
           {% if pub.awards %}
           <span class="publication-awards">
             {% for award in pub.awards %}
-              <span class="award-badge"><span class="award-icon">🏆</span>{{ award }}</span>
+              <span class="award-badge">{{ award }}</span>
             {% endfor %}
           </span>
           {% endif %}
