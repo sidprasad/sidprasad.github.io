@@ -6,15 +6,6 @@
   paper_url: unpublished/ptkns-spytial.pdf
   status: "Upcoming"
 
-
-- title: "hS: Speculative Script Reordering at Subprocess Granularity"
-  authors: "Georgios Liargkovas, Di Jin, Tianyu (Ezri) Zhu, Dan Liu, A. Bolun Thompson, Anirudh Narsipur, Seong-Heon Jung, Siddhartha Prasad, Diomidis Spinellis, Michael Greenberg, Konstantinos Kallas, Nikos Vasilakis"
-  venue: "USENIX Symposium on Operating Systems Design and Implementation"
-  venue_short: "OSDI"
-  year: 2026
-  paper_url: https://atlas.cs.brown.edu/pdf/hs:osdi:2026.pdf
-  status: "Upcoming"
-
 - title: "Meaningful Human-in-the-Loop Checking of GenAI Synthesis for Restricted Languages"
   authors: "Siddhartha Prasad, Skyler Austen, Kathi Fisler, Shriram Krishnamurthi"
   venue: "European Conference on Object-Oriented Programming"
@@ -25,6 +16,17 @@
   tool_url: https://marketplace.visualstudio.com/items?itemName=SiddharthaPrasad.pick-regex
   project: 'ltl'
   status: "Upcoming"
+
+
+- title: "hS: Speculative Script Reordering at Subprocess Granularity"
+  authors: "Georgios Liargkovas, Di Jin, Tianyu (Ezri) Zhu, Dan Liu, A. Bolun Thompson, Anirudh Narsipur, Seong-Heon Jung, Siddhartha Prasad, Diomidis Spinellis, Michael Greenberg, Konstantinos Kallas, Nikos Vasilakis"
+  venue: "USENIX Symposium on Operating Systems Design and Implementation"
+  venue_short: "OSDI"
+  year: 2026
+  paper_url: https://atlas.cs.brown.edu/pdf/hs:osdi:2026.pdf
+  status: "Upcoming"
+
+
 
 
 - title: "A Misconception-Driven Adaptive Tutor for Linear Temporal Logic"
