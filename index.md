@@ -13,16 +13,18 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 
 
 {% assign sorted_talks = site.data.talks | sort: "date" | reverse %}
+{% assign today = site.time | date: "%Y-%m-%d" %}
 
 {% if sorted_talks.size > 0 %}
 <section class="talks-widget">
   <h3 class="talks-heading">Recent &amp; Upcoming Talks</h3>
   <div class="talks-scroll">
     {% for talk in sorted_talks %}
+    {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
     <div class="talk-entry">
       <div class="talk-date">
         {{ talk.date | date: "%b %-d, %Y" }}
-        {% if talk.date >= site.time %}
+        {% if talk_date >= today %}
           <span class="talk-upcoming">Upcoming</span>
         {% endif %}
       </div>
