@@ -291,3 +291,98 @@ nav a {
 .footnotes li {
   margin-bottom: 0.25em;
 }
+
+/* Talks widget on landing page */
+.talks-widget {
+  margin: 1.5em 0 2em 0;
+}
+
+.talks-heading {
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+  color: #333;
+}
+
+.talks-scroll {
+  max-height: 280px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  padding: 4px 0;
+}
+
+.talk-entry {
+  display: flex;
+  gap: 14px;
+  padding: 10px 14px;
+  border-bottom: 1px solid #eee;
+  align-items: flex-start;
+}
+
+.talk-entry:last-child {
+  border-bottom: none;
+}
+
+.talk-date {
+  flex-shrink: 0;
+  width: 110px;
+  font-size: 0.9em;
+  color: #555;
+  font-weight: 600;
+}
+
+.talk-upcoming {
+  display: inline-block;
+  background: #e8f4fd;
+  color: #1a6fa0;
+  font-size: 0.75em;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 4px;
+}
+
+.talk-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.talk-title {
+  font-weight: 600;
+  color: #222;
+}
+
+.talk-venue {
+  font-style: italic;
+  color: #555;
+  font-size: 0.9em;
+  margin-top: 2px;
+}
+
+.talk-links {
+  margin-top: 4px;
+}
+
+.talk-link {
+  display: inline-block;
+  font-size: 0.8em;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-right: 6px;
+  text-decoration: none;
+}
+
+.talk-link.video  { background: #f3d9fa; color: #5f2271; }
+.talk-link.slides { background: #cfe2ff; color: #084298; }
+.talk-link.paper  { background: #d1e7dd; color: #0f5132; }
+
+@media (max-width: 600px) {
+  .talk-entry {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .talk-date {
+    width: auto;
+  }
+}

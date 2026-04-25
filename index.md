@@ -12,6 +12,38 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 [^2]: I worked on [Azure's AI services](https://azure.microsoft.com/en-us/products/ai-services), with a particular focus on containerizing AI from 2018-2021.
 
 
+{% assign sorted_talks = site.data.talks | sort: "date" | reverse %}
+
+{% if sorted_talks.size > 0 %}
+<section class="talks-widget">
+  <h3 class="talks-heading">Recent &amp; Upcoming Talks</h3>
+  <div class="talks-scroll">
+    {% for talk in sorted_talks %}
+    <div class="talk-entry">
+      <div class="talk-date">
+        {{ talk.date | date: "%b %-d, %Y" }}
+        {% if talk.date >= site.time %}
+          <span class="talk-upcoming">Upcoming</span>
+        {% endif %}
+      </div>
+      <div class="talk-body">
+        <div class="talk-title">{{ talk.title }}</div>
+        <div class="talk-venue">
+          {% if talk.venue_short %}{{ talk.venue_short }} — {% endif %}{{ talk.venue }}
+        </div>
+        {% if talk.video_url or talk.slides_url or talk.paper_url %}
+        <div class="talk-links">
+          {% if talk.video_url %}<a href="{{ talk.video_url }}" class="talk-link video">Video</a>{% endif %}
+          {% if talk.slides_url %}<a href="{{ talk.slides_url }}" class="talk-link slides">Slides</a>{% endif %}
+          {% if talk.paper_url %}<a href="{{ talk.paper_url }}" class="talk-link paper">Paper</a>{% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
 
 
 <!--
