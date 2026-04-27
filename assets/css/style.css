@@ -13,12 +13,51 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
-header, footer {
+footer {
   text-align: center;
   margin-bottom: 1rem;
 }
-nav a {
-  margin: 0 10px;
+
+/* Header nav — tabs with a hairline rule and an active indicator */
+header {
+  margin-bottom: 1.5rem;
+}
+
+header nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 28px;
+  border-bottom: 1px solid #ddd;
+}
+
+header nav a.nav-tab {
+  color: #777;
+  text-decoration: none;
+  padding: 8px 0;
+  margin-bottom: -1px;
+  border-bottom: 2px solid transparent;
+  font-size: 0.95em;
+  letter-spacing: 0.02em;
+  transition: color 0.15s ease, border-bottom-color 0.15s ease;
+}
+
+header nav a.nav-tab:hover {
+  color: #222;
+  border-bottom-color: #ccc;
+}
+
+header nav a.nav-tab.active {
+  color: #222;
+  font-weight: 700;
+  border-bottom-color: #222;
+}
+
+@media (max-width: 600px) {
+  header nav {
+    gap: 16px;
+  }
 }
 
 /* Container for all publications */
@@ -50,20 +89,35 @@ nav a {
   z-index: 10; /* Ensure it stays above other content */
 }
 
-/* List of publications for the year */
+/* List of publications for the year — flow as a clean list, no card chrome */
 .publication-list {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 0;
 }
 
-/* Individual publication card */
 .publication-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
-  background-color: #f9f9f9;
+  border: none;
+  background: transparent;
+  padding: 1.5em 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.publication-list .publication-card:first-child {
+  padding-top: 0;
+}
+
+.publication-list .publication-card:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Clear floated awards so subsequent cards aren't pulled up */
+.publication-card::after {
+  content: "";
+  display: block;
+  clear: both;
 }
 
 .project-card-link {
@@ -81,47 +135,57 @@ nav a {
   color: inherit;
 }
 
-/* Publication titles: larger than body, no default h4 top margin */
+/* Title — slightly larger than body, no default h4 margin */
 .publication-title {
   font-size: 1.15em;
   margin: 0 0 4px 0;
   line-height: 1.3;
+  font-weight: 700;
 }
 
 .publication-title a {
   font-family: 'Cardo', serif;
   font-weight: 700;
+  color: #222;
+  text-decoration: none;
+  border-bottom: 1px solid #ccc;
 }
 
-/* Authors and venue */
-.publication-details {
-  margin: 5px 0;
-  font-size: 0.9em;
+.publication-title a:hover {
+  border-bottom-color: #555;
+}
+
+/* Authors — italic, muted */
+.publication-authors {
+  font-style: italic;
+  color: #555;
+  font-size: 0.95em;
+  margin: 2px 0 6px 0;
+}
+
+/* Meta line — small caps venue + year */
+.publication-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 0;
+  font-size: 0.85em;
   color: #555;
 }
 
-/* Authors and status */
-.publication-authors {
-  font-style: italic;
-  color: #555; /* Muted text for authors */
-  margin: 4px 0;
+.publication-venue-info {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
 }
 
-.publication-status {
-  display: inline-block;
-  background: #e8f4fd;
-  color: #1a6fa0;
-  font-size: 0.85em;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 4px;
-  margin-right: 6px;
-}
-
-/* Venue styling */
 .publication-venue {
-  font-weight: bold;
-  color: #333; /* Make the venue text stand out */
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.95em;
 }
 
 .publication-venue[title] {
@@ -129,66 +193,79 @@ nav a {
   cursor: help;
 }
 
-/* Tags for blog and code */
-.publication-tags {
-  margin-top: 5px;
+.publication-year {
+  color: #777;
 }
 
-.publication-tag {
+/* Status — outlined, small caps, no fill */
+.publication-status {
   display: inline-block;
-  padding: 5px 10px;
-  border-radius: 12px;
-  margin-right: 10px;
-  text-decoration: none;
-  color: inherit;
+  background: transparent;
+  border: 1px solid #1a6fa0;
+  color: #1a6fa0;
+  font-size: 0.95em;
+  font-weight: 600;
+  padding: 0 6px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.publication-tag.blog {
-  background-color: #d1e7dd;
-  color: #0f5132;
-}
-
-.publication-tag.code {
-  background-color: #cfe2ff;
-  color: #084298;
-}
-
-.publication-tag.tool {
-  background-color: #f3d9fa;
-  color: #5f2271;
-}
-
-/* Venue + awards line */
-.publication-meta {
+/* Awards — float as marginalia in the top-right corner */
+.publication-awards {
+  float: right;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-  margin-top: 4px;
-}
-
-.publication-venue-info {
-  display: inline-flex;
-  align-items: center;
+  justify-content: flex-end;
   gap: 6px;
-}
-
-.publication-awards {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 6px;
+  margin: 0 0 6px 14px;
+  max-width: 45%;
 }
 
 .award-badge {
   display: inline-block;
-  background-color: #fffbeb;
-  border: 1.5px solid #b8860b;
+  background: transparent;
+  border: 1px solid #b8860b;
   color: #6b4e00;
-  font-weight: 700;
-  font-size: 0.85em;
-  padding: 3px 10px;
-  border-radius: 4px;
+  font-weight: 600;
+  font-style: italic;
+  font-size: 0.9em;
+  padding: 1px 8px;
+  border-radius: 2px;
   white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+/* Action links — small italic underlined text, no colored pills */
+.publication-tags {
+  margin-top: 6px;
+  font-size: 0.85em;
+  font-style: italic;
+}
+
+.publication-tag {
+  display: inline-block;
+  background: transparent;
+  color: #555;
+  text-decoration: none;
+  border-bottom: 1px solid #bbb;
+  padding: 0;
+  margin-right: 14px;
+  border-radius: 0;
+}
+
+.publication-tag:hover {
+  border-bottom-color: #555;
+  color: #222;
+}
+
+@media (max-width: 600px) {
+  .publication-awards {
+    float: none;
+    margin: 0 0 8px 0;
+    max-width: 100%;
+    justify-content: flex-start;
+  }
 }
 
 /* Teaching page: course list */
@@ -314,7 +391,7 @@ a.footnote {
   font-size: 0.7em;
 }
 
-/* Talks widget on landing page */
+/* Recent activity — small carousel of talk cards */
 .talks-widget {
   margin: 1.5em 0 2em 0;
 }
@@ -328,86 +405,119 @@ a.footnote {
   font-weight: 600;
 }
 
-.talks-scroll {
-  max-height: 180px;
-  overflow-y: auto;
-  border: 1px solid #eaeaea;
-  border-radius: 8px;
-  background: #f9f9f9;
-  padding: 4px 0;
-}
-
-.talk-entry {
+.talks-carousel {
   display: flex;
-  gap: 14px;
-  padding: 8px 14px;
-  border-bottom: 1px solid #f0f0f0;
-  align-items: flex-start;
+  align-items: stretch;
+  gap: 6px;
 }
 
-.talk-entry:last-child {
-  border-bottom: none;
+.talks-track {
+  flex: 1;
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 2px 0;
+  scrollbar-width: none;
+}
+
+.talks-track::-webkit-scrollbar {
+  display: none;
+}
+
+.talk-card {
+  flex: 0 0 calc((100% - 24px) / 3);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  background: #f9f9f9;
+  min-width: 0;
 }
 
 .talk-date {
-  flex-shrink: 0;
-  width: 110px;
-  font-size: 0.9em;
-  color: #555;
+  font-size: 0.8em;
+  color: #777;
   font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .talk-upcoming {
   display: inline-block;
-  background: #e8f4fd;
+  background: transparent;
+  border: 1px solid #1a6fa0;
   color: #1a6fa0;
-  font-size: 0.75em;
+  font-size: 0.85em;
   font-weight: 600;
-  padding: 1px 6px;
-  border-radius: 4px;
+  padding: 0 5px;
+  border-radius: 2px;
   margin-left: 4px;
-}
-
-.talk-body {
-  flex: 1;
-  min-width: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .talk-title {
-  font-weight: 600;
+  font-weight: 700;
   color: #222;
+  font-size: 0.95em;
+  line-height: 1.3;
 }
 
 .talk-venue {
   font-style: italic;
   color: #555;
-  font-size: 0.9em;
-  margin-top: 2px;
+  font-size: 0.85em;
 }
 
 .talk-links {
-  margin-top: 4px;
+  margin-top: auto;
+  padding-top: 6px;
+  font-size: 0.8em;
+  font-style: italic;
 }
 
 .talk-link {
   display: inline-block;
-  font-size: 0.8em;
-  padding: 2px 8px;
-  border-radius: 10px;
-  margin-right: 6px;
+  background: transparent;
+  color: #555;
   text-decoration: none;
+  border-bottom: 1px solid #bbb;
+  margin-right: 10px;
 }
 
-.talk-link.video  { background: #f3d9fa; color: #5f2271; }
-.talk-link.slides { background: #cfe2ff; color: #084298; }
-.talk-link.paper  { background: #d1e7dd; color: #0f5132; }
+.talk-link:hover {
+  color: #222;
+  border-bottom-color: #555;
+}
+
+.talks-nav {
+  flex-shrink: 0;
+  align-self: stretch;
+  background: transparent;
+  border: none;
+  color: #777;
+  font-size: 1.4em;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 6px;
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+
+.talks-nav:hover:not(:disabled) {
+  color: #222;
+}
+
+.talks-nav:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
 
 @media (max-width: 600px) {
-  .talk-entry {
-    flex-direction: column;
-    gap: 4px;
-  }
-  .talk-date {
-    width: auto;
+  .talk-card {
+    flex: 0 0 100%;
   }
 }

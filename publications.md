@@ -18,6 +18,14 @@ title: Publications
     <div class="publication-list">
       {% for pub in group.items %}
       <div class="publication-card">
+        {% if pub.awards %}
+        <div class="publication-awards">
+          {% for award in pub.awards %}
+            <span class="award-badge">{{ award }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+
         <h4 class="publication-title">
           {% if pub.paper_url %}
             <a href="{{ pub.paper_url }}">{{ pub.title }}</a>
@@ -25,19 +33,6 @@ title: Publications
             {{ pub.title }}
           {% endif %}
         </h4>
-
-        <!-- Tags for blog and code -->
-        <div class="publication-tags">
-          {% if pub.blog_url %}
-          <a href="{{ pub.blog_url }}" class="publication-tag blog">Blog Post</a>
-          {% endif %}
-          {% if pub.code_url %}
-          <a href="{{ pub.code_url }}" class="publication-tag code">Code</a>
-          {% endif %}
-          {% if pub.tool_url %}
-          <a href="{{ pub.tool_url }}" class="publication-tag tool">Tool</a>
-          {% endif %}
-        </div>
 
         <p class="publication-authors">
           {{ pub.authors | replace: "Siddhartha Prasad", "<strong>Siddhartha Prasad</strong>" }}
@@ -51,17 +46,23 @@ title: Publications
             {% else %}
               <span class="publication-venue">{{ pub.venue }}</span>
             {% endif %}
-            {{ pub.year }}
+            <span class="publication-year">{{ pub.year }}</span>
           </span>
+        </div>
 
-          {% if pub.awards %}
-          <span class="publication-awards">
-            {% for award in pub.awards %}
-              <span class="award-badge">{{ award }}</span>
-            {% endfor %}
-          </span>
+        {% if pub.blog_url or pub.code_url or pub.tool_url %}
+        <div class="publication-tags">
+          {% if pub.blog_url %}
+          <a href="{{ pub.blog_url }}" class="publication-tag">Blog</a>
+          {% endif %}
+          {% if pub.code_url %}
+          <a href="{{ pub.code_url }}" class="publication-tag">Code</a>
+          {% endif %}
+          {% if pub.tool_url %}
+          <a href="{{ pub.tool_url }}" class="publication-tag">Tool</a>
           {% endif %}
         </div>
+        {% endif %}
       </div>
       {% endfor %}
     </div>
