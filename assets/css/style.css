@@ -81,7 +81,13 @@ nav a {
   color: inherit;
 }
 
-/* Optional: Adjust publication titles for better readability */
+/* Publication titles: larger than body, no default h4 top margin */
+.publication-title {
+  font-size: 1.15em;
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+
 .publication-title a {
   font-family: 'Cardo', serif;
   font-weight: 700;
@@ -98,6 +104,7 @@ nav a {
 .publication-authors {
   font-style: italic;
   color: #555; /* Muted text for authors */
+  margin: 4px 0;
 }
 
 .publication-status {
@@ -292,31 +299,49 @@ nav a {
   margin-bottom: 0.25em;
 }
 
+.footnotes p {
+  margin: 0;
+}
+
+.footnotes a.reversefootnote {
+  font-size: 0.85em;
+  text-decoration: none;
+  margin-left: 4px;
+}
+
+sup,
+a.footnote {
+  font-size: 0.7em;
+}
+
 /* Talks widget on landing page */
 .talks-widget {
   margin: 1.5em 0 2em 0;
 }
 
 .talks-heading {
-  font-size: 1.2em;
+  font-size: 1em;
   margin-bottom: 0.5em;
-  color: #333;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
 }
 
 .talks-scroll {
-  max-height: 280px;
+  max-height: 180px;
   overflow-y: auto;
-  border: 1px solid #ddd;
+  border: 1px solid #eaeaea;
   border-radius: 8px;
-  background: #fff;
+  background: #f9f9f9;
   padding: 4px 0;
 }
 
 .talk-entry {
   display: flex;
   gap: 14px;
-  padding: 10px 14px;
-  border-bottom: 1px solid #eee;
+  padding: 8px 14px;
+  border-bottom: 1px solid #f0f0f0;
   align-items: flex-start;
 }
 
