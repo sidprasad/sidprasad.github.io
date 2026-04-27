@@ -78,3 +78,9 @@ Gemfile.lock
 
 # LaTeX CV build artifacts
 cvsrc/build/
+
+# Jekyll build output
+_site/
+
+# Local Claude Code config
+.claude/

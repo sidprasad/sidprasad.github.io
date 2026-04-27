@@ -17,18 +17,22 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 
 {% if sorted_talks.size > 0 %}
 <section class="talks-widget">
-  <h3 class="talks-heading">Recent Activity</h3>
+  <h3 class="talks-heading">Recent Invited Talks</h3>
   <div class="talks-carousel">
-    <button type="button" class="talks-nav prev" aria-label="Previous">&#8249;</button>
+    <button type="button" class="talks-nav prev" aria-label="Previous">‹</button>
     <div class="talks-track">
       {% for talk in sorted_talks %}
       {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
+      {% assign talk_type = talk.type | default: "Talk" %}
       <article class="talk-card">
-        <div class="talk-date">
-          {{ talk.date | date: "%b %-d, %Y" }}
-          {% if talk_date >= today %}
-            <span class="talk-upcoming">Upcoming</span>
-          {% endif %}
+        <div class="talk-meta">
+          <span class="talk-type talk-type-{{ talk_type | downcase | replace: ' ', '-' }}">{{ talk_type }}</span>
+          <span class="talk-date">
+            {{ talk.date | date: "%b %-d, %Y" }}
+            {% if talk_date >= today %}
+              <span class="talk-upcoming">Upcoming</span>
+            {% endif %}
+          </span>
         </div>
         <div class="talk-title">{{ talk.title }}</div>
         <div class="talk-venue">
@@ -44,33 +48,9 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
       </article>
       {% endfor %}
     </div>
-    <button type="button" class="talks-nav next" aria-label="Next">&#8250;</button>
+    <button type="button" class="talks-nav next" aria-label="Next">›</button>
   </div>
 </section>
-<script>
-(function () {
-  document.querySelectorAll('.talks-carousel').forEach(function (root) {
-    var track = root.querySelector('.talks-track');
-    var prev = root.querySelector('.talks-nav.prev');
-    var next = root.querySelector('.talks-nav.next');
-    function step() {
-      var cards = track.querySelectorAll('.talk-card');
-      if (cards.length < 2) return track.clientWidth;
-      return cards[1].offsetLeft - cards[0].offsetLeft;
-    }
-    function update() {
-      var max = track.scrollWidth - track.clientWidth - 1;
-      prev.disabled = track.scrollLeft <= 1;
-      next.disabled = track.scrollLeft >= max;
-    }
-    prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
-    next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
-    track.addEventListener('scroll', update);
-    window.addEventListener('resize', update);
-    update();
-  });
-})();
-</script>
 {% endif %}
 
 

@@ -4,23 +4,110 @@
     <meta charset="UTF-8">
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="/assets/css/style.css">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7D4prO8KVyHl1yYkGmQIq8eg1F5D0Lkp4U" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/littlefoot@4/dist/littlefoot.css">
   </head>
   <body>
     {% include header.html %}
-    <main class="container mt-4">
+    <main>
       {{ content }}
     </main>
     {% include footer.html %}
 
-    <!-- Bootstrap JS and Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-q20oA0FxB0pWfJVo3f9U2iIcnwKx6t9k4p4e2m9KAfF0xNKTpq6F0k0N6y7NfIoG" crossorigin="anonymous"></script>
+    <!-- Tufte-style sidenotes: relocate kramdown footnotes into the right margin -->
+    <script>
+    (function () {
+      var fnContainer = document.querySelector('.footnotes');
+      if (!fnContainer) return;
 
-    <!-- Littlefoot: click-to-reveal footnote popovers -->
-    <script src="https://cdn.jsdelivr.net/npm/littlefoot@4/dist/littlefoot.js"></script>
-    <script>littlefoot.littlefoot();</script>
+      // Build a map: footnote id -> HTML content (without the back-arrow link)
+      var noteContent = {};
+      fnContainer.querySelectorAll('li[id^="fn:"]').forEach(function (li) {
+        var id = li.id.replace(/^fn:/, '');
+        var clone = li.cloneNode(true);
+        clone.querySelectorAll('a.reversefootnote').forEach(function (a) { a.remove(); });
+        // Trim trailing whitespace from the last <p>
+        var ps = clone.querySelectorAll('p');
+        if (ps.length === 1) {
+          noteContent[id] = ps[0].innerHTML.trim();
+        } else {
+          noteContent[id] = clone.innerHTML.trim();
+        }
+      });
+
+      // For each inline reference, insert the sidenote right after it
+      var refs = document.querySelectorAll('sup[id^="fnref:"]');
+      var counter = 0;
+      refs.forEach(function (sup) {
+        var rawId = sup.id.replace(/^fnref:/, '');
+        var html = noteContent[rawId];
+        if (!html) return;
+        counter += 1;
+
+        // Replace the <sup>...<a>n</a></sup> with a styled inline marker
+        var ref = document.createElement('sup');
+        ref.className = 'sidenote-ref';
+        ref.textContent = counter;
+        sup.parentNode.replaceChild(ref, sup);
+
+        // Insert the sidenote after the ref
+        var note = document.createElement('span');
+        note.className = 'sidenote';
+        note.innerHTML = '<span class="sidenote-num">' + counter + '</span>' + html;
+        ref.parentNode.insertBefore(note, ref.nextSibling);
+      });
+
+      // Mark the body so the bottom footnotes block can be hidden via CSS
+      document.body.classList.add('has-sidenotes');
+    })();
+    </script>
+
+    <!-- Talks carousel controls -->
+    <script>
+    (function () {
+      function init() {
+        document.querySelectorAll('.talks-carousel').forEach(function (root) {
+          var track = root.querySelector('.talks-track');
+          var prev = root.querySelector('.talks-nav.prev');
+          var next = root.querySelector('.talks-nav.next');
+          if (!track || !prev || !next) return;
+
+          function step() {
+            var cards = track.querySelectorAll('.talk-card');
+            if (cards.length < 2) return track.clientWidth || 200;
+            var s = cards[1].offsetLeft - cards[0].offsetLeft;
+            return s > 0 ? s : track.clientWidth;
+          }
+
+          function update() {
+            var max = track.scrollWidth - track.clientWidth;
+            var canScroll = max > 1;
+            // Hide the whole nav row if there's nothing to scroll
+            prev.style.visibility = canScroll ? '' : 'hidden';
+            next.style.visibility = canScroll ? '' : 'hidden';
+            prev.disabled = track.scrollLeft <= 0;
+            next.disabled = track.scrollLeft >= max - 1;
+          }
+
+          prev.addEventListener('click', function () {
+            track.scrollBy({ left: -step(), behavior: 'smooth' });
+          });
+          next.addEventListener('click', function () {
+            track.scrollBy({ left: step(), behavior: 'smooth' });
+          });
+          track.addEventListener('scroll', update, { passive: true });
+          window.addEventListener('resize', update);
+          // Re-check after fonts/images load — they affect card widths
+          window.addEventListener('load', update);
+
+          update();
+        });
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
   </body>
 </html>

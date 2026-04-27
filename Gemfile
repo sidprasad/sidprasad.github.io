@@ -5,3 +5,4 @@ gem "minima", "~> 2.5"
 gem "jekyll-feed", "~> 0.17"
 gem 'csv'
 gem 'logger'
+gem 'base64'

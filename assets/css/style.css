@@ -1,16 +1,89 @@
 /* Use Cardo for the entire site */
 body {
   font-family: 'Cardo', serif;
-  max-width: 800px;
-  margin: auto;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 2rem;
   background: #f9f9f9;
+}
+
+/* Reading column — keep text in a comfortable measure; sidenotes float into the right gutter */
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
 }
 
 /* Use bold Cardo for headings */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Cardo', serif;
   font-weight: 700;
+}
+
+/* ---------- Tufte-style sidenotes ---------- */
+
+/* The reference number kept inline */
+.sidenote-ref {
+  font-size: 0.75em;
+  vertical-align: super;
+  line-height: 0;
+  font-weight: 600;
+  color: #888;
+  margin: 0 1px;
+}
+
+/* The note itself, floated into the right gutter */
+.sidenote {
+  float: right;
+  clear: right;
+  width: 200px;
+  margin-right: -228px;
+  margin-top: 0.25em;
+  margin-bottom: 0.5em;
+  font-size: 0.82em;
+  line-height: 1.45;
+  color: #555;
+  position: relative;
+  font-style: normal;
+}
+
+.sidenote-num {
+  font-size: 0.8em;
+  vertical-align: super;
+  line-height: 0;
+  margin-right: 4px;
+  font-weight: 600;
+  color: #888;
+}
+
+.sidenote a {
+  color: #555;
+  text-decoration: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.sidenote a:hover {
+  color: #222;
+  border-bottom-color: #555;
+}
+
+/* When sidenotes are mounted, hide the kramdown-generated footer footnotes */
+body.has-sidenotes .footnotes {
+  display: none;
+}
+
+/* On narrow screens, collapse sidenotes to inline indented blocks */
+@media (max-width: 1000px) {
+  .sidenote {
+    float: none;
+    clear: none;
+    width: auto;
+    margin: 0.6em 0 0.6em 1.5em;
+    padding: 0.4em 0 0.4em 0.85em;
+    border-left: 2px solid #ddd;
+    display: block;
+    font-size: 0.85em;
+  }
 }
 
 footer {
@@ -60,14 +133,15 @@ header nav a.nav-tab.active {
   }
 }
 
-/* Container for all publications */
+/* ---------- Publications ---------- */
+
 .publications-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 28px;
 }
 
-/* Container for each year section */
+/* Year section: sticky year label on the left, list on the right */
 .publication-year-section {
   display: flex;
   align-items: flex-start;
@@ -75,23 +149,23 @@ header nav a.nav-tab.active {
   position: relative;
 }
 
-/* Sticky year on the left */
 .publication-year-sticky {
   flex-shrink: 0;
   font-size: 1.5em;
-  font-weight: bold;
-  color: #555;
-  width: 80px;
-  text-align: center;
+  font-weight: 700;
+  color: #888;
+  width: 60px;
+  text-align: right;
   position: sticky;
-  top: 0; /* Stick to the top of the viewport */
-  background-color: #f9f9f9; /* Optional: Add background to avoid overlap */
-  z-index: 10; /* Ensure it stays above other content */
+  top: 0;
+  background-color: #f9f9f9;
+  padding-top: 2px;
+  z-index: 10;
 }
 
-/* List of publications for the year — flow as a clean list, no card chrome */
 .publication-list {
   flex-grow: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -100,7 +174,7 @@ header nav a.nav-tab.active {
 .publication-card {
   border: none;
   background: transparent;
-  padding: 1.5em 0;
+  padding: 1.4em 0;
   border-bottom: 1px solid #e6e6e6;
 }
 
@@ -113,13 +187,148 @@ header nav a.nav-tab.active {
   padding-bottom: 0;
 }
 
-/* Clear floated awards so subsequent cards aren't pulled up */
-.publication-card::after {
-  content: "";
-  display: block;
-  clear: both;
+/* Top row: title (left, takes most space) + awards (top-right, prominent) */
+.publication-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 4px;
 }
 
+/* Title — most prominent element on the card */
+.publication-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 1.25em;
+  margin: 0;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.publication-title a {
+  font-family: 'Cardo', serif;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-decoration: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.publication-title a:hover {
+  border-bottom-color: #555;
+}
+
+/* Awards — pinned to top-right, prominent filled badges */
+.publication-awards {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  max-width: 45%;
+}
+
+.award-badge {
+  display: inline-block;
+  background: #f6e7a3;
+  border: 1px solid #d4b94a;
+  color: #5a4400;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 0.78em;
+  padding: 2px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+.award-badge::before {
+  content: "★ ";
+  color: #b8860b;
+}
+
+/* Authors — italic, muted */
+.publication-authors {
+  font-style: italic;
+  color: #555;
+  font-size: 0.95em;
+  margin: 4px 0 6px 0;
+  line-height: 1.45;
+}
+
+/* Venue line — venue, year, status */
+.publication-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  margin: 4px 0 8px 0;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.publication-venue {
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.92em;
+}
+
+.publication-venue[title] {
+  border-bottom: 1px dotted #999;
+  cursor: help;
+}
+
+.publication-year {
+  color: #777;
+}
+
+.publication-status {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid #1a6fa0;
+  color: #1a6fa0;
+  font-size: 0.85em;
+  font-weight: 600;
+  padding: 0 7px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Action pills — colored, rounded, distinct per type */
+.publication-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.pub-pill {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 12px;
+  font-size: 0.82em;
+  font-weight: 600;
+  font-style: normal;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+  transition: filter 0.15s ease;
+}
+
+.pub-pill:hover {
+  filter: brightness(0.95);
+}
+
+.pub-pill-pdf   { background: #fde2e2; color: #8a1f1f; border-color: #f5c6c6; }
+.pub-pill-blog  { background: #d1e7dd; color: #0f5132; border-color: #b6dac6; }
+.pub-pill-code  { background: #cfe2ff; color: #084298; border-color: #b4cfff; }
+.pub-pill-tool  { background: #e7d8ff; color: #4a1c8a; border-color: #d2bdf3; }
+
+/* Project card links keep their inherited color */
 .project-card-link {
   text-decoration: none !important;
   color: inherit;
@@ -135,136 +344,21 @@ header nav a.nav-tab.active {
   color: inherit;
 }
 
-/* Title — slightly larger than body, no default h4 margin */
-.publication-title {
-  font-size: 1.15em;
-  margin: 0 0 4px 0;
-  line-height: 1.3;
-  font-weight: 700;
-}
-
-.publication-title a {
-  font-family: 'Cardo', serif;
-  font-weight: 700;
-  color: #222;
-  text-decoration: none;
-  border-bottom: 1px solid #ccc;
-}
-
-.publication-title a:hover {
-  border-bottom-color: #555;
-}
-
-/* Authors — italic, muted */
-.publication-authors {
-  font-style: italic;
-  color: #555;
-  font-size: 0.95em;
-  margin: 2px 0 6px 0;
-}
-
-/* Meta line — small caps venue + year */
-.publication-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 10px;
-  margin-top: 0;
-  font-size: 0.85em;
-  color: #555;
-}
-
-.publication-venue-info {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 6px;
-}
-
-.publication-venue {
-  font-weight: 600;
-  color: #333;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 0.95em;
-}
-
-.publication-venue[title] {
-  border-bottom: 1px dotted #999;
-  cursor: help;
-}
-
-.publication-year {
-  color: #777;
-}
-
-/* Status — outlined, small caps, no fill */
-.publication-status {
-  display: inline-block;
-  background: transparent;
-  border: 1px solid #1a6fa0;
-  color: #1a6fa0;
-  font-size: 0.95em;
-  font-weight: 600;
-  padding: 0 6px;
-  border-radius: 2px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-/* Awards — float as marginalia in the top-right corner */
-.publication-awards {
-  float: right;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 6px;
-  margin: 0 0 6px 14px;
-  max-width: 45%;
-}
-
-.award-badge {
-  display: inline-block;
-  background: transparent;
-  border: 1px solid #b8860b;
-  color: #6b4e00;
-  font-weight: 600;
-  font-style: italic;
-  font-size: 0.9em;
-  padding: 1px 8px;
-  border-radius: 2px;
-  white-space: nowrap;
-  letter-spacing: 0.02em;
-}
-
-/* Action links — small italic underlined text, no colored pills */
-.publication-tags {
-  margin-top: 6px;
-  font-size: 0.85em;
-  font-style: italic;
-}
-
-.publication-tag {
-  display: inline-block;
-  background: transparent;
-  color: #555;
-  text-decoration: none;
-  border-bottom: 1px solid #bbb;
-  padding: 0;
-  margin-right: 14px;
-  border-radius: 0;
-}
-
-.publication-tag:hover {
-  border-bottom-color: #555;
-  color: #222;
-}
-
 @media (max-width: 600px) {
+  .publication-year-sticky {
+    width: 48px;
+    font-size: 1.25em;
+  }
+  .publication-header {
+    flex-direction: column;
+    gap: 8px;
+  }
   .publication-awards {
-    float: none;
-    margin: 0 0 8px 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
     max-width: 100%;
-    justify-content: flex-start;
+    order: -1;
   }
 }
 
@@ -358,7 +452,7 @@ header nav a.nav-tab.active {
   border-radius: 6px;
 }
 
-/* Footnotes: smaller, muted, with a thin divider above */
+/* Fallback footnotes (only visible if sidenotes JS hasn't run yet) */
 .footnotes {
   margin-top: 2.5em;
   padding-top: 1em;
@@ -367,27 +461,11 @@ header nav a.nav-tab.active {
   color: #555;
 }
 
-.footnotes ol {
-  padding-left: 1.5em;
-  margin-bottom: 0;
-}
+.footnotes ol { padding-left: 1.5em; margin-bottom: 0; }
+.footnotes li { margin-bottom: 0.25em; }
+.footnotes p  { margin: 0; }
 
-.footnotes li {
-  margin-bottom: 0.25em;
-}
-
-.footnotes p {
-  margin: 0;
-}
-
-.footnotes a.reversefootnote {
-  font-size: 0.85em;
-  text-decoration: none;
-  margin-left: 4px;
-}
-
-sup,
-a.footnote {
+sup, a.footnote {
   font-size: 0.7em;
 }
 
@@ -439,12 +517,38 @@ a.footnote {
   min-width: 0;
 }
 
+.talk-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
 .talk-date {
   font-size: 0.8em;
   color: #777;
   font-weight: 600;
   letter-spacing: 0.02em;
 }
+
+/* Type tag — small pill identifying the kind of activity */
+.talk-type {
+  display: inline-block;
+  font-size: 0.65em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 1px 7px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.talk-type-talk        { background: #e6eef5; color: #2c4a66; border-color: #c9d8e6; }
+.talk-type-award       { background: #f6e7a3; color: #5a4400; border-color: #d4b94a; }
+.talk-type-acceptance  { background: #d1e7dd; color: #0f5132; border-color: #b6dac6; }
+.talk-type-paper       { background: #cfe2ff; color: #084298; border-color: #b4cfff; }
 
 .talk-upcoming {
   display: inline-block;
