@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&display=swap" rel="stylesheet">
@@ -36,6 +37,7 @@
 
       // For each inline reference, insert the sidenote right after it
       var refs = document.querySelectorAll('sup[id^="fnref:"]');
+      var pairs = [];
       var counter = 0;
       refs.forEach(function (sup) {
         var rawId = sup.id.replace(/^fnref:/, '');
@@ -43,17 +45,71 @@
         if (!html) return;
         counter += 1;
 
-        // Replace the <sup>...<a>n</a></sup> with a styled inline marker
+        // Replace the <sup>...<a>n</a></sup> with an interactive marker
         var ref = document.createElement('sup');
         ref.className = 'sidenote-ref';
         ref.textContent = counter;
+        ref.setAttribute('role', 'button');
+        ref.setAttribute('tabindex', '0');
+        ref.setAttribute('aria-expanded', 'false');
+        ref.setAttribute('aria-label', 'Show note ' + counter);
         sup.parentNode.replaceChild(ref, sup);
 
         // Insert the sidenote after the ref
         var note = document.createElement('span');
         note.className = 'sidenote';
-        note.innerHTML = '<span class="sidenote-num">' + counter + '</span>' + html;
+        note.innerHTML =
+          '<span class="sidenote-num">' + counter + '</span>' + html +
+          '<button type="button" class="sidenote-close" aria-label="Close note">×</button>';
         ref.parentNode.insertBefore(note, ref.nextSibling);
+
+        pairs.push({ ref: ref, note: note });
+      });
+
+      function closeAll() {
+        pairs.forEach(function (p) {
+          p.note.classList.remove('is-open');
+          p.ref.classList.remove('is-open');
+          p.ref.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      function open(pair) {
+        closeAll();
+        pair.note.classList.add('is-open');
+        pair.ref.classList.add('is-open');
+        pair.ref.setAttribute('aria-expanded', 'true');
+      }
+
+      pairs.forEach(function (pair) {
+        function toggle(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (pair.note.classList.contains('is-open')) {
+            closeAll();
+          } else {
+            open(pair);
+          }
+        }
+        pair.ref.addEventListener('click', toggle);
+        pair.ref.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') toggle(e);
+        });
+        // Clicks inside the note shouldn't close it
+        pair.note.addEventListener('click', function (e) { e.stopPropagation(); });
+        var closeBtn = pair.note.querySelector('.sidenote-close');
+        if (closeBtn) {
+          closeBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeAll();
+          });
+        }
+      });
+
+      document.addEventListener('click', closeAll);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeAll();
       });
 
       // Mark the body so the bottom footnotes block can be hidden via CSS

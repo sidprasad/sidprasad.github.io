@@ -12,6 +12,18 @@ main {
   max-width: 720px;
   margin: 0 auto;
   position: relative;
+  overflow-wrap: break-word;
+}
+
+/* Don't let media or wide preformatted blocks blow out the mobile viewport */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+pre {
+  overflow-x: auto;
+  max-width: 100%;
 }
 
 /* Use bold Cardo for headings */
@@ -72,17 +84,72 @@ body.has-sidenotes .footnotes {
   display: none;
 }
 
-/* On narrow screens, collapse sidenotes to inline indented blocks */
+/* The close button is only used in the mobile popover */
+.sidenote-close {
+  display: none;
+}
+
+/* On narrow screens, sidenotes become tap-to-open popovers */
 @media (max-width: 1000px) {
+  .sidenote-ref {
+    cursor: pointer;
+    color: #555;
+    font-weight: 700;
+    padding: 0 2px;
+  }
+  .sidenote-ref:focus-visible {
+    outline: 2px solid #888;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  .sidenote-ref.is-open {
+    color: #111;
+  }
+
   .sidenote {
     float: none;
     clear: none;
+    display: none;
+    position: fixed;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
     width: auto;
-    margin: 0.6em 0 0.6em 1.5em;
-    padding: 0.4em 0 0.4em 0.85em;
-    border-left: 2px solid #ddd;
+    max-width: 36rem;
+    margin: 0 auto;
+    padding: 1em 2.5em 1em 1em;
+    background: #fffefb;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    font-size: 0.92em;
+    line-height: 1.5;
+    color: #333;
+    z-index: 1000;
+  }
+  .sidenote.is-open {
     display: block;
-    font-size: 0.85em;
+  }
+  .sidenote .sidenote-num {
+    color: #555;
+  }
+
+  .sidenote-close {
+    display: inline-block;
+    position: absolute;
+    top: 0.25em;
+    right: 0.4em;
+    background: none;
+    border: none;
+    font-size: 1.4em;
+    line-height: 1;
+    color: #888;
+    cursor: pointer;
+    padding: 0.2em 0.4em;
+  }
+  .sidenote-close:hover,
+  .sidenote-close:focus-visible {
+    color: #222;
   }
 }
 
