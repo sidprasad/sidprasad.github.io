@@ -7,5 +7,5 @@ title: Mentorship
 
 I've been really lucky to have worked with some outstanding students on research and engineering projects.
 
-- [Michael Tu](https://www.linkedin.com/in/michael-tu-48a434251), [Spatial refinement for diagramming program values](/unpublished/ptkns-spytial.pdf), Brown University, Summer 2025&ndash;present
+- [Michael Tu](https://www.linkedin.com/in/michael-tu-48a434251), [Spatial refinement for diagramming program values](/unpublished/ptkns-spytial.pdf), Brown University, Summer 2025
 - [Patrick Kao](https://www.patrickkao.net/), [Windows emulation on Linux](https://www.patrickkao.net/cognitive-cdpx), Microsoft, Winter 2019
