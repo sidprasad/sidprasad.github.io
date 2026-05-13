@@ -78,6 +78,12 @@ Gemfile.lock
 
 # LaTeX CV build artifacts
 cvsrc/build/
+cvsrc/cv.aux
+cvsrc/cv.fdb_latexmk
+cvsrc/cv.fls
+cvsrc/cv.out
+cvsrc/cv.pdf
+cvsrc/cv.synctex.gz
 
 # Jekyll build output
 _site/

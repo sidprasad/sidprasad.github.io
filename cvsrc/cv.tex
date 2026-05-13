@@ -1,163 +1,254 @@
-% Document class and font size
-\documentclass[a4paper,9pt]{extarticle}
+% CV — Siddhartha Prasad
+% Compile with: latexmk -pdf cv.tex
 
-% Packages
-\usepackage[utf8]{inputenc} % For input encoding
-\usepackage{geometry} % For page margins
-\geometry{letterpaper, margin=0.75in} % Set paper size and margins
-\usepackage{titlesec} % For section title formatting
-\usepackage{enumitem} % For itemized list formatting
-\usepackage{hyperref} % For hyperlinks
+\documentclass[10pt,letterpaper]{article}
+
+% ---------- Packages ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[letterpaper,margin=0.85in]{geometry}
+\usepackage{XCharter}                 % Transitional serif; pairs with the website aesthetic
+\usepackage[scaled=0.92]{inconsolata} % Mono, for any \texttt
+\usepackage{microtype}                % Better justification & spacing
+\usepackage{parskip}                  % Space between paragraphs, no indent
+\usepackage{enumitem}
+\usepackage{titlesec}
 \usepackage{tabularx}
 \usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
 
-% Formatting
-\setlist{noitemsep} % Removes item separation
-\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}[\titlerule] % Section title format
-\titlespacing*{\section}{0pt}{\baselineskip}{\baselineskip} % Section title spacing
-%%%%%%%%%%
+% ---------- Accent color (matches site's PDF-pill red, #8a1f1f) ----------
+\definecolor{accent}{HTML}{7B1F1F}
+\definecolor{rule}{HTML}{B8B0A8}
+\definecolor{muted}{HTML}{6B6B6B}
 
-% Begin document
+% ---------- Updated date (edit me) ----------
+\newcommand{\cvdate}{April 2026}
+
+% ---------- PDF metadata (for crawlers, LLMs, screen readers) ----------
+\hypersetup{
+  pdfauthor   = {Siddhartha Prasad},
+  pdftitle    = {Siddhartha Prasad --- Curriculum Vitae},
+  pdfsubject  = {Curriculum Vitae},
+  pdfkeywords = {Siddhartha Prasad, CV, Curriculum Vitae, Computer Science,
+                 Programming Languages, Formal Methods, Human-Computer Interaction,
+                 Brown University, PhD},
+  pdfcreator  = {LaTeX with XCharter}
+}
+
+% ---------- Section style ----------
+\titleformat{\section}
+  {\normalsize\scshape\bfseries\color{accent}}
+  {}{0pt}{}[\vspace{2pt}{\color{rule}\hrule height 0.5pt}]
+\titlespacing*{\section}{0pt}{1.4\baselineskip}{0.9\baselineskip}
+
+\setlist[itemize]{leftmargin=1.1em,itemsep=1pt,topsep=2pt,parsep=0pt}
+
+% ---------- Header / footer ----------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[R]{\small\itshape Updated \cvdate}
+\fancyfoot[R]{\small\thepage}
+
+% ---------- Semantic macros ----------
+% \position{Organization}{Location}
+% Bold organization left, location right.
+\newcommand{\position}[2]{%
+  \par\vspace{5pt}\noindent\textbf{#1}\hfill{\color{muted}#2}\par}
+
+% \role{Title}{Team / details}{Dates}
+% Italic "Title \cdot Team" on the left, italic dates right. Two columns, not three.
+\newcommand{\role}[3]{%
+  \par\vspace{1pt}\noindent
+  \textit{#1}%
+  \ifx\\#2\\\else{\color{muted}\,\textperiodcentered\,}\textit{#2}\fi
+  \hfill\textit{#3}\par\vspace{1pt}}
+
+% \education{Institution}{Location}{Degree}{Dates}{Notes}
+\newcommand{\education}[5]{%
+  \par\vspace{4pt}\noindent\textbf{#1}\hfill{\color{muted}#2}\hfill\textit{#4}\\%
+  #3%
+  \ifx\\#5\\\else\\{\color{muted}\textit{#5}}\fi\par}
+
+% \pub{Year}{Title}{Authors}{Venue (short)}{Award}
+% Venue and year appear together inline (e.g. "OOPSLA 2024").
+% Special case: if the award text is exactly "To appear", render as
+%   "[To appear in] VENUE YEAR" — i.e. annotation comes BEFORE the venue.
+\makeatletter
+\newcommand{\pub}[5]{%
+  \par\vspace{6pt}\noindent
+  \textbf{#2}\\
+  #3\\
+  \def\@pubaward{#5}\def\@pubtoappear{To appear}%
+  \ifx\@pubaward\@pubtoappear
+    {\color{accent}\textbf{[To appear in]}}\ \textit{#4 #1}%
+  \else
+    \textit{#4 #1}\ifx\\#5\\\else\ \ {\color{accent}\textbf{[#5]}}\fi
+  \fi
+  \par}
+\makeatother
+
+% \course{Years}{Code -- Name}{Institution}  -- a single row inside a courselist
+\newcommand{\course}[3]{{\color{muted}#1} & #2 & {\color{muted}#3} \\}
+
+% Use plain tabular* (not tabularx) so it works inside a custom environment.
+% l-columns share one baseline so the year aligns with the course title.
+\newenvironment{courselist}{%
+  \par\vspace{1pt}\noindent
+  \begin{tabular*}{\linewidth}{@{}l@{\hspace{1.5em}}l@{\extracolsep{\fill}}r@{}}}%
+  {\end{tabular*}\par}
+
+% \honor{Date}{Citation}
+\newcommand{\honor}[2]{%
+  \par\vspace{1pt}\noindent
+  \begin{tabularx}{\linewidth}{@{}p{6.5em}X@{}}
+    {\color{muted}#1} & #2
+  \end{tabularx}\par}
+
+\renewcommand{\arraystretch}{1.05}
+
+% ---------- Author identity ----------
+% Used in author lists; italic + accent color highlights self-authorship.
+\newcommand{\me}{{\color{accent}\emph{Siddhartha Prasad}}}
+
 \begin{document}
 
-% Disable page numbers
-\pagestyle{fancy}
-\renewcommand{\headrulewidth}{0pt}
-\fancyhead{}
-%\fancyhead[L]{\textit{Siddhartha Prasad}}
-\fancyhead[R]{\textit{Apr 2026}}
-%\thispagestyle{empty} % Remove header from the first page
-
-% Header
+% ---------- Header ----------
 \begin{flushleft}
-\textbf{\LARGE Siddhartha Prasad}\\[2pt] % Name
- \href{mailto:siddhartha.a.prasad@gmail.com}{siddhartha.a.prasad@gmail.com} | \href{sidprasad.github.io}{sidprasad.github.io} % Contact info
+  {\LARGE\bfseries Siddhartha Prasad}\\[2pt]
+  \href{mailto:siddhartha.a.prasad@gmail.com}{siddhartha.a.prasad@gmail.com}
+  \quad\textbar\quad
+  \href{https://siddharthaprasad.com}{siddharthaprasad.com}
 \end{flushleft}
 
-% Education Section
-
 \noindent
-I am a researcher focused on helping people write programs that behave as they intend. My research interests are informed by my time as an engineer. I have written code that doesn't do what I want it to, and I want to spare everyone else the indignity.
-% Education Section
+I am a researcher focused on helping people write programs that behave as they
+intend. My research interests are informed by my time as an engineer: I have
+written code that doesn't do what I want it to, and I want to spare everyone
+else the indignity.
 
-
+% ---------- Education ----------
 \section*{Education}
-\noindent
-\textbf{Brown University}, Providence, RI \hfill Jan 2022 - Ongoing\\ % University name and location
-PhD in Computer Science 
 
-\noindent\\
-\textbf{Tufts University},  Medford, MA \hfill  May 2016\\ % University name and location
-Bachelor of Science in Computer Science and Mathematics \hfill Summa cum Laude\\  \phantom{.}  \hfill  High Thesis Honors\\
-% Experience Section
+\education{Brown University}{Providence, RI}%
+  {Ph.D. in Computer Science}%
+  {Jan 2022 -- present}%
+  {}
+
+\education{Tufts University}{Medford, MA}%
+  {B.S. in Computer Science and Mathematics}%
+  {May 2016}%
+  {Summa cum Laude; High Thesis Honors}
+
+% ---------- Employment ----------
 \section*{Employment}
-\noindent
-\textbf{Apple} \hfill Seattle, WA\\ % Company name and location
-\textit{Research Intern \hfill Human-Centered Machine Learning team \hfill May - Sept 2023} \\
-Researcher on the  team, exploring how AI and formal methods techniques can be used to support early childhood education.\\[1ex]
 
-\noindent
-\textbf{Microsoft} \hfill Redmond, WA \\ 
-\textit{Software Engineer II\hfill Applied AI team  \hfill April 2018 - Sept 2021}
+\position{Apple}{Seattle, WA}
+\role{Research Intern}{Human-Centered Machine Learning}{May -- Sept 2023}
+Explored how AI and formal-methods techniques can support early childhood
+education.
+
+\position{Microsoft}{Redmond, WA}
+\role{Software Engineer II}{Applied AI}{April 2018 -- Sept 2021}
 \begin{itemize}
-    \item Developer on the Azure Cognitive Services team, that allow for AI to easily be injected into apps, bots, and websites.
-    \item Built a containerized framework that allowed AI models to be run portably across a variety of operating systems and architectures. 
+  \item Developer on the Azure Cognitive Services team, which lets developers
+        embed AI into apps, bots, and websites.
+  \item Built a containerized framework that allowed AI models to be run
+        portably across operating systems and architectures.
 \end{itemize}
 
-\noindent
-\textit{Software Engineer \hfill Developer Ecosystem team \hfill Aug 2016 - March 2018} 
+\role{Software Engineer}{Developer Ecosystem Platform}{Aug 2016 -- March 2018}
 \begin{itemize}
-\item Developed APIs and features for XAML, a UI language used by developers to build Universal Windows apps.
-\item Designed XAML APIs for input modalities (keyboard, gamepad, ink), accessibility, and cross-platform language support.
+  \item Developed APIs and features for XAML, a UI language used to build
+        Universal Windows apps.
+  \item Designed XAML APIs for input modalities (keyboard, gamepad, ink),
+        accessibility, and cross-platform language support.
 \end{itemize}
-\noindent
-\textit{Intern \hfill Developer Ecosystem team \hfill May - Aug 2015}\\[1ex]
 
-\noindent
-\textbf{INRIA} \hfill Saclay, France \\ 
-\textit{Intern \hfill Parsifal team \hfill Jun - July 2014}\\
-Research on correctness certificates for first order term-rewriting.
+\role{Software Engineering Intern}{Developer Ecosystem}{May -- Aug 2015}
 
+\position{INRIA}{Saclay, France}
+\role{Research Intern}{Parsifal}{June -- July 2014}
+Research on correctness certificates for first-order term rewriting.
 
+% ---------- Publications ----------
 \section*{Publications}
 
-\noindent
-2026 \quad \textbf{Diagramming Program Values by Spatial Refinement} \\
-\textbf{Siddhartha Prasad}, Michael Tu, Karan Kashyap, Tim Nelson, Shriram Krishnamurthi \\
-\textit{ACM SIGPLAN Conference on Programming Language Design and Implementation (PLDI)} \textbf{[To appear]} \\[0.75ex]
 
-\noindent
-2026 \quad \textbf{hS: Speculative Script Reordering at Subprocess Granularity} \\
-Georgios Liargkovas, Di Jin, Tianyu (Ezri) Zhu, Dan Liu, A. Bolun Thompson, Anirudh Narsipur,
-Seong-Heon Jung, \textbf{Siddhartha Prasad}, Diomidis Spinellis, Michael Greenberg, Konstantinos Kallas,
-Nikos Vasilakis \\
-\textit{USENIX Symposium on Operating Systems Design and Implementation (OSDI)} \textbf{[To appear]} \\[0.75ex]
+\pub{2026}{Diagramming Program Values by Spatial Refinement}%
+  {\me, Michael Tu, Karan Kashyap, Tim Nelson, Shriram Krishnamurthi}%
+  {PLDI}{To appear}
 
-\noindent
-2026 \quad \textbf{Meaningful Human-in-the-Loop Checking of GenAI Synthesis for Restricted Languages} \\
-\textbf{Siddhartha Prasad}, Skyler Austen, Kathi Fisler, Shriram Krishnamurthi \\
-\textit{European Conference on Object-Oriented Programming (ECOOP)} \textbf{[To appear]} \\[0.75ex]
+\pub{2026}{hS: Speculative Script Reordering at Subprocess Granularity}%
+  {Georgios Liargkovas, Di Jin, Tianyu (Ezri) Zhu, Dan Liu, A. Bolun Thompson, Anirudh Narsipur, Seong-Heon Jung, \me, Diomidis Spinellis, Michael Greenberg, Konstantinos Kallas, Nikos Vasilakis}%
+  {OSDI}{To appear}
 
-\noindent
-2025 \quad \textbf{A Misconception-Driven Adaptive Tutor for Linear Temporal Logic} \\
-\textbf{Siddhartha Prasad}, Ben Greenman, Tim Nelson, Shriram Krishnamurthi \\
-\textit{International Conference on Computer Aided Verification (CAV)} \textbf{[Distinguished Paper]} \\[0.75ex]
+\pub{2026}{Meaningful Human-in-the-Loop Checking of GenAI Synthesis for Restricted Languages}%
+  {\me, Skyler Austen, Kathi Fisler, Shriram Krishnamurthi}%
+  {ECOOP}{To appear}
 
-\noindent
-2025 \quad \textbf{Lightweight Diagramming for Lightweight Formal Methods: A Grounded Language Design} \\
-\textbf{Siddhartha Prasad}, Ben Greenman, Tim Nelson, Shriram Krishnamurthi \\
-\textit{European Conference on Object-Oriented Programming (ECOOP)} \textbf{[Distinguished Paper] [Distinguished Artifact]} \\[0.75ex]
+\pub{2025}{A Misconception-Driven Adaptive Tutor for Linear Temporal Logic}%
+  {\me, Ben Greenman, Tim Nelson, Shriram Krishnamurthi}%
+  {CAV}{Distinguished Paper}
 
-\noindent
-2024 \quad \textbf{Misconceptions in Finite-Trace and Infinite-Trace Linear Temporal Logic} \\
-Ben Greenman, \textbf{Siddhartha Prasad}, Antonio Di Stasio, Shufang Zhu, Giuseppe De Giacomo, 
-Shriram Krishnamurthi, Marco Montali, Tim Nelson, Milda Zizyte \\
-\textit{International Symposium on Formal Methods (FM)} \\[0.75ex]
+\pub{2025}{Lightweight Diagramming for Lightweight Formal Methods: A Grounded Language Design}%
+  {\me, Ben Greenman, Tim Nelson, Shriram Krishnamurthi}%
+  {ECOOP}{Distinguished Paper; Distinguished Artifact}
 
-\noindent
-2024 \quad \textbf{ContextQ: Generated Questions to Support Meaningful Parent-Child Dialogue While Co-Reading} \\
-Griffin Dietz Smith, \textbf{Siddhartha Prasad}, Matt J Davidson, Leah Findlater, R Benjamin Shapiro \\
-\textit{Interaction Design and Children (IDC)} \\[0.75ex]
+\pub{2024}{Misconceptions in Finite-Trace and Infinite-Trace Linear Temporal Logic}%
+  {Ben Greenman, \me, Antonio Di Stasio, Shufang Zhu, Giuseppe De Giacomo, Shriram Krishnamurthi, Marco Montali, Tim Nelson, Milda Zizyte}%
+  {FM}{}
 
-\noindent
-2024 \quad \textbf{Forge: A Tool and Language for Teaching Formal Methods} \\
-Tim Nelson, Ben Greenman, \textbf{Siddhartha Prasad}, Tristan Dyer, Ethan Bove, Qianfan Chen, Charles Cutting, 
-Thomas Del Vecchio, Sidney LeVine, Julianne Rudner, Ben Ryjikov, Alexander Varga, Andrew Wagner, 
-Luke West, Shriram Krishnamurthi \\
-\textit{OOPSLA (ACM SIGPLAN)} \\[0.75ex]
+\pub{2024}{ContextQ: Generated Questions to Support Meaningful Parent-Child Dialogue While Co-Reading}%
+  {Griffin Dietz Smith, \me, Matt J Davidson, Leah Findlater, R Benjamin Shapiro}%
+  {IDC}{}
 
-\noindent
-2024 \quad \textbf{Conceptual Mutation Testing for Student Programming Misconceptions} \\
-\textbf{Siddhartha Prasad}, Ben Greenman, Tim Nelson, Shriram Krishnamurthi \\
-\textit{The Art, Science, and Engineering of Programming} \\[0.75ex]
+\pub{2024}{Forge: A Tool and Language for Teaching Formal Methods}%
+  {Tim Nelson, Ben Greenman, \me, Tristan Dyer, Ethan Bove, Qianfan Chen, Charles Cutting, Thomas Del Vecchio, Sidney LeVine, Julianne Rudner, Ben Ryjikov, Alexander Varga, Andrew Wagner, Luke West, Shriram Krishnamurthi}%
+  {OOPSLA}{}
 
-\noindent
-2023 \quad \textbf{Generating Programs Trivially: Student Use of Large Language Models} \\
-\textbf{Siddhartha Prasad}, Ben Greenman, Tim Nelson, Shriram Krishnamurthi \\
-\textit{ACM Conference on Global Computing Education (CompEd)} \\[0.75ex]
+\pub{2024}{Conceptual Mutation Testing for Student Programming Misconceptions}%
+  {\me, Ben Greenman, Tim Nelson, Shriram Krishnamurthi}%
+  {Programming}{}
 
-\noindent
-2022 \quad \textbf{Making Hay from Wheats: A Classsourcing Method to Identify Misconceptions} \\
-\textbf{Siddhartha Prasad}, Ben Greenman, Tim Nelson, John Wrenn, Shriram Krishnamurthi \\
-\textit{Koli Calling International Conference on Computing Education Research} \\[0.75ex]
+\pub{2023}{Generating Programs Trivially: Student Use of Large Language Models}%
+  {\me, Ben Greenman, Tim Nelson, Shriram Krishnamurthi}%
+  {CompEd}{}
 
-\noindent
-2020 \quad \textbf{Large-Scale Intelligent Microservices} \\
-Mark Hamilton, Nick Gonsalves, Christina Lee, Anand Raman, Brendan Walsh, \textbf{Siddhartha Prasad}, 
-Dalitso Banda, Lucy Zhang, Lei Zhang, William T Freeman \\
-\textit{IEEE International Conference on Big Data} \\[0.75ex]
+\pub{2022}{Making Hay from Wheats: A Classsourcing Method to Identify Misconceptions}%
+  {\me, Ben Greenman, Tim Nelson, John Wrenn, Shriram Krishnamurthi}%
+  {Koli Calling}{}
 
+\pub{2020}{Large-Scale Intelligent Microservices}%
+  {Mark Hamilton, Nick Gonsalves, Christina Lee, Anand Raman, Brendan Walsh, \me, Dalitso Banda, Lucy Zhang, Lei Zhang, William T Freeman}%
+  {IEEE BigData}{}
+
+% ---------- Teaching ----------
 \section*{Teaching}
-\noindent
-Sheridan Teaching Seminar Certificate, Brown University \hfill 2023 \\[0.5ex]
 
-\noindent
-\textbf{Teaching Assistant Experience} \\
-Brown University: CSCI 1710 (Logic for Systems, 2022–2026),
-CSCI 1730 (Programming Languages, 2025) \\
-Tufts University: CS 160 (Algorithms, 2014), 
-CS 105 (Programming Languages, 2015–2016)
+\noindent\textbf{Teaching Assistant}
+\begin{courselist}
+\course{2022--2026}{CSCI 1710 \,---\, Logic for Systems}{Brown University}
+\course{2025}{CSCI 1730 \,---\, Programming Languages}{Brown University}
+\course{2015--2016}{CS 105 \,---\, Programming Languages}{Tufts University}
+\course{2014}{CS 160 \,---\, Algorithms}{Tufts University}
+\end{courselist}
 
+% ---------- Service ----------
+\section*{Service}
 
+\begin{courselist}
+\course{2026}{Artifact Reviewer, \textit{The Art, Science, and Engineering of Programming}}{}
+\end{courselist}
+
+% ---------- Affiliations & Certifications ----------
+\section*{Affiliations \& Certifications}
+
+\begin{courselist}
+\course{}{Sheridan Teaching Seminar Certificate}{Brown University}
+\course{}{Tau Beta Pi, The Engineering Honor Society}{Tufts University}
+\end{courselist}
 
 \end{document}
