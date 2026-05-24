@@ -3,7 +3,7 @@
   venue: "ACM SIGPLAN Conference on Programming Language Design and Implementation"
   venue_short: "PLDI"
   year: 2026
-  paper_url: unpublished/ptkns-spytial.pdf
+  paper_url: papers/ptkns-spytial.pdf
   status: "Upcoming"
 
 - title: "Meaningful Human-in-the-Loop Checking of GenAI Synthesis for Restricted Languages"
@@ -15,7 +15,7 @@
   code_url: https://github.com/sidprasad/pick-regex/
   tool_url: https://marketplace.visualstudio.com/items?itemName=SiddharthaPrasad.pick-regex
   project: 'ltl'
-  paper_url: unpublished/pafk-pick.pdf
+  paper_url: papers/pafk-pick.pdf
   status: "Upcoming"
 
 
