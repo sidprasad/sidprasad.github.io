@@ -3,6 +3,7 @@
   venue: "ACM SIGPLAN Conference on Programming Language Design and Implementation"
   venue_short: "PLDI"
   year: 2026
+  blog_url: https://blog.brownplt.org/2026/05/22/spytial.html
   paper_url: papers/ptkns-spytial.pdf
   status: "Upcoming"
 
