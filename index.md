@@ -23,16 +23,21 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 <section class="currently">
   <h3 class="currently-heading">What I'm working on</h3>
   <div class="currently-cards">
-    <a class="currently-card" href="https://blog.brownplt.org/2026/05/22/spytial.html" target="_blank" rel="noopener">
+    <div class="currently-card">
       <span class="currently-card-name">Making diagrams as cheap as printf.</span>
       <span class="currently-card-desc">Every time you inspect a value — at the REPL, in a debugger, in a print statement — you should have the <em>option</em> of seeing a diagram.</span>
-      <span class="currently-card-cta">Read the Spytial blog post →</span>
-    </a>
-    <a class="currently-card" href="https://blog.brownplt.org/2026/06/09/pick.html" target="_blank" rel="noopener">
+      <span class="currently-card-links">
+        <a href="https://blog.brownplt.org/2026/05/22/spytial.html" target="_blank" rel="noopener">Read the Spytial blog post →</a>
+      </span>
+    </div>
+    <div class="currently-card">
       <span class="currently-card-name">Checking what GenAI wrote, meaningfully.</span>
       <span class="currently-card-desc">When a model writes a regex for you, how do you know it's right? PICK surfaces the handful of inputs that reveal what the generated pattern <em>actually</em> matches — so a human can confirm it does what they meant, not just what the prompt said.</span>
-      <span class="currently-card-cta">Read the PICK blog post →</span>
-    </a>
+      <span class="currently-card-links">
+        <a href="https://blog.brownplt.org/2025/12/11/pick-regex.html" target="_blank" rel="noopener">Read the regex post →</a>
+        <a href="https://blog.brownplt.org/2026/06/09/pick.html" target="_blank" rel="noopener">Or how it generalizes to more languages →</a>
+      </span>
+    </div>
   </div>
 </section>
 

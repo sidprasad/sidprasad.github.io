@@ -596,20 +596,11 @@ sup, a.footnote {
 .currently-card {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   padding: 14px 16px;
   border: 1px solid #ddd;
   border-radius: 8px;
   background: #f8f9fa;
-  text-decoration: none !important;
-  color: inherit;
-  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.currently-card:hover {
-  border-color: #4a4a4a;
-  transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .currently-card-name {
@@ -624,10 +615,17 @@ sup, a.footnote {
   flex: 1;
 }
 
-.currently-card-cta {
+.currently-card-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  margin-top: 4px;
+}
+
+.currently-card-links a {
   font-size: 0.85em;
   font-weight: 600;
-  color: #084298;
 }
 
 @media (max-width: 600px) {
