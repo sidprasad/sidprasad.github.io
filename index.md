@@ -32,7 +32,7 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
     </div>
     <div class="currently-card">
       <span class="currently-card-name">Checking what GenAI wrote, meaningfully.</span>
-      <span class="currently-card-desc">When a model writes a regex for you, how do you know it's right? PICK surfaces the handful of inputs that reveal what the generated pattern <em>actually</em> matches — so a human can confirm it does what they meant, not just what the prompt said.</span>
+      <span class="currently-card-desc">When a model writes a regex for you, how do you know it's the one you <em>actually</em> needed?</span>
       <span class="currently-card-links">
         <a href="https://blog.brownplt.org/2025/12/11/pick-regex.html" target="_blank" rel="noopener">Read the regex post →</a>
         <a href="https://blog.brownplt.org/2026/06/09/pick.html" target="_blank" rel="noopener">Or how it generalizes to more languages →</a>
