@@ -555,7 +555,74 @@ sup, a.footnote {
   }
 }
 
-/* CV page — embedded PDF with a download bar */
+/* "What I'm working on" cards */
+.currently {
+  margin: 2em 0 2.5em 0;
+}
+
+.currently-heading {
+  font-size: 1em;
+  margin-bottom: 0.75em;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.currently-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.currently-card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 14px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f8f9fa;
+  text-decoration: none !important;
+  color: inherit;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.currently-card:hover {
+  border-color: #4a4a4a;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.currently-card-name {
+  font-weight: 700;
+  font-size: 1.05em;
+}
+
+.currently-card-desc {
+  font-size: 0.9em;
+  color: #555;
+  flex: 1;
+}
+
+.currently-card-cta {
+  font-size: 0.85em;
+  font-weight: 600;
+  color: #084298;
+}
+
+@media (max-width: 600px) {
+  .currently-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* CV page — embedded PDF with a download bar, constrained to text width */
+.cv-page {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
 .cv-bar {
   display: flex;
   align-items: center;
@@ -721,12 +788,12 @@ sup, a.footnote {
 }
 
 .talk-card {
-  flex: 0 0 calc((100% - 24px) / 3);
+  flex: 0 0 180px;
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 10px 12px;
+  gap: 3px;
+  padding: 9px 11px;
   border: 1px solid #e6e6e6;
   border-radius: 4px;
   background: #f9f9f9;
@@ -783,8 +850,12 @@ sup, a.footnote {
 .talk-title {
   font-weight: 700;
   color: #222;
-  font-size: 0.95em;
+  font-size: 0.9em;
   line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .talk-venue {

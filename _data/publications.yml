@@ -1,3 +1,17 @@
+- title: "Meaningful Human-in-the-Loop Checking of GenAI Synthesis for Restricted Languages"
+  authors: "Siddhartha Prasad, Skyler Austen, Kathi Fisler, Shriram Krishnamurthi"
+  venue: "European Conference on Object-Oriented Programming"
+  venue_short: "ECOOP"
+  month: "July"
+  year: 2026
+  blog_url: https://blog.brownplt.org/2026/06/09/pick.html
+  code_url: https://github.com/sidprasad/pick-regex/
+  tool_url: https://marketplace.visualstudio.com/items?itemName=SiddharthaPrasad.pick-regex
+  project: 'ltl'
+  paper_url: papers/pafk-pick.pdf
+  status: "Upcoming"
+  selected: 4
+
 - title: "Diagramming Program Values by Spatial Refinement"
   authors: "Siddhartha Prasad, Michael Tu, Karan Kashyap, Tim Nelson, Shriram Krishnamurthi"
   venue: "ACM SIGPLAN Conference on Programming Language Design and Implementation"
@@ -7,18 +21,7 @@
   paper_url: papers/ptkns-spytial.pdf
   selected: 1
 
-- title: "Meaningful Human-in-the-Loop Checking of GenAI Synthesis for Restricted Languages"
-  authors: "Siddhartha Prasad, Skyler Austen, Kathi Fisler, Shriram Krishnamurthi"
-  venue: "European Conference on Object-Oriented Programming"
-  venue_short: "ECOOP"
-  year: 2026
-  blog_url: https://blog.brownplt.org/2026/06/09/pick.html
-  code_url: https://github.com/sidprasad/pick-regex/
-  tool_url: https://marketplace.visualstudio.com/items?itemName=SiddharthaPrasad.pick-regex
-  project: 'ltl'
-  paper_url: papers/pafk-pick.pdf
-  status: "Upcoming"
-  selected: 4
+
 
 
 - title: "hS: Speculative Script Reordering at Subprocess Granularity"
