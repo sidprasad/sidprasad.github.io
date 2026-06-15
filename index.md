@@ -15,6 +15,10 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 [^1]: I worked on the [XAML UI Framework](https://github.com/microsoft/microsoft-ui-xaml) from 2016-2018.
 [^2]: I worked on [Azure's AI services](https://azure.microsoft.com/en-us/products/ai-services), with a particular focus on containerizing AI from 2018-2021.
 
+<div class="job-market-callout" markdown="1">
+**📣 On the job market.** I am seeking academic and research positions for **2027–28**. [Get in touch](mailto:siddhartha_prasad@brown.edu).
+</div>
+
 
 {% assign selected_pubs = site.data.publications | where_exp: "p", "p.selected" | sort: "selected" %}
 
@@ -24,17 +28,17 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
   <ul class="selected-pub-list">
     {% for pub in selected_pubs %}
     <li class="selected-pub">
-      <span class="selected-pub-title">
-        {% if pub.paper_url %}<a href="{{ pub.paper_url }}">{{ pub.title }}</a>{% else %}{{ pub.title }}{% endif %}
-      </span>
-      <span class="selected-pub-venue">{% if pub.venue_short %}{{ pub.venue_short }}{% else %}{{ pub.venue }}{% endif %} {{ pub.year }}</span>
-      {% if pub.awards %}{% for award in pub.awards %}<span class="award-badge">{{ award }}</span>{% endfor %}{% endif %}
-      <span class="selected-pub-links">
+      <div class="selected-pub-line1">
+        <span class="selected-pub-title">{% if pub.paper_url %}<a href="{{ pub.paper_url }}">{{ pub.title }}</a>{% else %}{{ pub.title }}{% endif %}</span>
+        {% if pub.awards %}{% for award in pub.awards %}<span class="award-badge">{{ award }}</span>{% endfor %}{% endif %}
+      </div>
+      <div class="selected-pub-meta">
+        <span class="selected-pub-venue">{% if pub.venue_short %}{{ pub.venue_short }}{% else %}{{ pub.venue }}{% endif %} {{ pub.year }}</span>
         {% if pub.paper_url %}<a href="{{ pub.paper_url }}">PDF</a>{% endif %}
         {% if pub.blog_url %}<a href="{{ pub.blog_url }}">Blog</a>{% endif %}
         {% if pub.code_url %}<a href="{{ pub.code_url }}">Code</a>{% endif %}
         {% if pub.tool_url %}<a href="{{ pub.tool_url }}">Tool</a>{% endif %}
-      </span>
+      </div>
     </li>
     {% endfor %}
   </ul>
@@ -43,41 +47,46 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 {% endif %}
 
 
-{% assign sorted_talks = site.data.talks | sort: "date" | reverse %}
+{% comment %} Unified Recent News feed: talks + paper acceptances + awards, time-sorted.
+   Each entry is "<YYYYMMDD sortkey>@@@<card html>"; we sort the strings (fixed-width
+   numeric prefix => chronological) and reverse for newest-first. {% endcomment %}
 {% assign today = site.time | date: "%Y-%m-%d" %}
+{% assign feed = "" | split: "" %}
 
-{% if sorted_talks.size > 0 %}
+{% for talk in site.data.talks %}
+  {% assign sortkey = talk.date | date: "%Y%m%d" %}
+  {% assign td = talk.date | date: "%Y-%m-%d" %}
+  {% capture card %}<article class="talk-card"><div class="talk-meta"><span class="talk-type talk-type-talk">Talk</span><span class="talk-date">{{ talk.date | date: "%b %-d, %Y" }}{% if td >= today %} <span class="talk-upcoming">Upcoming</span>{% endif %}</span></div><div class="talk-title">{{ talk.title }}</div><div class="talk-venue">{% if talk.venue_short %}{{ talk.venue_short }}{% else %}{{ talk.venue }}{% endif %}</div>{% if talk.video_url or talk.slides_url %}<div class="talk-links">{% if talk.video_url %}<a href="{{ talk.video_url }}" class="talk-link">Video</a>{% endif %}{% if talk.slides_url %}<a href="{{ talk.slides_url }}" class="talk-link">Slides</a>{% endif %}</div>{% endif %}</article>{% endcapture %}
+  {% capture entry %}{{ sortkey }}@@@{{ card }}{% endcapture %}
+  {% assign one = entry | split: "###NEVER###" %}
+  {% assign feed = feed | concat: one %}
+{% endfor %}
+
+{% assign recent_pubs = site.data.publications | where_exp: "p", "p.year >= 2025" %}
+{% for pub in recent_pubs %}
+  {% assign sortkey = pub.year | append: "1215" %}
+  {% capture card %}<article class="talk-card"><div class="talk-meta"><span class="talk-type talk-type-paper">Paper</span><span class="talk-date">{{ pub.venue_short }} {{ pub.year }}{% if pub.status %} <span class="talk-upcoming">{{ pub.status }}</span>{% endif %}</span></div><div class="talk-title">{% if pub.paper_url %}<a href="{{ pub.paper_url }}">{{ pub.title }}</a>{% else %}{{ pub.title }}{% endif %}</div><div class="talk-venue">{{ pub.venue }}</div>{% if pub.paper_url or pub.blog_url or pub.code_url or pub.tool_url %}<div class="talk-links">{% if pub.paper_url %}<a href="{{ pub.paper_url }}" class="talk-link">PDF</a>{% endif %}{% if pub.blog_url %}<a href="{{ pub.blog_url }}" class="talk-link">Blog</a>{% endif %}{% if pub.code_url %}<a href="{{ pub.code_url }}" class="talk-link">Code</a>{% endif %}{% if pub.tool_url %}<a href="{{ pub.tool_url }}" class="talk-link">Tool</a>{% endif %}</div>{% endif %}</article>{% endcapture %}
+  {% capture entry %}{{ sortkey }}@@@{{ card }}{% endcapture %}
+  {% assign one = entry | split: "###NEVER###" %}
+  {% assign feed = feed | concat: one %}
+  {% if pub.awards %}{% for award in pub.awards %}
+    {% assign sortkey = pub.year | append: "1220" %}
+    {% capture card %}<article class="talk-card"><div class="talk-meta"><span class="talk-type talk-type-award">Award</span><span class="talk-date">{{ pub.venue_short }} {{ pub.year }}</span></div><div class="talk-title">{{ award }}</div><div class="talk-venue">{{ pub.title }}</div></article>{% endcapture %}
+    {% capture entry %}{{ sortkey }}@@@{{ card }}{% endcapture %}
+    {% assign one = entry | split: "###NEVER###" %}
+    {% assign feed = feed | concat: one %}
+  {% endfor %}{% endif %}
+{% endfor %}
+
+{% assign feed = feed | sort | reverse %}
+
+{% if feed.size > 0 %}
 <section class="talks-widget">
-  <h3 class="talks-heading">Recent Invited Talks</h3>
+  <h3 class="talks-heading">Recent News</h3>
   <div class="talks-carousel">
     <button type="button" class="talks-nav prev" aria-label="Previous">‹</button>
     <div class="talks-track">
-      {% for talk in sorted_talks %}
-      {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
-      {% assign talk_type = talk.type | default: "Talk" %}
-      <article class="talk-card">
-        <div class="talk-meta">
-          <span class="talk-type talk-type-{{ talk_type | downcase | replace: ' ', '-' }}">{{ talk_type }}</span>
-          <span class="talk-date">
-            {{ talk.date | date: "%b %-d, %Y" }}
-            {% if talk_date >= today %}
-              <span class="talk-upcoming">Upcoming</span>
-            {% endif %}
-          </span>
-        </div>
-        <div class="talk-title">{{ talk.title }}</div>
-        <div class="talk-venue">
-          {% if talk.venue_short %}{{ talk.venue_short }}{% else %}{{ talk.venue }}{% endif %}
-        </div>
-        {% if talk.video_url or talk.slides_url or talk.paper_url %}
-        <div class="talk-links">
-          {% if talk.video_url %}<a href="{{ talk.video_url }}" class="talk-link">Video</a>{% endif %}
-          {% if talk.slides_url %}<a href="{{ talk.slides_url }}" class="talk-link">Slides</a>{% endif %}
-          {% if talk.paper_url %}<a href="{{ talk.paper_url }}" class="talk-link">Paper</a>{% endif %}
-        </div>
-        {% endif %}
-      </article>
-      {% endfor %}
+      {% for item in feed %}{% assign parts = item | split: "@@@" %}{{ parts[1] }}{% endfor %}
     </div>
     <button type="button" class="talks-nav next" aria-label="Next">›</button>
   </div>

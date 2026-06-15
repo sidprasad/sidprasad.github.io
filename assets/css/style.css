@@ -555,6 +555,21 @@ sup, a.footnote {
   }
 }
 
+/* Job-market banner — clears the floated headshot, high-visibility */
+.job-market-callout {
+  clear: both;
+  border: 1px solid #b4cfff;
+  border-left: 4px solid #084298;
+  background: #eef4ff;
+  color: #08306b;
+  padding: 0.8em 1.2em;
+  border-radius: 6px;
+  margin: 1.5em 0;
+  font-size: 0.97em;
+}
+
+.job-market-callout p { margin: 0; }
+
 /* Selected Publications on the home page */
 .selected-publications {
   margin: 2em 0 2.5em 0;
@@ -576,39 +591,44 @@ sup, a.footnote {
 }
 
 .selected-pub {
-  padding: 0.55em 0;
+  padding: 0.7em 0;
   border-bottom: 1px solid #eee;
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 .selected-pub:last-child {
   border-bottom: none;
 }
 
+.selected-pub-line1 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5em;
+}
+
 .selected-pub-title {
   font-weight: 700;
 }
 
-.selected-pub-venue {
+.selected-pub-meta {
+  margin-top: 0.2em;
+  font-size: 0.88em;
   color: #777;
-  font-size: 0.9em;
-  margin-left: 0.5em;
-  white-space: nowrap;
+}
+
+.selected-pub-venue {
+  font-weight: 600;
+  color: #555;
+  margin-right: 0.4em;
 }
 
 .selected-pub .award-badge {
   font-size: 0.72em;
-  margin-left: 0.4em;
 }
 
-.selected-pub-links {
-  margin-left: 0.5em;
-  font-size: 0.85em;
-  white-space: nowrap;
-}
-
-.selected-pub-links a {
-  margin-left: 0.5em;
+.selected-pub-meta a {
+  margin-right: 0.7em;
   color: #666;
 }
 
