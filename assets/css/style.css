@@ -537,6 +537,88 @@ sup, a.footnote {
 }
 
 /* Recent activity — small carousel of talk cards */
+/* Home page headshot — left on wide screens, top-centered on narrow */
+.home-photo {
+  float: left;
+  width: 160px;
+  height: auto;
+  margin: 0.2em 1.5em 1em 0;
+  border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  .home-photo {
+    float: none;
+    display: block;
+    width: 140px;
+    margin: 0 auto 1em auto;
+  }
+}
+
+/* Selected Publications on the home page */
+.selected-publications {
+  margin: 2em 0 2.5em 0;
+}
+
+.selected-pubs-heading {
+  font-size: 1em;
+  margin-bottom: 0.75em;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.selected-pub-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.selected-pub {
+  padding: 0.55em 0;
+  border-bottom: 1px solid #eee;
+  line-height: 1.5;
+}
+
+.selected-pub:last-child {
+  border-bottom: none;
+}
+
+.selected-pub-title {
+  font-weight: 700;
+}
+
+.selected-pub-venue {
+  color: #777;
+  font-size: 0.9em;
+  margin-left: 0.5em;
+  white-space: nowrap;
+}
+
+.selected-pub .award-badge {
+  font-size: 0.72em;
+  margin-left: 0.4em;
+}
+
+.selected-pub-links {
+  margin-left: 0.5em;
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+
+.selected-pub-links a {
+  margin-left: 0.5em;
+  color: #666;
+}
+
+.selected-pubs-all {
+  display: inline-block;
+  margin-top: 1em;
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
 .talks-widget {
   margin: 1.5em 0 2em 0;
 }

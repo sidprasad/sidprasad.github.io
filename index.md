@@ -4,6 +4,8 @@ title: Siddhartha Prasad
 ---
 
 
+<img src="/assets/img/me.jpg" alt="Siddhartha Prasad" class="home-photo" />
+
 I am a PhD candidate in Computer Science at Brown University, advised by [Shriram Krishnamurthi](https://cs.brown.edu/~sk/).
 
 I am a PL/FM researcher interested in how formal representations make computational structure inspectable. Across my work, these representations take different forms: specifications, examples, temporal formulas, relational models, and runtime values. I study how people write them, run them, visualize them, learn from them, and revise them when their intent and the system's behavior diverge.
@@ -12,6 +14,33 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 
 [^1]: I worked on the [XAML UI Framework](https://github.com/microsoft/microsoft-ui-xaml) from 2016-2018.
 [^2]: I worked on [Azure's AI services](https://azure.microsoft.com/en-us/products/ai-services), with a particular focus on containerizing AI from 2018-2021.
+
+
+{% assign selected_pubs = site.data.publications | where_exp: "p", "p.selected" | sort: "selected" %}
+
+{% if selected_pubs.size > 0 %}
+<section class="selected-publications">
+  <h3 class="selected-pubs-heading">Selected Publications</h3>
+  <ul class="selected-pub-list">
+    {% for pub in selected_pubs %}
+    <li class="selected-pub">
+      <span class="selected-pub-title">
+        {% if pub.paper_url %}<a href="{{ pub.paper_url }}">{{ pub.title }}</a>{% else %}{{ pub.title }}{% endif %}
+      </span>
+      <span class="selected-pub-venue">{% if pub.venue_short %}{{ pub.venue_short }}{% else %}{{ pub.venue }}{% endif %} {{ pub.year }}</span>
+      {% if pub.awards %}{% for award in pub.awards %}<span class="award-badge">{{ award }}</span>{% endfor %}{% endif %}
+      <span class="selected-pub-links">
+        {% if pub.paper_url %}<a href="{{ pub.paper_url }}">PDF</a>{% endif %}
+        {% if pub.blog_url %}<a href="{{ pub.blog_url }}">Blog</a>{% endif %}
+        {% if pub.code_url %}<a href="{{ pub.code_url }}">Code</a>{% endif %}
+        {% if pub.tool_url %}<a href="{{ pub.tool_url }}">Tool</a>{% endif %}
+      </span>
+    </li>
+    {% endfor %}
+  </ul>
+  <a href="/publications" class="selected-pubs-all">See all publications →</a>
+</section>
+{% endif %}
 
 
 {% assign sorted_talks = site.data.talks | sort: "date" | reverse %}
