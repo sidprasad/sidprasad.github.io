@@ -2,7 +2,6 @@
   authors: "Siddhartha Prasad, Skyler Austen, Kathi Fisler, Shriram Krishnamurthi"
   venue: "European Conference on Object-Oriented Programming"
   venue_short: "ECOOP"
-  month: "July"
   year: 2026
   blog_url: https://blog.brownplt.org/2026/06/09/pick.html
   code_url: https://github.com/sidprasad/pick-regex/

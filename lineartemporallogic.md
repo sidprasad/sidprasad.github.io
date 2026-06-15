@@ -16,7 +16,7 @@ typical misconceptions that learners and even experts have, building a [set of i
 However, it isn’t always easy to add new materials to classes. Furthermore, your students make certain mistakes—now what? They need explanations of what went wrong, need additional drill problems, and need checks whether they got the additional ones right. It’s hard for an educator to make time for all that. And if one is an independent learner, they don’t even have access to such educators. Recognizing these practical difficulties, we have distilled our group’s expertise in LTL into an online tutor:
 
 <div style="text-align: center; margin: 20px 0;">
-  <a href="https://ltl-tutor.xyz" style="font-size: 1.2em; font-weight: bold; text-decoration: none; color: #007bff; padding: 10px 20px; border-radius: 8px; display: inline-block;">
+  <a href="https://ltl-tutor.xyz" style="font-size: 1.2em; font-weight: bold; text-decoration: none; color: #084298; padding: 10px 20px; border-radius: 8px; display: inline-block;">
     ltl-tutor.xyz
   </a>
 </div>
@@ -25,7 +25,7 @@ However, it isn’t always easy to add new materials to classes. Furthermore, yo
 This tutor leverages the idea of **Conceptual Mutation Testing** [^1] to generate questions by mutating LTL formulae modulo our understanding of LTL misconceptions.
 
 
-[^1]: [Here's some work on conceptual mutation testing in a programming context](https://cs.brown.edu/~sk/Publications/Papers/Published/pgnk-conceptual-examplar/))
+[^1]: [Here's some work on conceptual mutation testing in a programming context](https://cs.brown.edu/~sk/Publications/Papers/Published/pgnk-conceptual-examplar/)
 
 ## Related Publications
 
@@ -33,51 +33,7 @@ This tutor leverages the idea of **Conceptual Mutation Testing** [^1] to generat
 
 <div class="publication-list">
 {% for pub in filtered_pubs %}
-
-
- <div class="publication-card">
-    <!-- Publication details -->
-    <div>
-        <h4 class="publication-title">
-            {% if pub.paper_url %}
-                <a href="{{ pub.paper_url }}">{{ pub.title }}</a>
-            {% else %}
-                {{ pub.title }}
-            {% endif %}
-        </h4>
-
-        <p class="publication-details">
-            <p class="publication-authors">
-                {{ pub.authors | replace: "Siddhartha Prasad", "<strong>Siddhartha Prasad</strong>" }}
-            </p>  
-            <p>
-                {% if pub.status %} <span class="publication-status">{{ pub.status }}</span> {% endif %}
-                {% if pub.venue_short %}
-                    <span class="publication-venue" title="{{ pub.venue }}">{{ pub.venue_short }}</span>
-                {% else %}
-                    <span class="publication-venue">{{ pub.venue }}</span>
-                {% endif %}
-                {{pub.year}}
-            </p>
-        </p>
-
-        <!-- Tags for blog and code -->
-        <div class="publication-tags">
-            {% if pub.blog_url %}
-                <a href="{{ pub.blog_url }}" class="publication-tag blog">Blog Post</a>
-            {% endif %}
-            {% if pub.code_url %}
-                <a href="{{ pub.code_url }}" class="publication-tag code">Code</a>
-            {% endif %}
-            {% if pub.tool_url %}
-                <a href="{{ pub.tool_url }}" class="publication-tag tool">Tool</a>
-            {% endif %}
-        </div>
-    </div>
-</div>
-
-
-
+{% include publication-card.html pub=pub %}
 {% endfor %}
 </div>
 
