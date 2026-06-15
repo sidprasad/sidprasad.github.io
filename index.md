@@ -4,49 +4,84 @@ title: Siddhartha Prasad
 ---
 
 
-I am a PhD student in Computer Science at Brown University, advised by [Shriram Krishnamurthi](https://cs.brown.edu/~sk/). My research takes a programming-languages approach to improving how people express intent and reason about program behavior, drawing on ideas from formal methods, human–computer interaction, and cognitive science. I am especially interested in how models of human cognition can inform the design of languages, semantics, and interactive tools for understanding complex computational structures.
+<img src="/assets/img/me.jpg" alt="Siddhartha Prasad" class="home-photo" />
+
+I am a PhD candidate in Computer Science at Brown University, advised by [Shriram Krishnamurthi](https://cs.brown.edu/~sk/).
+
+I am a PL/FM researcher interested in how formal representations make computational structure inspectable. Across my work, these representations take different forms: specifications, examples, temporal formulas, relational models, and runtime values. I study how people write them, run them, visualize them, learn from them, and revise them when their intent and the system's behavior diverge.
 
 Previously, I was a software engineer at Microsoft, where I worked both on Windows[^1] and Azure[^2]. My research interests are informed by my time as an engineer. I have written code that doesn't do what I want it to, and I want to spare everyone else the indignity.
 
 [^1]: I worked on the [XAML UI Framework](https://github.com/microsoft/microsoft-ui-xaml) from 2016-2018.
 [^2]: I worked on [Azure's AI services](https://azure.microsoft.com/en-us/products/ai-services), with a particular focus on containerizing AI from 2018-2021.
 
+<div class="job-market-callout" markdown="1">
+**📣 On the job market.** I am seeking academic and research positions for **2027–28**. [Get in touch](mailto:siddhartha.a.prasad@gmail.com).
+</div>
 
-{% assign sorted_talks = site.data.talks | sort: "date" | reverse %}
+
+<section class="currently">
+  <h3 class="currently-heading">What I'm really excited about now</h3>
+  <div class="currently-cards">
+    <div class="currently-card">
+      <span class="currently-card-name">Making diagrams as cheap as printf.</span>
+      <span class="currently-card-desc">Every time you inspect a value — at the REPL, in a debugger, in a print statement — you should have the <em>option</em> of seeing a diagram.</span>
+      <span class="currently-card-links">
+        <a href="https://blog.brownplt.org/2026/05/22/spytial.html" target="_blank" rel="noopener">Read the Spytial blog post →</a>
+      </span>
+    </div>
+    <div class="currently-card">
+      <span class="currently-card-name">Checking what GenAI wrote, meaningfully.</span>
+      <span class="currently-card-desc">When an LLM generates a regex for you, how do you know it's the one you <em>actually</em> needed?</span>
+      <span class="currently-card-links">
+        <a href="https://blog.brownplt.org/2025/12/11/pick-regex.html" target="_blank" rel="noopener">Read the regex post →</a>
+        <a href="https://blog.brownplt.org/2026/06/09/pick.html" target="_blank" rel="noopener">Or how it generalizes to more languages →</a>
+      </span>
+    </div>
+  </div>
+</section>
+
+
+{% comment %} Unified Recent News feed: talks + paper acceptances + awards, time-sorted.
+   Each entry is "<YYYYMMDD sortkey>@@@<card html>"; we sort the strings (fixed-width
+   numeric prefix => chronological) and reverse for newest-first. {% endcomment %}
 {% assign today = site.time | date: "%Y-%m-%d" %}
+{% assign feed = "" | split: "" %}
 
-{% if sorted_talks.size > 0 %}
+{% for talk in site.data.talks %}
+  {% assign sortkey = talk.date | date: "%Y%m%d" %}
+  {% assign td = talk.date | date: "%Y-%m-%d" %}
+  {% capture card %}<article class="talk-card"><div class="talk-meta"><span class="talk-type talk-type-talk">Talk</span><span class="talk-date">{{ talk.date | date: "%b %-d, %Y" }}{% if td >= today %} <span class="talk-upcoming">Upcoming</span>{% endif %}</span></div><div class="talk-title">{{ talk.title }}</div><div class="talk-venue">@ {% if talk.venue_short %}{{ talk.venue_short }}{% else %}{{ talk.venue }}{% endif %}</div>{% if talk.video_url or talk.slides_url %}<div class="talk-links">{% if talk.video_url %}<a href="{{ talk.video_url }}" class="talk-link">Video</a>{% endif %}{% if talk.slides_url %}<a href="{{ talk.slides_url }}" class="talk-link">Slides</a>{% endif %}</div>{% endif %}</article>{% endcapture %}
+  {% capture entry %}{{ sortkey }}@@@{{ card }}{% endcapture %}
+  {% assign one = entry | split: "###NEVER###" %}
+  {% assign feed = feed | concat: one %}
+{% endfor %}
+
+{% assign recent_pubs = site.data.publications | where_exp: "p", "p.year >= 2025" %}
+{% for pub in recent_pubs %}
+  {% assign sortkey = pub.year | append: "1215" %}
+  {% capture card %}<article class="talk-card"><div class="talk-meta"><span class="talk-type talk-type-paper">Paper</span><span class="talk-date">{{ pub.year }}{% if pub.status %} <span class="talk-upcoming">{{ pub.status }}</span>{% endif %}</span></div><div class="talk-title">{% if pub.paper_url %}<a href="{{ pub.paper_url }}">{{ pub.title }}</a>{% else %}{{ pub.title }}{% endif %}</div><div class="talk-venue" title="{{ pub.venue }}">@ {% if pub.venue_short %}{{ pub.venue_short }}{% else %}{{ pub.venue }}{% endif %}</div>{% if pub.paper_url or pub.blog_url %}<div class="talk-links">{% if pub.paper_url %}<a href="{{ pub.paper_url }}" class="talk-link">PDF</a>{% endif %}{% if pub.blog_url %}<a href="{{ pub.blog_url }}" class="talk-link">Blog</a>{% endif %}</div>{% endif %}</article>{% endcapture %}
+  {% capture entry %}{{ sortkey }}@@@{{ card }}{% endcapture %}
+  {% assign one = entry | split: "###NEVER###" %}
+  {% assign feed = feed | concat: one %}
+  {% if pub.awards %}{% for award in pub.awards %}
+    {% assign sortkey = pub.year | append: "1220" %}
+    {% capture card %}<article class="talk-card"><div class="talk-meta"><span class="talk-type talk-type-award">Award</span><span class="talk-date">{{ pub.year }}</span></div><div class="talk-title">{{ award }}</div><div class="talk-venue" title="{{ pub.title }}">@ {% if pub.venue_short %}{{ pub.venue_short }}{% else %}{{ pub.venue }}{% endif %}</div></article>{% endcapture %}
+    {% capture entry %}{{ sortkey }}@@@{{ card }}{% endcapture %}
+    {% assign one = entry | split: "###NEVER###" %}
+    {% assign feed = feed | concat: one %}
+  {% endfor %}{% endif %}
+{% endfor %}
+
+{% assign feed = feed | sort | reverse %}
+
+{% if feed.size > 0 %}
 <section class="talks-widget">
-  <h3 class="talks-heading">Recent Invited Talks</h3>
+  <h3 class="talks-heading">Recent News</h3>
   <div class="talks-carousel">
     <button type="button" class="talks-nav prev" aria-label="Previous">‹</button>
     <div class="talks-track">
-      {% for talk in sorted_talks %}
-      {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
-      {% assign talk_type = talk.type | default: "Talk" %}
-      <article class="talk-card">
-        <div class="talk-meta">
-          <span class="talk-type talk-type-{{ talk_type | downcase | replace: ' ', '-' }}">{{ talk_type }}</span>
-          <span class="talk-date">
-            {{ talk.date | date: "%b %-d, %Y" }}
-            {% if talk_date >= today %}
-              <span class="talk-upcoming">Upcoming</span>
-            {% endif %}
-          </span>
-        </div>
-        <div class="talk-title">{{ talk.title }}</div>
-        <div class="talk-venue">
-          {% if talk.venue_short %}{{ talk.venue_short }}{% else %}{{ talk.venue }}{% endif %}
-        </div>
-        {% if talk.video_url or talk.slides_url or talk.paper_url %}
-        <div class="talk-links">
-          {% if talk.video_url %}<a href="{{ talk.video_url }}" class="talk-link">Video</a>{% endif %}
-          {% if talk.slides_url %}<a href="{{ talk.slides_url }}" class="talk-link">Slides</a>{% endif %}
-          {% if talk.paper_url %}<a href="{{ talk.paper_url }}" class="talk-link">Paper</a>{% endif %}
-        </div>
-        {% endif %}
-      </article>
-      {% endfor %}
+      {% for item in feed %}{% assign parts = item | split: "@@@" %}{{ parts[1] }}{% endfor %}
     </div>
     <button type="button" class="talks-nav next" aria-label="Next">›</button>
   </div>
@@ -108,4 +143,3 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 
 <!-- - I'm particularly proud of my formalization of [Kleene Algebra](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Algebra/Order/Kleene.html) as part of the Lean Mathlib project.
 - I try to be involved with the New England Programming Languages community(see talks at [NEPLS 2025](https://nepls.org/Events/34/abstracts.html#prasad), [Racket Con 2022](https://con.racket-lang.org/2022/)) -->
-

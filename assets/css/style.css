@@ -26,6 +26,19 @@ pre {
   max-width: 100%;
 }
 
+/* Content links — one consistent accent across the site. Components that need a
+   different treatment (nav tabs, pills, cards) override this with their own rules. */
+a {
+  color: #084298;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  color: #0a52c0;
+}
+
 /* Use bold Cardo for headings */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Cardo', serif;
@@ -173,7 +186,7 @@ header nav {
 }
 
 header nav a.nav-tab {
-  color: #777;
+  color: #555;
   text-decoration: none;
   padding: 8px 0;
   margin-bottom: -1px;
@@ -452,6 +465,11 @@ header nav a.nav-tab.active {
   font-weight: 700;
   min-width: 110px;
   flex-shrink: 0;
+  text-decoration: none;
+}
+
+.course-code:hover {
+  text-decoration: underline;
 }
 
 .course-title {
@@ -537,6 +555,221 @@ sup, a.footnote {
 }
 
 /* Recent activity — small carousel of talk cards */
+/* Home page headshot — left on wide screens, top-centered on narrow */
+.home-photo {
+  float: left;
+  width: 160px;
+  height: auto;
+  margin: 0.2em 1.5em 1em 0;
+  border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  .home-photo {
+    float: none;
+    display: block;
+    width: 140px;
+    margin: 0 auto 1em auto;
+  }
+}
+
+/* "What I'm working on" cards */
+.currently {
+  margin: 2em 0 2.5em 0;
+}
+
+.currently-heading {
+  font-size: 1em;
+  margin-bottom: 0.75em;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.currently-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.currently-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f8f9fa;
+}
+
+.currently-card-name {
+  font-weight: 700;
+  font-size: 1.1em;
+  line-height: 1.25;
+}
+
+.currently-card-desc {
+  font-size: 0.9em;
+  color: #555;
+  flex: 1;
+}
+
+.currently-card-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  margin-top: 4px;
+}
+
+.currently-card-links a {
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .currently-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* CV page — embedded PDF with a download bar, constrained to text width */
+.cv-page {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.cv-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  flex-wrap: wrap;
+  margin-bottom: 0.8em;
+}
+
+.cv-bar-title {
+  margin: 0;
+  font-size: 1.4em;
+}
+
+.cv-download {
+  display: inline-block;
+  background: #084298;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9em;
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.cv-download:hover {
+  background: #0a52c0;
+  color: #fff;
+}
+
+.cv-embed {
+  display: block;
+  width: 100%;
+  height: 85vh;
+  min-height: 500px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.cv-fallback {
+  padding: 2em;
+  text-align: center;
+  color: #555;
+}
+
+/* Job-market banner — clears the floated headshot, high-visibility */
+.job-market-callout {
+  clear: both;
+  border: 1px solid #b4cfff;
+  border-left: 4px solid #084298;
+  background: #eef4ff;
+  color: #08306b;
+  padding: 0.8em 1.2em;
+  border-radius: 6px;
+  margin: 1.5em 0;
+  font-size: 0.97em;
+}
+
+.job-market-callout p { margin: 0; }
+
+/* Selected Publications on the home page */
+.selected-publications {
+  margin: 2em 0 2.5em 0;
+}
+
+.selected-pubs-heading {
+  font-size: 1em;
+  margin-bottom: 0.75em;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.selected-pub-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.selected-pub {
+  padding: 0.7em 0;
+  border-bottom: 1px solid #eee;
+  line-height: 1.45;
+}
+
+.selected-pub:last-child {
+  border-bottom: none;
+}
+
+.selected-pub-line1 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5em;
+}
+
+.selected-pub-title {
+  font-weight: 700;
+}
+
+.selected-pub-meta {
+  margin-top: 0.2em;
+  font-size: 0.88em;
+  color: #777;
+}
+
+.selected-pub-venue {
+  font-weight: 600;
+  color: #555;
+  margin-right: 0.4em;
+}
+
+.selected-pub .award-badge {
+  font-size: 0.72em;
+}
+
+.selected-pub-meta a {
+  margin-right: 0.7em;
+  color: #666;
+}
+
+.selected-pubs-all {
+  display: inline-block;
+  margin-top: 1em;
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
 .talks-widget {
   margin: 1.5em 0 2em 0;
 }
@@ -572,12 +805,12 @@ sup, a.footnote {
 }
 
 .talk-card {
-  flex: 0 0 calc((100% - 24px) / 3);
+  flex: 0 0 180px;
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 10px 12px;
+  gap: 3px;
+  padding: 9px 11px;
   border: 1px solid #e6e6e6;
   border-radius: 4px;
   background: #f9f9f9;
@@ -634,8 +867,12 @@ sup, a.footnote {
 .talk-title {
   font-weight: 700;
   color: #222;
-  font-size: 0.95em;
+  font-size: 0.9em;
   line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .talk-venue {
