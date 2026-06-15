@@ -16,7 +16,7 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 [^2]: I worked on [Azure's AI services](https://azure.microsoft.com/en-us/products/ai-services), with a particular focus on containerizing AI from 2018-2021.
 
 <div class="job-market-callout" markdown="1">
-**📣 On the job market.** I am seeking academic and research positions for **2027–28**. [Get in touch](mailto:siddhartha_prasad@brown.edu).
+**📣 On the job market.** I am seeking academic and research positions for **2027–28**. [Get in touch](mailto:siddhartha.a.prasad@gmail.com).
 </div>
 
 
