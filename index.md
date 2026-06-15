@@ -4,7 +4,9 @@ title: Siddhartha Prasad
 ---
 
 
-I am a PhD student in Computer Science at Brown University, advised by [Shriram Krishnamurthi](https://cs.brown.edu/~sk/). My research takes a programming-languages approach to improving how people express intent and reason about program behavior, drawing on ideas from formal methods, human–computer interaction, and cognitive science. I am especially interested in how models of human cognition can inform the design of languages, semantics, and interactive tools for understanding complex computational structures.
+I am a PhD candidate in Computer Science at Brown University, advised by [Shriram Krishnamurthi](https://cs.brown.edu/~sk/).
+
+I am a PL/FM researcher interested in how formal representations make computational structure inspectable. Across my work, these representations take different forms: specifications, examples, temporal formulas, relational models, and runtime values. I study how people write them, run them, visualize them, learn from them, and revise them when their intent and the system's behavior diverge.
 
 Previously, I was a software engineer at Microsoft, where I worked both on Windows[^1] and Azure[^2]. My research interests are informed by my time as an engineer. I have written code that doesn't do what I want it to, and I want to spare everyone else the indignity.
 
@@ -108,4 +110,3 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 
 <!-- - I'm particularly proud of my formalization of [Kleene Algebra](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Algebra/Order/Kleene.html) as part of the Lean Mathlib project.
 - I try to be involved with the New England Programming Languages community(see talks at [NEPLS 2025](https://nepls.org/Events/34/abstracts.html#prasad), [Racket Con 2022](https://con.racket-lang.org/2022/)) -->
-
