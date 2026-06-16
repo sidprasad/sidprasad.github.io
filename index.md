@@ -6,9 +6,10 @@ title: Siddhartha Prasad
 
 <img src="/assets/img/me.jpg" alt="Siddhartha Prasad" class="home-photo" />
 
-I am a PhD candidate in Computer Science at Brown University, advised by [Shriram Krishnamurthi](https://cs.brown.edu/~sk/).
 
-I am a PL/FM researcher interested in how formal representations make computational structure inspectable. Across my work, these representations take different forms: specifications, examples, temporal formulas, relational models, and runtime values. I study how people write them, run them, visualize them, learn from them, and revise them when their intent and the system's behavior diverge.
+I am a PhD student in Computer Science at Brown, advised by [Shriram Krishnamurthi](https://cs.brown.edu/~sk/). I work in programming languages and formal methods, with a focus on the gap between what people mean and what systems do.
+
+My research looks at different ways of briding this gap: using formal techniques to support informal inspection, understanding informal misconceptions of formal models, and elucidating specifications through examples and interaction.
 
 Previously, I was a software engineer at Microsoft, where I worked both on Windows[^1] and Azure[^2]. My research interests are informed by my time as an engineer. I have written code that doesn't do what I want it to, and I want to spare everyone else the indignity.
 
@@ -21,7 +22,7 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 
 
 <section class="currently">
-  <h3 class="currently-heading">What I'm really excited about now</h3>
+  <h3 class="currently-heading">What I'm actively working on right now</h3>
   <div class="currently-cards">
     <div class="currently-card">
       <span class="currently-card-name">Making diagrams as cheap as printf.</span>
