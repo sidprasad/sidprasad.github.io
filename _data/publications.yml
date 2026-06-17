@@ -30,6 +30,7 @@
   year: 2026
   paper_url: https://atlas.cs.brown.edu/pdf/hs:osdi:2026.pdf
   status: "Upcoming"
+  hide_recent_news: true
 
 
 
