@@ -39,6 +39,15 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
         <a href="https://blog.brownplt.org/2026/06/09/pick.html" target="_blank" rel="noopener">Or how it generalizes to more languages →</a>
       </span>
     </div>
+    <div class="currently-card">
+      <span class="currently-card-name">Understanding how humans understand Temporal Logic.</span>
+      <span class="currently-card-desc">I think of human misconceptions
+      as alternate semantics for the logic. </span>
+      <span class="currently-card-links">
+        <a href="https://blog.brownplt.org/2024/07/07/little-tricky-logics-2.html" target="_blank" rel="noopener">Read about LTL and LTLf misconceptions →</a>
+        <a href="https://ltl-tutor.xyz" target="_blank" rel="noopener">Try the LTL Tutor to see how we operationalize misconceptions →</a>
+      </span>
+    </div>
   </div>
 </section>
 
