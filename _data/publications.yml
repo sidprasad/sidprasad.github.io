@@ -8,7 +8,6 @@
   tool_url: https://marketplace.visualstudio.com/items?itemName=SiddharthaPrasad.pick-regex
   project: 'ltl'
   paper_url: papers/pafk-pick.pdf
-  status: "Upcoming"
   selected: 4
 
 - title: "Diagramming Program Values by Spatial Refinement"
