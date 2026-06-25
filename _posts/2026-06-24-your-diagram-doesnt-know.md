@@ -1,113 +1,253 @@
 ---
 layout: post
-title: "Your Diagram Doesn't Know What It's Drawing"
+title: "Your Diagram Doesn't Know It's a Family Tree"
 date: 2026-06-24
 tags: [diagram, pl, spatial, visualization, semantics]
 ---
 
-Somewhere in your repository there is a diagram of your system. It is probably quite good. Someone redrew it after the last refactor; someone else fixed a typo in it during review. It renders in your README, it diffs in your PRs, and you trust it.
+I picked up *Wuthering Heights* again recently, and — as usual — lost track of who was who. Two houses, two generations of Earnshaws and Lintons, a foundling who marries into both, and, because Brontë shows no mercy, a mother and a daughter who share a name. Somewhere around the second Catherine I gave up and did what anyone would do: I went to draw the family tree.
 
-You should not. Not because it's out of date — though it is — but because of something worse: *it has no way of being right.* It doesn't know what it's drawing. It never has.
+The obvious tool is Mermaid, and a good one. I wrote out the genealogy the way you write anything in Mermaid — nodes, edges, who is married to whom and who is whose parent:
 
-Let me give the tools their due, because they earned it. For years a diagram was a dead PNG: you drew it by hand, screenshotted it, pasted it, and three weeks later redrew it from scratch because one box moved. Mermaid fixed a real thing about that. It turned the diagram into *text*. You write `A --> B`, you get an arrow, and the picture now lives in the repo and survives. That is a genuine victory and I won't undersell it.
+<style>
+.diagram-source-render {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 1fr);
+  gap: 1rem;
+  align-items: stretch;
+  margin: 1.25rem 0;
+}
 
-But it is a *smaller* victory than we let ourselves believe — and we have been quietly charging it to the wrong account.
+.diagram-source-render pre {
+  margin: 0;
+  overflow: auto;
+}
 
-Look at what the text actually says. `graph TD`. `A --> B`. `TD` means "top-down." `-->` means "draw an arrow." This is not a description of your system. It is a *program* — a tiny imperative program whose output is a picture. You thought you were writing down your architecture. You were writing instructions for a layout engine. The renderer never learns that `A` and `B` are services, or courses, or people. It learns that they are boxes, and that you would like a line between them.
+.diagram-rendered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  padding: 0.75rem;
+  border: 1px solid #d8dee4;
+  border-radius: 6px;
+  background: #fff;
+}
 
-Here is one, rendered live, looking every bit as authoritative as the one on your wall. (Drag it. It doesn't mind. It has no opinion about where anything goes.)
+@media (max-width: 780px) {
+  .diagram-source-render {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 
-<div class="spytial-graph" data-height="300">
-intro[CS 101]:::Course -> data[CS 201]:::Course   : prereq
-data                   -> algo[CS 301]:::Course   : prereq
-data                   -> sys[CS 305]:::Course    : prereq
-algo                   -> theory[CS 401]:::Course : prereq
+<div class="diagram-source-render">
+<pre><code class="language-mermaid">flowchart TD
+  mr_e[Mr. Earnshaw] ---|spouse| mrs_e[Mrs. Earnshaw]
+  mr_l[Mr. Linton] ---|spouse| mrs_l[Mrs. Linton]
+
+  mr_e --&gt;|parentOf| hindley[Hindley]
+  mrs_e --&gt;|parentOf| hindley
+  mr_e --&gt;|parentOf| catherine[Catherine Earnshaw]
+  mrs_e --&gt;|parentOf| catherine
+  mr_e -.-&gt;|adopts| heathcliff[Heathcliff]
+
+  mr_l --&gt;|parentOf| edgar[Edgar]
+  mrs_l --&gt;|parentOf| edgar
+  mr_l --&gt;|parentOf| isabella[Isabella]
+  mrs_l --&gt;|parentOf| isabella
+
+  hindley ---|spouse| frances[Frances]
+  catherine ---|spouse| edgar
+  heathcliff ---|spouse| isabella
+
+  hindley --&gt;|parentOf| hareton[Hareton]
+  frances --&gt;|parentOf| hareton
+  catherine --&gt;|parentOf| cathy[Cathy Linton]
+  edgar --&gt;|parentOf| cathy
+  heathcliff --&gt;|parentOf| linton[Linton Heathcliff]
+  isabella --&gt;|parentOf| linton
+
+  cathy ---|spouse| linton
+  cathy ---|spouse| hareton</code></pre>
+<div class="diagram-rendered">
+<div class="mermaid">
+flowchart TD
+  mr_e[Mr. Earnshaw] ---|spouse| mrs_e[Mrs. Earnshaw]
+  mr_l[Mr. Linton] ---|spouse| mrs_l[Mrs. Linton]
+
+  mr_e -->|parentOf| hindley[Hindley]
+  mrs_e -->|parentOf| hindley
+  mr_e -->|parentOf| catherine[Catherine Earnshaw]
+  mrs_e -->|parentOf| catherine
+  mr_e -.->|adopts| heathcliff[Heathcliff]
+
+  mr_l -->|parentOf| edgar[Edgar]
+  mrs_l -->|parentOf| edgar
+  mr_l -->|parentOf| isabella[Isabella]
+  mrs_l -->|parentOf| isabella
+
+  hindley ---|spouse| frances[Frances]
+  catherine ---|spouse| edgar
+  heathcliff ---|spouse| isabella
+
+  hindley -->|parentOf| hareton[Hareton]
+  frances -->|parentOf| hareton
+  catherine -->|parentOf| cathy[Cathy Linton]
+  edgar -->|parentOf| cathy
+  heathcliff -->|parentOf| linton[Linton Heathcliff]
+  isabella -->|parentOf| linton
+
+  cathy ---|spouse| linton
+  cathy ---|spouse| hareton
+</div>
+</div>
 </div>
 
-## A picture cannot be wrong
+And Mermaid drew it — instantly. The source lives with the text, changes in a diff, and renders where the reader already is; that bargain is still a little miraculous, and none of what follows is a complaint about Mermaid.
 
-Point at any box in that diagram and ask the only question that matters: *how would I know if it were wrong?*
+But look at what it drew: a graph. For a flowchart that is exactly right — the boxes can sit anywhere, and any layout that connects them reads the same. A genealogy is the opposite. The arrangement *is* the content. Mermaid can draw the *Wuthering Heights* family graph; it cannot give you the genealogy — and those are not the same thing.
 
-You can't, and neither can it. There is no fact the box is accountable to. The arrow from `CS 201` to `CS 301` doesn't *assert* that 201 is a prerequisite for 301 — it *depicts* two rectangles and a line, and it would depict them with exactly the same serenity if the relationship ran the other way, or didn't exist, or was a lie told by a registrar. A picture cannot be false.
+You know roughly how to read what it should be, and so do I — but we are reading things the source never states. We read the top row as the oldest generation and each row below it as the next. We read Catherine and Edgar as a couple because they sit side by side, and we expect their child to hang below the pair. None of that is in the text. The text says: some nodes, some edges labeled `spouse`, some labeled `parentOf`, draw top-down.
 
-And — this is the part that should bother you — a thing that cannot be false cannot be true either. It makes no claim, so it carries no information. Your diagram does not agree with your system. It agrees with *whatever you drew*. It is a yes-man with good typography.
+So Mermaid draws top-down. It places each `spouse` edge wherever the ranking happens to allow, which is often not beside the partner and not on the same row. It runs each parent's `parentOf` edge down on its own, so a child lands under whichever parent the layout preferred, not under the couple. With two estates' worth of cousins marrying cousins, the result is a thicket. The picture is not wrong as a graph. It is wrong as a *family tree* — and the source had no way to know the difference, because "generation," "couple," and "child of both" were never things it could say.
 
-Popper had a word for theories that survive no matter what the world does: *unfalsifiable*, and he taught us to distrust them. Somehow we never extended the courtesy to diagrams. We draw the unfalsifiable thing on a whiteboard and then make architectural decisions standing in front of it, as though it were evidence rather than a mirror.
+A family tree has three commitments, and a flowchart has a word for none of them: generations are rows, spouses are adjacent on the same row, and a child belongs below the pair. You can fight the layout — reorder lines, add invisible edges, guess at ranks — until the picture happens to come out right. But then you are arranging boxes until they resemble a family tree. You are not telling the system that it is one.
 
-## A model of a diagram, or a diagram of a model
+That gap is the subject of this post.
 
-Here is the slogan I keep coming back to:
+## A diagram of a model
 
-> Mermaid has a model of a diagram. I want a diagram of a model.
+The fix is not a better flowchart. It is a different thing for the text to describe.
 
-Mermaid's little universe *is* the picture — boxes, arrows, a layout direction. Its nouns are graphical nouns. Turn the whole thing inside out. Put the *model* underneath — atoms with identity, sorts, named relations, the actual things — and let the picture be a *consequence* of it. The text stops being a drawing program and becomes a small, honest description: `data[CS 201]:::Course` says there is an atom, its identity is `data`, you'd display it as "CS 201," and its sort is `Course`. `data -> algo : prereq` says there is a *prereq* relation between two of them. None of that mentions the picture. The picture is what you get when you stop talking.
+> Mermaid has a model of a diagram. What I need is a diagram of a model.
 
-And when you *do* want to talk about the picture, you say it in the vocabulary of the model, not of the pixels — because now there is a model to refer to. `selector=prereq` means *every prereq edge*; `selector=Course` means *every Course* — because `prereq` and `Course` are real things in the model, not spellings on a box.
+The source should name the things being diagrammed — the people, the relations between them — and the obligations those relations carry. For a family tree: which atoms are people, which relation is `parentOf`, which is `spouse`, and what each one asks of the geometry.
 
-Watch what that buys. Here are the *same four facts*, twice. The only thing I change between them is one annotation — `directions=[right]` becomes `directions=[below]`. I never touch a single relationship:
+Here are the Earnshaws, the Lintons, and Heathcliff in Spytial Graph:
 
-<div class="spytial-graph" data-height="240">
-intro[CS 101]:::Course -> data[CS 201]:::Course   : prereq
-data                   -> algo[CS 301]:::Course   : prereq
-algo                   -> theory[CS 401]:::Course : prereq
+<div class="spytial-graph" data-height="540">
+mr_e[Mr. Earnshaw]:::Earnshaw -> mrs_e[Mrs. Earnshaw]:::Earnshaw : spouse
+mr_l[Mr. Linton]:::Linton -> mrs_l[Mrs. Linton]:::Linton : spouse
 
-@orientation(selector=prereq, directions=[right])
-@atomColor(selector=Course, value='#e7f0ff')
+mr_e -> hindley[Hindley]:::Earnshaw : parentOf
+mrs_e -> hindley : parentOf
+mr_e -> catherine[Catherine Earnshaw]:::Earnshaw : parentOf
+mrs_e -> catherine : parentOf
+mr_e -> heathcliff[Heathcliff]:::Heathcliff : adopts
+
+mr_l -> edgar[Edgar]:::Linton : parentOf
+mrs_l -> edgar : parentOf
+mr_l -> isabella[Isabella]:::Linton : parentOf
+mrs_l -> isabella : parentOf
+
+hindley -> frances[Frances]:::Earnshaw : spouse
+catherine -> edgar : spouse
+heathcliff -> isabella : spouse
+
+hindley -> hareton[Hareton]:::Earnshaw : parentOf
+frances -> hareton : parentOf
+catherine -> cathy[Cathy Linton]:::Linton : parentOf
+edgar -> cathy : parentOf
+heathcliff -> linton[Linton Heathcliff]:::Heathcliff : parentOf
+isabella -> linton : parentOf
+
+cathy -> linton : spouse
+cathy -> hareton : spouse
+
+@orientation(selector=parentOf, directions=[below])
+@orientation(selector=spouse, directions=[directlyRight])
+@orientation(selector=adopts, directions=[below])
 </div>
 
-<div class="spytial-graph" data-height="300">
-intro[CS 101]:::Course -> data[CS 201]:::Course   : prereq
-data                   -> algo[CS 301]:::Course   : prereq
-algo                   -> theory[CS 401]:::Course : prereq
+The notation is small. `catherine`, `edgar`, `heathcliff`, and the rest are atoms. `Earnshaw`, `Linton`, and `Heathcliff` are sorts — the two houses and the foundling who unsettles both, which is why he is colored apart. `spouse`, `parentOf`, and `adopts` are named relations. And two lines carry the entire shape of a family tree:
 
-@orientation(selector=prereq, directions=[below])
-@atomColor(selector=Course, value='#e7f0ff')
+```text
+@orientation(selector=parentOf, directions=[below])
+@orientation(selector=spouse, directions=[right])
+```
+
+Those are not hints about node IDs. They are claims about relations. *Wherever* `parentOf` holds, the parent sits above the child; *wherever* `spouse` holds, the partners sit side by side. Generations become rows not because you placed anyone in a row, but because `parentOf` always points down. The shape is a consequence of what the relations mean.
+
+It also lets the source say something the flowchart could only blur: Heathcliff joins the Earnshaws by `adopts`, not `parentOf`. The diagram encodes the outsider as an outsider — bound to the family, but never of its blood.
+
+## You assert; the system arranges
+
+Once the source carries a model, the work splits. You assert the facts — these people, this `parentOf`, that `spouse`. You assert the spatial obligations — parents above children, spouses side by side. Then you stop arranging things.
+
+The system searches the space of layouts for one that satisfies what you said. You never placed the elder Earnshaws above Catherine or set Cathy beneath her parents; you said `parentOf` points down, and the solver found positions where that holds for every parent at once — even across two estates and a generation of cousins who marry each other. The picture is the output of honoring your constraints, not something you nudged by hand until it looked right.
+
+I want to be exact about the size of this claim. The system does not invent people or guess who is whose parent. It does not know the novel. It searches over *arrangements*, not over *facts*. You bring the model; it finds a geometry the model permits.
+
+Which is also why it can refuse. The diagram below is live — edit the source, drag a character, and the layout re-solves. It also carries one extra fact:
+
+```text
+cathy -> catherine : parentOf
+```
+
+Brontë gives Catherine Earnshaw a daughter and names her Catherine too; the doubling is half the reason readers get lost. This line goes one step further and makes the daughter her own mother's parent. If `parentOf` always points downward, there is no arrangement in which it does: Catherine would have to sit both above and below her own child.
+
+<div class="spytial-graph-editable" data-height="540">
+mr_e[Mr. Earnshaw]:::Earnshaw -> mrs_e[Mrs. Earnshaw]:::Earnshaw : spouse
+mr_l[Mr. Linton]:::Linton -> mrs_l[Mrs. Linton]:::Linton : spouse
+
+mr_e -> hindley[Hindley]:::Earnshaw : parentOf
+mrs_e -> hindley : parentOf
+mr_e -> catherine[Catherine Earnshaw]:::Earnshaw : parentOf
+mrs_e -> catherine : parentOf
+mr_e -> heathcliff[Heathcliff]:::Heathcliff : adopts
+
+mr_l -> edgar[Edgar]:::Linton : parentOf
+mrs_l -> edgar : parentOf
+mr_l -> isabella[Isabella]:::Linton : parentOf
+mrs_l -> isabella : parentOf
+
+hindley -> frances[Frances]:::Earnshaw : spouse
+catherine -> edgar : spouse
+heathcliff -> isabella : spouse
+
+hindley -> hareton[Hareton]:::Earnshaw : parentOf
+frances -> hareton : parentOf
+catherine -> cathy[Cathy Linton]:::Linton : parentOf
+edgar -> cathy : parentOf
+heathcliff -> linton[Linton Heathcliff]:::Heathcliff : parentOf
+isabella -> linton : parentOf
+
+cathy -> catherine : parentOf
+
+cathy -> linton : spouse
+cathy -> hareton : spouse
+
+@orientation(selector=parentOf, directions=[below])
+@orientation(selector=spouse, directions=[right])
+@orientation(selector=adopts, directions=[below])
 </div>
 
-One reads as "take these in order," left to right. The other reads as a dependency tree, top to bottom. Same facts; different *question* asked of them. A drawing can't tell those two operations apart — to Mermaid, rotating the picture and re-stating the truth are the same edit, because the picture is all there is. A model can. The layout is a consequence you can argue with, not a thing you nudge.
+In Mermaid this is one more arrow, and the picture absorbs it without comment. Here the constraints have no satisfying layout, and the system says so. The right answer to "draw me a family where the daughter is her own grandmother" is not a cleverer drawing. It is that there isn't one.
 
-## Now it can be wrong — and that's the point
+That report is the same machinery run the other way. A solver that can find a layout satisfying your constraints can also tell you when none exists. I wouldn't sell it as a feature; it's a consequence. But it is the kind of consequence that shows the representation is doing real work. A drawing you can always produce tells you little. A layout that can fail to exist was constrained by something you actually said.
 
-This is the move a drawing can never make.
+## What it is, and what it isn't
 
-Because there is a model with claims under the picture, you are now allowed to claim *too much*. State an invariant you believe about your system — *every prerequisite comes before the course that needs it* — and ask for a layout that honors it. If the data can honor it, you get your picture. If it can't, you do not get a tasteful arrangement that quietly hides the problem. You get a refusal, and a finger pointed at the exact claims that cannot coexist.
+Spytial Graph is a browser-based notation for graph diagrams: you declare atoms, sorts, relations, and spatial constraints, and a solver lays them out. It borrows its spatial constraints from Spytial.
 
-Watch. Here is the same chart with one edge a real registrar once actually shipped — `algo -> intro` — and the standing request that prerequisites flow left to right:
+It is deliberately narrower than Mermaid, and it should be. Mermaid is broad on purpose — flowcharts, sequence diagrams, class diagrams, state diagrams, Gantt charts, and more. Spytial Graph is for the case where the diagram is a graph of domain objects whose arrangement *means* something: family trees, hash rings, dependency cycles, ownership graphs, service topologies, approval chains. When that is what you are drawing, the source should expose the objects, not the drawing of them.
 
-<div class="spytial-graph-editable" data-height="340">
-intro[CS 101]:::Course -> data[CS 201]:::Course : prereq
-data                   -> algo[CS 301]:::Course : prereq
-algo                   -> intro                  : prereq
+## Why start here
 
-@orientation(selector=prereq, directions=[right])
-</div>
+For graph diagrams that mean something, I would start here rather than with Mermaid — not because Mermaid is bad, but because once the diagram is already text, already in the browser, already part of the workflow, the next question is unavoidable: why should the source stop at drawing instructions?
 
-- This course has a prerequisite.
-- Fine. Which?
-- CS 301.
-- And 301's prerequisite?
-- CS 201.
-- And 201's?
-- ...CS 301.
+If the arrows mean something, the source should say what they mean. If generations are rows, that should be a constraint, not a coincidence of layout. If you edit the picture, the model should survive the edit. And if the facts cannot be arranged, the diagram should be able to say so.
 
-No student can ever take any of these three courses. The cycle makes "everything flows left-to-right" *impossible* — and the model says so, naming the precise `prereq` edges that are fighting, rather than drawing a confident loop and letting someone enroll. Delete the registrar's mistake in the editor above and watch the picture fall into a clean line. A Mermaid diagram would have drawn the loop, beautifully, and said nothing. *Yours just caught you.*
-
-That is the whole argument. A picture-with-claims can be wrong, which is the only way anything can ever be *right*.
-
-## The arrow goes both ways
-
-One more, quickly, because it falls out for free. Since the text is a model and not a drawing, you can run it backwards: render it into an editor, drag the nodes, add one, draw an edge — then ask for the source back. That's what the **⧉ notation** button in the corner of the editable diagram above does: it hands you your edited graph as text, annotations and all. The picture and the source are not two artifacts you sweat to keep in sync. They are one object seen from two sides. Edit either; the other is a projection away.
-
-## Small on purpose
-
-This is a small language, deliberately — nodes, edges, sorts, a handful of spatial annotations; no swimlanes, no Gantt charts, no sequence diagrams. The smallness is not a roadmap apology. It is the price of meaning. What you buy with it is a diagram that *means something*: a model under the picture, a layout you can argue with, claims that can fail.
-
-A diagram you cannot query, cannot constrain, and cannot be *wrong* with is not a model of your system. It is a drawing of one — and you should grant it exactly the authority you grant any other drawing, which is to say, none that you wouldn't grant a napkin.
-
-Every diagram on this page is live; the one tag below did that. Go make a diagram that can disagree with you.
+Mermaid made diagrams cheap enough to keep. Spytial Graph is an attempt to make graph diagrams say enough to be worth trusting.
 
 *The notation, source, and a playground are [on GitHub](https://github.com/sidprasad/spytial-graph).*
 
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
+
 <!-- One module tag turns every spytial-graph block above into a live diagram. It
      injects its engine (d3 v4 + WebCola + spytial-core) from the CDN on first load. -->
-<script type="module" src="https://cdn.jsdelivr.net/npm/spytial-graph/src/auto.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/spytial-graph@0.0.4/src/auto.js"></script>
