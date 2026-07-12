@@ -7,20 +7,55 @@ tags: [diagram, pl, spatial, visualization, semantics]
 
 I picked up *Wuthering Heights* again recently, and — as usual — lost track of who was who. Two houses, two generations of Earnshaws and Lintons, a foundling who marries into both, and, because Brontë shows no mercy, a mother and a daughter who share a name. Somewhere around the second Catherine I gave up and did what anyone would do: I went to draw the family tree.
 
-The obvious tool is Mermaid, and a good one. I wrote out the genealogy the way you write anything in Mermaid — nodes, edges, who is married to whom and who is whose parent:
+(lol actually the audiobook)
+
+I immediately reached for Mermaid JS, which is a tool I find super helpful. I wrote out the genealogy the way you write anything in Mermaid: nodes, edges, who is married to whom and who is whose parent:
 
 <style>
-.diagram-source-render {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 1fr);
-  gap: 1rem;
-  align-items: stretch;
+.diagram-tabs {
   margin: 1.25rem 0;
+  border: 1px solid #d8dee4;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
 }
 
-.diagram-source-render pre {
+.diagram-tab-list {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.4rem;
+  border-bottom: 1px solid #d8dee4;
+  background: #f6f8fa;
+}
+
+.diagram-tab {
+  border: 0;
+  border-radius: 4px;
+  padding: 0.35rem 0.7rem;
+  background: transparent;
+  color: #57606a;
+  font: inherit;
+  cursor: pointer;
+}
+
+.diagram-tab.is-active {
+  background: #fff;
+  color: #24292f;
+  box-shadow: 0 0 0 1px #d8dee4;
+}
+
+.diagram-tab-panel {
   margin: 0;
+}
+
+.diagram-tab-panel[hidden] {
+  display: none;
+}
+
+.diagram-tab-panel pre,
+pre.diagram-tab-panel {
   overflow: auto;
+  padding: 0.75rem;
 }
 
 .diagram-rendered {
@@ -29,52 +64,20 @@ The obvious tool is Mermaid, and a good one. I wrote out the genealogy the way y
   justify-content: center;
   overflow: auto;
   padding: 0.75rem;
-  border: 1px solid #d8dee4;
-  border-radius: 6px;
-  background: #fff;
-}
-
-@media (max-width: 780px) {
-  .diagram-source-render {
-    grid-template-columns: 1fr;
-  }
+  min-height: 360px;
 }
 </style>
 
-<div class="diagram-source-render">
-<pre><code class="language-mermaid">flowchart TD
-  mr_e[Mr. Earnshaw] ---|spouse| mrs_e[Mrs. Earnshaw]
-  mr_l[Mr. Linton] ---|spouse| mrs_l[Mrs. Linton]
-
-  mr_e --&gt;|parentOf| hindley[Hindley]
-  mrs_e --&gt;|parentOf| hindley
-  mr_e --&gt;|parentOf| catherine[Catherine Earnshaw]
-  mrs_e --&gt;|parentOf| catherine
-  mr_e -.-&gt;|adopts| heathcliff[Heathcliff]
-
-  mr_l --&gt;|parentOf| edgar[Edgar]
-  mrs_l --&gt;|parentOf| edgar
-  mr_l --&gt;|parentOf| isabella[Isabella]
-  mrs_l --&gt;|parentOf| isabella
-
-  hindley ---|spouse| frances[Frances]
-  catherine ---|spouse| edgar
-  heathcliff ---|spouse| isabella
-
-  hindley --&gt;|parentOf| hareton[Hareton]
-  frances --&gt;|parentOf| hareton
-  catherine --&gt;|parentOf| cathy[Cathy Linton]
-  edgar --&gt;|parentOf| cathy
-  heathcliff --&gt;|parentOf| linton[Linton Heathcliff]
-  isabella --&gt;|parentOf| linton
-
-  cathy ---|spouse| linton
-  cathy ---|spouse| hareton</code></pre>
-<div class="diagram-rendered">
+<div class="diagram-tabs" data-diagram-tabs>
+<div class="diagram-tab-list" role="tablist" aria-label="Mermaid family tree example">
+  <button class="diagram-tab" type="button" role="tab" id="mermaid-family-source-tab" aria-controls="mermaid-family-source" aria-selected="false" data-tab-target="mermaid-family-source">Source</button>
+  <button class="diagram-tab is-active" type="button" role="tab" id="mermaid-family-diagram-tab" aria-controls="mermaid-family-diagram" aria-selected="true" data-tab-target="mermaid-family-diagram">Diagram</button>
+</div>
+<div class="diagram-tab-panel diagram-rendered" role="tabpanel" id="mermaid-family-diagram" aria-labelledby="mermaid-family-diagram-tab">
 <div class="mermaid">
 flowchart TD
-  mr_e[Mr. Earnshaw] ---|spouse| mrs_e[Mrs. Earnshaw]
-  mr_l[Mr. Linton] ---|spouse| mrs_l[Mrs. Linton]
+  mr_e[Mr. Earnshaw] &lt;--&gt;|spouse| mrs_e[Mrs. Earnshaw]
+  mr_l[Mr. Linton] &lt;--&gt;|spouse| mrs_l[Mrs. Linton]
 
   mr_e -->|parentOf| hindley[Hindley]
   mrs_e -->|parentOf| hindley
@@ -87,9 +90,9 @@ flowchart TD
   mr_l -->|parentOf| isabella[Isabella]
   mrs_l -->|parentOf| isabella
 
-  hindley ---|spouse| frances[Frances]
-  catherine ---|spouse| edgar
-  heathcliff ---|spouse| isabella
+  hindley &lt;--&gt;|spouse| frances[Frances]
+  catherine &lt;--&gt;|spouse| edgar
+  heathcliff &lt;--&gt;|spouse| isabella
 
   hindley -->|parentOf| hareton[Hareton]
   frances -->|parentOf| hareton
@@ -98,13 +101,41 @@ flowchart TD
   heathcliff -->|parentOf| linton[Linton Heathcliff]
   isabella -->|parentOf| linton
 
-  cathy ---|spouse| linton
-  cathy ---|spouse| hareton
+  cathy &lt;--&gt;|spouse| linton
+  cathy &lt;--&gt;|spouse| hareton
 </div>
 </div>
+<pre class="diagram-tab-panel" role="tabpanel" id="mermaid-family-source" aria-labelledby="mermaid-family-source-tab" hidden><code class="language-mermaid">flowchart TD
+  mr_e[Mr. Earnshaw] &lt;--&gt;|spouse| mrs_e[Mrs. Earnshaw]
+  mr_l[Mr. Linton] &lt;--&gt;|spouse| mrs_l[Mrs. Linton]
+
+  mr_e --&gt;|parentOf| hindley[Hindley]
+  mrs_e --&gt;|parentOf| hindley
+  mr_e --&gt;|parentOf| catherine[Catherine Earnshaw]
+  mrs_e --&gt;|parentOf| catherine
+  mr_e -.-&gt;|adopts| heathcliff[Heathcliff]
+
+  mr_l --&gt;|parentOf| edgar[Edgar]
+  mrs_l --&gt;|parentOf| edgar
+  mr_l --&gt;|parentOf| isabella[Isabella]
+  mrs_l --&gt;|parentOf| isabella
+
+  hindley &lt;--&gt;|spouse| frances[Frances]
+  catherine &lt;--&gt;|spouse| edgar
+  heathcliff &lt;--&gt;|spouse| isabella
+
+  hindley --&gt;|parentOf| hareton[Hareton]
+  frances --&gt;|parentOf| hareton
+  catherine --&gt;|parentOf| cathy[Cathy Linton]
+  edgar --&gt;|parentOf| cathy
+  heathcliff --&gt;|parentOf| linton[Linton Heathcliff]
+  isabella --&gt;|parentOf| linton
+
+  cathy &lt;--&gt;|spouse| linton
+  cathy &lt;--&gt;|spouse| hareton</code></pre>
 </div>
 
-And Mermaid drew it — instantly. The source lives with the text, changes in a diff, and renders where the reader already is; that bargain is still a little miraculous, and none of what follows is a complaint about Mermaid.
+The source lives with the text, changes in a diff, and renders where the reader already is; that bargain is still a little miraculous, and none of what follows is a complaint about Mermaid.
 
 But look at what it drew: a graph. For a flowchart that is exactly right — the boxes can sit anywhere, and any layout that connects them reads the same. A genealogy is the opposite. The arrangement *is* the content. Mermaid can draw the *Wuthering Heights* family graph; it cannot give you the genealogy — and those are not the same thing.
 
@@ -128,7 +159,9 @@ Here are the Earnshaws, the Lintons, and Heathcliff in Spytial Graph:
 
 <div class="spytial-graph" data-height="540">
 mr_e[Mr. Earnshaw]:::Earnshaw -> mrs_e[Mrs. Earnshaw]:::Earnshaw : spouse
+mrs_e -> mr_e : spouse
 mr_l[Mr. Linton]:::Linton -> mrs_l[Mrs. Linton]:::Linton : spouse
+mrs_l -> mr_l : spouse
 
 mr_e -> hindley[Hindley]:::Earnshaw : parentOf
 mrs_e -> hindley : parentOf
@@ -142,8 +175,11 @@ mr_l -> isabella[Isabella]:::Linton : parentOf
 mrs_l -> isabella : parentOf
 
 hindley -> frances[Frances]:::Earnshaw : spouse
+frances -> hindley : spouse
 catherine -> edgar : spouse
+edgar -> catherine : spouse
 heathcliff -> isabella : spouse
+isabella -> heathcliff : spouse
 
 hindley -> hareton[Hareton]:::Earnshaw : parentOf
 frances -> hareton : parentOf
@@ -153,10 +189,12 @@ heathcliff -> linton[Linton Heathcliff]:::Heathcliff : parentOf
 isabella -> linton : parentOf
 
 cathy -> linton : spouse
+linton -> cathy : spouse
 cathy -> hareton : spouse
+hareton -> cathy : spouse
 
 @orientation(selector=parentOf, directions=[below])
-@orientation(selector=spouse, directions=[directlyRight])
+@aligned(selector=spouse, direction=horizontal)
 @orientation(selector=adopts, directions=[below])
 </div>
 
@@ -164,7 +202,7 @@ The notation is small. `catherine`, `edgar`, `heathcliff`, and the rest are atom
 
 ```text
 @orientation(selector=parentOf, directions=[below])
-@orientation(selector=spouse, directions=[right])
+@aligned(selector=spouse, direction=horizontal)
 ```
 
 Those are not hints about node IDs. They are claims about relations. *Wherever* `parentOf` holds, the parent sits above the child; *wherever* `spouse` holds, the partners sit side by side. Generations become rows not because you placed anyone in a row, but because `parentOf` always points down. The shape is a consequence of what the relations mean.
@@ -189,7 +227,9 @@ Brontë gives Catherine Earnshaw a daughter and names her Catherine too; the dou
 
 <div class="spytial-graph-editable" data-height="540">
 mr_e[Mr. Earnshaw]:::Earnshaw -> mrs_e[Mrs. Earnshaw]:::Earnshaw : spouse
+mrs_e -> mr_e : spouse
 mr_l[Mr. Linton]:::Linton -> mrs_l[Mrs. Linton]:::Linton : spouse
+mrs_l -> mr_l : spouse
 
 mr_e -> hindley[Hindley]:::Earnshaw : parentOf
 mrs_e -> hindley : parentOf
@@ -203,8 +243,11 @@ mr_l -> isabella[Isabella]:::Linton : parentOf
 mrs_l -> isabella : parentOf
 
 hindley -> frances[Frances]:::Earnshaw : spouse
+frances -> hindley : spouse
 catherine -> edgar : spouse
+edgar -> catherine : spouse
 heathcliff -> isabella : spouse
+isabella -> heathcliff : spouse
 
 hindley -> hareton[Hareton]:::Earnshaw : parentOf
 frances -> hareton : parentOf
@@ -216,10 +259,12 @@ isabella -> linton : parentOf
 cathy -> catherine : parentOf
 
 cathy -> linton : spouse
+linton -> cathy : spouse
 cathy -> hareton : spouse
+hareton -> cathy : spouse
 
 @orientation(selector=parentOf, directions=[below])
-@orientation(selector=spouse, directions=[right])
+@aligned(selector=spouse, direction=horizontal)
 @orientation(selector=adopts, directions=[below])
 </div>
 
@@ -227,21 +272,44 @@ In Mermaid this is one more arrow, and the picture absorbs it without comment. H
 
 That report is the same machinery run the other way. A solver that can find a layout satisfying your constraints can also tell you when none exists. I wouldn't sell it as a feature; it's a consequence. But it is the kind of consequence that shows the representation is doing real work. A drawing you can always produce tells you little. A layout that can fail to exist was constrained by something you actually said.
 
+<!--
 ## What it is, and what it isn't
 
 Spytial Graph is a browser-based notation for graph diagrams: you declare atoms, sorts, relations, and spatial constraints, and a solver lays them out. It borrows its spatial constraints from Spytial.
 
 It is deliberately narrower than Mermaid, and it should be. Mermaid is broad on purpose — flowcharts, sequence diagrams, class diagrams, state diagrams, Gantt charts, and more. Spytial Graph is for the case where the diagram is a graph of domain objects whose arrangement *means* something: family trees, hash rings, dependency cycles, ownership graphs, service topologies, approval chains. When that is what you are drawing, the source should expose the objects, not the drawing of them.
 
-## Why start here
+ ## Why start here
 
 For graph diagrams that mean something, I would start here rather than with Mermaid — not because Mermaid is bad, but because once the diagram is already text, already in the browser, already part of the workflow, the next question is unavoidable: why should the source stop at drawing instructions?
 
 If the arrows mean something, the source should say what they mean. If generations are rows, that should be a constraint, not a coincidence of layout. If you edit the picture, the model should survive the edit. And if the facts cannot be arranged, the diagram should be able to say so.
 
-Mermaid made diagrams cheap enough to keep. Spytial Graph is an attempt to make graph diagrams say enough to be worth trusting.
+Mermaid made diagrams cheap enough to keep. Spytial Graph is an attempt to make graph diagrams say enough to be worth trusting. -->
 
 *The notation, source, and a playground are [on GitHub](https://github.com/sidprasad/spytial-graph).*
+
+<script>
+  document.querySelectorAll('[data-diagram-tabs]').forEach((tabs) => {
+    const buttons = Array.from(tabs.querySelectorAll('[data-tab-target]'));
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const activeId = button.dataset.tabTarget;
+
+        buttons.forEach((candidate) => {
+          const isActive = candidate === button;
+          candidate.classList.toggle('is-active', isActive);
+          candidate.setAttribute('aria-selected', String(isActive));
+        });
+
+        tabs.querySelectorAll('[role="tabpanel"]').forEach((panel) => {
+          panel.hidden = panel.id !== activeId;
+        });
+      });
+    });
+  });
+</script>
 
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
