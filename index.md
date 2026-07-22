@@ -26,7 +26,7 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
   <div class="currently-cards">
     <div class="currently-card">
       <span class="currently-card-name">Making diagrams as cheap as printf.</span>
-      <span class="currently-card-desc">Every time you inspect a value — at the REPL, in a debugger, in a print statement — you should have the <em>option</em> of seeing a diagram.</span>
+      <span class="currently-card-desc">Every time you inspect a value (at the REPL, in a debugger, in a print statement) you should have the <em>option</em> of seeing a diagram.</span>
       <span class="currently-card-links">
         <a href="https://blog.brownplt.org/2026/05/22/spytial.html" target="_blank" rel="noopener">Read the Spytial blog post →</a>
       </span>

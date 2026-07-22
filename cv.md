@@ -1,6 +1,6 @@
 ---
 layout: default
-title: CV
+title: "CV : Siddhartha Prasad"
 permalink: /cv/
 ---
 
@@ -16,8 +16,6 @@ permalink: /cv/
         <h1>{{ cv.name }}</h1>
         <p class="cv-contact">
           <a href="mailto:{{ cv.email }}">{{ cv.email }}</a>
-          <span aria-hidden="true">|</span>
-          <a href="{{ cv.website.url }}">{{ cv.website.label }}</a>
         </p>
       </div>
       <div class="cv-actions">
