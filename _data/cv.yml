@@ -86,15 +86,19 @@ teaching:
   - institution: Brown University
     courses:
       - years: 2022–2026
-        course: CSCI 1710 — Logic for Systems
+        code: CSCI 1710
+        course: Logic for Systems
       - years: "2025"
-        course: CSCI 1730 — Programming Languages
+        code: CSCI 1730
+        course: Programming Languages
   - institution: Tufts University
     courses:
       - years: 2015–2016
-        course: CS 105 — Programming Languages
+        code: CS 105
+        course: Programming Languages
       - years: "2014"
-        course: CS 160 — Algorithms
+        code: CS 160
+        course: Algorithms
 
 service:
   - years: "2026"

@@ -195,8 +195,7 @@
   publication(entry)
 }
 
-#section-title[Teaching]
-#strong[Teaching Assistant]
+#section-title[Teaching Assistant]
 #for institution in cv.teaching {
   v(8pt)
   entry-title(institution.institution)

@@ -88,8 +88,7 @@ permalink: /cv/
   </section>
 
   <section class="cv-section" aria-labelledby="cv-teaching">
-    <h2 id="cv-teaching">Teaching</h2>
-    <h3 class="cv-subheading">Teaching Assistant</h3>
+    <h2 id="cv-teaching">Teaching Assistant</h2>
     {% for institution in cv.teaching %}
       <div class="cv-employer cv-teaching-institution">
         <div class="cv-entry-heading cv-employer-heading">
