@@ -6,10 +6,12 @@ website:
 updated: June 2026
 updated_iso: 2026-06
 summary: >-
-  I am a researcher focused on helping people write programs that behave as
-  they intend. My research interests are informed by my time as an engineer: I
-  have written code that doesn't do what I want it to, and I want to spare
-  everyone else the indignity.
+  I am a programming languages researcher interested in the human aspects of
+  programming and formal reasoning. I study not only how PL and FM techniques
+  can solve problems programmers face, but also how programmers’ experiences
+  can inform the design of our languages, logics, and software tools. My
+  research is informed by my time as an engineer: I have written code that
+  doesn’t do what I want it to, and I want to spare everyone else the indignity.
 
 education:
   - institution: Brown University

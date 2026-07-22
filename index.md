@@ -7,9 +7,9 @@ title: Siddhartha Prasad
 <img src="/assets/img/me.jpg" alt="Siddhartha Prasad" class="home-photo" />
 
 
-I am a PhD student in Computer Science at Brown, advised by [Shriram Krishnamurthi](https://cs.brown.edu/~sk/). I work in programming languages and formal methods, with a focus on the gap between what people mean and what systems do.
+I am a PhD student in Computer Science at Brown, advised by [Shriram Krishnamurthi](https://cs.brown.edu/~sk/). I work in programming languages and formal methods, with a focus on the gap between what people mean and what computational systems do.
 
-My research looks at different ways of briding this gap: using formal techniques to support informal inspection, understanding informal misconceptions of formal models, and elucidating specifications through examples and interaction.
+I am interested not only in how PL and FM techniques can solve problems programmers face, but also how programmers’ experiences can inform the design of our languages, logics, and software tools. My work includes using formal techniques to support informal program inspection, understanding people’s misconceptions of formal models, and specification elucidation through examples and interaction.
 
 Previously, I was a software engineer at Microsoft, where I worked both on Windows[^1] and Azure[^2]. My research interests are informed by my time as an engineer. I have written code that doesn't do what I want it to, and I want to spare everyone else the indignity.
 
