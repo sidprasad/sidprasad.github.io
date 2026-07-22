@@ -7,6 +7,9 @@ permalink: /cv/
 {% assign cv = site.data.cv %}
 
 <article class="cv-page">
+  <div class="cv-download-rail">
+    <a href="{{ '/cv.pdf' | relative_url }}" class="cv-download" download>Download as PDF</a>
+  </div>
   <header class="cv-document-header">
     <div class="cv-heading-row">
       <div>
@@ -19,7 +22,6 @@ permalink: /cv/
       </div>
       <div class="cv-actions">
         <span class="cv-updated">Updated <time datetime="{{ cv.updated_iso }}">{{ cv.updated }}</time></span>
-        <a href="{{ '/cv.pdf' | relative_url }}" class="cv-download" download>Download PDF</a>
       </div>
     </div>
     <p class="cv-summary">{{ cv.summary }}</p>
