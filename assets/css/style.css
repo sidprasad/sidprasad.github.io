@@ -207,6 +207,19 @@ header nav a.nav-tab.active {
   border-bottom-color: #222;
 }
 
+.nav-external {
+  display: inline-block;
+  margin-left: 0.18em;
+  color: #888;
+  font-size: 0.68em;
+  line-height: 1;
+  transform: translateY(-0.35em);
+}
+
+header nav a.nav-tab:hover .nav-external {
+  color: currentColor;
+}
+
 @media (max-width: 600px) {
   header nav {
     gap: 16px;
