@@ -77,10 +77,10 @@ permalink: /cv/
           {% assign author_list = publication.authors | replace: cv.name, highlighted_name %}
           <li class="cv-publication">
             <h3>
-              {% if publication.paper_url %}<a href="{% if publication.paper_url contains '://' %}{{ publication.paper_url }}{% else %}{{ '/' | append: publication.paper_url | relative_url }}{% endif %}">{{ publication.title }}</a>{% else %}{{ publication.title }}{% endif %}
+              {% if publication.paper_url %}<a href="{% if publication.paper_url contains '://' %}{{ publication.paper_url }}{% else %}{{ '/' | append: publication.paper_url | relative_url }}{% endif %}">{{ publication.title }}</a>{% else %}{{ publication.title }}{% endif %}, <strong class="cv-venue">{{ publication.venue_short }} {{ publication.year }}</strong>
             </h3>
+            {% if publication.awards %}<p class="cv-award">[{{ publication.awards | join: "; " | replace: " Award", "" }}]</p>{% endif %}
             <p class="cv-authors">{{ author_list }}</p>
-            <p class="cv-venue"><em>{{ publication.venue_short }} {{ publication.year }}</em>{% if publication.awards %} <span class="cv-award">[{{ publication.awards | join: "; " | replace: " Award", "" }}]</span>{% endif %}</p>
           </li>
         {% endif %}
       {% endfor %}
@@ -88,16 +88,16 @@ permalink: /cv/
   </section>
 
   <section class="cv-section" aria-labelledby="cv-teaching">
-    <h2 id="cv-teaching">Teaching Assistant</h2>
+    <h2 id="cv-teaching">Teaching</h2>
     {% for institution in cv.teaching %}
       <div class="cv-employer cv-teaching-institution">
         <div class="cv-entry-heading cv-employer-heading">
-          <h3>{{ institution.institution }}</h3>
+          <h3>Teaching Assistant, <strong>{{ institution.institution }}</strong></h3>
         </div>
         {% for course in institution.courses %}
           <div class="cv-entry cv-role">
             <div class="cv-role-heading">
-              <p><em>{{ course.course }}</em></p>
+              <p>{{ course.course }}</p>
               <span class="cv-dates">{{ course.years }}</span>
             </div>
           </div>

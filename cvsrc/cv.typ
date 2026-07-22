@@ -126,15 +126,16 @@
   let awards = entry.at("awards", default: ())
   block(above: 13pt, breakable: false)[
     #heading(level: 2, outlined: false, bookmarked: false)[
-      #entry.title, #emph(entry.venue_short + " " + str(entry.year))
-    ] \
-    #authors(entry.authors)
+      #entry.title, #strong(entry.venue_short + " " + str(entry.year))
+    ]
     #if awards.len() > 0 {
       linebreak()
       text(fill: accent, weight: "bold")[
         [#awards.map(award => award.replace(" Award", "")).join("; ")]
       ]
     }
+    #linebreak()
+    #authors(entry.authors)
   ]
 }
 
@@ -186,28 +187,33 @@
 
 #pagebreak()
 #section-title[Publications]
-#for entry in publications.slice(0, 9) {
+#for entry in publications {
   publication(entry)
 }
 
-#pagebreak()
-#for entry in publications.slice(9) {
-  publication(entry)
-}
-
-#section-title[Teaching Assistant]
+#section-title[Teaching]
 #for institution in cv.teaching {
-  v(8pt)
-  entry-title(institution.institution)
-  for course in institution.courses {
-    v(3pt)
-    grid(
-      columns: (1fr, auto),
-      column-gutter: 1em,
-      emph(course.course),
-      emph(course.years),
+  block(above: 8pt, breakable: false)[
+    #heading(level: 2, outlined: false, bookmarked: false)[
+      Teaching Assistant, #strong(institution.institution)
+    ]
+    #v(-1pt)
+    #pad(
+      left: 0.75em,
+      stack(
+        dir: ttb,
+        spacing: 3pt,
+        ..institution.courses.map(course =>
+        grid(
+          columns: (1fr, auto),
+          column-gutter: 1em,
+          course.course,
+          text(fill: muted, course.years),
+        )
+        ),
+      ),
     )
-  }
+  ]
 }
 
 #section-title[Service]
