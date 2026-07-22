@@ -4,15 +4,130 @@ title: CV
 permalink: /cv/
 ---
 
-<div class="cv-page">
-  <div class="cv-bar">
-    <h1 class="cv-bar-title">Curriculum Vitae</h1>
-    <a href="/cv.pdf" class="cv-download" download>⤓ Download PDF</a>
-  </div>
-  <object class="cv-embed" data="/cv.pdf" type="application/pdf">
-    <div class="cv-fallback">
-      <p>Your browser can't display the embedded PDF.</p>
-      <p><a href="/cv.pdf">Open the CV in a new tab</a> or use the download link above.</p>
+{% assign cv = site.data.cv %}
+
+<article class="cv-page">
+  <header class="cv-document-header">
+    <div class="cv-heading-row">
+      <div>
+        <h1>{{ cv.name }}</h1>
+        <p class="cv-contact">
+          <a href="mailto:{{ cv.email }}">{{ cv.email }}</a>
+          <span aria-hidden="true">|</span>
+          <a href="{{ cv.website.url }}">{{ cv.website.label }}</a>
+        </p>
+      </div>
+      <div class="cv-actions">
+        <span class="cv-updated">Updated <time datetime="{{ cv.updated_iso }}">{{ cv.updated }}</time></span>
+        <a href="{{ '/cv.pdf' | relative_url }}" class="cv-download" download>Download PDF</a>
+      </div>
     </div>
-  </object>
-</div>
+    <p class="cv-summary">{{ cv.summary }}</p>
+  </header>
+
+  <section class="cv-section" aria-labelledby="cv-education">
+    <h2 id="cv-education">Education</h2>
+    {% for entry in cv.education %}
+      <div class="cv-entry cv-education-entry">
+        <div class="cv-entry-heading">
+          <h3>{{ entry.institution }}</h3>
+          <span class="cv-location">{{ entry.location }}</span>
+          <span class="cv-dates">{{ entry.dates }}</span>
+        </div>
+        <p>{{ entry.degree }}</p>
+        {% if entry.notes %}<p class="cv-note">{{ entry.notes }}</p>{% endif %}
+      </div>
+    {% endfor %}
+  </section>
+
+  <section class="cv-section" aria-labelledby="cv-employment">
+    <h2 id="cv-employment">Employment</h2>
+    {% for employer in cv.employment %}
+      <div class="cv-employer">
+        <div class="cv-entry-heading cv-employer-heading">
+          <h3>{{ employer.organization }}</h3>
+          <span class="cv-location">{{ employer.location }}</span>
+        </div>
+        {% for role in employer.roles %}
+          <div class="cv-entry cv-role">
+            <div class="cv-role-heading">
+              <p><em>{{ role.title }}{% if role.team %} <span aria-hidden="true">·</span> {{ role.team }}{% endif %}</em></p>
+              <span class="cv-dates">{{ role.dates }}</span>
+            </div>
+            {% if role.description %}<p>{{ role.description }}</p>{% endif %}
+            {% if role.bullets %}
+              <ul>
+                {% for item in role.bullets %}<li>{{ item }}</li>{% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </section>
+
+  <section class="cv-section" aria-labelledby="cv-publications">
+    <h2 id="cv-publications">Publications</h2>
+    <ol class="cv-publications">
+      {% for title in cv.publications %}
+        {% assign matches = site.data.publications | where: "title", title %}
+        {% assign publication = matches | first %}
+        {% if publication %}
+          {% capture highlighted_name %}<em class="cv-me">{{ cv.name }}</em>{% endcapture %}
+          {% assign author_list = publication.authors | replace: cv.name, highlighted_name %}
+          <li class="cv-publication">
+            <h3>
+              {% if publication.paper_url %}<a href="{% if publication.paper_url contains '://' %}{{ publication.paper_url }}{% else %}{{ '/' | append: publication.paper_url | relative_url }}{% endif %}">{{ publication.title }}</a>{% else %}{{ publication.title }}{% endif %}
+            </h3>
+            <p class="cv-authors">{{ author_list }}</p>
+            <p class="cv-venue"><em>{{ publication.venue_short }} {{ publication.year }}</em>{% if publication.awards %} <span class="cv-award">[{{ publication.awards | join: "; " | replace: " Award", "" }}]</span>{% endif %}</p>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section class="cv-section" aria-labelledby="cv-teaching">
+    <h2 id="cv-teaching">Teaching</h2>
+    <h3 class="cv-subheading">Teaching Assistant</h3>
+    {% for institution in cv.teaching %}
+      <div class="cv-employer cv-teaching-institution">
+        <div class="cv-entry-heading cv-employer-heading">
+          <h3>{{ institution.institution }}</h3>
+        </div>
+        {% for course in institution.courses %}
+          <div class="cv-entry cv-role">
+            <div class="cv-role-heading">
+              <p><em>{{ course.course }}</em></p>
+              <span class="cv-dates">{{ course.years }}</span>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </section>
+
+  <section class="cv-section" aria-labelledby="cv-service">
+    <h2 id="cv-service">Service</h2>
+    <div class="cv-rows">
+      {% for entry in cv.service %}
+        <div class="cv-row cv-row-two-column">
+          <span class="cv-row-date">{{ entry.years }}</span>
+          <span>{{ entry.description }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="cv-section" aria-labelledby="cv-affiliations">
+    <h2 id="cv-affiliations">Affiliations &amp; Certifications</h2>
+    <div class="cv-rows">
+      {% for entry in cv.affiliations %}
+        <div class="cv-row cv-row-affiliation">
+          <span>{{ entry.description }}</span>
+          <span class="cv-row-institution">{{ entry.institution }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+</article>

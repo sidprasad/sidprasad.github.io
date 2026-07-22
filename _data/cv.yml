@@ -1,0 +1,107 @@
+name: Siddhartha Prasad
+email: siddhartha.a.prasad@gmail.com
+website:
+  label: siddharthaprasad.com
+  url: https://siddharthaprasad.com
+updated: June 2026
+updated_iso: 2026-06
+summary: >-
+  I am a researcher focused on helping people write programs that behave as
+  they intend. My research interests are informed by my time as an engineer: I
+  have written code that doesn't do what I want it to, and I want to spare
+  everyone else the indignity.
+
+education:
+  - institution: Brown University
+    location: Providence, RI
+    degree: Ph.D. in Computer Science
+    dates: Jan 2022 – present
+  - institution: Tufts University
+    location: Medford, MA
+    degree: B.S. in Computer Science and Mathematics
+    dates: May 2016
+    notes: Summa cum Laude; High Thesis Honors
+
+employment:
+  - organization: Apple
+    location: Seattle, WA
+    roles:
+      - title: Research Intern
+        team: Human-Centered Machine Learning
+        dates: May – Sept 2023
+        description: >-
+          Explored how AI and formal-methods techniques can support early
+          childhood education.
+  - organization: Microsoft
+    location: Redmond, WA
+    roles:
+      - title: Software Engineer II
+        team: Applied AI
+        dates: April 2018 – Sept 2021
+        bullets:
+          - >-
+            Developer on the Azure Cognitive Services team, which lets
+            developers embed AI into apps, bots, and websites.
+          - >-
+            Built a containerized framework that allowed AI models to be run
+            portably across operating systems and architectures.
+      - title: Software Engineer
+        team: Developer Ecosystem Platform
+        dates: Aug 2016 – March 2018
+        bullets:
+          - >-
+            Developed APIs and features for XAML, a UI language used to build
+            Universal Windows apps.
+          - >-
+            Designed XAML APIs for input modalities (keyboard, gamepad, ink),
+            accessibility, and cross-platform language support.
+      - title: Software Engineering Intern
+        team: Developer Ecosystem
+        dates: May – Aug 2015
+  - organization: INRIA
+    location: Saclay, France
+    roles:
+      - title: Research Intern
+        team: Parsifal
+        dates: June – July 2014
+        description: Research on correctness certificates for first-order term rewriting.
+
+# Publications remain canonical in _data/publications.yml. This list controls
+# which publications appear in the CV and in what order.
+publications:
+  - Diagramming Program Values by Spatial Refinement
+  - Meaningful Human-in-the-Loop Checking of GenAI Synthesis for Restricted Languages
+  - "hS: Speculative Script Reordering at Subprocess Granularity"
+  - A Misconception-Driven Adaptive Tutor for Linear Temporal Logic
+  - "Lightweight Diagramming for Lightweight Formal Methods: A Grounded Language Design"
+  - Misconceptions in Finite-Trace and Infinite-Trace Linear Temporal Logic
+  - "ContextQ: Generated Questions to Support Meaningful Parent-Child Dialogue While Co-Reading"
+  - "Forge: A Tool and Language for Teaching Formal Methods"
+  - Conceptual Mutation Testing for Student Programming Misconceptions
+  - "Generating Programs Trivially: Student Use of Large Language Models"
+  - "Making Hay from Wheats: A Classsourcing Method to Identify Misconceptions"
+  - Large-Scale Intelligent Microservices
+
+teaching:
+  - institution: Brown University
+    courses:
+      - years: 2022–2026
+        course: CSCI 1710 — Logic for Systems
+      - years: "2025"
+        course: CSCI 1730 — Programming Languages
+  - institution: Tufts University
+    courses:
+      - years: 2015–2016
+        course: CS 105 — Programming Languages
+      - years: "2014"
+        course: CS 160 — Algorithms
+
+service:
+  - years: "2026"
+    description: Artifact Reviewer, The Art, Science, and Engineering of Programming
+
+affiliations:
+  - description: Sheridan Teaching Seminar Certificate
+    institution: Brown University
+  - description: Tau Beta Pi, The Engineering Honor Society
+    institution: Tufts University

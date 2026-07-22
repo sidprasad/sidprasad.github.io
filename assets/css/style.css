@@ -634,24 +634,50 @@ sup, a.footnote {
   }
 }
 
-/* CV page — embedded PDF with a download bar, constrained to text width */
+/* ---------- Curriculum Vitae ---------- */
 .cv-page {
   max-width: 720px;
   margin: 0 auto;
+  color: #242424;
 }
 
-.cv-bar {
+.cv-document-header {
+  margin-bottom: 2.2rem;
+}
+
+.cv-heading-row {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 1em;
-  flex-wrap: wrap;
-  margin-bottom: 0.8em;
+  align-items: flex-start;
+  gap: 2rem;
 }
 
-.cv-bar-title {
+.cv-heading-row h1 {
   margin: 0;
-  font-size: 1.4em;
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.cv-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0.35rem 0 0;
+  font-size: 0.95rem;
+}
+
+.cv-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.55rem;
+  flex: none;
+}
+
+.cv-updated {
+  color: #6b6b6b;
+  font-size: 0.85rem;
+  font-style: italic;
 }
 
 .cv-download {
@@ -666,24 +692,214 @@ sup, a.footnote {
   white-space: nowrap;
 }
 
+.cv-download::before {
+  content: "\2193";
+  margin-right: 0.4em;
+}
+
 .cv-download:hover {
   background: #0a52c0;
   color: #fff;
 }
 
-.cv-embed {
-  display: block;
-  width: 100%;
-  height: 85vh;
-  min-height: 500px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+.cv-summary {
+  max-width: 67ch;
+  margin: 1.25rem 0 0;
+  font-size: 1.02rem;
+  line-height: 1.55;
 }
 
-.cv-fallback {
-  padding: 2em;
-  text-align: center;
-  color: #555;
+.cv-section {
+  margin: 0 0 2rem;
+}
+
+.cv-section > h2 {
+  margin: 0 0 1rem;
+  padding-bottom: 0.28rem;
+  border-bottom: 1px solid #b8b0a8;
+  color: #7b1f1f;
+  font-size: 1rem;
+  font-variant: small-caps;
+  letter-spacing: 0.045em;
+}
+
+.cv-entry,
+.cv-employer,
+.cv-publication {
+  margin-bottom: 1rem;
+}
+
+.cv-entry-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: baseline;
+  gap: 0.35rem 1.2rem;
+}
+
+.cv-entry-heading h3,
+.cv-publication h3,
+.cv-subheading {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.cv-entry p,
+.cv-publication p,
+.cv-role-heading p {
+  margin: 0.15rem 0;
+}
+
+.cv-location,
+.cv-dates,
+.cv-note,
+.cv-row-date,
+.cv-row-institution {
+  color: #6b6b6b;
+}
+
+.cv-dates {
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.cv-note {
+  font-style: italic;
+}
+
+.cv-employer-heading {
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin-bottom: 0.15rem;
+}
+
+.cv-role {
+  margin-left: 0.75rem;
+}
+
+.cv-role-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.cv-role ul {
+  margin: 0.35rem 0 0.3rem;
+  padding-left: 1.35rem;
+}
+
+.cv-role li + li {
+  margin-top: 0.2rem;
+}
+
+.cv-publications {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cv-publication {
+  margin-bottom: 1.1rem;
+}
+
+.cv-publication h3 a {
+  color: inherit;
+  text-decoration-color: #c8c8c8;
+}
+
+.cv-publication h3 a:hover {
+  color: #084298;
+  text-decoration-color: currentColor;
+}
+
+.cv-authors,
+.cv-venue {
+  line-height: 1.42;
+}
+
+.cv-authors {
+  color: #6b6b6b;
+}
+
+.cv-me,
+.cv-award {
+  color: #7b1f1f;
+}
+
+.cv-award {
+  font-weight: 700;
+}
+
+.cv-subheading {
+  margin-bottom: 0.45rem;
+}
+
+.cv-rows {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.cv-row {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr) auto;
+  gap: 0.5rem 1.25rem;
+  align-items: baseline;
+}
+
+.cv-row-two-column {
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+}
+
+.cv-row-affiliation {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+@media (max-width: 650px) {
+  .cv-heading-row {
+    display: block;
+  }
+
+  .cv-actions {
+    align-items: flex-start;
+    margin-top: 1rem;
+  }
+
+  .cv-entry-heading,
+  .cv-employer-heading,
+  .cv-role-heading {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .cv-education-entry .cv-entry-heading .cv-dates {
+    grid-column: 1 / -1;
+  }
+
+  .cv-row,
+  .cv-row-two-column,
+  .cv-row-affiliation {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .cv-row {
+    padding-bottom: 0.45rem;
+  }
+
+  .cv-row-institution {
+    font-size: 0.92rem;
+  }
+}
+
+@media print {
+  .cv-actions,
+  body > header,
+  body > footer {
+    display: none;
+  }
+
+  .cv-page {
+    max-width: none;
+  }
 }
 
 /* Job-market banner — clears the floated headshot, high-visibility */
