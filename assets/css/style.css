@@ -743,7 +743,7 @@ sup, a.footnote {
   outline-offset: 3px;
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1280px) {
   .cv-download-rail {
     position: sticky;
     top: 1.5rem;
