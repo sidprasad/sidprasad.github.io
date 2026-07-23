@@ -92,9 +92,10 @@ employment:
       - title: Research Intern
         team: Parsifal
         dates: Jun – Jul 2014
-        description: >-
-          Research on correctness certificates for first-order term-rewriting
-          systems.
+        bullets:
+          - >-
+            Researched correctness certificates for first-order term-rewriting
+            systems.
 
 # Publications remain canonical in _data/publications.yml. This list controls
 # which publications appear in the CV and in what order.
