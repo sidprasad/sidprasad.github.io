@@ -3,7 +3,7 @@ email: siddhartha.a.prasad@gmail.com
 website:
   label: siddharthaprasad.com
   url: https://siddharthaprasad.com
-updated: July 2026
+updated: Jul 2026
 updated_iso: 2026-07
 summary: >-
   I am a programming languages researcher interested in the human aspects of
@@ -43,19 +43,21 @@ employment:
     roles:
       - title: Research Intern
         team: Human-Centered Machine Learning
-        dates: May – Sept 2023
-        description: >-
-          Designed a formal-methods-inspired technique that prompts an LLM to
-          evaluate candidate outputs against task-specific quality criteria and
-          iteratively refine them without fine-tuning. The technique drives
-          ContextQ, a system that generates questions to support parent-child
-          dialogue during shared reading.
+        dates: May – Sep 2023
+        bullets:
+          - >-
+            Designed a formal-methods-inspired technique that prompts an LLM to
+            evaluate candidate outputs against task-specific quality criteria
+            and iteratively refine them without fine-tuning.
+          - >-
+            Applied the technique in ContextQ, a system that generates questions
+            to support parent-child dialogue during shared reading.
   - organization: Microsoft
     location: Redmond, WA
     roles:
       - title: Software Engineer II
         team: Applied AI
-        dates: April 2018 – Sept 2021
+        dates: Apr 2018 – Sep 2021
         bullets:
           - >-
             Built the container platform for Azure Cognitive Services,
@@ -71,7 +73,7 @@ employment:
             including on-call responsibility.
       - title: Software Engineer
         team: Developer Ecosystem Platform
-        dates: Aug 2016 – March 2018
+        dates: Aug 2016 – Mar 2018
         bullets:
           - >-
             Designed and shipped XAML input APIs across Windows 10, Windows
@@ -89,7 +91,7 @@ employment:
     roles:
       - title: Research Intern
         team: Parsifal
-        dates: June – July 2014
+        dates: Jun – Jul 2014
         description: >-
           Research on correctness certificates for first-order term-rewriting
           systems.

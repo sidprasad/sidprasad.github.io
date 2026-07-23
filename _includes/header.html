@@ -1,12 +1,12 @@
 <header>
-  <nav>
-    <a href="/" class="nav-tab{% if page.url == '/' %} active{% endif %}">Home</a>
-    <a href="/publications" class="nav-tab{% if page.url contains '/publications' %} active{% endif %}">Publications</a>
-    <a href="/teaching" class="nav-tab{% if page.url contains '/teaching' %} active{% endif %}">Teaching</a>
-    <a href="/mentorship" class="nav-tab{% if page.url contains '/mentorship' %} active{% endif %}">Mentorship</a>
-    <a href="/cv/" class="nav-tab{% if page.url contains '/cv' %} active{% endif %}">CV</a>
-    <a href="https://github.com/sidprasad" target="_blank" rel="external noopener" title="GitHub Profile" class="nav-tab nav-icon">
-      <i class="fab fa-github" aria-hidden="true"></i><span class="nav-external" aria-hidden="true">↗</span><span class="sr-only">GitHub</span>
+  <nav aria-label="Primary navigation">
+    <a href="/" class="nav-tab{% if page.url == '/' %} active{% endif %}"{% if page.url == '/' %} aria-current="page"{% endif %}>Home</a>
+    <a href="/publications" class="nav-tab{% if page.url contains '/publications' %} active{% endif %}"{% if page.url contains '/publications' %} aria-current="page"{% endif %}>Publications</a>
+    <a href="/teaching" class="nav-tab{% if page.url contains '/teaching' %} active{% endif %}"{% if page.url contains '/teaching' %} aria-current="page"{% endif %}>Teaching</a>
+    <a href="/mentorship" class="nav-tab{% if page.url contains '/mentorship' %} active{% endif %}"{% if page.url contains '/mentorship' %} aria-current="page"{% endif %}>Mentorship</a>
+    <a href="/cv/" class="nav-tab{% if page.url contains '/cv' %} active{% endif %}"{% if page.url contains '/cv' %} aria-current="page"{% endif %}>CV</a>
+    <a href="https://github.com/sidprasad" target="_blank" rel="external noopener" aria-label="GitHub profile (opens in a new tab)" class="nav-tab nav-icon">
+      <span>GitHub</span><span class="nav-external" aria-hidden="true">↗</span>
     </a>
     <!-- <a href="https://scholar.google.com/citations?user=sjPrwIYAAAAJ&hl=en" target="_blank" title="Google Scholar Profile">
       <i class="fas fa-graduation-cap" aria-hidden="true"></i> <span class="sr-only">Google Scholar</span>

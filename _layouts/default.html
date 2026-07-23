@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,8 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&display=swap" rel="stylesheet">
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     {% include header.html %}
-    <main>
+    <main id="main-content" tabindex="-1">
       {{ content }}
     </main>
     {% include footer.html %}
@@ -46,11 +47,10 @@
         counter += 1;
 
         // Replace the <sup>...<a>n</a></sup> with an interactive marker
-        var ref = document.createElement('sup');
+        var ref = document.createElement('button');
+        ref.type = 'button';
         ref.className = 'sidenote-ref';
         ref.textContent = counter;
-        ref.setAttribute('role', 'button');
-        ref.setAttribute('tabindex', '0');
         ref.setAttribute('aria-expanded', 'false');
         ref.setAttribute('aria-label', 'Show note ' + counter);
         sup.parentNode.replaceChild(ref, sup);
@@ -58,43 +58,59 @@
         // Insert the sidenote after the ref
         var note = document.createElement('span');
         note.className = 'sidenote';
+        note.id = 'sidenote-' + counter;
+        note.setAttribute('role', 'note');
+        ref.setAttribute('aria-controls', note.id);
         note.innerHTML =
           '<span class="sidenote-num">' + counter + '</span>' + html +
-          '<button type="button" class="sidenote-close" aria-label="Close note">×</button>';
+          '<button type="button" class="sidenote-close" aria-label="Close note ' + counter + '">×</button>';
         ref.parentNode.insertBefore(note, ref.nextSibling);
 
         pairs.push({ ref: ref, note: note });
       });
 
-      function closeAll() {
-        pairs.forEach(function (p) {
-          p.note.classList.remove('is-open');
-          p.ref.classList.remove('is-open');
-          p.ref.setAttribute('aria-expanded', 'false');
-        });
+      function close(pair) {
+        pair.note.classList.remove('is-open');
+        pair.note.classList.add('is-closed');
+        pair.ref.classList.remove('is-open');
+        pair.ref.setAttribute('aria-expanded', 'false');
+        pair.ref.setAttribute('aria-label', 'Show note ' + pair.ref.textContent);
       }
 
       function open(pair) {
-        closeAll();
+        if (compactNotes.matches) pairs.forEach(close);
+        pair.note.classList.remove('is-closed');
         pair.note.classList.add('is-open');
         pair.ref.classList.add('is-open');
         pair.ref.setAttribute('aria-expanded', 'true');
+        pair.ref.setAttribute('aria-label', 'Hide note ' + pair.ref.textContent);
+      }
+
+      function closeAll() {
+        pairs.forEach(close);
+      }
+
+      var compactNotes = window.matchMedia('(max-width: 1000px)');
+
+      function syncNotesToViewport() {
+        if (compactNotes.matches) {
+          closeAll();
+        } else {
+          pairs.forEach(open);
+        }
       }
 
       pairs.forEach(function (pair) {
         function toggle(e) {
           e.preventDefault();
           e.stopPropagation();
-          if (pair.note.classList.contains('is-open')) {
-            closeAll();
+          if (pair.ref.getAttribute('aria-expanded') === 'true') {
+            close(pair);
           } else {
             open(pair);
           }
         }
         pair.ref.addEventListener('click', toggle);
-        pair.ref.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter' || e.key === ' ') toggle(e);
-        });
         // Clicks inside the note shouldn't close it
         pair.note.addEventListener('click', function (e) { e.stopPropagation(); });
         var closeBtn = pair.note.querySelector('.sidenote-close');
@@ -102,15 +118,20 @@
           closeBtn.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
-            closeAll();
+            close(pair);
+            pair.ref.focus();
           });
         }
       });
 
-      document.addEventListener('click', closeAll);
+      document.addEventListener('click', function () {
+        if (compactNotes.matches) closeAll();
+      });
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closeAll();
       });
+      compactNotes.addEventListener('change', syncNotesToViewport);
+      syncNotesToViewport();
 
       // Mark the body so the bottom footnotes block can be hidden via CSS
       document.body.classList.add('has-sidenotes');
@@ -145,10 +166,12 @@
           }
 
           prev.addEventListener('click', function () {
-            track.scrollBy({ left: -step(), behavior: 'smooth' });
+            var behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+            track.scrollBy({ left: -step(), behavior: behavior });
           });
           next.addEventListener('click', function () {
-            track.scrollBy({ left: step(), behavior: 'smooth' });
+            var behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+            track.scrollBy({ left: step(), behavior: behavior });
           });
           track.addEventListener('scroll', update, { passive: true });
           window.addEventListener('resize', update);

@@ -5,11 +5,13 @@ title: Publications
 
 <div class="publications-container">
 
+<h1>Publications</h1>
+
 {% assign grouped_pubs = site.data.publications | group_by: "year" | sort: "name" | reverse %}
 
 {% for group in grouped_pubs %}
   <div class="publication-year-section">
-    <div class="publication-year-sticky">{{ group.name }}</div>
+    <h2 class="publication-year-sticky">{{ group.name }}</h2>
 
     <div class="publication-list">
       {% for pub in group.items %}

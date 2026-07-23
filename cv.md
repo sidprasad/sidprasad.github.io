@@ -9,8 +9,8 @@ permalink: /cv/
 <article class="cv-page">
   <div class="cv-download-rail">
     <div class="cv-download-stack">
-      <a href="{{ '/cv.pdf' | relative_url }}" class="cv-download" download="cv-siddhartha-prasad.pdf">Academic CV</a>
-      <a href="{{ '/resume.pdf' | relative_url }}" class="cv-download" download="resume-siddhartha-prasad.pdf">Resume</a>
+      <a href="{{ '/cv.pdf' | relative_url }}" class="cv-download" download="cv-siddhartha-prasad.pdf" aria-label="Download Academic CV as a PDF"><span class="cv-download-icon" aria-hidden="true">↓</span>Academic CV</a>
+      <a href="{{ '/resume.pdf' | relative_url }}" class="cv-download" download="resume-siddhartha-prasad.pdf" aria-label="Download Resume as a PDF"><span class="cv-download-icon" aria-hidden="true">↓</span>Resume</a>
     </div>
   </div>
   <header class="cv-document-header">

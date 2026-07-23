@@ -1,5 +1,5 @@
 {% assign pub = include.pub %}
-<div class="publication-card">
+<article class="publication-card">
 
   <div class="publication-header">
     <h3 class="publication-title">
@@ -25,7 +25,7 @@
 
   <div class="publication-meta">
     {% if pub.venue_short %}
-      <span class="publication-venue" title="{{ pub.venue }}">{{ pub.venue_short }}</span>
+      <span class="publication-venue"><span aria-hidden="true">{{ pub.venue_short }}</span><span class="sr-only">{{ pub.venue }}</span></span>
     {% else %}
       <span class="publication-venue">{{ pub.venue }}</span>
     {% endif %}
@@ -35,11 +35,11 @@
 
   {% if pub.paper_url or pub.blog_url or pub.code_url or pub.tool_url %}
   <div class="publication-pills">
-    {% if pub.paper_url %}<a href="{{ pub.paper_url }}" class="pub-pill pub-pill-pdf">PDF</a>{% endif %}
-    {% if pub.blog_url %}<a href="{{ pub.blog_url }}" class="pub-pill pub-pill-blog">Blog</a>{% endif %}
-    {% if pub.code_url %}<a href="{{ pub.code_url }}" class="pub-pill pub-pill-code">Code</a>{% endif %}
-    {% if pub.tool_url %}<a href="{{ pub.tool_url }}" class="pub-pill pub-pill-tool">Tool</a>{% endif %}
+    {% if pub.paper_url %}<a href="{{ pub.paper_url }}" class="pub-pill pub-pill-pdf" aria-label="PDF for {{ pub.title }}">PDF</a>{% endif %}
+    {% if pub.blog_url %}<a href="{{ pub.blog_url }}" class="pub-pill pub-pill-blog" aria-label="Blog post about {{ pub.title }}">Blog</a>{% endif %}
+    {% if pub.code_url %}<a href="{{ pub.code_url }}" class="pub-pill pub-pill-code" aria-label="Code for {{ pub.title }}">Code</a>{% endif %}
+    {% if pub.tool_url %}<a href="{{ pub.tool_url }}" class="pub-pill pub-pill-tool" aria-label="Tool for {{ pub.title }}">Tool</a>{% endif %}
   </div>
   {% endif %}
 
-</div>
+</article>
