@@ -4,7 +4,9 @@ title: Siddhartha Prasad
 ---
 
 
-<img src="/assets/img/me.jpg" alt="Siddhartha Prasad" class="home-photo" />
+<h1 class="sr-only">Siddhartha Prasad</h1>
+
+<img src="/assets/img/me.jpg" alt="Siddhartha Prasad on Whidbey Island, Washington, in 2021" class="home-photo" />
 
 
 I am a PhD student in Computer Science at Brown, advised by [Shriram Krishnamurthi](https://cs.brown.edu/~sk/). I work in programming languages and formal methods, with a focus on the gap between what people mean and what computational systems do.
@@ -22,17 +24,17 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 
 
 <section class="currently">
-  <h3 class="currently-heading">Current Projects</h3>
+  <h2 class="currently-heading">Current Projects</h2>
   <div class="currently-cards">
     <div class="currently-card">
-      <span class="currently-card-name">Making diagrams as cheap as printf.</span>
+      <h3 class="currently-card-name">Making diagrams as cheap as printf.</h3>
       <span class="currently-card-desc">Every time you inspect a value (at the REPL, in a debugger, in a print statement) you should have the <em>option</em> of seeing a diagram.</span>
       <span class="currently-card-links">
         <a href="https://blog.brownplt.org/2026/05/22/spytial.html" target="_blank" rel="noopener">Read the Spytial blog post →</a>
       </span>
     </div>
     <div class="currently-card">
-      <span class="currently-card-name">Checking what GenAI wrote, meaningfully.</span>
+      <h3 class="currently-card-name">Checking what GenAI wrote, meaningfully.</h3>
       <span class="currently-card-desc">When an LLM generates a regex for you, how do you know it's the one you <em>actually</em> needed?</span>
       <span class="currently-card-links">
         <a href="https://blog.brownplt.org/2025/12/11/pick-regex.html" target="_blank" rel="noopener">Read the regex post →</a>
@@ -40,7 +42,7 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
       </span>
     </div>
     <div class="currently-card">
-      <span class="currently-card-name">Understanding how humans understand Temporal Logic.</span>
+      <h3 class="currently-card-name">Understanding how humans understand Temporal Logic.</h3>
       <span class="currently-card-desc">I think of human misconceptions
       as alternate semantics for the logic. </span>
       <span class="currently-card-links">
@@ -61,7 +63,7 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 {% for talk in site.data.talks %}
   {% assign sortkey = talk.date | date: "%Y%m%d" %}
   {% assign td = talk.date | date: "%Y-%m-%d" %}
-  {% capture card %}<article class="talk-card"><div class="talk-meta"><span class="talk-type talk-type-talk">Talk</span><span class="talk-date">{{ talk.date | date: "%b %-d, %Y" }}{% if td >= today %} <span class="talk-upcoming">Upcoming</span>{% endif %}</span></div><div class="talk-title">{{ talk.title }}</div><div class="talk-venue">@ {% if talk.venue_short %}{{ talk.venue_short }}{% else %}{{ talk.venue }}{% endif %}</div>{% if talk.video_url or talk.slides_url %}<div class="talk-links">{% if talk.video_url %}<a href="{{ talk.video_url }}" class="talk-link">Video</a>{% endif %}{% if talk.slides_url %}<a href="{{ talk.slides_url }}" class="talk-link">Slides</a>{% endif %}</div>{% endif %}</article>{% endcapture %}
+  {% capture card %}<article class="talk-card"><div class="talk-meta"><span class="talk-type talk-type-talk">Talk</span><span class="talk-date">{{ talk.date | date: "%b %-d, %Y" }}{% if td >= today %} <span class="talk-upcoming">Upcoming</span>{% endif %}</span></div><h3 class="talk-title">{{ talk.title }}</h3><div class="talk-venue">@ {% if talk.venue_short %}{{ talk.venue_short }}{% else %}{{ talk.venue }}{% endif %}</div>{% if talk.video_url or talk.slides_url %}<div class="talk-links">{% if talk.video_url %}<a href="{{ talk.video_url }}" class="talk-link">Video</a>{% endif %}{% if talk.slides_url %}<a href="{{ talk.slides_url }}" class="talk-link">Slides</a>{% endif %}</div>{% endif %}</article>{% endcapture %}
   {% capture entry %}{{ sortkey }}@@@{{ card }}{% endcapture %}
   {% assign one = entry | split: "###NEVER###" %}
   {% assign feed = feed | concat: one %}
@@ -70,7 +72,7 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 {% assign recent_pubs = site.data.publications | where_exp: "p", "p.year >= 2025 and p.hide_recent_news != true" %}
 {% for pub in recent_pubs %}
   {% assign sortkey = pub.year | append: "1215" %}
-  {% capture card %}<article class="talk-card"><div class="talk-meta"><span class="talk-type talk-type-paper">Paper</span>{% if pub.awards %}<span class="talk-type talk-type-award">Award</span>{% endif %}<span class="talk-date">{{ pub.year }}{% if pub.status %} <span class="talk-upcoming">{{ pub.status }}</span>{% endif %}</span></div><div class="talk-title">{% if pub.paper_url %}<a href="{{ pub.paper_url }}">{{ pub.title }}</a>{% else %}{{ pub.title }}{% endif %}</div><div class="talk-venue" title="{{ pub.venue }}">@ {% if pub.venue_short %}{{ pub.venue_short }}{% else %}{{ pub.venue }}{% endif %}</div>{% if pub.awards %}<div class="talk-awards">{% for award in pub.awards %}<span class="talk-award-badge">🏆 {{ award }}</span>{% endfor %}</div>{% endif %}{% if pub.paper_url or pub.blog_url %}<div class="talk-links">{% if pub.paper_url %}<a href="{{ pub.paper_url }}" class="talk-link">PDF</a>{% endif %}{% if pub.blog_url %}<a href="{{ pub.blog_url }}" class="talk-link">Blog</a>{% endif %}</div>{% endif %}</article>{% endcapture %}
+  {% capture card %}<article class="talk-card"><div class="talk-meta"><span class="talk-type talk-type-paper">Paper</span>{% if pub.awards %}<span class="talk-type talk-type-award">Award</span>{% endif %}<span class="talk-date">{{ pub.year }}{% if pub.status %} <span class="talk-upcoming">{{ pub.status }}</span>{% endif %}</span></div><h3 class="talk-title">{% if pub.paper_url %}<a href="{{ pub.paper_url }}">{{ pub.title }}</a>{% else %}{{ pub.title }}{% endif %}</h3><div class="talk-venue" title="{{ pub.venue }}">@ {% if pub.venue_short %}{{ pub.venue_short }}{% else %}{{ pub.venue }}{% endif %}</div>{% if pub.awards %}<div class="talk-awards">{% for award in pub.awards %}<span class="talk-award-badge">🏆 {{ award }}</span>{% endfor %}</div>{% endif %}{% if pub.paper_url or pub.blog_url %}<div class="talk-links">{% if pub.paper_url %}<a href="{{ pub.paper_url }}" class="talk-link">PDF</a>{% endif %}{% if pub.blog_url %}<a href="{{ pub.blog_url }}" class="talk-link">Blog</a>{% endif %}</div>{% endif %}</article>{% endcapture %}
   {% capture entry %}{{ sortkey }}@@@{{ card }}{% endcapture %}
   {% assign one = entry | split: "###NEVER###" %}
   {% assign feed = feed | concat: one %}
@@ -80,13 +82,13 @@ Previously, I was a software engineer at Microsoft, where I worked both on Windo
 
 {% if feed.size > 0 %}
 <section class="talks-widget">
-  <h3 class="talks-heading">Recent News</h3>
+  <h2 class="talks-heading">Recent News</h2>
   <div class="talks-carousel">
-    <button type="button" class="talks-nav prev" aria-label="Previous">‹</button>
-    <div class="talks-track">
+    <button type="button" class="talks-nav prev" aria-label="Previous news items">‹</button>
+    <div class="talks-track" role="region" aria-label="Recent news carousel" tabindex="0">
       {% for item in feed %}{% assign parts = item | split: "@@@" %}{{ parts[1] }}{% endfor %}
     </div>
-    <button type="button" class="talks-nav next" aria-label="Next">›</button>
+    <button type="button" class="talks-nav next" aria-label="Next news items">›</button>
   </div>
 </section>
 {% endif %}
