@@ -814,6 +814,7 @@ sup, a.footnote {
 
 .cv-location,
 .cv-dates,
+.cv-advisor,
 .cv-note,
 .cv-row-date,
 .cv-row-institution {
@@ -827,6 +828,10 @@ sup, a.footnote {
 
 .cv-note {
   font-style: italic;
+}
+
+.cv-detail-separator {
+  color: #b8b0a8;
 }
 
 .cv-employer-heading {

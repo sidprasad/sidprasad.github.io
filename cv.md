@@ -9,8 +9,8 @@ permalink: /cv/
 <article class="cv-page">
   <div class="cv-download-rail">
     <div class="cv-download-stack">
-      <a href="{{ '/cv.pdf' | relative_url }}" class="cv-download" download="cv-siddhartha-prasad.pdf">Download Full Academic CV as PDF</a>
-      <a href="{{ '/resume.pdf' | relative_url }}" class="cv-download" download="resume-siddhartha-prasad.pdf">Download Resume as PDF</a>
+      <a href="{{ '/cv.pdf' | relative_url }}" class="cv-download" download="cv-siddhartha-prasad.pdf">Academic CV</a>
+      <a href="{{ '/resume.pdf' | relative_url }}" class="cv-download" download="resume-siddhartha-prasad.pdf">Resume</a>
     </div>
   </div>
   <header class="cv-document-header">
@@ -38,7 +38,13 @@ permalink: /cv/
           <span class="cv-dates">{{ entry.dates }}</span>
         </div>
         <p>{{ entry.degree }}</p>
-        {% if entry.notes %}<p class="cv-note">{{ entry.notes }}</p>{% endif %}
+        {% if entry.advisor or entry.notes %}
+          <p>
+            {% if entry.advisor %}<span class="cv-advisor">Advisor: {{ entry.advisor }}</span>{% endif %}
+            {% if entry.advisor and entry.notes %}<span class="cv-detail-separator" aria-hidden="true"> · </span>{% endif %}
+            {% if entry.notes %}<span class="cv-note">{{ entry.notes }}</span>{% endif %}
+          </p>
+        {% endif %}
       </div>
     {% endfor %}
   </section>
