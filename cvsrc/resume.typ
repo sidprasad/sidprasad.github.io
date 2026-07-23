@@ -1,11 +1,11 @@
-// CV — Siddhartha Prasad
-// Compile from this directory with: make
+// Resume - Siddhartha Prasad
+// A shorter version of the CV. Compile with: make resume
 
 #let cv = yaml("../_data/cv.yml")
 #let all-publications = yaml("../_data/publications.yml")
-#let publications = cv.publications.map(title => {
+#let publications = cv.resume.selected_publications.map(title => {
   let publication = all-publications.find(item => item.title == title)
-  assert(publication != none, message: "CV publication not found: " + title)
+  assert(publication != none, message: "Resume publication not found: " + title)
   publication
 })
 
@@ -14,12 +14,12 @@
 #let muted = rgb("#6b6b6b")
 
 #set document(
-  title: [Siddhartha Prasad — Curriculum Vitae],
+  title: [Siddhartha Prasad - Resume],
   author: cv.name,
-  description: [Curriculum Vitae],
+  description: [Resume],
   keywords: (
     "Siddhartha Prasad",
-    "Curriculum Vitae",
+    "Resume",
     "Computer Science",
     "Programming Languages",
     "Formal Methods",
@@ -28,50 +28,40 @@
 )
 #set page(
   paper: "us-letter",
-  margin: (x: 0.85in, y: 0.8in),
+  margin: (x: 0.78in, y: 0.7in),
+  header: align(right, text(size: 8.5pt, style: "italic", fill: muted, cv.updated)),
   footer: context {
     align(right, text(size: 8.5pt, fill: muted)[#counter(page).display()])
   },
 )
 #set text(
   font: ("XCharter", "Charter", "Libertinus Serif"),
-  size: 10.5pt,
+  size: 10.25pt,
   lang: "en",
   hyphenate: false,
 )
-#set par(justify: true, leading: 0.72em)
+#set par(justify: true, leading: 0.68em)
 #set list(indent: 1.1em, body-indent: 0.6em, spacing: 3pt)
-#show link: set text(fill: accent)
-#show title: it => text(size: 19pt, weight: "bold", cv.name)
 
 #show heading.where(level: 1): it => {
-  block(above: 1.5em, below: 0.9em, width: 100%, breakable: false)[
+  block(above: 1.35em, below: 0.8em, width: 100%, breakable: false)[
     #stack(
       dir: ttb,
       spacing: 2pt,
-      text(size: 10.5pt, weight: "bold", fill: accent, smallcaps(it.body)),
+      text(size: 10.25pt, weight: "bold", fill: accent, smallcaps(it.body)),
       line(length: 100%, stroke: 0.5pt + rule-color),
     )
   ]
 }
-#show heading.where(level: 2): it => {
-  set text(size: 10.5pt, weight: "regular", hyphenate: false)
-  it.body
-}
 
 #let section-title(body) = heading(level: 1, outlined: false)[#body]
-#let entry-title(body) = heading(
-  level: 2,
-  outlined: false,
-  bookmarked: false,
-)[#strong(body)]
 
 #let organization(name, location) = {
   v(8pt)
   grid(
     columns: (1fr, auto),
     column-gutter: 1em,
-    entry-title(name),
+    strong(name),
     text(fill: muted, location),
   )
 }
@@ -160,12 +150,12 @@
     emph(entry.dates),
   )
   v(1pt)
-  text(size: 9.5pt, fill: muted)[Advisor: #entry.advisor]
+  text(size: 9.25pt, fill: muted)[Advisor: #entry.advisor]
   if "notes" in entry {
     h(0.55em)
-    text(size: 9.5pt, fill: rule-color)[·]
+    text(size: 9.25pt, fill: rule-color)[·]
     h(0.55em)
-    text(size: 9.5pt, fill: muted, style: "italic", entry.notes)
+    text(size: 9.25pt, fill: muted, style: "italic", entry.notes)
   }
 }
 
@@ -181,50 +171,34 @@
 
 #let publication(entry) = {
   let awards = entry.at("awards", default: ())
-  block(above: 13pt, breakable: false)[
-    #heading(level: 2, outlined: false, bookmarked: false)[
-      #entry.title, #strong(entry.venue_short + " " + str(entry.year))
-    ]
+  block(above: 11pt, breakable: false)[
+    #let destination = entry.at("paper_url", default: none)
+    #let title = if destination == none {
+      entry.title
+    } else {
+      link(destination)[#text(fill: black, entry.title)]
+    }
+    #title#if awards.len() == 0 {
+      text(fill: black, weight: "bold")[, #entry.venue_short #entry.year]
+    }
     #if awards.len() > 0 {
+      let distinction = awards.map(award => award.replace(" Award", "")).join(" and ")
       linebreak()
-      text(fill: accent, weight: "bold")[
-        [#awards.map(award => award.replace(" Award", "")).join("; ")]
-      ]
+      text(fill: accent, weight: "bold", distinction)
+      text(fill: black)[ at ]
+      text(fill: black, weight: "bold")[#entry.venue_short #entry.year]
     }
     #linebreak()
     #authors(entry.authors)
   ]
 }
 
-#let three-column-row(left, center, right) = block(above: 4pt)[
-  #text(fill: muted, left)
-  #h(0.55em)#text(fill: rule-color)[·]#h(0.55em)
-  #center
-  #if right != "" [
-    #h(0.55em)#text(fill: rule-color)[·]#h(0.55em)
-    #text(fill: muted, right)
-  ]
-]
-
-#let two-column-row(left, right) = block(above: 4pt)[
-  #left
-  #h(0.55em)#text(fill: rule-color)[·]#h(0.55em)
-  #text(fill: muted, right)
-]
-
 // Header
-#grid(
-  columns: (1fr, auto),
-  column-gutter: 1em,
-  title(),
-  align(right, text(size: 8.5pt, style: "italic", fill: muted)[
-    Updated #cv.updated
-  ]),
-)
+#text(size: 19pt, weight: "bold", cv.name)
 #v(2pt)
-#link("mailto:" + cv.email)[#cv.email]
+#link("mailto:" + cv.email)[#text(fill: accent, cv.email)]
 #h(0.8em) | #h(0.8em)
-#link(cv.website.url)[#cv.website.label]
+#link(cv.website.url)[#text(fill: accent, cv.website.label)]
 
 #v(0.8em)
 #cv.summary
@@ -240,42 +214,8 @@
 }
 
 #pagebreak()
-#section-title[Publications]
+#v(12pt)
+#section-title[Selected Publications]
 #for entry in publications {
   publication(entry)
-}
-
-#section-title[Teaching]
-#for institution in cv.teaching {
-  block(above: 8pt, breakable: false)[
-    #heading(level: 2, outlined: false, bookmarked: false)[
-      Teaching Assistant, #strong(institution.institution)
-    ]
-    #v(-1pt)
-    #pad(
-      left: 0.75em,
-      stack(
-        dir: ttb,
-        spacing: 3pt,
-        ..institution.courses.map(course =>
-        grid(
-          columns: (1fr, auto),
-          column-gutter: 1em,
-          course.course,
-          text(fill: muted, course.years),
-        )
-        ),
-      ),
-    )
-  ]
-}
-
-#section-title[Service]
-#for entry in cv.service {
-  three-column-row(entry.years, entry.description, "")
-}
-
-#section-title[Affiliations & Certifications]
-#for entry in cv.affiliations {
-  two-column-row(entry.description, entry.institution)
 }

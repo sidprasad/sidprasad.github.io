@@ -697,6 +697,11 @@ sup, a.footnote {
   margin-bottom: 1.5rem;
 }
 
+.cv-download-stack {
+  display: grid;
+  gap: 0.65rem;
+}
+
 .cv-download {
   display: inline-flex;
   align-items: center;
@@ -747,11 +752,15 @@ sup, a.footnote {
     margin-bottom: 0;
   }
 
-  .cv-download {
+  .cv-download-stack {
     position: absolute;
     top: 0;
     right: calc(100% + 1.5rem);
     width: max-content;
+  }
+
+  .cv-download {
+    width: 100%;
   }
 }
 

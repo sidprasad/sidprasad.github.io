@@ -13,15 +13,28 @@ summary: >-
   research is informed by my time as an engineer: I have written code that
   doesn’t do what I want it to, and I want to spare everyone else the indignity.
 
+# The resume reuses the canonical entries below and shows a shorter publication
+# selection than the CV.
+resume:
+  selected_publications:
+    - Diagramming Program Values by Spatial Refinement
+    - Meaningful Human-in-the-Loop Checking of GenAI Synthesis for Restricted Languages
+    - "Lightweight Diagramming for Lightweight Formal Methods: A Grounded Language Design"
+    - A Misconception-Driven Adaptive Tutor for Linear Temporal Logic
+    - Misconceptions in Finite-Trace and Infinite-Trace Linear Temporal Logic
+    - "Forge: A Tool and Language for Teaching Formal Methods"
+
 education:
   - institution: Brown University
     location: Providence, RI
     degree: Ph.D. in Computer Science
     dates: Jan 2022 – present
+    advisor: Shriram Krishnamurthi
   - institution: Tufts University
     location: Medford, MA
     degree: B.S. in Computer Science and Mathematics
     dates: May 2016
+    advisor: Kathleen Fisher
     notes: Summa cum Laude; High Thesis Honors
 
 employment:
@@ -32,8 +45,11 @@ employment:
         team: Human-Centered Machine Learning
         dates: May – Sept 2023
         description: >-
-          Explored how AI and formal-methods techniques can support early
-          childhood education.
+          Designed a formal-methods-inspired technique that prompts an LLM to
+          evaluate candidate outputs against task-specific quality criteria and
+          iteratively refine them without fine-tuning. The technique drives
+          ContextQ, a system that generates questions to support parent-child
+          dialogue during shared reading.
   - organization: Microsoft
     location: Redmond, WA
     roles:
@@ -42,23 +58,31 @@ employment:
         dates: April 2018 – Sept 2021
         bullets:
           - >-
-            Developer on the Azure Cognitive Services team, which lets
-            developers embed AI into apps, bots, and websites.
+            Built the container platform for Azure Cognitive Services,
+            enabling customers with sensitive data to run AI workloads
+            on-premises, at the edge, or in fully disconnected environments.
           - >-
-            Built a containerized framework that allowed AI models to be run
-            portably across operating systems and architectures.
+            Designed a deployment framework that allowed the same Docker
+            containers to run across Azure-hosted and customer-managed
+            environments, abstracting differences in CPU architecture,
+            connectivity, API-key validation, logging, and storage.
+          - >-
+            Operated production infrastructure for the cloud service,
+            including on-call responsibility.
       - title: Software Engineer
         team: Developer Ecosystem Platform
         dates: Aug 2016 – March 2018
         bullets:
           - >-
-            Developed APIs and features for XAML, a UI language used to build
-            Universal Windows apps.
+            Designed and shipped XAML input APIs across Windows 10, Windows
+            Phone, and Xbox, giving developers a consistent model for keyboard,
+            gamepad, and ink interaction.
           - >-
-            Designed XAML APIs for input modalities (keyboard, gamepad, ink),
-            accessibility, and cross-platform language support.
+            Built accessibility and navigation features, including XAML access
+            keys, so applications could expose commands and behave consistently
+            across keyboard and gamepad input.
       - title: Software Engineering Intern
-        team: Developer Ecosystem
+        team: Developer Ecosystem Platform
         dates: May – Aug 2015
   - organization: INRIA
     location: Saclay, France
@@ -66,7 +90,9 @@ employment:
       - title: Research Intern
         team: Parsifal
         dates: June – July 2014
-        description: Research on correctness certificates for first-order term rewriting.
+        description: >-
+          Research on correctness certificates for first-order term-rewriting
+          systems.
 
 # Publications remain canonical in _data/publications.yml. This list controls
 # which publications appear in the CV and in what order.
