@@ -156,8 +156,9 @@ body.has-sidenotes .footnotes {
     padding: 0 2px;
   }
   .sidenote-ref:focus-visible {
-    outline: 2px solid #888;
-    outline-offset: 2px;
+    outline: none;
+    background: #f6e7a3;
+    color: #111;
     border-radius: 2px;
   }
   .sidenote-ref.is-open {
