@@ -98,7 +98,7 @@ h1, h2, h3, h4, h5, h6 {
   vertical-align: super;
   line-height: 0;
   font-weight: 600;
-  color: #555;
+  color: #888;
   margin: 0 1px;
 }
 
@@ -123,7 +123,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 0;
   margin-right: 4px;
   font-weight: 600;
-  color: #555;
+  color: #888;
 }
 
 .sidenote a {
