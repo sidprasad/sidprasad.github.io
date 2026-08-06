@@ -3,7 +3,23 @@
 
 #let cv = yaml("../_data/cv.yml")
 #let all-publications = yaml("../_data/publications.yml")
-#let publications = cv.resume.selected_publications.map(title => {
+
+// Pass `--input variant=<name>` to build one of the application-specific cuts
+// defined under `resume.variants` in cv.yml. Without it, the default resume.
+#let variant-name = sys.inputs.at("variant", default: "")
+#let variant = if variant-name == "" {
+  (:)
+} else {
+  let found = cv.resume.at("variants", default: (:)).at(variant-name, default: none)
+  assert(found != none, message: "Resume variant not found: " + variant-name)
+  found
+}
+#let redact-education-dates = variant.at("redact_education_dates", default: false)
+
+#let selected-publications = (
+  cv.resume.selected_publications + variant.at("additional_publications", default: ())
+)
+#let publications = selected-publications.map(title => {
   let publication = all-publications.find(item => item.title == title)
   assert(publication != none, message: "Resume publication not found: " + title)
   publication
@@ -140,6 +156,11 @@
 }
 
 #let education(entry) = {
+  let dates = if redact-education-dates {
+    entry.at("dates_redacted", default: "")
+  } else {
+    entry.dates
+  }
   v(7pt)
   grid(
     columns: (1fr, auto),
@@ -147,7 +168,7 @@
     [
       #entry.degree, #strong(entry.institution), #text(fill: muted, entry.location)
     ],
-    emph(entry.dates),
+    emph(dates),
   )
   v(1pt)
   text(size: 9.25pt, fill: muted)[Advisor: #entry.advisor]

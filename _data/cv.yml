@@ -16,24 +16,45 @@ summary: >-
 # The resume reuses the canonical entries below and shows a shorter publication
 # selection than the CV.
 resume:
+  # First-author work first, then co-authored work.
   selected_publications:
     - Diagramming Program Values by Spatial Refinement
     - Meaningful Human-in-the-Loop Checking of GenAI Synthesis for Restricted Languages
     - "Lightweight Diagramming for Lightweight Formal Methods: A Grounded Language Design"
     - A Misconception-Driven Adaptive Tutor for Linear Temporal Logic
+    - Conceptual Mutation Testing for Student Programming Misconceptions
+    - "hS: Speculative Script Reordering at Subprocess Granularity"
     - Misconceptions in Finite-Trace and Infinite-Trace Linear Temporal Logic
     - "Forge: A Tool and Language for Teaching Formal Methods"
 
+  # Application-specific cuts of the resume, built with
+  # `--input variant=<name>` (see cvsrc/Makefile). A variant may append
+  # `additional_publications` to the list above and set
+  # `redact_education_dates`, which swaps each education entry's `dates` for
+  # its `dates_redacted` value.
+  variants:
+    microsoft:
+      redact_education_dates: true
+      additional_publications:
+        # Prior Microsoft work on large-scale AI systems.
+        - Large-Scale Intelligent Microservices
+
+# `dates_redacted` is what a resume variant with `redact_education_dates: true`
+# shows in place of `dates`, for applications that ask not to disclose dates of
+# attendance or graduation. An empty value omits the dates entirely.
 education:
   - institution: Brown University
     location: Providence, RI
     degree: Ph.D. in Computer Science
-    dates: Jan 2022 – present
+    dates: Jan 2022 – May 2027 (expected)
+    # Drops the start date, which is a date of attendance.
+    dates_redacted: May 2027 (expected)
     advisor: Shriram Krishnamurthi
   - institution: Tufts University
     location: Medford, MA
     degree: B.S. in Computer Science and Mathematics
     dates: May 2016
+    dates_redacted: ""
     advisor: Kathleen Fisher
     notes: Summa cum Laude; High Thesis Honors
 

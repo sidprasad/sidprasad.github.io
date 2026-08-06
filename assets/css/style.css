@@ -596,6 +596,36 @@ header nav a.nav-tab:hover .nav-external {
   border-radius: 6px;
 }
 
+/* Inline pointer to a paper / blog post inside narrative prose */
+.paper-callout {
+  border-left: 4px solid #084298;
+  background: #f5f7fa;
+  padding: 0.9em 1.3em;
+  margin: 1.6em 0;
+  border-radius: 6px;
+}
+
+.paper-callout-title {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.paper-callout-meta {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.85em;
+  color: #555;
+}
+
+.paper-callout-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 9px;
+}
+
 /* Fallback footnotes (only visible if sidenotes JS hasn't run yet) */
 .footnotes {
   margin-top: 2.5em;

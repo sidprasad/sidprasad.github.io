@@ -8,7 +8,6 @@ title: Diagramming and Spatiality
 I am very interested in **diagrams**, particularly in how they enable [thinking](https://www.researchgate.net/publication/232083479_Thinking_with_Sketches), [theorizing](https://www.activityanalysis.net/method-diagramming-as-theorizing/), [exploration](https://onlinelibrary.wiley.com/doi/epdf/10.1111/j.1551-6708.1987.tb00863.x), and communication.
 
 > *“Spatial thinking is the foundation of abstract thought.”*  — [B. Tversky](https://www.hachettebookgroup.com/titles/barbara-tversky/mind-in-motion/9780465093076/?lens=basic-books)
->
 
 The most important aspect of a diagram is how it is **spatially arranged**, not its aesthetic rendering. I am interested in understanding the
 spatial operations that are needed to build useful[^1] diagrams.
@@ -19,54 +18,97 @@ I am, however, not a cognitive scientist, a designer, or a psychologist.
 Informed by my background in programming languages, software engineering, and formal methods, I aim to operationalize the insights of these disciplines
 via a programming language-based approach.
 
+## Diagramming by specification
 
-The key difference between a program and a specification lies in how they relate to behavior. An empty program performs no actions -- it exhibits no behavior whatsoever. In contrast, an empty specification allows all possible behaviors, since it imposes no constraints. 
-In a lightweight specification language like [Forge](https://forge-fm.org), this means that an empty spec permits every conceivable structure
-or behavior, simply because nothing has been ruled out.
+The key difference between a program and a specification lies in how they relate to behavior. An empty program performs no actions -- it exhibits no behavior whatsoever. In contrast, an empty specification allows all possible behaviors, since it imposes no constraints. In a lightweight specification language like [Forge](https://forge-fm.org), this means that an empty spec permits every conceivable structure or behavior, simply because nothing has been ruled out.
 
-> A program defines exactly what should happen, whereas a specification describes what is required. 
+> A program defines exactly what should happen, whereas a specification describes what is required.
 {:.callout}
 
+Most diagramming tools are programs: they draw exactly what you told them to draw. My work treats diagramming as specification instead. A value denotes the *set* of layouts that could depict it, and each rule a user writes removes layouts from that set. Diagramming becomes refinement rather than construction, and a set of rules that admits no layout is a semantic error rather than a rendering failure.
 
+This only works if the starting point is **faithful**. Refinement is meaningful only relative to a default view that shows everything the value contains; a default that silently omits components makes every refinement built on top of it untrustworthy. Every component must therefore be rendered unless a rule explicitly hides it.
 
 ## Lightweight Diagramming for Lightweight Formal Methods
 
-[Cope and Drag](/copeanddrag) is a diagramming-by-specification programming language 
-designed for use with the [Forge](https://forge-fm.org) lightweight formal methods[^2] tool.
+[Cope and Drag](https://github.com/sidprasad/copeanddrag) is a diagramming-by-specification programming language
+designed for use with [Forge](https://forge-fm.org) and Alloy, lightweight formal methods[^2] tools.
 
 [^2]: [Lightweight Formal Methods](https://people.csail.mit.edu/dnj/publications/ieee96-roundtable.html)
 
 A central attribute of lightweight formal methods is that users can
-reason informally about their designs before doing so formally. 
+reason informally about their designs before doing so formally.
 Whereas traditional verification tools require *properties*
 before the tools can do anything effective, tools like Forge can work
 with just system descriptions. They use a SAT-solver to generate
 instances of the system and present these to the user, most commonly
-in visual form. 
+in visual form. This has two benefits:
 
-This has two benefits:
-1. Users can (hopefully quickly) spot ways in which the
-output does not conform to their intent, and improve their
-specification. 
-1. Seeing these violations suggests desirable and undesirable *properties*, which can then
-be formalized and turned into verification conditions.
+1. Users can (hopefully quickly) spot ways in which the output does not conform to their intent, and improve their specification.
+1. Seeing these violations suggests desirable and undesirable *properties*, which can then be formalized and turned into verification conditions.
 
+Thus, realizing lightweightness hinges heavily on the quality of visualizations. In turn, once properties exist, counterexamples to their success are also presented using the same mechanisms.
 
-Thus, realizing lightweightness hinges heavily on the quality of visualizations. In
-turn, once properties exist, counterexamples to their success are also
-presented using the same mechanisms.
+Forge and Alloy supply a faithful default for free: an instance arrives as atoms and relations, and the default visualizer draws all of it. Cope and Drag leverages this default visualization to enable diagramming by refinement.
 
-
-Cope and Drag leverages this default visualization to enable diagramming by refinement. 
 - An **empty** Cope and Drag spec starts with the default Forge visualizer’s output.
 - As users progressively add **constraints** and **directives**, the diagram is selectively refined, making it more relevant and expressive for the user’s needs.
 
-This design provides a middle ground between purely programmatic approaches (which allow fine control but can be labor-intensive) and  pure genericity.
-Additionally, unlike optimization-focused based diagramming languages (e.g., Penrose, BlueFish), a diagram is only generated if the 
+This vocabulary of constraints and directives is **grounded**: it comes from studying what spatial notions people reach for when they diagram these structures themselves.
+
+This design provides a middle ground between purely programmatic approaches (which allow fine control but can be labor-intensive) and pure genericity.
+Additionally, unlike optimization-focused diagramming languages (e.g., Penrose, Bluefish), a diagram is only generated if the
 Cope and Drag specification does not conflict with instances generated by the Forge model. This makes Cope and Drag a meaningful debugging tool, as it produces a solver-generated ''core'' of conflicting diagramming primitives for these *bad instances*.
 
+<div class="paper-callout" markdown="0">
+  <p class="paper-callout-title">Lightweight Diagramming for Lightweight Formal Methods: A Grounded Language Design
+    <span class="paper-callout-meta">ECOOP 2025 · <span class="award-badge">Distinguished Paper</span> <span class="award-badge">Distinguished Artifact</span></span>
+  </p>
+  <div class="paper-callout-links">
+    <a class="pub-pill pub-pill-pdf" href="https://cs.brown.edu/people/tbn/publications/cnd-ecoop25.pdf">PDF</a>
+    <a class="pub-pill pub-pill-blog" href="https://blog.brownplt.org/2025/06/09/copeanddrag.html">Blog post</a>
+    <a class="pub-pill pub-pill-code" href="https://github.com/sidprasad/copeanddrag">Code</a>
+  </div>
+</div>
 
-> 
-> 🔍 *[See our ECOOP 2025 paper](https://cs.brown.edu/people/tbn/publications/cnd-ecoop25.pdf).*
+## Diagramming Program Values by Spatial Refinement
+
+Formal methods hands us a faithful default. Ordinary program values do not come with one, which is the central difficulty in applying this idea to *runtime value inspection*: examining the concrete values a program produces.
+
+Programmers inspect values constantly, and the tools for it (REPLs, print statements, debuggers) are almost entirely textual. There is a clear signal that they want richer output. The well-resourced response is to build a bespoke, domain-specific visualizer, as [ProofWidgets](https://github.com/leanprover-community/ProofWidgets4) enables in Lean. The cheaper and anecdotally more common response is to export values to a graph format such as DOT ([anytree](https://github.com/c0fec0de/anytree), [automatalib](https://github.com/LearnLib/automatalib), and [dd](https://github.com/tulip-control/dd) in Python; [egg](https://github.com/egraphs-good/egg) and [petgraph](https://github.com/petgraph/petgraph) in Rust).
+
+The export choice is revealing. Programmers want richer inspection, and graph-like views often help, but they want to keep working on their program rather than write a visualizer, so they delegate that work to an existing graph renderer.
+
+This leaves a programmer with two options. Either you build a visualizer (or exporter) from scratch, which is a great deal of programming work, or a library author wrote one for you, which is no work but limited control. The author may know the domain well, but inspection is so often about values that surprise you: to have picked the right view in advance, they would have had to anticipate every later inspection and every shape the value might take.
+
+Diagrammatic value printers therefore need to be **refinable, not fixed**. Such a mechanism must:
+
+1. Provide a **faithful default view**, so that a diagram is always available.
+1. Make it **cheap to iterate** on a view, whether the view is yours or one you inherited.
+1. **Stay faithful to the value being inspected.** Inspection is exploratory, so users often cannot tell when a view is misleading them. Every component of the value should be rendered unless explicitly hidden.
+
+**Spytial** is such a mechanism. It extends Cope and Drag in three ways:
+
+- **Relationalization** maps a program value into a uniform structure of components and the relationships among them. This manufactures the faithful default that Forge and Alloy previously supplied for free.
+- **Selectors** are relational queries that scope constraints and directives to sub-parts of that structure, where Cope and Drag could only address all atoms of a type or all tuples of a relation.
+- A **spatial semantics** gives the account formal content: a value under a set of rules denotes the set of layouts satisfying them. When that set is empty, Spytial reports a semantic error and draws **counterfactual** diagrams to show why no layout exists.
+
+Spytial is embedded in Python, Rust, and Pyret. Because its rules describe valid arrangements rather than fixed positions, it can also be used to *construct* values interactively while preserving their spatial constraints.
+
+<div class="paper-callout" markdown="0">
+  <p class="paper-callout-title">Diagramming Program Values by Spatial Refinement
+    <span class="paper-callout-meta">PLDI 2026</span>
+  </p>
+  <div class="paper-callout-links">
+    <a class="pub-pill pub-pill-pdf" href="/papers/ptkns-spytial.pdf">PDF</a>
+    <a class="pub-pill pub-pill-blog" href="https://blog.brownplt.org/2026/05/22/spytial.html">Blog post</a>
+    <a class="pub-pill pub-pill-code" href="https://github.com/sidprasad/spytial">Python</a>
+    <a class="pub-pill pub-pill-code" href="https://github.com/sidprasad/caraspace">Rust</a>
+    <a class="pub-pill pub-pill-code" href="https://github.com/sidprasad/spyret-ide">Pyret</a>
+  </div>
+</div>
+
+## Thesis
+
+> Diagrammatic value printing for runtime inspection can be formulated as a specification problem over the structure of runtime values, independent of the language that produced them. In this formulation, a runtime value is described by its components and the relationships among them. This structure is the basis for a faithful default view; diagramming rules refine that view by constraining its possible visual realizations, and conflicting rules are reported as semantic failures rather than rendering accidents.
 {:.callout}
-
