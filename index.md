@@ -11,12 +11,14 @@ title: Siddhartha Prasad
 
 I am a PhD student in Computer Science at Brown, advised by [Shriram Krishnamurthi](https://cs.brown.edu/~sk/). I work in programming languages and formal methods, with a focus on the gap between what people mean and what computational systems do.
 
-I am interested not only in how PL and FM techniques can solve problems programmers face, but also how programmers’ experiences can inform the design of our languages, logics, and software tools. My work includes using formal techniques to support informal program inspection, understanding people’s misconceptions of formal models, and specification elucidation through examples and interaction.
+My time as a software engineer[^1][^2] taught me that programming is not just the mechanical task of writing code; it is also the cognitive work of formalization and judgment. Whether you are a professional programmer or someone newly empowered by GenAI, you still have to decide what the system should do, evaluate tradeoffs, and determine whether the result is fit for purpose. Programming languages and formal methods researchers have spent decades relating specifications of behavior to program implementations, yet even experienced programmers use only a thin slice of that toolkit. Too many formal tools treat the specification as an input that has already been settled, rather than something programmers discover and revise through the process of building.
 
-Previously, I was a software engineer at Microsoft, where I worked both on Windows[^1] and Azure[^2]. My research interests are informed by my time as an engineer. I have written code that doesn't do what I want it to, and I want to spare everyone else the indignity.
+**My work asks how programming languages and formal methods can support this cognitive work as it happens, rather than entering only after the hard decisions have already been made. My research agenda repurposes formal machinery traditionally aimed at automated analysis to support human understanding.**
 
-[^1]: I worked on the [XAML UI Framework](https://github.com/microsoft/microsoft-ui-xaml) from 2016-2018.
-[^2]: I worked on [Azure's AI services](https://azure.microsoft.com/en-us/products/ai-services), with a particular focus on containerizing AI from 2018-2021.
+I have written code that doesn't do what I want it to, and I want to spare everyone else the indignity.
+
+[^1]: At Microsoft, I worked on Windows' [XAML UI Framework](https://github.com/microsoft/microsoft-ui-xaml) from 2016-2018.
+[^2]: I then worked on [Azure's AI services](https://azure.microsoft.com/en-us/products/ai-services), with a particular focus on containerizing AI, from 2018-2021.
 
 <div class="job-market-callout" markdown="1">
 **📣 On the job market.** I am seeking academic and research positions for **2027–28**. [Get in touch](mailto:siddhartha.a.prasad@gmail.com).

@@ -90,3 +90,6 @@ _site/
 
 # Local Claude Code config
 .claude/
+
+# Unpublished drafts
+RESEACHSTATEMENT.md
