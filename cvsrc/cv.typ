@@ -3,18 +3,25 @@
 
 #let cv = yaml("../_data/cv.yml")
 #let all-publications = yaml("../_data/publications.yml")
+#let talks = yaml("../_data/talks.yml")
 #let publications = cv.publications.map(title => {
   let publication = all-publications.find(item => item.title == title)
   assert(publication != none, message: "CV publication not found: " + title)
   publication
 })
 
+// Running header, in the "Last Name, First Name - CV" form that application
+// portals ask for.
+#let running-header = cv.family_name + ", " + cv.given_name + " - CV"
+
 #let accent = rgb("#7b1f1f")
 #let rule-color = rgb("#b8b0a8")
 #let muted = rgb("#6b6b6b")
+#let header-color = rgb("#3a3a3a")
+#let date-column = 7em
 
 #set document(
-  title: [Siddhartha Prasad — Curriculum Vitae],
+  title: running-header,
   author: cv.name,
   description: [Curriculum Vitae],
   keywords: (
@@ -29,6 +36,12 @@
 #set page(
   paper: "us-letter",
   margin: (x: 0.85in, y: 0.8in),
+  header: grid(
+    columns: (1fr, auto),
+    column-gutter: 1em,
+    text(size: 9pt, fill: header-color, running-header),
+    text(size: 8.5pt, style: "italic", fill: muted)[Updated #cv.updated],
+  ),
   footer: context {
     align(right, text(size: 8.5pt, fill: muted)[#counter(page).display()])
   },
@@ -179,11 +192,22 @@
   }).join([, ])
 }
 
+// "PLDI 2026", or "PLDI 2026 (in submission)" for a publication that carries a
+// `status` in publications.yml, so works in progress can be listed too.
+#let venue-label(entry) = {
+  let label = entry.venue_short + " " + str(entry.year)
+  if "status" in entry {
+    label + " (" + entry.status + ")"
+  } else {
+    label
+  }
+}
+
 #let publication(entry) = {
   let awards = entry.at("awards", default: ())
   block(above: 13pt, breakable: false)[
     #heading(level: 2, outlined: false, bookmarked: false)[
-      #entry.title, #strong(entry.venue_short + " " + str(entry.year))
+      #entry.title, #strong(venue-label(entry))
     ]
     #if awards.len() > 0 {
       linebreak()
@@ -196,14 +220,21 @@
   ]
 }
 
-#let three-column-row(left, center, right) = block(above: 4pt)[
-  #text(fill: muted, left)
-  #h(0.55em)#text(fill: rule-color)[·]#h(0.55em)
-  #center
-  #if right != "" [
-    #h(0.55em)#text(fill: rule-color)[·]#h(0.55em)
-    #text(fill: muted, right)
-  ]
+// A row with a date column on the left, used for talks, mentorship, and
+// service. `detail` is an optional muted second line.
+#let dated-entry(years, body, detail: none) = block(above: 6pt, breakable: false)[
+  #grid(
+    columns: (date-column, 1fr),
+    column-gutter: 1em,
+    text(fill: muted, years),
+    {
+      body
+      if detail != none {
+        linebreak()
+        text(size: 9.5pt, fill: muted, detail)
+      }
+    },
+  )
 ]
 
 #let two-column-row(left, right) = block(above: 4pt)[
@@ -212,15 +243,22 @@
   #text(fill: muted, right)
 ]
 
-// Header
-#grid(
-  columns: (1fr, auto),
-  column-gutter: 1em,
-  title(),
-  align(right, text(size: 8.5pt, style: "italic", fill: muted)[
-    Updated #cv.updated
-  ]),
+// talks.yml stores dates as YYYY-MM-DD; show them as "Apr 2026".
+#let month-names = (
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
 )
+#let talk-date(date) = {
+  if type(date) == datetime {
+    date.display("[month repr:short] [year]")
+  } else {
+    let parts = str(date).split("-")
+    month-names.at(int(parts.at(1)) - 1) + " " + parts.at(0)
+  }
+}
+
+// Header
+#title()
 #v(2pt)
 #link("mailto:" + cv.email)[#cv.email]
 #h(0.8em) | #h(0.8em)
@@ -239,10 +277,14 @@
   employer-block(employer)
 }
 
-#pagebreak()
 #section-title[Publications]
 #for entry in publications {
   publication(entry)
+}
+
+#section-title[Invited Talks]
+#for talk in talks {
+  dated-entry(talk-date(talk.date), talk.title, detail: talk.venue)
 }
 
 #section-title[Teaching]
@@ -270,9 +312,18 @@
   ]
 }
 
-#section-title[Service]
+#section-title[Mentorship]
+#for entry in cv.mentorship {
+  dated-entry(
+    entry.years,
+    [#strong(entry.name), #entry.project],
+    detail: entry.institution,
+  )
+}
+
+#section-title[Service & Volunteering]
 #for entry in cv.service {
-  three-column-row(entry.years, entry.description, "")
+  dated-entry(entry.years, entry.description)
 }
 
 #section-title[Affiliations & Certifications]

@@ -86,7 +86,7 @@ permalink: /cv/
           {% assign author_list = publication.authors | replace: cv.name, highlighted_name %}
           <li class="cv-publication">
             <h3>
-              {% if publication.paper_url %}<a href="{% if publication.paper_url contains '://' %}{{ publication.paper_url }}{% else %}{{ '/' | append: publication.paper_url | relative_url }}{% endif %}">{{ publication.title }}</a>{% else %}{{ publication.title }}{% endif %}, <strong class="cv-venue">{{ publication.venue_short }} {{ publication.year }}</strong>
+              {% if publication.paper_url %}<a href="{% if publication.paper_url contains '://' %}{{ publication.paper_url }}{% else %}{{ '/' | append: publication.paper_url | relative_url }}{% endif %}">{{ publication.title }}</a>{% else %}{{ publication.title }}{% endif %}, <strong class="cv-venue">{{ publication.venue_short }} {{ publication.year }}{% if publication.status %} ({{ publication.status }}){% endif %}</strong>
             </h3>
             {% if publication.awards %}<p class="cv-award">[{{ publication.awards | join: "; " | replace: " Award", "" }}]</p>{% endif %}
             <p class="cv-authors">{{ author_list }}</p>
@@ -94,6 +94,18 @@ permalink: /cv/
         {% endif %}
       {% endfor %}
     </ol>
+  </section>
+
+  <section class="cv-section" aria-labelledby="cv-talks">
+    <h2 id="cv-talks">Invited Talks</h2>
+    <div class="cv-rows">
+      {% for talk in site.data.talks %}
+        <div class="cv-row cv-row-two-column">
+          <span class="cv-row-date">{{ talk.date | date: "%b %Y" }}</span>
+          <span>{{ talk.title }}<br><span class="cv-note">{{ talk.venue }}</span></span>
+        </div>
+      {% endfor %}
+    </div>
   </section>
 
   <section class="cv-section" aria-labelledby="cv-teaching">
@@ -115,8 +127,20 @@ permalink: /cv/
     {% endfor %}
   </section>
 
+  <section class="cv-section" aria-labelledby="cv-mentorship">
+    <h2 id="cv-mentorship">Mentorship</h2>
+    <div class="cv-rows">
+      {% for entry in cv.mentorship %}
+        <div class="cv-row cv-row-two-column">
+          <span class="cv-row-date">{{ entry.years }}</span>
+          <span><strong>{{ entry.name }}</strong>, {{ entry.project }}<br><span class="cv-note">{{ entry.institution }}</span></span>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
   <section class="cv-section" aria-labelledby="cv-service">
-    <h2 id="cv-service">Service</h2>
+    <h2 id="cv-service">Service &amp; Volunteering</h2>
     <div class="cv-rows">
       {% for entry in cv.service %}
         <div class="cv-row cv-row-two-column">

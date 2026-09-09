@@ -7,7 +7,13 @@ The CV and resume content is shared by the website and the PDFs:
 - Edit the resume's selected publications in the `resume` block of
   `../_data/cv.yml`.
 - Edit publication details in `../_data/publications.yml`; the `publications`
-  list in `cv.yml` selects and orders the entries shown on the CV.
+  list in `cv.yml` selects and orders the entries shown on the CV. A
+  publication with a `status` (for example `in submission`) is shown as a work
+  in progress.
+- The CV's Invited Talks come from `../_data/talks.yml`, and Mentorship from
+  `mentorship` in `cv.yml`.
+- The PDF's running header reads `<family_name>, <given_name> - CV`, from the
+  name fields in `cv.yml`.
 - Edit the PDF layouts in `cv.typ` and `resume.typ`, and the web layout in
   `../cv.md`.
 

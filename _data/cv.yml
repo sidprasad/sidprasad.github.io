@@ -1,10 +1,13 @@
 name: Siddhartha Prasad
+# Used for the PDF running header ("Prasad, Siddhartha - CV").
+given_name: Siddhartha
+family_name: Prasad
 email: siddhartha.a.prasad@gmail.com
 website:
   label: siddharthaprasad.com
   url: https://siddharthaprasad.com
-updated: Jul 2026
-updated_iso: 2026-07
+updated: Sep 2026
+updated_iso: 2026-09
 summary: >-
   I am a programming languages researcher interested in the human aspects of
   programming and formal reasoning. I study not only how PL and FM techniques
@@ -134,6 +137,8 @@ publications:
   - "Making Hay from Wheats: A Classsourcing Method to Identify Misconceptions"
   - Large-Scale Intelligent Microservices
 
+# Invited talks are listed in _data/talks.yml.
+
 teaching:
   - institution: Brown University
     courses:
@@ -152,9 +157,25 @@ teaching:
         code: CS 160
         course: Algorithms
 
+mentorship:
+  - years: Summer 2026
+    name: Owen Duckham
+    project: Diagramming for Lean
+    institution: Brown University
+  - years: Summer 2025
+    name: Michael Tu
+    project: Spatial refinement for diagramming program values
+    institution: Brown University
+  - years: Winter 2019
+    name: Patrick Kao
+    project: Windows emulation on Linux
+    institution: Microsoft
+
 service:
   - years: "2026"
     description: Artifact Reviewer, The Art, Science, and Engineering of Programming
+  - years: "2017"
+    description: Volunteer Alumni Interviewer, Tufts Admissions Network
 
 affiliations:
   - description: Sheridan Teaching Seminar Certificate
