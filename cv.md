@@ -98,14 +98,22 @@ permalink: /cv/
 
   <section class="cv-section" aria-labelledby="cv-talks">
     <h2 id="cv-talks">Invited Talks</h2>
-    <div class="cv-rows">
-      {% for talk in site.data.talks %}
-        <div class="cv-row cv-row-two-column">
-          <span class="cv-row-date">{{ talk.date | date: "%b %Y" }}</span>
-          <span>{{ talk.title }}<br><span class="cv-note">{{ talk.venue }}</span></span>
+    {% assign talk_groups = site.data.talks | group_by: "title" %}
+    {% for group in talk_groups %}
+      <div class="cv-employer cv-teaching-institution">
+        <div class="cv-entry-heading cv-employer-heading">
+          <h3>{{ group.name }}</h3>
         </div>
-      {% endfor %}
-    </div>
+        {% for talk in group.items %}
+          <div class="cv-entry cv-role">
+            <div class="cv-role-heading">
+              <p>{{ talk.venue }}</p>
+              <span class="cv-dates">{{ talk.date | date: "%b %Y" }}</span>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
   </section>
 
   <section class="cv-section" aria-labelledby="cv-teaching">

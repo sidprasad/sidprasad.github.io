@@ -220,8 +220,7 @@
   ]
 }
 
-// A row with a date column on the left, used for talks, mentorship, and
-// service. `detail` is an optional muted second line.
+// A row with a date column on the left, used for mentorship and service. `detail` is an optional muted second line.
 #let dated-entry(years, body, detail: none) = block(above: 6pt, breakable: false)[
   #grid(
     columns: (date-column, 1fr),
@@ -283,8 +282,31 @@
 }
 
 #section-title[Invited Talks]
-#for talk in talks {
-  dated-entry(talk-date(talk.date), talk.title, detail: talk.venue)
+// One entry per talk title, in the order talks.yml first lists them (newest
+// first), with each place the talk was given beneath it.
+#let talk-titles = talks.map(talk => talk.title).dedup()
+#for title in talk-titles {
+  block(above: 8pt, breakable: false)[
+    #heading(level: 2, outlined: false, bookmarked: false)[
+      #strong(title)
+    ]
+    #v(-1pt)
+    #pad(
+      left: 0.75em,
+      stack(
+        dir: ttb,
+        spacing: 3pt,
+        ..talks.filter(talk => talk.title == title).map(talk =>
+        grid(
+          columns: (1fr, auto),
+          column-gutter: 1em,
+          talk.venue,
+          text(fill: muted, talk-date(talk.date)),
+        )
+        ),
+      ),
+    )
+  ]
 }
 
 #section-title[Teaching]
