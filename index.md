@@ -17,7 +17,7 @@ I am interested in how programming languages and formal methods can support this
 [^1]: At Microsoft, I worked on Windows' [XAML UI Framework](https://github.com/microsoft/microsoft-ui-xaml) from 2016-2018. I then worked on [Azure's AI services](https://azure.microsoft.com/en-us/products/ai-services), with a particular focus on containerizing AI, from 2018-2021.
 
 <div class="job-market-callout" markdown="1">
-**📣 On the job market.** I am seeking academic and research positions for **2027–28**. [Get in touch](mailto:siddhartha.a.prasad@gmail.com).
+**📣 On the job market.** I am looking for positions starting in  **Summer/Fall 2027**. [Get in touch](mailto:siddhartha.a.prasad@gmail.com).
 </div>
 
 
