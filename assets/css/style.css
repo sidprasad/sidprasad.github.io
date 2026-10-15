@@ -1072,7 +1072,7 @@ sup, a.footnote {
   }
 }
 
-/* Job-market banner — clears the floated headshot, high-visibility */
+/* Job-market banner above the home page introduction */
 .job-market-callout {
   clear: both;
   border: 1px solid #b4cfff;
@@ -1086,6 +1086,8 @@ sup, a.footnote {
 }
 
 .job-market-callout p { margin: 0; }
+
+.job-market-callout p + p { margin-top: 0.65em; }
 
 /* Selected Publications on the home page */
 .selected-publications {

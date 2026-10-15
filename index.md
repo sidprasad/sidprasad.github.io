@@ -6,6 +6,12 @@ title: Siddhartha Prasad
 
 <h1 class="sr-only">Siddhartha Prasad</h1>
 
+<div class="job-market-callout" markdown="1">
+**📣 On the job market.** I am looking for positions starting in **Summer/Fall 2027**.
+
+**[Read my research statement →](/research-statement.pdf)**
+</div>
+
 <img src="/assets/img/me.jpg" alt="Siddhartha Prasad on Whidbey Island, Washington, in 2021" class="home-photo" />
 
 
@@ -15,11 +21,6 @@ My time as a software engineer[^1] taught me that programming is not just the me
 I am interested in how programming languages and formal methods can support this cognitive work as it happens, rather than entering only after the hard decisions have already been made. My research repurposes formal machinery traditionally aimed at automated analysis to support human understanding.
 
 [^1]: At Microsoft, I worked on Windows' [XAML UI Framework](https://github.com/microsoft/microsoft-ui-xaml) from 2016-2018. I then worked on [Azure's AI services](https://azure.microsoft.com/en-us/products/ai-services), with a particular focus on containerizing AI, from 2018-2021.
-
-<div class="job-market-callout" markdown="1">
-**📣 On the job market.** I am looking for positions starting in  **Summer/Fall 2027**. [Read my research statement](/research-statement.pdf).
-</div>
-
 
 <section class="currently">
   <h2 class="currently-heading">Current Projects</h2>
