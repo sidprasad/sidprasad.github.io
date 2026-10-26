@@ -47,7 +47,7 @@ I believe I am uniquely well positioned to prepare students for the changing pra
 
 ## Mentorship
 
-I've been really lucky to have worked with some outstanding students on research and engineering projects.
+I've been really lucky to have worked with some outstanding people on research and engineering projects.
 
 - [Owen Duckham](https://owen.foo/), Diagramming for Lean, Brown University, Summer 2026
 - [Michael Tu](https://www.linkedin.com/in/michael-tu-48a434251), [Spatial refinement for diagramming program values](/papers/ptkns-spytial.pdf), Brown University, Summer 2025

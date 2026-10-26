@@ -9,7 +9,10 @@ title: Siddhartha Prasad
 <div class="job-market-callout" markdown="1">
 **📣 On the job market.** I am looking for positions starting in **Summer/Fall 2027**.
 
-**[Read my research statement →](/research-statement.pdf)**
+<div class="project-actions">
+  <a class="project-action project-action-more" href="/research-statement.pdf">Research Statement</a>
+  <a class="project-action project-action-more" href="/teaching-statement.pdf">Teaching Statement</a>
+</div>
 </div>
 
 <img src="/assets/img/me.jpg" alt="Siddhartha Prasad on Whidbey Island, Washington, in 2021" class="home-photo" />
