@@ -759,11 +759,18 @@ sup, a.footnote {
   flex-wrap: wrap;
   gap: 0.45rem;
   margin: 0.35rem 0 0;
-  font-size: 0.95rem;
+  color: #6b6b6b;
+  font-size: 1rem;
+}
+
+.cv-contact a,
+.cv-contact a:hover {
+  color: inherit;
 }
 
 .cv-tagline {
   margin: 0.75rem 0 0;
+  color: #000;
   font-size: 1rem;
   font-style: italic;
   line-height: 1.45;

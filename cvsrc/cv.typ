@@ -224,13 +224,15 @@
 // Header
 #title()
 #v(2pt)
-#link("mailto:" + cv.email)[#cv.email]
-#h(0.8em) | #h(0.8em)
-#link(cv.website.url)[#cv.website.label]
+#text(fill: muted)[
+  #show link: set text(fill: muted)
+  #link("mailto:" + cv.email)[#cv.email]
+  #h(0.8em) | #h(0.8em)
+  #link(cv.website.url)[#cv.website.label]
+]
 #block(above: 8pt)[
-  #set par(justify: false)
-  #show "to bear on the cognitive work of programming.": box
-  #emph(cv.tagline)
+  #set par(justify: false, linebreaks: "optimized")
+  #text(fill: black, style: "italic", costs: (runt: 10000%), cv.tagline)
 ]
 
 #section-title[Education]
