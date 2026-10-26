@@ -1,13 +1,19 @@
 name: Siddhartha Prasad
-# Used for the PDF running header ("Prasad, Siddhartha - CV").
+# Used for the web CV heading and PDF running header ("Prasad, Siddhartha - CV").
 given_name: Siddhartha
 family_name: Prasad
 email: siddhartha.a.prasad@gmail.com
 website:
   label: siddharthaprasad.com
   url: https://siddharthaprasad.com
-updated: Sep 2026
-updated_iso: 2026-09
+current_position:
+  title: Ph.D. Student in Computer Science
+  institution: Brown University
+updated: Oct 2026
+updated_iso: 2026-10
+tagline: >-
+  Bringing the machinery of programming languages and formal methods to bear on
+  the cognitive work of programming.
 summary: >-
   I am a programming languages researcher interested in the human aspects of
   programming and formal reasoning. I study not only how PL and FM techniques
@@ -181,3 +187,4 @@ affiliations:
   - description: Sheridan Teaching Seminar Certificate
     institution: Brown University
   - description: Tau Beta Pi, The Engineering Honor Society
+    institution: Tufts University

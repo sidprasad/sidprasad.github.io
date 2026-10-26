@@ -16,7 +16,7 @@ permalink: /cv/
   <header class="cv-document-header">
     <div class="cv-heading-row">
       <div>
-        <h1>{{ cv.name }}</h1>
+        <h1>{{ cv.family_name }}, {{ cv.given_name }} - CV</h1>
         <p class="cv-contact">
           <a href="mailto:{{ cv.email }}">{{ cv.email }}</a>
         </p>
@@ -25,7 +25,7 @@ permalink: /cv/
         <span class="cv-updated">Updated <time datetime="{{ cv.updated_iso }}">{{ cv.updated }}</time></span>
       </div>
     </div>
-    <p class="cv-summary">{{ cv.summary }}</p>
+    <p class="cv-tagline">{{ cv.tagline }}</p>
   </header>
 
   <section class="cv-section" aria-labelledby="cv-education">
@@ -81,15 +81,20 @@ permalink: /cv/
       {% for title in cv.publications %}
         {% assign matches = site.data.publications | where: "title", title %}
         {% assign publication = matches | first %}
-        {% if publication %}
+        {% if publication.publication_state == 'published' or publication.publication_state == 'in press' %}
           {% capture highlighted_name %}<em class="cv-me">{{ cv.name }}</em>{% endcapture %}
           {% assign author_list = publication.authors | replace: cv.name, highlighted_name %}
           <li class="cv-publication">
             <h3>
-              {% if publication.paper_url %}<a href="{% if publication.paper_url contains '://' %}{{ publication.paper_url }}{% else %}{{ '/' | append: publication.paper_url | relative_url }}{% endif %}">{{ publication.title }}</a>{% else %}{{ publication.title }}{% endif %}, <strong class="cv-venue">{{ publication.venue_short }} {{ publication.year }}{% if publication.status %} ({{ publication.status }}){% endif %}</strong>
+              {% if publication.paper_url %}<a href="{% if publication.paper_url contains '://' %}{{ publication.paper_url }}{% else %}{{ '/' | append: publication.paper_url | relative_url }}{% endif %}">{{ publication.title }}</a>{% else %}{{ publication.title }}{% endif %}
             </h3>
-            {% if publication.awards %}<p class="cv-award">[{{ publication.awards | join: "; " | replace: " Award", "" }}]</p>{% endif %}
             <p class="cv-authors">{{ author_list }}</p>
+            {% assign acronym = publication.venue_short | replace: '‹', '' | replace: '›', '' | replace: 'IEEE BigData', 'Big Data' %}
+            {% capture highlighted_acronym %}<span class="cv-venue-short">{{ acronym }}</span>{% endcapture %}
+            <p class="cv-venue">{% if publication.venue contains acronym %}{{ publication.venue | replace: acronym, highlighted_acronym }}{% else %}{{ publication.venue }} ({{ highlighted_acronym }}){% endif %}, {{ publication.year }}{% if publication.publication_state == 'in press' %} (in press){% endif %}</p>
+            {% if publication.awards %}
+              <p class="cv-award">[{% for award in publication.awards %}{% unless forloop.first %}; {% endunless %}{% assign award_label = award | replace: " Award", "" %}{% if award contains 'Distinguished Paper' %}<span class="cv-award-paper">{{ award_label }}</span>{% elsif award contains 'Distinguished Artifact' %}<span class="cv-award-artifact">{{ award_label }}</span>{% else %}{{ award_label }}{% endif %}{% endfor %}]</p>
+            {% endif %}
           </li>
         {% endif %}
       {% endfor %}

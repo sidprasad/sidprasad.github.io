@@ -87,6 +87,7 @@ cvsrc/cv.synctex.gz
 
 # Jekyll build output
 _site/
+/output/
 
 # Local Claude Code config
 .claude/
