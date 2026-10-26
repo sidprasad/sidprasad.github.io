@@ -26,27 +26,31 @@ I am interested in how programming languages and formal methods can support this
   <h2 class="currently-heading">Current Projects</h2>
   <div class="currently-cards">
     <div class="currently-card">
-      <h3 class="currently-card-name">Making diagrams as cheap as printf.</h3>
+      <h3 class="currently-card-name">Spytial: Diagramming By Refinement</h3>
       <span class="currently-card-desc">Every time you inspect a value (at the REPL, in a debugger, in a print statement) you should have the <em>option</em> of seeing a diagram.</span>
       <span class="currently-card-links">
-        <a href="https://blog.brownplt.org/2026/05/22/spytial.html" target="_blank" rel="noopener">Read the Spytial blog post →</a>
+        <a class="project-action project-action-blog" href="https://blog.brownplt.org/2026/05/22/spytial.html" target="_blank" rel="noopener">Making Diagrams as Cheap as printf</a>
+        <a class="project-action project-action-tool" href="https://www.siddharthaprasad.com/spytial/playground/" target="_blank" rel="noopener">Try Spytial!</a>
+        <a class="project-action project-action-more" href="/diagramming">Learn more →</a>
       </span>
     </div>
     <div class="currently-card">
-      <h3 class="currently-card-name">Checking what GenAI wrote, meaningfully.</h3>
-      <span class="currently-card-desc">When an LLM generates a regex for you, how do you know it's the one you <em>actually</em> needed?</span>
+      <h3 class="currently-card-name">PICK: Human-in-the-Loop Checking of GenAI Synthesis</h3>
+      <span class="currently-card-desc">Check whether generated specifications capture what you mean by judging concrete examples.</span>
       <span class="currently-card-links">
-        <a href="https://blog.brownplt.org/2025/12/11/pick-regex.html" target="_blank" rel="noopener">Read the regex post →</a>
-        <a href="https://blog.brownplt.org/2026/06/09/pick.html" target="_blank" rel="noopener">Or how it generalizes to more languages →</a>
+        <a class="project-action project-action-blog" href="https://blog.brownplt.org/2026/06/09/pick.html" target="_blank" rel="noopener" aria-label="PICK blog post">Blog post</a>
+        <a class="project-action project-action-tool" href="/pick#pick-tools">PICK tools: Regex and LTL</a>
+        <a class="project-action project-action-more" href="/pick">Learn more →</a>
       </span>
     </div>
     <div class="currently-card">
-      <h3 class="currently-card-name">Understanding how humans understand Temporal Logic.</h3>
+      <h3 class="currently-card-name">Misconceptions in LTL and LTLf</h3>
       <span class="currently-card-desc">I think of human misconceptions
       as alternate semantics for the logic. </span>
       <span class="currently-card-links">
-        <a href="https://blog.brownplt.org/2024/07/07/little-tricky-logics-2.html" target="_blank" rel="noopener">Read about LTL and LTLf misconceptions →</a>
-        <a href="https://ltl-tutor.xyz" target="_blank" rel="noopener">Try the LTL Tutor to see how we operationalize misconceptions →</a>
+        <a class="project-action project-action-blog" href="https://blog.brownplt.org/2024/08/08/ltltutor.html" target="_blank" rel="noopener">LTL Tutor blog post</a>
+        <a class="project-action project-action-tool" href="https://ltl-tutor.xyz" target="_blank" rel="noopener">Try LTL Tutor!</a>
+        <a class="project-action project-action-more" href="/lineartemporallogic">Learn more →</a>
       </span>
     </div>
   </div>

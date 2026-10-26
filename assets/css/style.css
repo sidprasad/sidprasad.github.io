@@ -323,6 +323,16 @@ header nav a.nav-tab:hover .nav-external {
   border-bottom: 1px solid #e6e6e6;
 }
 
+/* Set publications embedded in narrative pages apart from the prose. */
+main > .publication-card,
+.project-context > .publication-card {
+  margin: 1.4em 0;
+  padding: 1em 1.2em;
+  border: 1px solid #ccd5df;
+  border-radius: 6px;
+  background: #f1f4f8;
+}
+
 .publication-list .publication-card:first-child {
   padding-top: 0;
 }
@@ -684,7 +694,7 @@ sup, a.footnote {
 
 .currently-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 14px;
 }
 
@@ -711,23 +721,131 @@ sup, a.footnote {
   flex: 1;
 }
 
-.currently-card-links {
+.currently-card-links,
+.project-actions {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 3px;
-  margin-top: 4px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
 }
 
-.currently-card-links a {
+.project-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 0.5em 0.8em;
+  border: 1px solid;
+  border-radius: 5px;
   font-size: 0.85em;
   font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  text-decoration: none;
 }
 
-@media (max-width: 600px) {
-  .currently-cards {
-    grid-template-columns: 1fr;
-  }
+.project-action-blog,
+.project-action-blog:hover {
+  background: #d1e7dd;
+  color: #0f5132;
+  border-color: #a3cfbb;
+}
+
+.project-action-tool,
+.project-action-tool:hover {
+  background: #e7d8ff;
+  color: #4a1c8a;
+  border-color: #c6aceb;
+}
+
+.project-action-more,
+.project-action-more:hover {
+  background: #cfe2ff;
+  color: #084298;
+  border-color: #9ec5fe;
+}
+
+.project-action:hover {
+  filter: brightness(0.95);
+  text-decoration: underline;
+}
+
+.project-action:focus-visible {
+  outline: 2px solid #084298;
+  outline-offset: 3px;
+}
+
+/* Collapsible contexts keep project navigation close to the content. */
+.project-context {
+  border-bottom: 1px solid #e6e6e6;
+  scroll-margin-top: 1em;
+}
+
+.project-context > summary {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7em;
+  padding: 0.8em 0;
+  list-style: none;
+  cursor: pointer;
+}
+
+.project-context > summary::-webkit-details-marker {
+  display: none;
+}
+
+.project-context > summary::before {
+  content: "";
+  flex: 0 0 0.4em;
+  height: 0.4em;
+  border-right: 1.5px solid #666;
+  border-bottom: 1.5px solid #666;
+  transform: rotate(-45deg);
+}
+
+.project-context[open] > summary::before {
+  transform: rotate(45deg);
+}
+
+.project-context > summary h2 {
+  margin: 0;
+  font-size: 1.15em;
+  line-height: 1.35;
+}
+
+.project-context > summary:focus-visible {
+  outline: 2px solid #084298;
+  outline-offset: 3px;
+}
+
+/* Spytial integration directory */
+.integration-links {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0 2.5em;
+  font-size: 0.92em;
+}
+
+.integration-links caption {
+  margin-bottom: 0.6em;
+  font-weight: 700;
+  text-align: left;
+}
+
+.integration-links th,
+.integration-links td {
+  padding: 0.65em 0.5em;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.integration-links th {
+  background: #f0f2f5;
 }
 
 /* ---------- Curriculum Vitae ---------- */
