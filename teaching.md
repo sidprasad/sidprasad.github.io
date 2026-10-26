@@ -5,12 +5,9 @@ title: Teaching
 
 # Teaching
 
-I have a bit of a manifesto for PL and formal-methods education:
+I believe I am uniquely well positioned to prepare students for the changing practice of software engineering because of my background in three distinct but complementary areas. My PhD research focuses on specifying and reasoning about software behavior, skills becoming increasingly important as generative AI shifts the center of gravity of programming from writing implementations toward specifying intent and evaluating what gets built. My earlier research in computing education investigated the misconceptions students develop when learning programming and logic, and translated those insights into educational tools now used in courses at multiple universities. Finally, my years as a professional software engineer give me firsthand experience of the profession and insight into what makes engineers effective beyond just their ability to write code. Together, these experiences inform both what I aim to teach students about software and how I help them learn it.
 
-> Students learn formal ideas by repeatedly moving between concrete cases and principled abstraction, with formative feedback guiding that movement.
-{:.callout}
-
-This view is evidenced by much of my research, which engages directly with CS education. I strive to build tools that are useful in classroom settings &mdash; both as research artifacts and as practical ways to give students the kind of formative feedback this view depends on. I am particularly proud of the [LTL Tutor](https://ltl-tutor.xyz), a curriculum-agnostic adaptive tutor for linear temporal logic.
+[Read my full teaching statement (PDF)](/teaching-statement.pdf)
 
 ## Teaching Certification
 
@@ -47,4 +44,12 @@ This view is evidenced by much of my research, which engages directly with CS ed
     <span class="course-meta">Teaching Assistant &middot; 2014</span>
   </div>
 </div>
+
+## Mentorship
+
+I've been really lucky to have worked with some outstanding students on research and engineering projects.
+
+- [Owen Duckham](https://owen.foo/), Diagramming for Lean, Brown University, Summer 2026
+- [Michael Tu](https://www.linkedin.com/in/michael-tu-48a434251), [Spatial refinement for diagramming program values](/papers/ptkns-spytial.pdf), Brown University, Summer 2025
+- [Patrick Kao](https://www.patrickkao.net/), [Windows emulation on Linux](https://www.patrickkao.net/cognitive-cdpx), Microsoft, Winter 2019
 
