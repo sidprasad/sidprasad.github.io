@@ -9,3 +9,7 @@ markdown: kramdown
 theme: minima
 plugins:
   - jekyll-feed
+
+# Local application documents are not part of the public site.
+exclude:
+  - output

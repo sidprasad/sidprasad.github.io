@@ -7,6 +7,8 @@
 #let publications = cv.publications.map(title => {
   let publication = all-publications.find(item => item.title == title)
   assert(publication != none, message: "CV publication not found: " + title)
+  assert(publication.publication_state == "published" or publication.publication_state == "in press",
+    message: "CV publication is neither published nor in press: " + title)
   publication
 })
 
@@ -15,6 +17,7 @@
 #let running-header = cv.family_name + ", " + cv.given_name + " - CV"
 
 #let accent = rgb("#7b1f1f")
+#let award-text-color = rgb("#145b75")
 #let rule-color = rgb("#b8b0a8")
 #let muted = rgb("#6b6b6b")
 #let header-color = rgb("#3a3a3a")
@@ -52,13 +55,13 @@
   lang: "en",
   hyphenate: false,
 )
-#set par(justify: true, leading: 0.72em)
+#set par(justify: true, leading: 0.55em, spacing: 0.65em)
 #set list(indent: 1.1em, body-indent: 0.6em, spacing: 3pt)
 #show link: set text(fill: accent)
 #show title: it => text(size: 19pt, weight: "bold", cv.name)
 
 #show heading.where(level: 1): it => {
-  block(above: 1.5em, below: 0.9em, width: 100%, breakable: false)[
+  block(above: 16pt, below: 8pt, width: 100%, breakable: false)[
     #stack(
       dir: ttb,
       spacing: 2pt,
@@ -173,51 +176,13 @@
     emph(entry.dates),
   )
   v(1pt)
-  text(size: 9.5pt, fill: muted)[Advisor: #entry.advisor]
+  text(fill: muted)[Advisor: #entry.advisor]
   if "notes" in entry {
     h(0.55em)
-    text(size: 9.5pt, fill: rule-color)[·]
+    text(fill: rule-color)[·]
     h(0.55em)
-    text(size: 9.5pt, fill: muted, style: "italic", entry.notes)
+    text(fill: muted, style: "italic", entry.notes)
   }
-}
-
-#let authors(names) = {
-  names.split(", ").map(name => {
-    if name == cv.name {
-      text(fill: accent, style: "italic", name)
-    } else {
-      text(fill: muted, name)
-    }
-  }).join([, ])
-}
-
-// "PLDI 2026", or "PLDI 2026 (in submission)" for a publication that carries a
-// `status` in publications.yml, so works in progress can be listed too.
-#let venue-label(entry) = {
-  let label = entry.venue_short + " " + str(entry.year)
-  if "status" in entry {
-    label + " (" + entry.status + ")"
-  } else {
-    label
-  }
-}
-
-#let publication(entry) = {
-  let awards = entry.at("awards", default: ())
-  block(above: 13pt, breakable: false)[
-    #heading(level: 2, outlined: false, bookmarked: false)[
-      #entry.title, #strong(venue-label(entry))
-    ]
-    #if awards.len() > 0 {
-      linebreak()
-      text(fill: accent, weight: "bold")[
-        [#awards.map(award => award.replace(" Award", "")).join("; ")]
-      ]
-    }
-    #linebreak()
-    #authors(entry.authors)
-  ]
 }
 
 // A row with a date column on the left, used for mentorship and service. `detail` is an optional muted second line.
@@ -230,7 +195,7 @@
       body
       if detail != none {
         linebreak()
-        text(size: 9.5pt, fill: muted, detail)
+        text(fill: muted, detail)
       }
     },
   )
@@ -262,9 +227,11 @@
 #link("mailto:" + cv.email)[#cv.email]
 #h(0.8em) | #h(0.8em)
 #link(cv.website.url)[#cv.website.label]
-
-#v(0.8em)
-#cv.summary
+#block(above: 8pt)[
+  #set par(justify: false)
+  #show "to bear on the cognitive work of programming.": box
+  #emph(cv.tagline)
+]
 
 #section-title[Education]
 #for entry in cv.education {
@@ -273,14 +240,50 @@
 
 #section-title[Employment]
 #for employer in cv.employment {
-  employer-block(employer)
+  block(breakable: false)[#employer-block(employer)]
 }
 
+#pagebreak(weak: true)
 #section-title[Publications]
 #for entry in publications {
-  publication(entry)
+  block(above: 12pt, below: 0pt, breakable: false)[
+    #set par(justify: false, leading: 0.5em, spacing: 0pt)
+    #show link: set text(fill: black)
+    #let paper-url = entry.at("paper_url", default: none)
+    #strong(if paper-url == none {
+      entry.title
+    } else {
+      let url = if paper-url.contains("://") { paper-url } else {
+        cv.website.url + "/" + paper-url
+      }
+      link(url, entry.title)
+    })
+    #linebreak()
+    #entry.authors.split(", ").map(name => {
+      if name == cv.name {
+        text(fill: accent, style: "italic", name)
+      } else {
+        text(fill: muted, name)
+      }
+    }).join([, ])
+    #linebreak()
+    #let acronym = entry.venue_short.replace("‹", "").replace("›", "").replace("IEEE BigData", "Big Data")
+    #let venue = if entry.venue.contains(acronym) { entry.venue } else {
+      entry.venue + " (" + acronym + ")"
+    }
+    #{
+      show acronym: name => text(fill: accent, name)
+      venue + ", " + str(entry.year)
+    }#if entry.publication_state == "in press" { [ (in press)] }
+    #let awards = entry.at("awards", default: ())
+    #if awards.len() > 0 {
+      linebreak()
+      text(fill: award-text-color, weight: "bold", awards.join("; "))
+    }
+  ]
 }
 
+#pagebreak(weak: true)
 #section-title[Invited Talks]
 // One entry per talk title, in the order talks.yml first lists them (newest
 // first), with each place the talk was given beneath it.

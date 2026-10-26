@@ -762,6 +762,13 @@ sup, a.footnote {
   font-size: 0.95rem;
 }
 
+.cv-tagline {
+  margin: 0.75rem 0 0;
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.45;
+}
+
 .cv-actions {
   display: flex;
   flex-direction: column;
@@ -845,13 +852,6 @@ sup, a.footnote {
   .cv-download {
     width: 100%;
   }
-}
-
-.cv-summary {
-  max-width: 67ch;
-  margin: 1.25rem 0 0;
-  font-size: 1.02rem;
-  line-height: 1.55;
 }
 
 .cv-section {
@@ -969,7 +969,17 @@ sup, a.footnote {
 }
 
 .cv-publication {
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.35rem;
+}
+
+.cv-publication h3 {
+  color: #000;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.cv-publication p {
+  margin-top: 0.2rem;
 }
 
 .cv-publication h3 a {
@@ -978,7 +988,7 @@ sup, a.footnote {
 }
 
 .cv-publication h3 a:hover {
-  color: #084298;
+  color: inherit;
   text-decoration-color: currentColor;
 }
 
@@ -992,12 +1002,18 @@ sup, a.footnote {
 }
 
 .cv-me,
+.cv-venue-short,
 .cv-award {
   color: #7b1f1f;
 }
 
 .cv-award {
   font-weight: 700;
+}
+
+.cv-award-paper,
+.cv-award-artifact {
+  color: #145b75;
 }
 
 .cv-subheading {

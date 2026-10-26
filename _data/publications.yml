@@ -1,17 +1,21 @@
 
 - title: "hS: Speculative Script Reordering at Subprocess Granularity"
+  bib_key: hs2026
   authors: "Georgios Liargkovas, Di Jin, Tianyu (Ezri) Zhu, Dan Liu, A. Bolun Thompson, Anirudh Narsipur, Seong-Heon Jung, Siddhartha Prasad, Diomidis Spinellis, Michael Greenberg, Konstantinos Kallas, Nikos Vasilakis"
   venue: "USENIX Symposium on Operating Systems Design and Implementation"
   venue_short: "OSDI"
   year: 2026
+  publication_state: published
   paper_url: https://atlas.cs.brown.edu/pdf/hs:osdi:2026.pdf
 
 
 - title: "Meaningful Human-in-the-Loop Checking of GenAI Synthesis for Restricted Languages"
+  bib_key: pick2026
   authors: "Siddhartha Prasad, Skyler Austen, Kathi Fisler, Shriram Krishnamurthi"
   venue: "European Conference on Object-Oriented Programming"
   venue_short: "ECOOP"
   year: 2026
+  publication_state: published
   blog_url: https://blog.brownplt.org/2026/06/09/pick.html
   code_url: https://github.com/sidprasad/pick-regex/
   tool_url: https://marketplace.visualstudio.com/items?itemName=SiddharthaPrasad.pick-regex
@@ -20,10 +24,12 @@
   selected: 4
 
 - title: "Diagramming Program Values by Spatial Refinement"
+  bib_key: spytial2026
   authors: "Siddhartha Prasad, Michael Tu, Karan Kashyap, Tim Nelson, Shriram Krishnamurthi"
   venue: "ACM SIGPLAN Conference on Programming Language Design and Implementation"
   venue_short: "PLDI"
   year: 2026
+  publication_state: published
   blog_url: https://blog.brownplt.org/2026/05/22/spytial.html
   paper_url: papers/ptkns-spytial.pdf
   code_url: https://github.com/sidprasad/spytial
@@ -33,10 +39,12 @@
 
 
 - title: "A Misconception-Driven Adaptive Tutor for Linear Temporal Logic"
+  bib_key: ltltutor2025
   authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, Shriram Krishnamurthi"
   venue: "International Conference on Computer Aided Verification"
   venue_short: "CAV"
   year: 2025
+  publication_state: published
   paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/pgnk-ltl-tutor/
   blog_url: https://blog.brownplt.org/2024/08/08/ltltutor.html
   code_url: https://github.com/brownplt/LTLTutor
@@ -46,10 +54,12 @@
     - "Distinguished Paper Award"
 
 - title: "Lightweight Diagramming for Lightweight Formal Methods: A Grounded Language Design"
+  bib_key: cnd2025
   authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, Shriram Krishnamurthi"
   venue: "European Conference on Object-Oriented Programming"
   venue_short: "ECOOP"
   year: 2025
+  publication_state: published
   code_url: https://github.com/sidprasad/copeanddrag
   project: 'diagramming'
   paper_url: https://cs.brown.edu/people/tbn/publications/cnd-ecoop25.pdf
@@ -61,27 +71,33 @@
     - "Distinguished Artifact Award"
 
 - title: "Misconceptions in Finite-Trace and Infinite-Trace Linear Temporal Logic"
+  bib_key: ltl2024
   authors: "Ben Greenman, Siddhartha Prasad, Antonio Di Stasio, Shufang Zhu, Giuseppe De Giacomo, Shriram Krishnamurthi, Marco Montali, Tim Nelson, Milda Zizyte"
   venue: "International Symposium on Formal Methods"
   venue_short: "FM"
   year: 2024
+  publication_state: published
   blog_url: https://blog.brownplt.org/2024/07/07/little-tricky-logics-2.html
   paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/gpdzdkmnz-miscon-finite-infinite-ltl/
   project: 'ltl'
 
 - title: "ContextQ: Generated Questions to Support Meaningful Parent-Child Dialogue While Co-Reading"
+  bib_key: contextq2024
   authors: "Griffin Dietz Smith, Siddhartha Prasad, Matt J Davidson, Leah Findlater, R Benjamin Shapiro"
   venue: "ACM Interaction Design and Children Conference"
   venue_short: "IDC"
   year: 2024
+  publication_state: published
   paper_url: https://machinelearning.apple.com/research/contextq
 
 
 - title: "Forge: A Tool and Language for Teaching Formal Methods"
+  bib_key: forge2024
   authors: "Tim Nelson, Ben Greenman, Siddhartha Prasad, Tristan Dyer, Ethan Bove, Qianfan Chen, Charles Cutting, Thomas Del Vecchio, Sidney LeVine, Julianne Rudner, Ben Ryjikov, Alexander Varga, Andrew Wagner, Luke West, Shriram Krishnamurthi"
   venue: "ACM SIGPLAN Conference on Object-Oriented Programming Systems, Languages & Applications"
   venue_short: "OOPSLA"
   year: 2024
+  publication_state: published
   blog_url: https://blog.brownplt.org/2024/04/21/forge.html
   paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/ngp----forge/
   project: 'forge'
@@ -90,36 +106,44 @@
 
 
 - title: "Conceptual Mutation Testing for Student Programming Misconceptions"
+  bib_key: conceptual2024
   authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, Shriram Krishnamurthi"
   venue: "The Art, Science, and Engineering of Programming"
   venue_short: "‹Programming›"
   year: 2024
+  publication_state: published
   blog_url: https://blog.brownplt.org/2023/10/31/conceptual-mutation-testing.html
   paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/pgnk-conceptual-examplar/
   project: 'conceptual-mutation-testing'
 
 - title: "Generating Programs Trivially: Student Use of Large Language Models"
+  bib_key: gpt2023
   authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, Shriram Krishnamurthi"
   venue: "ACM Conference on Global Computing Education"
   venue_short: "CompEd"
   year: 2023
+  publication_state: published
   blog_url: https://blog.brownplt.org/2023/09/19/generating-programs-trivially.html
   paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/pgnk-gpt-use-of-llms/
   code_url: https://github.com/sidprasad/gpt-3-vscode
   project: 'forge'
 
 - title: "Making Hay from Wheats: A Classsourcing Method to Identify Misconceptions"
+  bib_key: wheats2022
   authors: "Siddhartha Prasad, Ben Greenman, Tim Nelson, John Wrenn, Shriram Krishnamurthi"
   venue: "Koli Calling International Conference on Computing Education Research"
   venue_short: "Koli Calling"
   year: 2022
+  publication_state: published
   blog_url: https://blog.brownplt.org/2022/10/15/problem-misconceptions.html
   paper_url: https://cs.brown.edu/~sk/Publications/Papers/Published/pgnwk-making-hay-wheats/
   project: 'conceptual-mutation-testing'
 
 - title: "Large-Scale Intelligent Microservices"
+  bib_key: microservices2020
   authors: "Mark Hamilton, Nick Gonsalves, Christina Lee, Anand Raman, Brendan Walsh, Siddhartha Prasad, Dalitso Banda, Lucy Zhang, Lei Zhang, William T Freeman"
   venue: "IEEE International Conference on Big Data"
   venue_short: "IEEE BigData"
   year: 2020
+  publication_state: published
   paper_url: https://arxiv.org/abs/2009.08044
