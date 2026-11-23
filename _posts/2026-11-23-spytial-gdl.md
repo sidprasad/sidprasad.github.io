@@ -150,7 +150,7 @@ div -->|rhs| mul
   const post = document.querySelector('main');
   const sources = Array.from(post.querySelectorAll('.language-spytial-gdl-editable'), sourceFromBlock);
   try {
-    const diagrams = await renderSpytialGdls(post, { sourceOpen: true, height: 300 });
+    const diagrams = await renderSpytialGdls(post, { sourceOpen: true, height: 480 });
     for (const [index, diagram] of diagrams.entries()) {
       const editor = diagram.host.closest('.spytial-gdl-device')?.querySelector('.spytial-gdl-source textarea');
       if (!editor || !sources[index]) continue;
