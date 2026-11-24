@@ -9,7 +9,7 @@ spytial_show_demonstration: false
 
 If you use graph description languages like DOT and Mermaid, you already know what makes them useful. You write down the nodes and edges and get a diagram you can embed in your docs. The source is easy to read and update, and it plays well with version control. In short, you describe what the graph contains, and the language spares you from figuring out how to draw it (e.g., computing node coordinates, routing edges, and placing labels).
 
-Layout, however, often constitutes an important part of what the author is trying to communicate via their diagram. The figure below shows the Mermaid source for a parse tree of (6 ÷ 2) × 3 and the tree it produces.
+Layout, however, often constitutes an important part of what the author is trying to communicate via their diagram. The figure below shows the Mermaid source for an expression tree of (6 ÷ 2) × 3 and the tree it produces.
 
 ```mermaid
 flowchart TD
@@ -56,7 +56,7 @@ If where things go is part of *what* a diagram says, it should be a first-class 
   </a>
 </aside>
 
-Here’s the same expression tree in Spytial_GDL with three layout requirements. Each operator’s left and right subtrees stay below it, on their respective sides. Nodes at the same depth share a row.
+Here’s the same expression tree in Spytial-GDL with three layout requirements. Each operator’s left and right subtrees stay below it, on their respective sides. Nodes at the same depth share a row.
 
 ```spytial-gdl-editable
 mul -->|lhs| div
