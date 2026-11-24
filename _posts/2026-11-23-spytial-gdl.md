@@ -47,12 +47,13 @@ This cuts against the central abstraction of a graph description language. My so
 
 If where things go is part of *what* a diagram says, it should be a first-class construct in a graph description language, with well-defined semantics and guarantees. That’s why we built Spytial-GDL, a language that combines traditional graph description syntax with the lightweight, cognitively informed spatial requirements of the [Spytial language](https://blog.brownplt.org/2026/05/22/spytial.html). 
 
-<aside class="callout spytial-post-callout" aria-labelledby="try-spytial-gdl" markdown="1">
-<p id="try-spytial-gdl"><strong>Try Spytial-GDL</strong></p>
-
-- Embed live diagrams in HTML or Markdown. For Jekyll, Hugo, Pollen, MkDocs, and Docusaurus, see the [embedding guide](https://www.siddharthaprasad.com/spytial-gdl/docs/#/embedding).
-- Using an agent to draw your graphs? Give it the [Spytial-GDL skill](https://www.siddharthaprasad.com/spytial-gdl/SKILL.md).
-- Edit a live example in the [online playground](https://www.siddharthaprasad.com/spytial-gdl/playground/).
+<aside id="try-spytial-gdl" class="spytial-post-actions" aria-label="Using Spytial-GDL">
+  <a class="spytial-post-action" href="https://www.siddharthaprasad.com/spytial-gdl/docs/#/embedding">
+    Spytial-GDL is web-native. Here’s how you can use it on your website.
+  </a>
+  <a class="spytial-post-action" href="https://www.siddharthaprasad.com/spytial-gdl/SKILL.md">
+    Teach your AI agent to use Spytial-GDL by pointing it at this skill.
+  </a>
 </aside>
 
 Here’s the same expression tree in Spytial_GDL with three layout requirements. Each operator’s left and right subtrees stay below it, on their respective sides. Nodes at the same depth share a row.
@@ -97,9 +98,11 @@ div -->|rhs| mul
 ```
 <hr>
 
-<aside class="callout spytial-post-callout" aria-labelledby="" markdown="1">
-#### Learn more and try it out at [https://www.siddharthaprasad.com/spytial-gdl/](https://www.siddharthaprasad.com/spytial-gdl/)
-</aside>
+<div class="spytial-post-footer-action">
+  <a class="spytial-post-action" href="https://www.siddharthaprasad.com/spytial-gdl/">
+    Visit the Spytial-GDL website to learn more and try it out!
+  </a>
+</div>
 
 
 
@@ -111,29 +114,48 @@ div -->|rhs| mul
 }
 {% endunless %}
 
-.spytial-post-callout > p {
-  margin: 0 0 0.5rem;
+.spytial-post-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
 }
 
-.spytial-post-callout > ul {
-  margin-bottom: 0;
-  padding-inline-start: 1.25rem;
+a.spytial-post-action {
+  display: block;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid #545454;
+  box-shadow: 2px 2px 0 #545454;
+  color: #242424;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.spytial-post-action:hover {
+  text-decoration: underline;
+}
+
+.spytial-post-action:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.spytial-post-footer-action {
+  display: flex;
+  justify-content: center;
+  margin: 1.25rem 0;
+  text-align: center;
 }
 
 .spytial-post-disclosure {
   margin: 1.25rem 0;
-  border: 1px solid #a178df;
+  border: 1px solid #8a8a8a;
   border-radius: 8px;
 }
 
 .spytial-post-disclosure > summary {
   padding: 0.75rem 1rem;
-  color: #4c1d80;
   cursor: pointer;
-}
-
-.spytial-post-disclosure > summary::marker {
-  color: #6d28d9;
 }
 
 .spytial-post-disclosure > summary code {
@@ -141,11 +163,11 @@ div -->|rhs| mul
 }
 
 .spytial-post-disclosure > summary:hover {
-  color: #6d28d9;
+  text-decoration: underline;
 }
 
 .spytial-post-disclosure > summary:focus-visible {
-  outline: 2px solid #6d28d9;
+  outline: 2px solid currentColor;
   outline-offset: -3px;
 }
 
@@ -223,7 +245,7 @@ div -->|rhs| mul
   const post = document.querySelector('main');
   const sources = Array.from(post.querySelectorAll('.language-spytial-gdl-editable'), sourceFromBlock);
   try {
-    const diagrams = await renderSpytialGdls(post, { sourceOpen: true, height: 480 });
+    const diagrams = await renderSpytialGdls(post, { height: 480 });
     for (const [index, diagram] of diagrams.entries()) {
       const editor = diagram.host.closest('.spytial-gdl-device')?.querySelector('.spytial-gdl-source textarea');
       if (!editor || !sources[index]) continue;
