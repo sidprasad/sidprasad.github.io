@@ -19,15 +19,14 @@ flowchart TD
   div -->|lhs| 6
 ```
 
-Did you catch it?
-
+**Did you catch it?**
 
 If you go by where the operands are drawn, you’d be forgiven for reading this as (2 ÷ 6) × 3. The Mermaid source, however, describes (6 ÷ 2) × 3. At the division node, the lhs operand (6) is drawn on the right and the rhs operand (2) on the left. This kind of conflict between the labels and the layout makes the tree easy to misread. Ceding control over layout, therefore, also cedes control over an important part of what makes a diagram effective.
 
 GDL authors have been asking for this kind of control for years (e.g., [mermaid#815](https://github.com/mermaid-js/mermaid/issues/815#issuecomment-1717860019), [mermaid#6438](https://github.com/mermaid-js/mermaid/issues/6438), [graphviz#1569](https://gitlab.com/graphviz/graphviz/-/issues/1569)). In the meantime, they’ve built up a whole cottage industry of hacks for steering layout in GDLs. Some, like adding [invisible edges](https://mermaid.js.org/syntax/flowchart.html#an-invisible-link), setting [ranks](https://graphviz.org/docs/attrs/rank/), or using [subgraphs](https://mermaid.js.org/syntax/flowchart.html#subgraphs), have made their way into official documentation. Others circulate as [folk knowledge](https://github.com/mermaid-js/mermaid/issues/815#issuecomment-652844554).
 
 
-<details markdown="1">
+<details class="spytial-post-disclosure" markdown="1">
 <summary>Here’s how we could use invisible edges to get the <code>lhs</code> to show up on the left and <code>rhs</code> to the right.</summary>
 
 ```mermaid
@@ -48,11 +47,13 @@ This cuts against the central abstraction of a graph description language. My so
 
 If where things go is part of *what* a diagram says, it should be a first-class construct in a graph description language, with well-defined semantics and guarantees. That’s why we built Spytial-GDL, a language that combines traditional graph description syntax with the lightweight, cognitively informed spatial requirements of the [Spytial language](https://blog.brownplt.org/2026/05/22/spytial.html). 
 
-<!-- Maybe the web native, etc stuff goes above? 
+<aside class="callout spytial-post-callout" aria-labelledby="try-spytial-gdl" markdown="1">
+<p id="try-spytial-gdl"><strong>Try Spytial-GDL</strong></p>
 
-Skill file, etc etc.
-
--->
+- Embed live diagrams in HTML or Markdown. For Jekyll, Hugo, Pollen, MkDocs, and Docusaurus, see the [embedding guide](https://www.siddharthaprasad.com/spytial-gdl/docs/#/embedding).
+- Using an agent to draw your graphs? Give it the [Spytial-GDL skill](https://www.siddharthaprasad.com/spytial-gdl/SKILL.md).
+- Edit a live example in the [online playground](https://www.siddharthaprasad.com/spytial-gdl/playground/).
+</aside>
 
 Here’s the same expression tree in Spytial_GDL with three layout requirements. Each operator’s left and right subtrees stay below it, on their respective sides. Nodes at the same depth share a row.
 
@@ -77,7 +78,11 @@ This graph is live! Try dragging `2` to the left of `div`. You can’t! Spytial-
 
 You don’t have to rewrite requirements as you grow your graph. Add more constructs to the graph by uncommenting the last two lines and clicking **Update diagram**. The `orientation` requirements on `lhs` and `rhs` apply to the new graph elements as well!
 
-**Principled failure.** When no layout can satisfy your requirements, Spytial-GDL fails loudly and shows you the problem in terms of your graph. In the example below, the `rhs` edge from `div` back to `mul` makes each operator an operand of the other. The requirements now say that each has to be above the other. Spytial-GDL highlights `mul` and `div` in the diagram, points to the two lines that asked for those placements, and shows a counterfactual layout with those requirements relaxed.
+
+**Principled failure.** Spatial requirements can tell you something about your graph even when they can’t be met. Spytial-GDL does the principled thing and reports the conflict loudly. A layout failure is precisely when you need a diagram most. You want to look at your graph and see why it doesn’t have the shape you expected.
+That’s why Spytial-GDL also draws a counterfactual showing what the same graph would look like with the conflicting requirements relaxed.
+
+In the example below, adding an `rhs` edge from `div` back to `mul` makes each operator an operand of the other. That creates a cycle in what’s supposed to be an expression tree. A standard graph description language would draw the graph anyway, leaving the reader to spot the cycle. In a larger diagram, that’s easy to miss. In the counterfactual, you can see the cycle, with the offending node highlighted, and trace the conflict back to the rule that caused it.
 
 ```spytial-gdl
 mul -->|lhs| div
@@ -90,10 +95,14 @@ div -->|rhs| mul
 @orientation(selector='rhs.*(lhs + rhs)', directions=[right, below])
 @align(selector='{x, y: univ | #x.^~_links = #y.^~_links}', direction=horizontal)
 ```
+<hr>
 
-
-
+<aside class="callout spytial-post-callout" aria-labelledby="" markdown="1">
 #### Learn more and try it out at [https://www.siddharthaprasad.com/spytial-gdl/](https://www.siddharthaprasad.com/spytial-gdl/)
+</aside>
+
+
+
 
 <style>
 {% unless page.spytial_show_demonstration %}
@@ -101,6 +110,53 @@ div -->|rhs| mul
   display: none;
 }
 {% endunless %}
+
+.spytial-post-callout > p {
+  margin: 0 0 0.5rem;
+}
+
+.spytial-post-callout > ul {
+  margin-bottom: 0;
+  padding-inline-start: 1.25rem;
+}
+
+.spytial-post-disclosure {
+  margin: 1.25rem 0;
+  border: 1px solid #a178df;
+  border-radius: 8px;
+}
+
+.spytial-post-disclosure > summary {
+  padding: 0.75rem 1rem;
+  color: #4c1d80;
+  cursor: pointer;
+}
+
+.spytial-post-disclosure > summary::marker {
+  color: #6d28d9;
+}
+
+.spytial-post-disclosure > summary code {
+  background: transparent;
+}
+
+.spytial-post-disclosure > summary:hover {
+  color: #6d28d9;
+}
+
+.spytial-post-disclosure > summary:focus-visible {
+  outline: 2px solid #6d28d9;
+  outline-offset: -3px;
+}
+
+.spytial-post-disclosure > :is(pre, .spytial-post-mermaid) {
+  margin: 0 1rem 1rem;
+}
+
+.spytial-post-disclosure > .spytial-post-mermaid {
+  padding: 0;
+  border: 0;
+}
 
 .spytial-post-mermaid {
   display: grid;
@@ -161,8 +217,8 @@ div -->|rhs| mul
 </script>
 
 <script type="module">
-  import { noteEngineFailure, renderSpytialGdls, sourceFromBlock } from 'https://cdn.jsdelivr.net/npm/spytial-gdl@0.6.1/src/markdown.js';
-  import { paintInto } from 'https://cdn.jsdelivr.net/npm/spytial-gdl@0.6.1/src/highlight.js';
+  import { noteEngineFailure, renderSpytialGdls, sourceFromBlock } from 'https://cdn.jsdelivr.net/npm/spytial-gdl@latest/src/markdown.js';
+  import { paintInto } from 'https://cdn.jsdelivr.net/npm/spytial-gdl@latest/src/highlight.js';
 
   const post = document.querySelector('main');
   const sources = Array.from(post.querySelectorAll('.language-spytial-gdl-editable'), sourceFromBlock);
